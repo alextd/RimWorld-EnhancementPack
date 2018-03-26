@@ -16,6 +16,17 @@ namespace TD_Enhancement_Pack
 	{
 		public static readonly Texture2D ReorderUp = ContentFinder<Texture2D>.Get("UI/Buttons/ReorderUp", true);
 		public static readonly Texture2D ReorderDown = ContentFinder<Texture2D>.Get("UI/Buttons/ReorderDown", true);
+		public static readonly Texture2D Copy = ContentFinder<Texture2D>.Get("UI/Buttons/Copy");
+		public static readonly Texture2D Paste = ContentFinder<Texture2D>.Get("UI/Buttons/Paste");
+	}
+
+	//[HarmonyPatch(typeof(Dialog_ManageAreas), "Dialog_ManageAreas")]
+	static class Dialog_ManageAreas_Patch
+	{
+		public static void Postfix()
+		{
+			AreaRowPatch.copiedArea = null;
+		}
 	}
 
 
@@ -24,6 +35,8 @@ namespace TD_Enhancement_Pack
 	[HarmonyPatch("DoAreaRow")]
 	static class AreaRowPatch
 	{
+		public static Area copiedArea = null;
+		
 		//Insert FilterForUrgentHediffs when counting needed medicine
 		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
 		{
@@ -36,16 +49,11 @@ namespace TD_Enhancement_Pack
 				typeof(AreaRowPatch), nameof(DoOrderButton));
 			MethodInfo DoButtonIconInfo = AccessTools.Method(
 				typeof(AreaRowPatch), nameof(DoButtonIcon));
+			MethodInfo DoCopyPasteInfo = AccessTools.Method(
+				typeof(AreaRowPatch), nameof(CopyPasteAreaRow));
 
 			foreach (CodeInstruction instruction in instructions)
 			{
-				if (instruction.opcode == OpCodes.Call && instruction.operand == EndGroupInfo)
-				{
-					yield return new CodeInstruction(OpCodes.Ldloc_0) { labels = instruction.labels }; //WidgetRow
-					instruction.labels = new List<Label>();
-					yield return new CodeInstruction(OpCodes.Ldarg_1); //Area
-					yield return new CodeInstruction(OpCodes.Call, DoOrderButtonInfo);  //DoOrderButton(widgetRow, area)
-				}
 
 				//IL_0055: callvirt instance valuetype[UnityEngine]UnityEngine.Rect Verse.WidgetRow::Icon(class [UnityEngine] UnityEngine.Texture2D, string)
 				if (instruction.opcode == OpCodes.Callvirt && instruction.operand == IconInfo)
@@ -55,7 +63,23 @@ namespace TD_Enhancement_Pack
 					yield return new CodeInstruction(OpCodes.Ldnull); //popped off
 					continue;
 				}
+
+				if (instruction.opcode == OpCodes.Call && instruction.operand == EndGroupInfo)
+				{
+					yield return new CodeInstruction(OpCodes.Ldloc_0) { labels = instruction.labels }; //WidgetRow
+					instruction.labels = new List<Label>();
+					yield return new CodeInstruction(OpCodes.Ldarg_1); //Area
+					yield return new CodeInstruction(OpCodes.Call, DoOrderButtonInfo);  //DoOrderButton(widgetRow, area)
+				}
+
 				yield return instruction;
+
+				if (instruction.opcode == OpCodes.Stloc_0)
+				{
+					yield return new CodeInstruction(OpCodes.Ldloc_0); //widgetRow
+					yield return new CodeInstruction(OpCodes.Ldarg_1); //Area
+					yield return new CodeInstruction(OpCodes.Call, DoCopyPasteInfo);
+				}
 			}
 		}
 
@@ -79,15 +103,45 @@ namespace TD_Enhancement_Pack
 
 		public static void DoButtonIcon(WidgetRow widgetRow, Texture2D tex, string tooltip, Area area)
 		{
-			if(widgetRow.ButtonIcon(tex, tooltip))
+			if (widgetRow.ButtonIcon(tex, tooltip))
 			{
 				if (area is Area_Allowed aa)
 				{
-					Find.WindowStack.Add(new Dialog_RecolorArea(aa));	
+					Find.WindowStack.Add(new Dialog_RecolorArea(aa));
 					//TODO: better dialog
 				}
 			}
 		}
+		
+		public static void CopyPasteAreaRow(WidgetRow widgetRow, Area area)
+		{
+			//Gap doesn't work if it's the first thing. So dumb. Increment is private. So dumb.
+			//Have to hack in the method call instead AEH.
+			MethodInfo IncrementPositionInfo = AccessTools.Method(typeof(WidgetRow), "IncrementPosition");
+			float gapWidth = WidgetRow.DefaultGap + WidgetRow.IconSize;
+			if (copiedArea == area)
+			{
+				IncrementPositionInfo.Invoke(widgetRow, new object[] { gapWidth * 2});
+				return;
+			}
+
+			if (widgetRow.ButtonIcon(TexButton.Copy))
+				copiedArea = area;
+
+			if (copiedArea == null)
+				IncrementPositionInfo.Invoke(widgetRow, new object[] { gapWidth });
+			else if (widgetRow.ButtonIcon(TexButton.Paste))
+					PasteArea(copiedArea, area);
+				
+		}
+
+		public static void PasteArea(Area copy, Area paste)
+		{
+			if (copy != null)
+				foreach(IntVec3 cell in copy.ActiveCells)
+					paste[cell] = true;
+		}
+
 		
 		public class Dialog_RecolorArea : Dialog_Rename
 		{
@@ -160,6 +214,7 @@ namespace TD_Enhancement_Pack
 
 	//public class Area_Allowed : ListPriority : get
 	//HarmonyPatch AccessTools.Property(typeof(Area_Allowed), nameof(Area_Allowed.ListPriority)).GetGetMethod(false)
+	//[HarmonyPatch(typeof(Area_Allowed), "get_ListPriority")]
 	class AreaOrder
 	{
 		public static void ListPriority_Postfix(Area_Allowed __instance, ref int __result)
