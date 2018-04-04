@@ -34,7 +34,7 @@ namespace TD_Enhancement_Pack
 
 		// public override string SettingsCategory()
 		// {
-		// return "TD Enhancement Pack";
+		// return "TDEnhancementPack".Translate();
 		// }
 	}
 }

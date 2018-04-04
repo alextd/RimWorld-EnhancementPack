@@ -17,7 +17,7 @@ namespace TD_Enhancement_Pack
 			//TODO save __instance.cells.Sum(cell => __instance.Map.fertilityGrid.FertilityAt(cell))
 
 			//TODO: call Zone.GetInspectString (base)
-			__result += String.Format("\nSize: {0:0} (Fertile: {1:0.0})", 
+			__result += String.Format("SizeAndFertile".Translate(), 
 				__instance.cells.Count,
 				__instance.cells.Sum(cell => __instance.Map.fertilityGrid.FertilityAt(cell)));
 		}
@@ -29,7 +29,7 @@ namespace TD_Enhancement_Pack
 	{
 		public static void Postfix(Zone __instance, ref string __result)
 		{
-			string add = String.Format("Size: {0}", __instance.cells.Count);
+			string add = String.Format("Size".Translate(), __instance.cells.Count);
 			if (__result == String.Empty)
 				__result = add;
 			else

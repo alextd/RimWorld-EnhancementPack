@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+	
+	<HexColorValuesOnly>Hex color values only</HexColorValuesOnly>
+	<ToggleBuildable>Toggle the buildable terrain overlay</ToggleBuildable>
+	<TDEnhancementPack>TD Enhancement Pack</TDEnhancementPack>
+	<SizeAndFertile>\nSize: {0:0} (Fertile: {1:0.0})</SizeAndFertile>
+	<Size>Size: {0}</Size>
+	
+</LanguageData>

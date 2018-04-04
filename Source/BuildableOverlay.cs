@@ -109,7 +109,7 @@ namespace TD_Enhancement_Pack
 		{
 			if (worldView)
 				return;
-			row.ToggleableIcon(ref showBuildableOverlay, icon, "Toggle the buildable terrain overlay");
+			row.ToggleableIcon(ref showBuildableOverlay, icon, "ToggleBuildable".Translate());
 		}
 	}
 
