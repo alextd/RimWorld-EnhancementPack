@@ -47,10 +47,6 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <None Include="..\About\**" />
-    <None Include="..\Defs\**" />
-    <None Include="..\Languages\**" />
-    <None Include="..\Patches\**" />
     <Reference Include="UnityEngine">
       <HintPath>..\..\..\RimWorldWin_Data\Managed\UnityEngine.dll</HintPath>
       <Private>False</Private>
