@@ -109,7 +109,7 @@ namespace TD_Enhancement_Pack
 		{
 			if (worldView)
 				return;
-			row.ToggleableIcon(ref showBuildableOverlay, icon, "ToggleBuildable".Translate());
+			row.ToggleableIcon(ref showBuildableOverlay, icon, "TD.ToggleBuildable".Translate());
 		}
 	}
 

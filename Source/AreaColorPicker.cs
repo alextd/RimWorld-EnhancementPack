@@ -162,7 +162,7 @@ namespace TD_Enhancement_Pack
 				}
 				if (ColorUtility.TryParseHtmlString(name, out Color c))
 				{
-					return "HexColorValuesOnly".Translate();
+					return "TD.HexColorValuesOnly".Translate();
 				}
 				return true;
 			}

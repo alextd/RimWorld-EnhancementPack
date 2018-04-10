@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
 	
-	<HexColorValuesOnly>Hex color values only</HexColorValuesOnly>
-	<ToggleBuildable>Toggle the buildable terrain overlay</ToggleBuildable>
+	<TD.HexColorValuesOnly>Hex color values only</TD.HexColorValuesOnly>
+	<TD.ToggleBuildable>Toggle the buildable terrain overlay</TD.ToggleBuildable>
 	<TDEnhancementPack>TD Enhancement Pack</TDEnhancementPack>
-	<SizeAndFertile>\nSize: {0:0} (Fertile: {1:0.0})</SizeAndFertile>
-	<Size>Size: {0}</Size>
+	<TD.SizeAndFertile>\nSize: {0:0} (Fertile: {1:0.0})</TD.SizeAndFertile>
+	<TD.Size>Size: {0}</TD.Size>
 	
 </LanguageData>
