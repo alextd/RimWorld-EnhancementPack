@@ -21,9 +21,9 @@ namespace TD_Enhancement_Pack
 			__result += "\n" + 
 				String.Format("TD.SizeAndFertile".Translate(), count, count + FertilityCount(__instance))
 				+ "\n" +
-				String.Format("To do: {0}", ToDoCount(__instance))
+				String.Format("CountToSow".Translate(), ToDoCount(__instance))
 				+ "   " + 
-				String.Format("Grown: {0}", GrownCount(__instance));
+				String.Format("CountFullyGrown".Translate(), GrownCount(__instance));
 		}
 
 		public static float FertilityCount(Zone_Growing zone)
