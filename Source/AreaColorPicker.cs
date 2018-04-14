@@ -308,4 +308,41 @@ namespace TD_Enhancement_Pack
 				InitIndexA();
 		}
 	}
+
+	[HarmonyPatch(typeof(AreaAllowedGUI), "DoAreaSelector")]
+	public static class DoAreaSelector_Patch
+	{
+		//private static void DoAreaSelector(Rect rect, Pawn p, Area area)
+		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+		{
+			MethodInfo WidgetLabelInfo = AccessTools.Method(typeof(Widgets), "Label", new Type[] { typeof(Rect), typeof(string)});
+
+			MethodInfo SetGUIColorInfo = AccessTools.Method(typeof(DoAreaSelector_Patch), nameof(SetGUIColor));
+			MethodInfo SetGUIColorWhiteInfo = AccessTools.Method(typeof(DoAreaSelector_Patch), nameof(SetGUIColorWhite));
+
+			foreach (CodeInstruction i in instructions)
+			{
+				if(i.opcode == OpCodes.Call && i.operand == WidgetLabelInfo)
+				{
+					yield return new CodeInstruction(OpCodes.Ldarg_2);
+					yield return new CodeInstruction(OpCodes.Call, SetGUIColorInfo);
+				}
+				yield return i;
+				if (i.opcode == OpCodes.Call && i.operand == WidgetLabelInfo)
+				{
+					yield return new CodeInstruction(OpCodes.Call, SetGUIColorWhiteInfo);
+				}
+			}
+		}
+
+		public static void SetGUIColor(Area area)
+		{
+			GUI.color = area?.Color.grayscale > 0.55 ? Color.black : Color.white;
+		}
+
+		public static void SetGUIColorWhite()
+		{
+			GUI.color = Color.white;
+		}
+	}
 }
