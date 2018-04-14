@@ -17,9 +17,16 @@ namespace TD_Enhancement_Pack
 			//TODO save __instance.cells.Sum(cell => __instance.Map.fertilityGrid.FertilityAt(cell))
 
 			//TODO: call Zone.GetInspectString (base)
+			int count = __instance.cells.Count;
 			__result += String.Format("TD.SizeAndFertile".Translate(), 
-				__instance.cells.Count,
-				__instance.cells.Sum(cell => __instance.Map.fertilityGrid.FertilityAt(cell)));
+				count, count + FertilityCount(__instance)
+				);
+		}
+
+		public static float FertilityCount(Zone_Growing zone)
+		{
+			return zone.GetPlantDefToGrow().plant.fertilitySensitivity
+				* zone.cells.Sum(cell => zone.Map.fertilityGrid.FertilityAt(cell) - 1.0f);
 		}
 	}
 
