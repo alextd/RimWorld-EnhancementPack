@@ -40,16 +40,27 @@ namespace TD_Enhancement_Pack
 
 		public bool GetCellBool(int index)
 		{
-			float f = map.terrainGrid.TerrainAt(index).fertility;
+			float f = FertilityAt(map, index);
 			return f != 1
 				&& !map.fogGrid.IsFogged(index);
 		}
 
 		public Color GetCellExtraColor(int index)
 		{
-			float f = map.terrainGrid.TerrainAt(index).fertility;
+			float f = FertilityAt(map, index);
 			return f < 1 ? Color.Lerp(Color.red, Color.yellow, f)
 				: Color.Lerp(Color.green, Color.white, f-1);
+		}
+
+		public static float FertilityAt(Map map, int index)
+		{
+			if (Settings.Get().cheatFertilityUnderGrid)
+			{
+				FieldInfo underGridInfo = AccessTools.Field(typeof(TerrainGrid), "underGrid");
+				if ((underGridInfo.GetValue(map.terrainGrid) as TerrainDef[])[index] is TerrainDef def)
+					return def.fertility; 
+			}
+			return map.terrainGrid.TerrainAt(index).fertility;
 		}
 
 		public void Draw()

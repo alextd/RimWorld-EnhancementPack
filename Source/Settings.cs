@@ -8,7 +8,7 @@ namespace TD_Enhancement_Pack
 {
 	class Settings : ModSettings
 	{
-		public bool setting;
+		public bool cheatFertilityUnderGrid;
 
 		public static Settings Get()
 		{
@@ -20,7 +20,7 @@ namespace TD_Enhancement_Pack
 			var options = new Listing_Standard();
 			options.Begin(wrect);
 			
-			options.CheckboxLabeled("Sample setting", ref setting);
+			options.CheckboxLabeled("Fertility overlay shows for terrain under floors", ref cheatFertilityUnderGrid);
 			options.Gap();
 
 			options.End();
@@ -28,7 +28,7 @@ namespace TD_Enhancement_Pack
 		
 		public override void ExposeData()
 		{
-			Scribe_Values.Look(ref setting, "setting", true);
+			Scribe_Values.Look(ref cheatFertilityUnderGrid, "cheatFertilityUnderGrid", true);
 		}
 	}
 }
