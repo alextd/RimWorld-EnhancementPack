@@ -19,8 +19,11 @@ namespace TD_Enhancement_Pack
 		{
 			var options = new Listing_Standard();
 			options.Begin(wrect);
-			
+
+			bool before = cheatFertilityUnderGrid;
 			options.CheckboxLabeled("Fertility overlay shows for terrain under floors", ref cheatFertilityUnderGrid);
+			if (before != cheatFertilityUnderGrid)
+				FertilityOverlay.DirtyAll();
 			options.Gap();
 
 			options.End();

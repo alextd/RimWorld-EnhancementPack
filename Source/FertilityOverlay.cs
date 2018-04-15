@@ -16,6 +16,14 @@ namespace TD_Enhancement_Pack
 	{
 		public static Dictionary<Map, FertilityOverlay> fertilityOverlays = new Dictionary<Map, FertilityOverlay>();
 
+		public static void DirtyAll()
+		{
+			foreach(var kvp in fertilityOverlays)
+			{
+				kvp.Value.SetDirty();
+			}
+		}
+
 		public static readonly Color noneColor = new Color(1, 0, 0);
 		public static readonly Color lightColor = new Color(.8f, .8f, 0);
 
