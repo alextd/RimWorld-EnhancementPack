@@ -12,7 +12,7 @@ namespace TD_Enhancement_Pack
 		public Mod(ModContentPack content) : base(content)
 		{
 			// initialize settings
-			// GetSettings<Settings>();
+			GetSettings<Settings>();
 #if DEBUG
 			HarmonyInstance.DEBUG = true;
 #endif
@@ -26,15 +26,15 @@ namespace TD_Enhancement_Pack
 		}
 
 
-		// public override void DoSettingsWindowContents(Rect inRect)
-		// {
-		// base.DoSettingsWindowContents(inRect);
-		// GetSettings<Settings>().DoWindowContents(inRect);
-		// }
+		public override void DoSettingsWindowContents(Rect inRect)
+		{
+			base.DoSettingsWindowContents(inRect);
+			GetSettings<Settings>().DoWindowContents(inRect);
+		}
 
-		// public override string SettingsCategory()
-		// {
-		// return "TDEnhancementPack".Translate();
-		// }
+		public override string SettingsCategory()
+		{
+			return "TDEnhancementPack".Translate();
+		}
 	}
 }
