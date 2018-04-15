@@ -37,15 +37,13 @@ namespace TD_Enhancement_Pack
 
 		public bool GetCellBool(int index)
 		{
-			float f = LightingAt(map, index);
-			return f != 1
+			return (map.roofGrid.GetCellBool(index) || LightingAt(map, index) > map.skyManager.CurSkyGlow)
 				&& !map.fogGrid.IsFogged(index);
 		}
 
 		public Color GetCellExtraColor(int index)
 		{
-			float l = LightingAt(map, index);
-			return Color.Lerp(Color.black, Color.white, l);
+			return Color.Lerp(Color.red, Color.green, LightingAt(map, index));
 		}
 
 		public static float LightingAt(Map map, int index)
@@ -99,6 +97,24 @@ namespace TD_Enhancement_Pack
 			lightingOverlay.SetDirty();
 		}
 	}
+
+	[HarmonyPatch(typeof(SkyManager), "UpdateOverlays")]
+	static class SkyManagerDirty_Patch
+	{
+		//private void UpdateOverlays(SkyTarget curSky)
+		public static void Postfix(SkyManager __instance)
+		{
+			FieldInfo mapField = AccessTools.Field(typeof(SkyManager), "map");
+			Map map = (Map)mapField.GetValue(__instance);
+
+			if (!LightingOverlay.lightingOverlays.TryGetValue(map, out LightingOverlay lightingOverlay))
+			{
+				lightingOverlay = new LightingOverlay(map);
+				LightingOverlay.lightingOverlays[map] = lightingOverlay;
+			}
+			lightingOverlay.SetDirty();
+		}
+	}	
 
 	[HarmonyPatch(typeof(PlaySettings), "DoPlaySettingsGlobalControls")]
 	[StaticConstructorOnStartup]
