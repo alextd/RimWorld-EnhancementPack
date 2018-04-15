@@ -15,6 +15,7 @@ namespace TD_Enhancement_Pack
 	class LightingOverlay : ICellBoolGiver
 	{
 		public static Dictionary<Map, LightingOverlay> lightingOverlays = new Dictionary<Map, LightingOverlay>();
+		public float skyGlow;
 
 		private CellBoolDrawer drawer;
 		//private bool[] data;
@@ -37,7 +38,7 @@ namespace TD_Enhancement_Pack
 
 		public bool GetCellBool(int index)
 		{
-			return (map.roofGrid.GetCellBool(index) || LightingAt(map, index) > map.skyManager.CurSkyGlow)
+			return (map.roofGrid.GetCellBool(index) || LightingAt(map, index) > skyGlow)
 				&& !map.fogGrid.IsFogged(index);
 		}
 
@@ -61,6 +62,15 @@ namespace TD_Enhancement_Pack
 		public void SetDirty()
 		{
 			drawer.SetDirty();
+		}
+
+		public void SetDirtySky(float newSky)
+		{
+			if(skyGlow != newSky)
+			{
+				skyGlow = newSky;
+				SetDirty();
+			}
 		}
 	}
 
@@ -112,7 +122,7 @@ namespace TD_Enhancement_Pack
 				lightingOverlay = new LightingOverlay(map);
 				LightingOverlay.lightingOverlays[map] = lightingOverlay;
 			}
-			lightingOverlay.SetDirty();
+			lightingOverlay.SetDirtySky(__instance.CurSkyGlow);
 		}
 	}	
 
