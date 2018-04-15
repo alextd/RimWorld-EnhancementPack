@@ -4,6 +4,7 @@
 	<TD.HexColorValuesOnly>Hex color values only</TD.HexColorValuesOnly>
 	<TD.ToggleBuildable>Toggle the buildable terrain overlay</TD.ToggleBuildable>
 	<TD.ToggleFertility>Toggle the fertile terrain overlay</TD.ToggleFertility>
+	<TD.ToggleLighting>Toggle the lighting overlay</TD.ToggleLighting>
 	<TDEnhancementPack>TD Enhancement Pack</TDEnhancementPack>
 	<TD.SizeAndFertile>Size: {0:0} (Fertile: {1:0.0})</TD.SizeAndFertile>
 	<TD.Size>Size: {0}</TD.Size>
