@@ -4,12 +4,20 @@
 	<author>Uuugggg</author>
 	<targetVersion>0.18.0</targetVersion>
 	<description>Various things that just should be in the game.
-	
-Area color picker and re-order.
-	
-Zone/Stockpile size count, with fertility factor.
-	
-An overlay for unbuildable areas. (Yellow means some "light" things can be put there.)
+
+(Also check the settings in-game for feature list)
+
+Overlays for unbuildable areas, terrain fertility, and lighting.
+Trade and negotiation dialogs can pause after closing.
+Level-up arrows indicate skill learning in Character Tab.
+Zone/Stockpile size count, accounting fertility. Empty/Fully grown plant count.
+Areas can be reordered, recolored, and copy/pasted in the area manager
+Make an area named 'Never Home' and the area will never be added to the Home Area
+(various) selected items are given a count
+Food 'rotted away' messages are clickable to see where it was
+Popup messages like '% recruit chance' (text motes) stay onscreen in realtime, so they don't dissappear at high speeds
+Camera Panning at low framerates is fixed: Panning moves and slows to a stop at real-time speed instead of game framerate
+
 	</description>
 	<url>https://steamcommunity.com/id/Uuugggg/myworkshopfiles/?appid=294100</url>
 </ModMetaData>

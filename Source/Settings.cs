@@ -55,11 +55,11 @@ namespace TD_Enhancement_Pack
 
 			options.Label("Other unanimously good features so they don't get option buttons:");
 			options.Label("Areas can be reordered, recolored, and copy/pasted in the area manager");
-			options.Label("Camera Panning at low framerates is fixed: Panning moves and slows to a stop at real-time speed instead of game framerate");
 			options.Label("Make an area named 'Never Home' and the area will never be added to the Home Area");
 			options.Label("(various) selected items are given a count");
 			options.Label("Food 'rotted away' messages are clickable to see where it was");
 			options.Label("Popup messages like '% recruit chance' (text motes) stay onscreen in realtime, so they don't dissappear at high speeds");
+			options.Label("Camera Panning at low framerates is fixed: Panning moves and slows to a stop at real-time speed instead of game framerate");
 
 			options.End();
 		}
