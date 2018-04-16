@@ -10,5 +10,25 @@
 	<TD.Size>Size: {0}</TD.Size>
 	<TD.CountToSow>To do: {0}</TD.CountToSow>
 	<TD.CountFullyGrown>Grown: {0}</TD.CountFullyGrown>
+	<TD.SettingOverlayBuildable>Enable a buildable terrain overlay</TD.SettingO	<TD.SettingOverlayBuildable>Enable a buildable terrain overlay</TD.SettingO	<TD.SettingOverlayBuildable>Enable a buildable terrain overlay</TD.SettingOverlayBuildable>
+	<TD.SettingOverlayBuildableDesc>Red is unbuildable, Yellow is 'Light' Buildable (e.g. not structures mostly)</TD.SettingOverlayBuildableDesc>
+	<TD.SettingOverlayFertility>Enable a fertility overlay</TD.SettingOverlayFertility>
+	<TD.SettingOverlayFertilityUnder>Fertility overlay shows value for terrain under floors</TD.SettingOverlayFertilityUnder>
+	<TD.SettingOverlayLighting>Enable a lighting overlay</TD.SettingOverlayLighting>
+	<TD.SettingOverlayLightingDesc>Sun-lit outdoor areas are uncolored</TD.SettingOverlayLightingDesc>
+	<TD.SettingTradeClose>Set speed after closing trade or negotiation dialog</TD.SettingTradeClose>
+	<TD.SettingTradeCloseSpeed>Speed after closing: </TD.SettingTradeCloseSpeed>
+	<TD.SettingSkillGainArrow>Show arrows indicating skill gain</TD.SettingSkillGainArrow>
+	<TD.SettingSkillGainArrowDesc>In the Character Tab</TD.SettingSkillGainArrowDesc>
+	<TD.SettingSkillLossArrow>Show arrows indicating skill loss</TD.SettingSkillLossArrow>
+	<TD.SettingSkillLossArrowDesc>Skills slowly lose experience after level 10 (The arrow can be very faded for slow rates)</TD.SettingSkillLossArrowDesc>
+	<TD.SettingZoneSize>Show Stockpile/Growing zone area size and info</TD.SettingZoneSize>
+	<TD.OtherFeatures>Other unanimously good features so they don't get option buttons:</TD.OtherFeatures>
+	<TD.AreaEditing>Areas can be reordered, recolored, and copy/pasted in the area manager</TD.AreaEditing>
+	<TD.NeverHome>Make an area named 'Never Home' and the area will never be added to the Home Area</TD.NeverHome>
+	<TD.VariousCount>(various) selected items are given a count</TD.VariousCount>
+	<TD.RottedAwayClickable>Food 'rotted away' messages are clickable to see where it was</TD.RottedAwayClickable>
+	<TD.PopupMessageRealtime>Popup messages like '% recruit chance' (text motes) stay onscreen in realtime, so they don't dissappear at high speeds</TD.PopupMessageRealtime>
+	<TD.CameraPanningFixes>Camera Panning at low framerates is fixed: Panning moves and slows to a stop at real-time speed instead of game framerate</TD.CameraPanningFixes>
 	
 </LanguageData>

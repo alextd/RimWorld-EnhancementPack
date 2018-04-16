@@ -32,34 +32,34 @@ namespace TD_Enhancement_Pack
 		{
 			var options = new Listing_Standard();
 			options.Begin(wrect);
-			options.CheckboxLabeled("Enable a buildable terrain overlay", ref showOverlayBuildable, "Red is unbuildable, Yellow is 'Light' Buildable (e.g. not structures mostly)");
-			options.CheckboxLabeled("Enable a fertility overlay", ref showOverlayFertility);
+			options.CheckboxLabeled("TD.SettingOverlayBuildable".Translate(), ref showOverlayBuildable, "TD.SettingOverlayBuildableDesc".Translate());
+			options.CheckboxLabeled("TD.SettingOverlayFertility".Translate(), ref showOverlayFertility);
 			bool before = cheatFertilityUnderGrid;
-			options.CheckboxLabeled("Fertility overlay shows value for terrain under floors", ref cheatFertilityUnderGrid);
+			options.CheckboxLabeled("TD.SettingOverlayFertilityUnder".Translate(), ref cheatFertilityUnderGrid);
 			if (before != cheatFertilityUnderGrid)
 				FertilityOverlay.DirtyAll();
-			options.CheckboxLabeled("Enable a lighting overlay", ref showOverlayLighting, "Sun-lit outdoor areas are uncolored");
+			options.CheckboxLabeled("TD.SettingOverlayLighting".Translate(), ref showOverlayLighting, "TD.SettingOverlayLightingDesc".Translate());
 			options.Gap();
 
-			options.CheckboxLabeled("Set speed after closing trade or negotiation dialog", ref changeSpeedAfterTrader);
-			options.SliderLabeled("Speed after closing: ", ref afterTraderSpeed, "{0}x", 0, 4);
+			options.CheckboxLabeled("TD.SettingTradeClose".Translate(), ref changeSpeedAfterTrader);
+			options.SliderLabeled("TD.SettingTradeCloseSpeed".Translate(), ref afterTraderSpeed, "{0}x", 0, 4);
 			options.Gap();
 
-			options.CheckboxLabeled("Show arrows indicating skill gain", ref skillUpArrows, "In the Character Tab");
-			options.CheckboxLabeled("Show arrows indicating skill loss", ref skillDownArrows, "Skills slowly lose experience after level 10 (The arrow can be very faded for slow rates)");
+			options.CheckboxLabeled("TD.SettingSkillGainArrow".Translate(), ref skillUpArrows, "TD.SettingSkillGainArrowDesc".Translate());
+			options.CheckboxLabeled("TD.SettingSkillLossArrow".Translate(), ref skillDownArrows, "TD.SettingSkillLossArrowDesc".Translate());
 			skillArrows = skillUpArrows || skillDownArrows;
 			options.Gap();
 
-			options.CheckboxLabeled("Show Stockpile/Growing zone area size and info", ref showZoneSize);
+			options.CheckboxLabeled("TD.SettingZoneSize".Translate(), ref showZoneSize);
 			options.Gap();
 
-			options.Label("Other unanimously good features so they don't get option buttons:");
-			options.Label("Areas can be reordered, recolored, and copy/pasted in the area manager");
-			options.Label("Make an area named 'Never Home' and the area will never be added to the Home Area");
-			options.Label("(various) selected items are given a count");
-			options.Label("Food 'rotted away' messages are clickable to see where it was");
-			options.Label("Popup messages like '% recruit chance' (text motes) stay onscreen in realtime, so they don't dissappear at high speeds");
-			options.Label("Camera Panning at low framerates is fixed: Panning moves and slows to a stop at real-time speed instead of game framerate");
+			options.Label("TD.OtherFeatures".Translate());
+			options.Label("TD.AreaEditing".Translate());
+			options.Label("TD.NeverHome".Translate());
+			options.Label("TD.VariousCount".Translate());
+			options.Label("TD.RottedAwayClickable".Translate());
+			options.Label("TD.PopupMessageRealtime".Translate());
+			options.Label("TD.CameraPanningFixes".Translate());
 
 			options.End();
 		}
