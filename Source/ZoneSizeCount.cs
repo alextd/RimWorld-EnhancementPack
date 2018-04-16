@@ -14,16 +14,15 @@ namespace TD_Enhancement_Pack
 	{
 		public static void Postfix(Zone_Growing __instance, ref string __result)
 		{
-			//TODO save __instance.cells.Sum(cell => __instance.Map.fertilityGrid.FertilityAt(cell))
+			if (!Settings.Get().showZoneSize) return;
 
-			//TODO: call Zone.GetInspectString (base)
 			int count = __instance.cells.Count;
 			__result += "\n" + 
 				String.Format("TD.SizeAndFertile".Translate(), count, count + FertilityCount(__instance))
 				+ "\n" +
-				String.Format("CountToSow".Translate(), ToDoCount(__instance))
+				String.Format("TD.CountToSow".Translate(), ToDoCount(__instance))
 				+ "   " + 
-				String.Format("CountFullyGrown".Translate(), GrownCount(__instance));
+				String.Format("TD.CountFullyGrown".Translate(), GrownCount(__instance));
 		}
 
 		public static float FertilityCount(Zone_Growing zone)
@@ -59,6 +58,8 @@ namespace TD_Enhancement_Pack
 	{
 		public static void Postfix(Zone __instance, ref string __result)
 		{
+			if (!Settings.Get().showZoneSize) return;
+
 			string add = String.Format("TD.Size".Translate(), __instance.cells.Count);
 			if (__result == String.Empty)
 				__result = add;

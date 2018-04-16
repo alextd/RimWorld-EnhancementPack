@@ -13,7 +13,8 @@ namespace TD_Enhancement_Pack
 	{
 		public static void Postfix()
 		{
-			Current.Game.tickManager.CurTimeSpeed = TimeSpeed.Paused;
+			if(Settings.Get().changeSpeedAfterTrader)
+				Current.Game.tickManager.CurTimeSpeed = (TimeSpeed)Settings.Get().afterTraderSpeed;
 		}
 	}
 
@@ -22,8 +23,9 @@ namespace TD_Enhancement_Pack
 	{
 		public static void Postfix(Dialog_Negotiation __instance)
 		{
-			if(__instance is Dialog_Negotiation)	//No override for virtual method
-				Current.Game.tickManager.CurTimeSpeed = TimeSpeed.Paused;
+			if(__instance is Dialog_Negotiation)  //No override for virtual method
+				if (Settings.Get().changeSpeedAfterTrader)
+					Current.Game.tickManager.CurTimeSpeed = (TimeSpeed)Settings.Get().afterTraderSpeed;
 		}
 	}
 }

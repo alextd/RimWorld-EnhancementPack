@@ -35,15 +35,23 @@ namespace TD_Enhancement_Pack
 
 		public static void LabelLearning(SkillRecord skillRecord, Rect holdingRect)
 		{
+			if (!Settings.Get().skillArrows) return;
+
 			List<LearnedInfo> rec = Current.Game.GetComponent<LearnedGameComponent>().learnedInfo;
 			if (rec.FirstOrDefault(i => i.record == skillRecord) is LearnedInfo info)
 			{
 				float skillGain = info.xp;
 				if (skillGain == 0) return;
 				if (skillGain > 0)
+				{
+					if (!Settings.Get().skillUpArrows) return;
 					skillGain *= 5;
+				}
 				else
+				{
+					if (!Settings.Get().skillDownArrows) return;
 					skillGain /= 10;
+				}
 
 				Color oldColor = GUI.color;
 
@@ -96,6 +104,8 @@ namespace TD_Enhancement_Pack
 		public override void GameComponentTick()
 		{
 			base.GameComponentTick();
+			if (!Settings.Get().skillArrows) return;
+
 			learnedInfo.RemoveAll(i => i.tickToKill <= GenTicks.TicksGame);
 		}
 	}
@@ -106,6 +116,8 @@ namespace TD_Enhancement_Pack
 		//SkillRecord public void Learn(float xp, bool direct = false)
 		public static void Postfix(SkillRecord __instance, float xp)
 		{
+			if (!Settings.Get().skillArrows) return;
+
 			List<LearnedInfo> rec = Current.Game.GetComponent<LearnedGameComponent>().learnedInfo;
 
 			int killAt = (GenTicks.TicksGame + 200);// loss ticks every 200, so this is fine

@@ -107,8 +107,9 @@ namespace TD_Enhancement_Pack
 		[HarmonyPostfix]
 		public static void AddButton(WidgetRow row, bool worldView)
 		{
-			if (worldView)
-				return;
+			if (!Settings.Get().showOverlayBuildable) return;
+			if (worldView) return;
+
 			row.ToggleableIcon(ref showBuildableOverlay, icon, "TD.ToggleBuildable".Translate());
 		}
 	}
