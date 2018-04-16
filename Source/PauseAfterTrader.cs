@@ -25,7 +25,8 @@ namespace TD_Enhancement_Pack
 		{
 			if(__instance is Dialog_Negotiation)  //No override for virtual method
 				if (Settings.Get().changeSpeedAfterTrader)
-					Current.Game.tickManager.CurTimeSpeed = (TimeSpeed)Settings.Get().afterTraderSpeed;
+					if(Current.Game != null && Current.Game.tickManager != null)
+						Current.Game.tickManager.CurTimeSpeed = (TimeSpeed)Settings.Get().afterTraderSpeed;
 		}
 	}
 }
