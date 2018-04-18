@@ -22,10 +22,16 @@ namespace TD_Enhancement_Pack
 		public bool skillDownArrows = true;
 
 		public bool showZoneSize = true;
+		
+		public bool neverHome = true;
+		public bool variousCount = true;
+		public bool moteTextRealtime = true;
+		public bool cameraPanningSpeed = true;
+		public bool cameraPanningSlowdown = true;
 
 		public static Settings Get()
 		{
-			return LoadedModManager.GetMod<TD_Enhancement_Pack.Mod>().GetSettings<Settings>();
+			return ThisMod.Get().GetSettings<Settings>();
 		}
 
 		public void DoWindowContents(Rect wrect)
@@ -53,13 +59,17 @@ namespace TD_Enhancement_Pack
 			options.CheckboxLabeled("TD.SettingZoneSize".Translate(), ref showZoneSize);
 			options.Gap();
 
+			options.CheckboxLabeled("TD.NeverHome".Translate(), ref neverHome);
+			options.CheckboxLabeled("TD.VariousCount".Translate(), ref variousCount);
+			options.Label("TD.RequiresRestart".Translate());
+			options.CheckboxLabeled("TD.PopupMessageRealtime".Translate(), ref moteTextRealtime);
+			options.CheckboxLabeled("TD.CameraPanningFixSpeed".Translate(), ref cameraPanningSpeed);
+			options.CheckboxLabeled("TD.CameraPanningFixSlowdown".Translate(), ref cameraPanningSlowdown);
+			options.Gap();
+
 			options.Label("TD.OtherFeatures".Translate());
 			options.Label("TD.AreaEditing".Translate());
-			options.Label("TD.NeverHome".Translate());
-			options.Label("TD.VariousCount".Translate());
 			options.Label("TD.RottedAwayClickable".Translate());
-			options.Label("TD.PopupMessageRealtime".Translate());
-			options.Label("TD.CameraPanningFixes".Translate());
 
 			options.End();
 		}
@@ -79,6 +89,12 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref skillDownArrows, "skillDownArrows", true);
 
 			Scribe_Values.Look(ref showZoneSize, "showZoneSize", true);
+			
+			Scribe_Values.Look(ref neverHome, "neverHome", true);
+			Scribe_Values.Look(ref variousCount, "variousCount", true);
+			Scribe_Values.Look(ref moteTextRealtime, "moteTextRealtime", true);
+			Scribe_Values.Look(ref cameraPanningSpeed, "cameraPanningSpeed", true);
+			Scribe_Values.Look(ref cameraPanningSlowdown, "cameraPanningSlowdown", true);
 		}
 	}
 }

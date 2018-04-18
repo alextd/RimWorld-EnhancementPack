@@ -17,6 +17,8 @@ namespace TD_Enhancement_Pack
 		//public static Thing Spawn(Thing newThing, IntVec3 loc, Map map, Rot4 rot, bool respawningAfterLoad = false)
 		public static void Prefix(Thing newThing)
 		{
+			if (!Settings.Get().moteTextRealtime) return;
+
 			if (newThing is MoteText mote)
 				mote.def.mote.realTime = true;
 		}

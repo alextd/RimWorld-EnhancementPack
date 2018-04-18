@@ -10,9 +10,21 @@ using UnityEngine;
 
 namespace TD_Enhancement_Pack
 {
-	[HarmonyPatch(typeof(CameraDriver), "Update")]
+	//[HarmonyPatch(typeof(CameraDriver), "Update")]
+	[StaticConstructorOnStartup]
 	public static class CameraPanStop
 	{
+		static CameraPanStop()
+		{
+			if (Settings.Get().cameraPanningSpeed)
+				ThisMod.Harmony().Patch(AccessTools.Method(typeof(CameraDriver), "Update"),
+					null, null, new HarmonyMethod(typeof(CameraPanStop), "Transpiler"));
+
+			if (Settings.Get().cameraPanningSlowdown)
+				ThisMod.Harmony().Patch(AccessTools.Method(typeof(CameraDriver), "Update"),
+					null, new HarmonyMethod(typeof(CameraPanStop), "Postfix"));
+		}
+
 		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
 		{
 			MethodInfo HitchReduceFactorInfo = AccessTools.Property(typeof(CameraDriver), "HitchReduceFactor").GetGetMethod();

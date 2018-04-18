@@ -14,6 +14,8 @@ namespace TD_Enhancement_Pack
 		//protected virtual void Set(IntVec3 c, bool val)
 		public static bool Prefix(Area_Home __instance, IntVec3 c, bool val)
 		{
+			if (!Settings.Get().neverHome) return true;
+
 			if (val
 				&& __instance.Map.areaManager.GetLabeled("Never Home") is Area neverHome
 				&& neverHome[c])

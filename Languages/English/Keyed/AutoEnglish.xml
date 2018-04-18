@@ -23,12 +23,14 @@
 	<TD.SettingSkillLossArrow>Show arrows indicating skill loss</TD.SettingSkillLossArrow>
 	<TD.SettingSkillLossArrowDesc>Skills slowly lose experience after level 10 (The arrow can be very faded for slow rates)</TD.SettingSkillLossArrowDesc>
 	<TD.SettingZoneSize>Show Stockpile/Growing zone area size and info</TD.SettingZoneSize>
-	<TD.OtherFeatures>Other unanimously good features so they don't get option buttons:</TD.OtherFeatures>
+	<TD.OtherFeatures>Other features:</TD.OtherFeatures>
 	<TD.AreaEditing>Areas can be reordered, recolored, and copy/pasted in the area manager</TD.AreaEditing>
 	<TD.NeverHome>Make an area named 'Never Home' and the area will never be added to the Home Area</TD.NeverHome>
+	<TD.RequiresRestart>These require a restart to take effect:</TD.RequiresRestart>
 	<TD.VariousCount>(various) selected items are given a count</TD.VariousCount>
 	<TD.RottedAwayClickable>Food 'rotted away' messages are clickable to see where it was</TD.RottedAwayClickable>
 	<TD.PopupMessageRealtime>Popup messages like '% recruit chance' (text motes) stay onscreen in realtime, so they don't dissappear at high speeds</TD.PopupMessageRealtime>
-	<TD.CameraPanningFixes>Camera Panning at low framerates is fixed: Panning moves and slows to a stop at real-time speed instead of game framerate</TD.CameraPanningFixes>
+	<TD.CameraPanningFixSpeed>Camera pans at real-time speed instead of using framerate</TD.CameraPanningFixSpeed>
+	<TD.CameraPanningFixSlowdown>Camera slows down at real-time speed</TD.CameraPanningFixSlowdown>
 	
 </LanguageData>
