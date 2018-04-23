@@ -9,6 +9,8 @@ namespace TD_Enhancement_Pack
 {
 	class Settings : ModSettings
 	{
+		public bool ignoreSleepingEnemies = true;
+
 		public bool showOverlayBuildable = true;
 		public bool showOverlayFertility = true;
 		public bool showOverlayLighting = true;
@@ -38,6 +40,10 @@ namespace TD_Enhancement_Pack
 		{
 			var options = new Listing_Standard();
 			options.Begin(wrect);
+			
+			options.CheckboxLabeled("Undrafted colonists ignore sleeping enemies", ref ignoreSleepingEnemies, "This applies to the 'Attack' Reaction mode. Would you believe your colonists would attack sleeping megascarabs if they happened to haul near them?");
+			options.Gap();
+			
 			options.CheckboxLabeled("TD.SettingOverlayBuildable".Translate(), ref showOverlayBuildable, "TD.SettingOverlayBuildableDesc".Translate());
 			options.CheckboxLabeled("TD.SettingOverlayFertility".Translate(), ref showOverlayFertility);
 			bool before = cheatFertilityUnderGrid;
@@ -76,6 +82,8 @@ namespace TD_Enhancement_Pack
 
 		public override void ExposeData()
 		{
+			Scribe_Values.Look(ref ignoreSleepingEnemies, "ignoreSleepingEnemies", true);
+
 			Scribe_Values.Look(ref showOverlayBuildable, "showOverlayBuildable", true);
 			Scribe_Values.Look(ref showOverlayFertility, "showOverlayFertility", true);
 			Scribe_Values.Look(ref showOverlayLighting, "showOverlayLighting", true);
