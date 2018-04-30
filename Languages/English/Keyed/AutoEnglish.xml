@@ -32,5 +32,7 @@
 	<TD.PopupMessageRealtime>Popup messages like '% recruit chance' (text motes) stay onscreen in realtime, so they don't dissappear at high speeds</TD.PopupMessageRealtime>
 	<TD.CameraPanningFixSpeed>Camera pans at real-time speed instead of using framerate</TD.CameraPanningFixSpeed>
 	<TD.CameraPanningFixSlowdown>Camera slows down at real-time speed</TD.CameraPanningFixSlowdown>
+	<TD.SettingsIgnoreSleeping>Undrafted colonists ignore sleeping enemies</TD.SettingsIgnoreSleeping>
+	<TD.SettingsIgnoreSleepingDesc>This applies to the 'Attack' Reaction mode. Would you believe your colonists would attack sleeping megascarabs if they happened to haul near them?</TD.SettingsIgnoreSleepingDesc>
 	
 </LanguageData>
