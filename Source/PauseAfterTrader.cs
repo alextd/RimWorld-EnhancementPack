@@ -21,7 +21,11 @@ namespace TD_Enhancement_Pack
 	[HarmonyPatch(typeof(Dialog_Negotiation), "Close")]
 	public static class PauseAfterNegotiation
 	{
-		public static void Postfix(Dialog_Negotiation __instance)
+		//Dialog_Negotiation inherits Window
+		//Doesn't implement override for Close
+		//This is actually a postfix on Window
+		//using Dialog_Negotiation __instance makes "is Dialog_Negotiation" think it's always true
+		public static void Postfix(Window __instance)
 		{
 			if(__instance is Dialog_Negotiation)  //No override for virtual method
 				if (Settings.Get().changeSpeedAfterTrader)
