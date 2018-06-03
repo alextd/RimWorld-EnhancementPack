@@ -34,5 +34,10 @@
 	<TD.CameraPanningFixSlowdown>Camera slows down at real-time speed</TD.CameraPanningFixSlowdown>
 	<TD.SettingsIgnoreSleeping>Undrafted colonists ignore sleeping enemies</TD.SettingsIgnoreSleeping>
 	<TD.SettingsIgnoreSleepingDesc>This applies to the 'Attack' Reaction mode. Would you believe your colonists would attack sleeping megascarabs if they happened to haul near them?</TD.SettingsIgnoreSleepingDesc>
+	<TD.ShowStopButton>Show stop button</TD.ShowStopButton>
+	<TD.StopGizmo>Stop</TD.StopGizmo>
+	<TD.StopDescDrafted>Stop the current action</TD.StopDescDrafted>
+	<TD.StopDescUndrafted>Stop the current job (find another job, which might be the same job</TD.StopDescUndrafted>
+	<TD.AddedByTD>Added by TD Enhancement Pack</TD.AddedByTD>
 	
 </LanguageData>

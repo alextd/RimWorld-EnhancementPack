@@ -55,9 +55,9 @@ namespace TD_Enhancement_Pack
 			{
 				yield return new Command_Action()
 				{
-					defaultLabel = "Stop",
+					defaultLabel = "TD.StopGizmo".Translate(),
 					icon = StopIcon,
-					defaultDesc = (selectedPawn.Drafted ? "Stop the current action" : "Stop the current job (find another job, which might be the same job") + "\n\n" + "Added by TD Enhancement Pack",
+					defaultDesc = (selectedPawn.Drafted ? "TD.StopDescDrafted".Translate() : "TD.StopDescUndrafted".Translate()) + "\n\n" + "TD.AddedByTD".Translate(),
 					action = delegate
 					{
 						foreach (Pawn pawn in objList.Where(o => o is Pawn).Cast<Pawn>())

@@ -43,7 +43,7 @@ namespace TD_Enhancement_Pack
 			options.Begin(wrect);
 			
 			options.CheckboxLabeled("TD.SettingsIgnoreSleeping".Translate(), ref ignoreSleepingEnemies, "TD.SettingsIgnoreSleepingDesc".Translate());
-			options.CheckboxLabeled("Show stop button", ref showStopGizmo);
+			options.CheckboxLabeled("TD.ShowStopButton".Translate(), ref showStopGizmo);
 			options.Gap();
 			
 			options.CheckboxLabeled("TD.SettingOverlayBuildable".Translate(), ref showOverlayBuildable, "TD.SettingOverlayBuildableDesc".Translate());
