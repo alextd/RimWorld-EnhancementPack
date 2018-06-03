@@ -10,6 +10,7 @@ namespace TD_Enhancement_Pack
 	class Settings : ModSettings
 	{
 		public bool ignoreSleepingEnemies = true;
+		public bool showStopGizmo = true;
 
 		public bool showOverlayBuildable = true;
 		public bool showOverlayFertility = true;
@@ -42,6 +43,7 @@ namespace TD_Enhancement_Pack
 			options.Begin(wrect);
 			
 			options.CheckboxLabeled("TD.SettingsIgnoreSleeping".Translate(), ref ignoreSleepingEnemies, "TD.SettingsIgnoreSleepingDesc".Translate());
+			options.CheckboxLabeled("Show stop button", ref showStopGizmo);
 			options.Gap();
 			
 			options.CheckboxLabeled("TD.SettingOverlayBuildable".Translate(), ref showOverlayBuildable, "TD.SettingOverlayBuildableDesc".Translate());
@@ -83,6 +85,7 @@ namespace TD_Enhancement_Pack
 		public override void ExposeData()
 		{
 			Scribe_Values.Look(ref ignoreSleepingEnemies, "ignoreSleepingEnemies", true);
+			Scribe_Values.Look(ref showStopGizmo, "showStopGizmo", true);
 
 			Scribe_Values.Look(ref showOverlayBuildable, "showOverlayBuildable", true);
 			Scribe_Values.Look(ref showOverlayFertility, "showOverlayFertility", true);
