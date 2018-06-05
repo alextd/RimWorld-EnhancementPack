@@ -18,9 +18,8 @@ namespace TD_Enhancement_Pack
 	{
 		static StopGizmo()
 		{
-			if (Settings.Get().showStopGizmo)
-				ThisMod.Harmony().Patch(AccessTools.Method(AccessTools.TypeByName("InspectGizmoGrid"), "DrawInspectGizmoGridFor"),
-					null, null, new HarmonyMethod(typeof(StopGizmo), "Transpiler"));
+			ThisMod.Harmony().Patch(AccessTools.Method(AccessTools.TypeByName("InspectGizmoGrid"), "DrawInspectGizmoGridFor"),
+				null, null, new HarmonyMethod(typeof(StopGizmo), "Transpiler"));
 		}
 		
 		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> codeInstructions)
