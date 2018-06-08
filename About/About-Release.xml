@@ -18,6 +18,9 @@ Food 'rotted away' messages are clickable to see where it was
 Popup messages like '% recruit chance' (text motes) stay onscreen in realtime, so they don't dissappear at high speeds
 Camera Panning at low framerates is fixed: Panning moves and slows to a stop at real-time speed instead of game framerate
 
+Sleeping enemies won't be targeted by your pawns (while undrafted)
+A stop button for your pawns. Because, sometimes you want them to stop.
+
 	</description>
 	<url>https://steamcommunity.com/id/Uuugggg/myworkshopfiles/?appid=294100</url>
 </ModMetaData>
