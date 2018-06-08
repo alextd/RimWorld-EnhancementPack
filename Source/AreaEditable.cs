@@ -12,6 +12,18 @@ using UnityEngine;
 namespace TD_Enhancement_Pack
 {
 	[StaticConstructorOnStartup]
+	public static class AreaEditable
+	{
+		static AreaEditable()
+		{
+			ThisMod.Harmony().Patch(AccessTools.Constructor(typeof(Dialog_ManageAreas), new Type[] { typeof(Map) }),
+				null, new HarmonyMethod(typeof(Dialog_ManageAreas_Patch), "Postfix"));
+			ThisMod.Harmony().Patch(AccessTools.Property(typeof(Area_Allowed), nameof(Area_Allowed.ListPriority)).GetGetMethod(false),
+				null, new HarmonyMethod(typeof(AreaOrder), nameof(AreaOrder.ListPriority_Postfix)));
+		}
+	}
+
+	[StaticConstructorOnStartup]
 	public static class TexButton
 	{
 		public static readonly Texture2D ReorderUp = ContentFinder<Texture2D>.Get("UI/Buttons/ReorderUp", true);
