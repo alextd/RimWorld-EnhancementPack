@@ -50,7 +50,7 @@ namespace TD_Enhancement_Pack
 		{
 			if (!Settings.Get().showStopGizmo) yield break;
 
-			if (objList.FirstOrDefault(o => o is Pawn p && p.IsFreeColonist) is Pawn selectedPawn)
+			if (objList.FirstOrDefault(o => o is Pawn p && (DebugSettings.godMode || p.IsFreeColonist)) is Pawn selectedPawn)
 			{
 				yield return new Command_Action()
 				{
