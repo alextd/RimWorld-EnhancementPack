@@ -17,8 +17,8 @@ namespace TD_Enhancement_Pack
 		public static Dictionary<Map, BuildableOverlay> buildableOverlays = new Dictionary<Map, BuildableOverlay>();
 
 		public static readonly Color noneColor = new Color(1, 0, 0);
-		public static readonly Color lightColor = new Color(.8f, .8f, 0);
-		public static readonly Color mediumColor = new Color(.8f, .4f, 0);
+		public static readonly Color lightColor = new Color(.8f, .4f, 0);
+		public static readonly Color mediumColor = new Color(.8f, .8f, 0);
 
 		private CellBoolDrawer drawer;
 		//private bool[] data;
