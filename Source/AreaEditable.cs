@@ -32,6 +32,17 @@ namespace TD_Enhancement_Pack
 		public static readonly Texture2D Paste = ContentFinder<Texture2D>.Get("UI/Buttons/Paste");
 	}
 
+	[HarmonyPatch(typeof(Dialog_ManageAreas))]
+	[HarmonyPatch("InitialSize", PropertyMethod.Getter)]
+	static class InitialSize_Patch
+	{
+		public static void Postfix(ref Vector2 __result)
+		{
+			AreaRowPatch.copiedArea = null;
+			__result.x += 120;//about 4 icon widths?
+		}
+	}
+
 	//[HarmonyPatch(typeof(Dialog_ManageAreas), "Dialog_ManageAreas")]
 	static class Dialog_ManageAreas_Patch
 	{
