@@ -27,8 +27,6 @@ namespace TD_Enhancement_Pack
 		public bool showZoneSize = true;
 		
 		public bool neverHome = true;
-		public bool variousCount = true;
-		public bool moteTextRealtime = true;
 
 		public static Settings Get()
 		{
@@ -66,14 +64,11 @@ namespace TD_Enhancement_Pack
 			options.Gap();
 
 			options.CheckboxLabeled("TD.NeverHome".Translate(), ref neverHome);
-			options.CheckboxLabeled("TD.VariousCount".Translate(), ref variousCount);
 			options.Label("TD.RequiresRestart".Translate());
-			options.CheckboxLabeled("TD.PopupMessageRealtime".Translate(), ref moteTextRealtime);
 			options.Gap();
 
 			options.Label("TD.OtherFeatures".Translate());
 			options.Label("TD.AreaEditing".Translate());
-			options.Label("TD.RottedAwayClickable".Translate());
 
 			options.End();
 		}
@@ -98,8 +93,6 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref showZoneSize, "showZoneSize", true);
 			
 			Scribe_Values.Look(ref neverHome, "neverHome", true);
-			Scribe_Values.Look(ref variousCount, "variousCount", true);
-			Scribe_Values.Look(ref moteTextRealtime, "moteTextRealtime", true);
 		}
 	}
 }

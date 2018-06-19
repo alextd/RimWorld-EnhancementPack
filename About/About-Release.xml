@@ -13,9 +13,7 @@ Level-up arrows indicate skill learning in Character Tab.
 Zone/Stockpile size count, accounting fertility. Empty/Fully grown plant count.
 Areas can be reordered, recolored, and copy/pasted in the area manager
 Make an area named 'Never Home' and the area will never be added to the Home Area
-(various) selected items are given a count
-Food 'rotted away' messages are clickable to see where it was
-Popup messages like '% recruit chance' (text motes) stay onscreen in realtime, so they don't dissappear at high speeds
+
 
 Sleeping enemies won't be targeted by your pawns (while undrafted)
 A stop button for your pawns. Because, sometimes you want them to stop.
