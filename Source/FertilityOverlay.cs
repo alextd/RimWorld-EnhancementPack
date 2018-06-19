@@ -89,13 +89,13 @@ namespace TD_Enhancement_Pack
 	{
 		public static void Postfix()
 		{
-			if (Find.VisibleMap == null || WorldRendererUtility.WorldRenderedNow)
+			if (Find.CurrentMap == null || WorldRendererUtility.WorldRenderedNow)
 				return;
 
-			if (!FertilityOverlay.fertilityOverlays.TryGetValue(Find.VisibleMap, out FertilityOverlay fertilityOverlay))
+			if (!FertilityOverlay.fertilityOverlays.TryGetValue(Find.CurrentMap, out FertilityOverlay fertilityOverlay))
 			{
-				fertilityOverlay = new FertilityOverlay(Find.VisibleMap);
-				FertilityOverlay.fertilityOverlays[Find.VisibleMap] = fertilityOverlay;
+				fertilityOverlay = new FertilityOverlay(Find.CurrentMap);
+				FertilityOverlay.fertilityOverlays[Find.CurrentMap] = fertilityOverlay;
 			}
 			fertilityOverlay.Draw();
 		}

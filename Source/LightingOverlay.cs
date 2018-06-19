@@ -79,13 +79,13 @@ namespace TD_Enhancement_Pack
 	{
 		public static void Postfix()
 		{
-			if (Find.VisibleMap == null || WorldRendererUtility.WorldRenderedNow)
+			if (Find.CurrentMap == null || WorldRendererUtility.WorldRenderedNow)
 				return;
 
-			if (!LightingOverlay.lightingOverlays.TryGetValue(Find.VisibleMap, out LightingOverlay lightingOverlay))
+			if (!LightingOverlay.lightingOverlays.TryGetValue(Find.CurrentMap, out LightingOverlay lightingOverlay))
 			{
-				lightingOverlay = new LightingOverlay(Find.VisibleMap);
-				LightingOverlay.lightingOverlays[Find.VisibleMap] = lightingOverlay;
+				lightingOverlay = new LightingOverlay(Find.CurrentMap);
+				LightingOverlay.lightingOverlays[Find.CurrentMap] = lightingOverlay;
 			}
 			lightingOverlay.Draw();
 		}

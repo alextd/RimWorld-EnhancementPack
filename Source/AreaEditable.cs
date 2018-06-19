@@ -98,7 +98,7 @@ namespace TD_Enhancement_Pack
 		public static void DoOrderButton(WidgetRow widgetRow, Area areaBase)
 		{
 			if (!(areaBase is Area_Allowed area)) return;
-			List<Area> areas = area.Map.areaManager.AllAreas.FindAll(a => a is Area_Allowed aa && aa.mode == area.mode);
+			List<Area> areas = area.Map.areaManager.AllAreas.FindAll(a => a is Area_Allowed);
 			int index = areas.IndexOf(area);
 
 			if (index > 0 && widgetRow.ButtonIcon(TexButton.ReorderUp))
@@ -238,18 +238,15 @@ namespace TD_Enhancement_Pack
 
 	public class MapComponent_AreaOrder : MapComponent
 	{
-		public Dictionary<int, int> humanIndex;
-		public Dictionary<int, int> animalIndex;
+		public Dictionary<int, int> areaIndex;
 
 		public MapComponent_AreaOrder(Map map) : base(map)
 		{
-			InitIndexH();
-			InitIndexA();
+			InitIndex();
 		}
 
 		public void Swap(Area_Allowed a, Area b)
 		{
-			Dictionary<int, int> areaIndex = a.mode == AllowedAreaMode.Humanlike ? humanIndex : animalIndex;
 			int temp = areaIndex[a.ID];
 			areaIndex[a.ID] = areaIndex[b.ID];
 			areaIndex[b.ID] = temp;
@@ -260,32 +257,20 @@ namespace TD_Enhancement_Pack
 			AccessTools.Method(typeof(AreaManager), "SortAreas").Invoke(map.areaManager, new object[] { });
 		}
 
-		public void InitIndexH()
+		public void InitIndex()
 		{
-			humanIndex = new Dictionary<int, int>();
+			areaIndex = new Dictionary<int, int>();
 			int index = 0;
-			foreach (Area a in map.areaManager.AllAreas)
+			foreach (Area area in map.areaManager.AllAreas)
 			{
-				if (!(a is Area_Allowed area) || area.mode != AllowedAreaMode.Humanlike) continue;
-				humanIndex[a.ID] = index++;
-			}
-		}
-
-		public void InitIndexA()
-		{
-			animalIndex = new Dictionary<int, int>();
-			int index = 0;
-			foreach (Area a in map.areaManager.AllAreas)
-			{
-				if (!(a is Area_Allowed area) || area.mode != AllowedAreaMode.Animal) continue;
-				animalIndex[a.ID] = index++;
+				if (area is Area_Allowed)
+					areaIndex[area.ID] = index++;
 			}
 		}
 		public void Notify_Added(Area areaBase)
 		{
 			if (!(areaBase is Area_Allowed area)) return;
-			int count = map.areaManager.AllAreas.FindAll(a => a is Area_Allowed aa && aa.mode == area.mode).Count - 1;
-			Dictionary<int, int> areaIndex = area.mode == AllowedAreaMode.Humanlike ? humanIndex : animalIndex;
+			int count = map.areaManager.AllAreas.FindAll(a => a is Area_Allowed aa).Count - 1;
 			areaIndex[area.ID] = count;
 
 			//Would be better to transpile earlier and let the normal sort happen, but this works
@@ -294,7 +279,6 @@ namespace TD_Enhancement_Pack
 		public void Notify_Removed(Area areaBase)
 		{
 			if (!(areaBase is Area_Allowed area)) return;
-			Dictionary<int, int> areaIndex = area.mode == AllowedAreaMode.Humanlike ? humanIndex : animalIndex;
 			int index = areaIndex[area.ID];
 			areaIndex.Remove(area.ID);
 
@@ -307,17 +291,13 @@ namespace TD_Enhancement_Pack
 		}
 		public int AdjustFor(Area_Allowed area)
 		{
-			return (area.mode == AllowedAreaMode.Humanlike ? humanIndex : animalIndex).GetValueSafe(area.ID);
+			return areaIndex.GetValueSafe(area.ID);
 		}
 		public override void ExposeData()
 		{
-			Scribe_Collections.Look(ref humanIndex, "humanIndex");
-			if (humanIndex == null || humanIndex.Count == 0)
-				InitIndexH();
-
-			Scribe_Collections.Look(ref animalIndex, "areaIndex");
-			if (animalIndex == null || animalIndex.Count == 0)
-				InitIndexA();
+			Scribe_Collections.Look(ref areaIndex, "areaIndex");
+			if (areaIndex == null || areaIndex.Count == 0)
+				InitIndex();
 		}
 	}
 

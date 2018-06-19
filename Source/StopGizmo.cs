@@ -64,7 +64,7 @@ namespace TD_Enhancement_Pack
 							pawn.jobs.StopAll(true);
 						}
 					},
-					hotKey = KeyBindingDefOf.DesignatorDeconstruct
+					hotKey = KeyBindingDefOf.Designator_Deconstruct
 				};
 			}
 		}

@@ -18,6 +18,7 @@ namespace TD_Enhancement_Pack
 
 		public static readonly Color noneColor = new Color(1, 0, 0);
 		public static readonly Color lightColor = new Color(.8f, .8f, 0);
+		public static readonly Color mediumColor = new Color(.8f, .4f, 0);
 
 		private CellBoolDrawer drawer;
 		//private bool[] data;
@@ -40,13 +41,14 @@ namespace TD_Enhancement_Pack
 
 		public bool GetCellBool(int index)
 		{
-			return !map.terrainGrid.TerrainAt(index).affordances.Contains(TerrainAffordance.Heavy) &&
+			return !map.terrainGrid.TerrainAt(index).affordances.Contains(TerrainAffordanceDefOf.Heavy) &&
 				!map.fogGrid.IsFogged(index);
 		}
 
 		public Color GetCellExtraColor(int index)
 		{
-			return map.terrainGrid.TerrainAt(index).affordances.Contains(TerrainAffordance.Light)
+			return map.terrainGrid.TerrainAt(index).affordances.Contains(TerrainAffordanceDefOf.Medium)
+				? mediumColor : map.terrainGrid.TerrainAt(index).affordances.Contains(TerrainAffordanceDefOf.Light)
 				? lightColor : noneColor ;
 		}
 
@@ -68,13 +70,13 @@ namespace TD_Enhancement_Pack
 	{
 		public static void Postfix()
 		{
-			if (Find.VisibleMap == null || WorldRendererUtility.WorldRenderedNow)
+			if (Find.CurrentMap == null || WorldRendererUtility.WorldRenderedNow)
 				return;
 
-			if (!BuildableOverlay.buildableOverlays.TryGetValue(Find.VisibleMap, out BuildableOverlay buildableOverlay))
+			if (!BuildableOverlay.buildableOverlays.TryGetValue(Find.CurrentMap, out BuildableOverlay buildableOverlay))
 			{
-				buildableOverlay = new BuildableOverlay(Find.VisibleMap);
-				BuildableOverlay.buildableOverlays[Find.VisibleMap] = buildableOverlay;
+				buildableOverlay = new BuildableOverlay(Find.CurrentMap);
+				BuildableOverlay.buildableOverlays[Find.CurrentMap] = buildableOverlay;
 			}
 			buildableOverlay.Draw();
 		}
