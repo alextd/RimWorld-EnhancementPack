@@ -25,7 +25,6 @@ namespace TD_Enhancement_Pack
 		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> codeInstructions)
 		{
 			MethodInfo GizmoClearInfo = AccessTools.Method(typeof(List<Gizmo>), "Clear");
-			FieldInfo objListInfo = AccessTools.Field(AccessTools.TypeByName("InspectGizmoGrid"), "objList");
 			FieldInfo gizmoListInfo = AccessTools.Field(AccessTools.TypeByName("InspectGizmoGrid"), "gizmoList");
 
 			MethodInfo GizmoAddRangeInfo = AccessTools.Method(typeof(List<Gizmo>), "AddRange");
@@ -38,7 +37,6 @@ namespace TD_Enhancement_Pack
 				{
 					//gizmoList.AddRange(GetMyGizmos(objList));
 					yield return new CodeInstruction(OpCodes.Ldsfld, gizmoListInfo);
-					yield return new CodeInstruction(OpCodes.Ldsfld, objListInfo);
 					yield return new CodeInstruction(OpCodes.Call, GetMyGizmosInfo);
 					yield return new CodeInstruction(OpCodes.Call, GizmoAddRangeInfo);
 				}
@@ -46,11 +44,11 @@ namespace TD_Enhancement_Pack
 		}
 		
 		private static Texture2D StopIcon = ContentFinder<Texture2D>.Get("Stop", true);// or WallBricks_MenuIcon;
-		public static IEnumerable<Gizmo> GetStopGizmos(List<object> objList)
+		public static IEnumerable<Gizmo> GetStopGizmos()
 		{
 			if (!Settings.Get().showStopGizmo) yield break;
 
-			if (objList.FirstOrDefault(o => o is Pawn p && (DebugSettings.godMode || p.IsFreeColonist)) is Pawn selectedPawn)
+			if (Find.Selector.SelectedObjects.FirstOrDefault(o => o is Pawn p && (DebugSettings.godMode || p.IsFreeColonist)) is Pawn selectedPawn)
 			{
 				yield return new Command_Action()
 				{
@@ -59,7 +57,7 @@ namespace TD_Enhancement_Pack
 					defaultDesc = (selectedPawn.Drafted ? "TD.StopDescDrafted".Translate() : "TD.StopDescUndrafted".Translate()) + "\n\n" + "TD.AddedByTD".Translate(),
 					action = delegate
 					{
-						foreach (Pawn pawn in objList.Where(o => o is Pawn).Cast<Pawn>())
+						foreach (Pawn pawn in Find.Selector.SelectedObjects.Where(o => o is Pawn).Cast<Pawn>())
 						{
 							pawn.jobs.StopAll(true);
 						}

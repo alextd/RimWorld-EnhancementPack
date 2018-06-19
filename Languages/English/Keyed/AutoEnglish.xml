@@ -35,7 +35,7 @@
 	<TD.ShowStopButton>Show stop button</TD.ShowStopButton>
 	<TD.StopGizmo>Stop</TD.StopGizmo>
 	<TD.StopDescDrafted>Stop the current action</TD.StopDescDrafted>
-	<TD.StopDescUndrafted>Stop the current job (find another job, which might be the same job</TD.StopDescUndrafted>
+	<TD.StopDescUndrafted>Stop the current job (find another job, which might be the same job)</TD.StopDescUndrafted>
 	<TD.AddedByTD>Added by TD Enhancement Pack</TD.AddedByTD>
 	
 </LanguageData>
