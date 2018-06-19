@@ -29,8 +29,6 @@ namespace TD_Enhancement_Pack
 		public bool neverHome = true;
 		public bool variousCount = true;
 		public bool moteTextRealtime = true;
-		public bool cameraPanningSpeed = true;
-		public bool cameraPanningSlowdown = true;
 
 		public static Settings Get()
 		{
@@ -71,8 +69,6 @@ namespace TD_Enhancement_Pack
 			options.CheckboxLabeled("TD.VariousCount".Translate(), ref variousCount);
 			options.Label("TD.RequiresRestart".Translate());
 			options.CheckboxLabeled("TD.PopupMessageRealtime".Translate(), ref moteTextRealtime);
-			options.CheckboxLabeled("TD.CameraPanningFixSpeed".Translate(), ref cameraPanningSpeed);
-			options.CheckboxLabeled("TD.CameraPanningFixSlowdown".Translate(), ref cameraPanningSlowdown);
 			options.Gap();
 
 			options.Label("TD.OtherFeatures".Translate());
@@ -104,8 +100,6 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref neverHome, "neverHome", true);
 			Scribe_Values.Look(ref variousCount, "variousCount", true);
 			Scribe_Values.Look(ref moteTextRealtime, "moteTextRealtime", true);
-			Scribe_Values.Look(ref cameraPanningSpeed, "cameraPanningSpeed", true);
-			Scribe_Values.Look(ref cameraPanningSlowdown, "cameraPanningSlowdown", true);
 		}
 	}
 }

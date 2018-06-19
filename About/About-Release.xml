@@ -16,7 +16,6 @@ Make an area named 'Never Home' and the area will never be added to the Home Are
 (various) selected items are given a count
 Food 'rotted away' messages are clickable to see where it was
 Popup messages like '% recruit chance' (text motes) stay onscreen in realtime, so they don't dissappear at high speeds
-Camera Panning at low framerates is fixed: Panning moves and slows to a stop at real-time speed instead of game framerate
 
 Sleeping enemies won't be targeted by your pawns (while undrafted)
 A stop button for your pawns. Because, sometimes you want them to stop.
