@@ -66,7 +66,7 @@ namespace TD_Enhancement_Pack
 			options.Gap();
 
 			options.CheckboxLabeled("TD.SettingZoneSize".Translate(), ref showZoneSize);
-			options.CheckboxLabeled("Growing Zones 'Allow Harvesting' Toggle", ref zoneHarvestableToggle);
+			options.CheckboxLabeled("TD.SettingAllowHarvesting".Translate(), ref zoneHarvestableToggle);
 			options.Gap();
 
 			options.CheckboxLabeled("TD.NeverHome".Translate(), ref neverHome);
@@ -80,7 +80,7 @@ namespace TD_Enhancement_Pack
 			options.Label("TD.OtherFeatures".Translate());
 			options.Label("TD.AreaEditing".Translate());
 			options.Label("TD.RottedAwayClickable".Translate());
-			options.Label("Good body conditions are green ; Whole body tag is yelloe");
+			options.Label("TD.FeatureConditionGreen".Translate());
 
 			options.End();
 		}

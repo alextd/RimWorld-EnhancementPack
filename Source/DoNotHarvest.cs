@@ -20,8 +20,8 @@ namespace TD_Enhancement_Pack
 
 			Gizmo harvestGizmo = new Command_Toggle
 			{
-				defaultLabel = "Allow harvesting",
-				defaultDesc = "When disabled, colonists will never harvest plants in this zone. They will still sow.",
+				defaultLabel = "TD.AllowHarveseting".Translate(),
+				defaultDesc = "TD.AllowHarvesetingDesc".Translate(),
 				icon = ContentFinder<UnityEngine.Texture2D>.Get("UI/Designators/Harvest", true),
 				isActive = (() => __instance.CanHarvest()),
 				toggleAction = delegate
