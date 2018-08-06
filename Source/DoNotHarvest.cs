@@ -41,7 +41,7 @@ namespace TD_Enhancement_Pack
 
 		public override void ExposeData()
 		{
-			Scribe_Collections.Look(ref harvestForbidden, "harvestForbidden", LookMode.Reference);
+			//Scribe_Collections.Look(ref harvestForbidden, "harvestForbidden", LookMode.Reference); //1.0 lets this be ILoadReferenceable
 		}
 
 	}
