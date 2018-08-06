@@ -54,21 +54,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AreaEditable.cs" />
-    <Compile Include="BuildableOverlay.cs" />
-    <Compile Include="DebugLog.cs" />
-    <Compile Include="FertilityOverlay.cs" />
-    <Compile Include="LightingOverlay.cs" />
-    <Compile Include="NeverHomeArea.cs" />
-    <Compile Include="NotSoHostile.cs" />
-    <Compile Include="PauseAfterTrader.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings.cs" />
-    <Compile Include="SkillLearningIndicator.cs" />
-    <Compile Include="StopGizmo.cs" />
-    <Compile Include="TD_Enhancement_Pack.cs" />
-    <Compile Include="Utilities\Listing_StandardExtensions.cs" />
-    <Compile Include="ZoneSizeCount.cs" />
+    <Compile Include="**\*.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
