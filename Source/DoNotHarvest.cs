@@ -14,6 +14,8 @@ namespace TD_Enhancement_Pack
 		//public override IEnumerable<Gizmo> GetGizmos()
 		static void Postfix(Zone_Growing __instance, ref IEnumerable<Gizmo> __result)
 		{
+			if (!Settings.Get().zoneHarvestableToggle) return;
+
 			List<Gizmo> result = new List<Gizmo>(__result);
 
 			Gizmo harvestGizmo = new Command_Toggle

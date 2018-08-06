@@ -25,6 +25,7 @@ namespace TD_Enhancement_Pack
 		public bool skillDownArrows = true;
 
 		public bool showZoneSize = true;
+		public bool zoneHarvestableToggle = true;
 		
 		public bool neverHome = true;
 		public bool variousCount = true;
@@ -65,6 +66,7 @@ namespace TD_Enhancement_Pack
 			options.Gap();
 
 			options.CheckboxLabeled("TD.SettingZoneSize".Translate(), ref showZoneSize);
+			options.CheckboxLabeled("Growing Zones 'Allow Harvesting' Toggle", ref zoneHarvestableToggle);
 			options.Gap();
 
 			options.CheckboxLabeled("TD.NeverHome".Translate(), ref neverHome);
@@ -101,6 +103,7 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref skillDownArrows, "skillDownArrows", true);
 
 			Scribe_Values.Look(ref showZoneSize, "showZoneSize", true);
+			Scribe_Values.Look(ref zoneHarvestableToggle, "zoneHarvestableToggle", true);
 			
 			Scribe_Values.Look(ref neverHome, "neverHome", true);
 			Scribe_Values.Look(ref variousCount, "variousCount", true);
