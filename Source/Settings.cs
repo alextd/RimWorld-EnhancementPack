@@ -25,6 +25,7 @@ namespace TD_Enhancement_Pack
 		public bool skillDownArrows = true;
 
 		public bool showZoneSize = true;
+		public bool zoneHarvestableToggle = false;
 		
 		public bool neverHome = true;
 
@@ -61,6 +62,7 @@ namespace TD_Enhancement_Pack
 			options.Gap();
 
 			options.CheckboxLabeled("TD.SettingZoneSize".Translate(), ref showZoneSize);
+			options.CheckboxLabeled("TD.SettingAllowHarvesting".Translate(), ref zoneHarvestableToggle);
 			options.Gap();
 
 			options.CheckboxLabeled("TD.NeverHome".Translate(), ref neverHome);
@@ -69,6 +71,7 @@ namespace TD_Enhancement_Pack
 
 			options.Label("TD.OtherFeatures".Translate());
 			options.Label("TD.AreaEditing".Translate());
+			options.Label("TD.FeatureConditionGreen".Translate());
 
 			options.End();
 		}
@@ -91,6 +94,7 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref skillDownArrows, "skillDownArrows", true);
 
 			Scribe_Values.Look(ref showZoneSize, "showZoneSize", true);
+			Scribe_Values.Look(ref zoneHarvestableToggle, "zoneHarvestableToggle", false);
 			
 			Scribe_Values.Look(ref neverHome, "neverHome", true);
 		}

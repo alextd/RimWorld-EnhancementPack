@@ -5,19 +5,7 @@
 	<targetVersion>1.0.0</targetVersion>
 	<description>Various things that just should be in the game.
 
-(Also check the settings in-game for feature list)
-
-Overlays for unbuildable areas, terrain fertility, and lighting.
-Trade and negotiation dialogs can pause after closing.
-Level-up arrows indicate skill learning in Character Tab.
-Zone/Stockpile size count, accounting fertility. Empty/Fully grown plant count.
-Areas can be reordered, recolored, and copy/pasted in the area manager
-Make an area named 'Never Home' and the area will never be added to the Home Area
-
-
-Sleeping enemies won't be targeted by your pawns (while undrafted)
-A stop button for your pawns. Because, sometimes you want them to stop.
-
+Check Steam or in-game settings for features since I don't want to update yet another list here.
 	</description>
 	<url>https://steamcommunity.com/id/Uuugggg/myworkshopfiles/?appid=294100</url>
 </ModMetaData>
