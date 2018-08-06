@@ -25,7 +25,7 @@ namespace TD_Enhancement_Pack
 		public bool skillDownArrows = true;
 
 		public bool showZoneSize = true;
-		public bool zoneHarvestableToggle = true;
+		public bool zoneHarvestableToggle = false;
 		
 		public bool neverHome = true;
 		public bool variousCount = true;
@@ -103,7 +103,7 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref skillDownArrows, "skillDownArrows", true);
 
 			Scribe_Values.Look(ref showZoneSize, "showZoneSize", true);
-			Scribe_Values.Look(ref zoneHarvestableToggle, "zoneHarvestableToggle", true);
+			Scribe_Values.Look(ref zoneHarvestableToggle, "zoneHarvestableToggle", false);
 			
 			Scribe_Values.Look(ref neverHome, "neverHome", true);
 			Scribe_Values.Look(ref variousCount, "variousCount", true);
