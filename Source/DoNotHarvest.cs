@@ -20,7 +20,7 @@ namespace TD_Enhancement_Pack
 			{
 				defaultLabel = "Allow harvesting",
 				defaultDesc = "When disabled, colonists will never harvest plants in this zone. They will still sow.",
-				icon = TexCommand.Forbidden,
+				icon = ContentFinder<UnityEngine.Texture2D>.Get("UI/Designators/Harvest", true),
 				isActive = (() => __instance.CanHarvest()),
 				toggleAction = delegate
 				{
