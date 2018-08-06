@@ -78,6 +78,7 @@ namespace TD_Enhancement_Pack
 			options.Label("TD.OtherFeatures".Translate());
 			options.Label("TD.AreaEditing".Translate());
 			options.Label("TD.RottedAwayClickable".Translate());
+			options.Label("Good body conditions are green ; Whole body tag is yelloe");
 
 			options.End();
 		}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="PenoxycylineHigh"]/defaultLabelColor</xpath>
+		<value>
+			<defaultLabelColor>(0.6, 0.8, 0.65)</defaultLabelColor>
+		</value>
+	</Operation>
+</Patch>
