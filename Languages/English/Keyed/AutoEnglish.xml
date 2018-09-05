@@ -32,7 +32,8 @@
 	<TD.PopupMessageRealtime>Popup messages like '% recruit chance' (text motes) stay onscreen in realtime, so they don't dissappear at high speeds</TD.PopupMessageRealtime>
 	<TD.SettingsIgnoreSleeping>Undrafted colonists ignore sleeping enemies</TD.SettingsIgnoreSleeping>
 	<TD.SettingsIgnoreSleepingDesc>This applies to the 'Attack' Reaction mode. Would you believe your colonists would attack sleeping megascarabs if they happened to haul near them?</TD.SettingsIgnoreSleepingDesc>
-	<TD.ShowStopButton>Show stop button</TD.ShowStopButton>
+	<TD.ShowStopButtonUnDrafted>Show stop button (undrafted)</TD.ShowStopButtonUnDrafted>
+	<TD.ShowStopButtonDrafted>Show stop button (drafted)</TD.ShowStopButtonDrafted>
 	<TD.StopGizmo>Stop</TD.StopGizmo>
 	<TD.StopDescDrafted>Stop the current action</TD.StopDescDrafted>
 	<TD.StopDescUndrafted>Stop the current job (find another job, which might be the same job)</TD.StopDescUndrafted>

@@ -46,24 +46,25 @@ namespace TD_Enhancement_Pack
 		private static Texture2D StopIcon = ContentFinder<Texture2D>.Get("Stop", true);// or WallBricks_MenuIcon;
 		public static IEnumerable<Gizmo> GetStopGizmos()
 		{
-			if (!Settings.Get().showStopGizmo || RimWorld.Planet.WorldRendererUtility.WorldRenderedNow) yield break;
+			if (RimWorld.Planet.WorldRendererUtility.WorldRenderedNow) yield break;
 
 			if (Find.Selector.SelectedObjects.FirstOrDefault(o => o is Pawn p && (DebugSettings.godMode || p.IsFreeColonist)) is Pawn selectedPawn)
 			{
-				yield return new Command_Action()
-				{
-					defaultLabel = "TD.StopGizmo".Translate(),
-					icon = StopIcon,
-					defaultDesc = (selectedPawn.Drafted ? "TD.StopDescDrafted".Translate() : "TD.StopDescUndrafted".Translate()) + "\n\n" + "TD.AddedByTD".Translate(),
-					action = delegate
+				if (selectedPawn.Drafted ? Settings.Get().showStopGizmoDrafted : Settings.Get().showStopGizmo)
+					yield return new Command_Action()
 					{
-						foreach (Pawn pawn in Find.Selector.SelectedObjects.Where(o => o is Pawn).Cast<Pawn>())
+						defaultLabel = "TD.StopGizmo".Translate(),
+						icon = StopIcon,
+						defaultDesc = (selectedPawn.Drafted ? "TD.StopDescDrafted".Translate() : "TD.StopDescUndrafted".Translate()) + "\n\n" + "TD.AddedByTD".Translate(),
+						action = delegate
 						{
-							pawn.jobs.StopAll(true);
-						}
-					},
-					hotKey = KeyBindingDefOf.Designator_Deconstruct
-				};
+							foreach (Pawn pawn in Find.Selector.SelectedObjects.Where(o => o is Pawn).Cast<Pawn>())
+							{
+								pawn.jobs.StopAll(true);
+							}
+						},
+						hotKey = KeyBindingDefOf.Designator_Deconstruct
+					};
 			}
 		}
 	}
