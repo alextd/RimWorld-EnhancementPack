@@ -46,7 +46,7 @@ namespace TD_Enhancement_Pack
 		private static Texture2D StopIcon = ContentFinder<Texture2D>.Get("Stop", true);// or WallBricks_MenuIcon;
 		public static IEnumerable<Gizmo> GetStopGizmos()
 		{
-			if (!Settings.Get().showStopGizmo) yield break;
+			if (!Settings.Get().showStopGizmo || RimWorld.Planet.WorldRendererUtility.WorldRenderedNow) yield break;
 
 			if (Find.Selector.SelectedObjects.FirstOrDefault(o => o is Pawn p && (DebugSettings.godMode || p.IsFreeColonist)) is Pawn selectedPawn)
 			{
