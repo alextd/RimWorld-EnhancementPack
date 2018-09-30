@@ -18,7 +18,8 @@ namespace TD_Enhancement_Pack
 	{
 		static StopGizmo()
 		{
-			ThisMod.Harmony().Patch(AccessTools.Method(AccessTools.TypeByName("InspectGizmoGrid"), "DrawInspectGizmoGridFor"),
+			HarmonyInstance harmony = HarmonyInstance.Create("Uuugggg.rimworld.TD_Enhancement_Pack.main");
+			harmony.Patch(AccessTools.Method(AccessTools.TypeByName("InspectGizmoGrid"), "DrawInspectGizmoGridFor"),
 				null, null, new HarmonyMethod(typeof(StopGizmo), "Transpiler"));
 		}
 		

@@ -32,7 +32,7 @@ namespace TD_Enhancement_Pack
 
 		public static Settings Get()
 		{
-			return ThisMod.Get().GetSettings<Settings>();
+			return LoadedModManager.GetMod<Mod>().GetSettings<Settings>();
 		}
 
 		public void DoWindowContents(Rect wrect)

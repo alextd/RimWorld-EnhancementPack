@@ -16,9 +16,10 @@ namespace TD_Enhancement_Pack
 	{
 		static AreaEditable()
 		{
-			ThisMod.Harmony().Patch(AccessTools.Constructor(typeof(Dialog_ManageAreas), new Type[] { typeof(Map) }),
+			HarmonyInstance harmony = HarmonyInstance.Create("Uuugggg.rimworld.TD_Enhancement_Pack.main");
+			harmony.Patch(AccessTools.Constructor(typeof(Dialog_ManageAreas), new Type[] { typeof(Map) }),
 				null, new HarmonyMethod(typeof(Dialog_ManageAreas_Patch), "Postfix"));
-			ThisMod.Harmony().Patch(AccessTools.Property(typeof(Area_Allowed), nameof(Area_Allowed.ListPriority)).GetGetMethod(false),
+			harmony.Patch(AccessTools.Property(typeof(Area_Allowed), nameof(Area_Allowed.ListPriority)).GetGetMethod(false),
 				null, new HarmonyMethod(typeof(AreaOrder), nameof(AreaOrder.ListPriority_Postfix)));
 		}
 	}
@@ -32,8 +33,7 @@ namespace TD_Enhancement_Pack
 		public static readonly Texture2D Paste = ContentFinder<Texture2D>.Get("UI/Buttons/Paste");
 	}
 
-	[HarmonyPatch(typeof(Dialog_ManageAreas))]
-	[HarmonyPatch("InitialSize", PropertyMethod.Getter)]
+	[HarmonyPatch(typeof(Dialog_ManageAreas), "InitialSize", MethodType.Getter)]
 	static class InitialSize_Patch
 	{
 		public static void Postfix(ref Vector2 __result)
