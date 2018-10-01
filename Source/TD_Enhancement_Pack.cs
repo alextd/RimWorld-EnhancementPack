@@ -17,7 +17,18 @@ namespace TD_Enhancement_Pack
 			HarmonyInstance.DEBUG = true;
 #endif
 			HarmonyInstance harmony = HarmonyInstance.Create("Uuugggg.rimworld.TD_Enhancement_Pack.main");
+			
+			//Turn off DefOf warning since harmony patches trigger it.
+			harmony.Patch(AccessTools.Method(typeof(DefOfHelper), "EnsureInitializedInCtor"),
+				new HarmonyMethod(typeof(Mod), "EnsureInitializedInCtorPrefix"), null);
+			
 			harmony.PatchAll();
+		}
+
+		public static bool EnsureInitializedInCtorPrefix()
+		{
+			//No need to display this warning.
+			return false;
 		}
 
 		public override void DoSettingsWindowContents(Rect inRect)
