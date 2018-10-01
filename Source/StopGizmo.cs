@@ -12,6 +12,7 @@ using RimWorld;
 
 namespace TD_Enhancement_Pack
 {
+	[StaticConstructorOnStartup]
 	[HarmonyPatch(typeof(Pawn), "GetGizmos")]
 	public static class StopGizmo
 	{
