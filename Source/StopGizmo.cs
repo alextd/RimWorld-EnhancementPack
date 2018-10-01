@@ -12,61 +12,39 @@ using RimWorld;
 
 namespace TD_Enhancement_Pack
 {
-	[StaticConstructorOnStartup]
-	//[HarmonyPatch(AccessTools.TypeByName("InspectGizmoGrid"), "DrawInspectGizmoGridFor")]
+	[HarmonyPatch(typeof(Pawn), "GetGizmos")]
 	public static class StopGizmo
 	{
-		static StopGizmo()
-		{
-			HarmonyInstance harmony = HarmonyInstance.Create("Uuugggg.rimworld.TD_Enhancement_Pack.main");
-			harmony.Patch(AccessTools.Method(AccessTools.TypeByName("InspectGizmoGrid"), "DrawInspectGizmoGridFor"),
-				null, null, new HarmonyMethod(typeof(StopGizmo), "Transpiler"));
-		}
-		
-		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> codeInstructions)
-		{
-			MethodInfo GizmoClearInfo = AccessTools.Method(typeof(List<Gizmo>), "Clear");
-			FieldInfo gizmoListInfo = AccessTools.Field(AccessTools.TypeByName("InspectGizmoGrid"), "gizmoList");
+		private static Texture2D StopIcon = ContentFinder<Texture2D>.Get("Stop", true);
 
-			MethodInfo GizmoAddRangeInfo = AccessTools.Method(typeof(List<Gizmo>), "AddRange");
-			MethodInfo GetMyGizmosInfo = AccessTools.Method(typeof(StopGizmo), nameof(GetStopGizmos));
+		//public override IEnumerable<Gizmo> GetGizmos()
+		public static void Postfix(ref IEnumerable<Gizmo> __result, Pawn __instance)
+		{
+			if (__instance.Drafted ? !Settings.Get().showStopGizmoDrafted : !Settings.Get().showStopGizmo) return;
 
-			foreach (CodeInstruction i in codeInstructions)
+			if (RimWorld.Planet.WorldRendererUtility.WorldRenderedNow) return;
+
+			if (!DebugSettings.godMode && !__instance.IsFreeColonist) return;
+
+			List<Gizmo> result = __result.ToList();
+			
+			result.Add(new Command_Action()
 			{
-				yield return i;
-				if (i.opcode == OpCodes.Callvirt && i.operand == GizmoClearInfo)
+				defaultLabel = "TD.StopGizmo".Translate(),
+				icon = StopIcon,
+				defaultDesc = (__instance.Drafted ? "TD.StopDescDrafted".Translate() : "TD.StopDescUndrafted".Translate()) + "\n\n" + "TD.AddedByTD".Translate(),
+				action = delegate
 				{
-					//gizmoList.AddRange(GetMyGizmos(objList));
-					yield return new CodeInstruction(OpCodes.Ldsfld, gizmoListInfo);
-					yield return new CodeInstruction(OpCodes.Call, GetMyGizmosInfo);
-					yield return new CodeInstruction(OpCodes.Call, GizmoAddRangeInfo);
-				}
-			}
-		}
-		
-		private static Texture2D StopIcon = ContentFinder<Texture2D>.Get("Stop", true);// or WallBricks_MenuIcon;
-		public static IEnumerable<Gizmo> GetStopGizmos()
-		{
-			if (RimWorld.Planet.WorldRendererUtility.WorldRenderedNow) yield break;
-
-			if (Find.Selector.SelectedObjects.FirstOrDefault(o => o is Pawn p && (DebugSettings.godMode || p.IsFreeColonist)) is Pawn selectedPawn)
-			{
-				if (selectedPawn.Drafted ? Settings.Get().showStopGizmoDrafted : Settings.Get().showStopGizmo)
-					yield return new Command_Action()
+					foreach (Pawn pawn in Find.Selector.SelectedObjects.Where(o => o is Pawn).Cast<Pawn>())
 					{
-						defaultLabel = "TD.StopGizmo".Translate(),
-						icon = StopIcon,
-						defaultDesc = (selectedPawn.Drafted ? "TD.StopDescDrafted".Translate() : "TD.StopDescUndrafted".Translate()) + "\n\n" + "TD.AddedByTD".Translate(),
-						action = delegate
-						{
-							foreach (Pawn pawn in Find.Selector.SelectedObjects.Where(o => o is Pawn).Cast<Pawn>())
-							{
-								pawn.jobs.StopAll(true);
-							}
-						},
-						hotKey = KeyBindingDefOf.Designator_Deconstruct
-					};
-			}
+						pawn.jobs.StopAll(true);
+					}
+				},
+				hotKey = KeyBindingDefOf.Designator_Deconstruct,
+				order = -30f
+			});
+
+			__result = result;
 		}
 	}
 }
