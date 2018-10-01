@@ -12,19 +12,6 @@ using UnityEngine;
 namespace TD_Enhancement_Pack
 {
 	[StaticConstructorOnStartup]
-	public static class AreaEditable
-	{
-		static AreaEditable()
-		{
-			HarmonyInstance harmony = HarmonyInstance.Create("Uuugggg.rimworld.TD_Enhancement_Pack.main");
-			harmony.Patch(AccessTools.Constructor(typeof(Dialog_ManageAreas), new Type[] { typeof(Map) }),
-				null, new HarmonyMethod(typeof(Dialog_ManageAreas_Patch), "Postfix"));
-			harmony.Patch(AccessTools.Property(typeof(Area_Allowed), nameof(Area_Allowed.ListPriority)).GetGetMethod(false),
-				null, new HarmonyMethod(typeof(AreaOrder), nameof(AreaOrder.ListPriority_Postfix)));
-		}
-	}
-
-	[StaticConstructorOnStartup]
 	public static class TexButton
 	{
 		public static readonly Texture2D ReorderUp = ContentFinder<Texture2D>.Get("UI/Buttons/ReorderUp", true);
@@ -43,7 +30,7 @@ namespace TD_Enhancement_Pack
 		}
 	}
 
-	//[HarmonyPatch(typeof(Dialog_ManageAreas), "Dialog_ManageAreas")]
+	[HarmonyPatch(typeof(Dialog_ManageAreas), MethodType.Constructor)]
 	static class Dialog_ManageAreas_Patch
 	{
 		public static void Postfix()
@@ -234,10 +221,8 @@ namespace TD_Enhancement_Pack
 		}
 	}
 
-
-	//public class Area_Allowed : ListPriority : get
-	//HarmonyPatch AccessTools.Property(typeof(Area_Allowed), nameof(Area_Allowed.ListPriority)).GetGetMethod(false)
-	//[HarmonyPatch(typeof(Area_Allowed), "get_ListPriority")]
+	
+	[HarmonyPatch(typeof(Area_Allowed), "ListPriority", MethodType.Getter)]
 	class AreaOrder
 	{
 		public static void ListPriority_Postfix(Area_Allowed __instance, ref int __result)
