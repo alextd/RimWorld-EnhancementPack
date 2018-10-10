@@ -94,10 +94,9 @@ namespace TD_Enhancement_Pack
 	[HarmonyPatch(typeof(GlowGrid), "MarkGlowGridDirty")]
 	static class GlowGridDirty_Patch
 	{
-		public static void Postfix(GlowGrid __instance)
+		public static void Postfix(GlowGrid __instance, Map ___map)
 		{
-			FieldInfo mapField = AccessTools.Field(typeof(GlowGrid), "map");
-			Map map = (Map)mapField.GetValue(__instance);
+			Map map = ___map;
 
 			if (!LightingOverlay.lightingOverlays.TryGetValue(map, out LightingOverlay lightingOverlay))
 			{
@@ -112,10 +111,9 @@ namespace TD_Enhancement_Pack
 	static class SkyManagerDirty_Patch
 	{
 		//private void UpdateOverlays(SkyTarget curSky)
-		public static void Postfix(SkyManager __instance)
+		public static void Postfix(SkyManager __instance, Map ___map)
 		{
-			FieldInfo mapField = AccessTools.Field(typeof(SkyManager), "map");
-			Map map = (Map)mapField.GetValue(__instance);
+			Map map = ___map;
 
 			if (!LightingOverlay.lightingOverlays.TryGetValue(map, out LightingOverlay lightingOverlay))
 			{

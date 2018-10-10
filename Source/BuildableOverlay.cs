@@ -85,10 +85,9 @@ namespace TD_Enhancement_Pack
 	[HarmonyPatch(typeof(TerrainGrid), "DoTerrainChangedEffects")]
 	static class DoTerrainChangedEffects_Patch
 	{
-		public static void Postfix(TerrainGrid __instance)
+		public static void Postfix(TerrainGrid __instance, Map ___map)
 		{
-			FieldInfo mapField = AccessTools.Field(typeof(TerrainGrid), "map");
-			Map map = (Map)mapField.GetValue(__instance);
+			Map map = ___map;
 
 			if (!BuildableOverlay.buildableOverlays.TryGetValue(map, out BuildableOverlay buildableOverlay))
 			{
