@@ -52,7 +52,7 @@ namespace TD_Enhancement_Pack
 			var options = new Listing_Standard();
 			
 			Rect viewRect = new Rect(0f, 0f, wrect.width - 16f, scrollViewHeight);
-			options.BeginScrollView(wrect, ref scrollPosition, ref viewRect);
+			options.BeginScrollViewEx(wrect, ref scrollPosition, ref viewRect);
 			
 			options.CheckboxLabeled("TD.SettingsIgnoreSleeping".Translate(), ref ignoreSleepingEnemies, "TD.SettingsIgnoreSleepingDesc".Translate());
 			options.CheckboxLabeled("Stop fleeing if threat is gone", ref stopFlee, "Pretty sure this works\n\nSetting change doesn't apply to people already fleeing");
