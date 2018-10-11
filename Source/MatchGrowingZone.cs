@@ -46,8 +46,9 @@ namespace TD_Enhancement_Pack
 		//public override IEnumerable<Gizmo> GetZoneAddGizmos()
 		public static void Postfix(ref IEnumerable<Gizmo> __result)
 		{
-			List<Gizmo> result = __result.ToList();
+			List<Gizmo> result = new List<Gizmo> ();
 			result.Add(DesignatorUtility.FindAllowedDesignator<Designator_AddMatch_Growing>());
+			result.AddRange(__result);
 			__result = result;
 		}
 	}
