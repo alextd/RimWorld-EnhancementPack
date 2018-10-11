@@ -28,6 +28,7 @@
 	<TD.OtherFeatures>Other features:</TD.OtherFeatures>
 	<TD.AreaEditing>Areas can be reordered, recolored, and copy/pasted in the area manager</TD.AreaEditing>
 	<TD.NeverHome>Make an area named 'Never Home' and the area will never be added to the Home Area</TD.NeverHome>
+	<TD.SlaughterZone>Make an area named 'Slaughter' and the animals will only be slaughtered in that area</TD.SlaughterZone>
 	<TD.RequiresRestart>These require a restart to take effect:</TD.RequiresRestart>
 	<TD.VariousCount>(various) selected items are given a count</TD.VariousCount>
 	<TD.RottedAwayClickable>Food 'rotted away' messages are clickable to see where it was</TD.RottedAwayClickable>

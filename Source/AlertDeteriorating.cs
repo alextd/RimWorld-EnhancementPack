@@ -38,7 +38,9 @@ namespace TD_Enhancement_Pack
 
 		public override AlertReport GetReport()
 		{
-			return AlertReport.CulpritsAre(DeterioratingThings);
+			return Settings.Get().alertDeteriorating ? 
+				AlertReport.CulpritsAre(DeterioratingThings) :
+				AlertReport.Inactive;
 		}
 	}
 }

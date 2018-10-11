@@ -13,7 +13,8 @@ namespace TD_Enhancement_Pack
 	{
 		protected override bool Satisfied(Pawn pawn)
 		{
-			return !pawn.Downed && !pawn.IsBurning() && !pawn.InMentalState && pawn.Awake();
+			return Settings.Get().dodgeGrenade &&
+				!pawn.Downed && !pawn.IsBurning() && !pawn.InMentalState && pawn.Awake();
 		}
 	}
 }

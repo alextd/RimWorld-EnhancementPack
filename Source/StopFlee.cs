@@ -15,6 +15,8 @@ namespace TD_Enhancement_Pack
 		//protected override IEnumerable<Toil> MakeNewToils()
 		public static void Postfix(ref IEnumerable<Toil> __result, JobDriver_Flee __instance)
 		{
+			if(!Settings.Get().stopFlee)	return;
+
 			List<Toil> result = __result.ToList();
 
 			Toil goToil = result.Last();

@@ -34,8 +34,7 @@ namespace TD_Enhancement_Pack
 
 				if (inst.opcode == OpCodes.Callvirt && inst.operand == AccessTools.Property(typeof(MainTabsRoot), "OpenTab").GetGetMethod())
 				{
-					yield return new CodeInstruction(OpCodes.Pop);
-					yield return new CodeInstruction(OpCodes.Ldc_I4_0);// 0 != null is false
+					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(MouseoverOnTopRight), nameof(FilterForOpenTab)));// 0 != null is false
 				}
 			}
 		}
@@ -43,16 +42,28 @@ namespace TD_Enhancement_Pack
 
 		public static void DrawTextWinterShadowTR(Rect badRect)
 		{
-			GenUI.DrawTextWinterShadow(new Rect(UI.screenWidth-256f, 256f, 256f, -256f));
+			if (Settings.Get().mouseoverInfoTopRight)
+				GenUI.DrawTextWinterShadow(new Rect(UI.screenWidth-256f, 256f, 256f, -256f));
+			else
+				GenUI.DrawTextWinterShadow(badRect);
 		}
 
 		public static void LabelTransform(Rect rect, string label)
 		{
-			//rect = new Rect(MouseoverReadout.BotLeft.x, (float)UI.screenHeight - MouseoverReadout.BotLeft.y - num, 999f, 999f);
-			rect.x = UI.screenWidth - rect.x;	//flip x
-			rect.y = UI.screenHeight - rect.y - 50f; //flip y, adjust for maintabs margin: BotLeft.y = 65f, BotLeft.x = 15f
-			rect.x -= Text.CalcSize(label).x;//adjust for text width
+			if (Settings.Get().mouseoverInfoTopRight)
+			{
+				//rect = new Rect(MouseoverReadout.BotLeft.x, (float)UI.screenHeight - MouseoverReadout.BotLeft.y - num, 999f, 999f);
+				rect.x = UI.screenWidth - rect.x; //flip x
+				rect.y = UI.screenHeight - rect.y - 50f; //flip y, adjust for maintabs margin: BotLeft.y = 65f, BotLeft.x = 15f
+				rect.x -= Text.CalcSize(label).x;//adjust for text width
+			}
 			Widgets.Label(rect, label);
 		}
+
+		public static MainButtonDef FilterForOpenTab(MainButtonDef def)
+		{
+			return Settings.Get().mouseoverInfoTopRight ? null : def;
+		}
+
 	}
 }

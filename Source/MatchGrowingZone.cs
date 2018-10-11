@@ -36,6 +36,8 @@ namespace TD_Enhancement_Pack
 			
 			return true;
 		}
+
+		public override bool Visible => Settings.Get().matchGrowButton && base.Visible;
 	}
 
 	[HarmonyPatch(typeof(Zone_Growing), "GetZoneAddGizmos")]

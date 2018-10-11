@@ -14,7 +14,7 @@ namespace TD_Enhancement_Pack
 		//public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
 		public static void Postfix(Pawn pawn, Thing t, bool forced, ref bool __result)
 		{
-			if (!__result) return;
+			if (!__result || !Settings.Get().slaughterZone) return;
 
 			if (pawn.Map.areaManager.GetLabeled("Slaughter") is Area slaughterZone
 					&& !slaughterZone[t.Position])
