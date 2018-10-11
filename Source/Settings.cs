@@ -39,6 +39,9 @@ namespace TD_Enhancement_Pack
 		public bool alertDeteriorating = true;
 		public bool matchGrowButton = true;
 
+		public Vector2 scrollPosition;
+		public float scrollViewHeight;
+
 		public static Settings Get()
 		{
 			return LoadedModManager.GetMod<Mod>().GetSettings<Settings>();
@@ -47,7 +50,9 @@ namespace TD_Enhancement_Pack
 		public void DoWindowContents(Rect wrect)
 		{
 			var options = new Listing_Standard();
-			options.Begin(wrect);
+			
+			Rect viewRect = new Rect(0f, 0f, wrect.width - 16f, scrollViewHeight);
+			options.BeginScrollView(wrect, ref scrollPosition, ref viewRect);
 			
 			options.CheckboxLabeled("TD.SettingsIgnoreSleeping".Translate(), ref ignoreSleepingEnemies, "TD.SettingsIgnoreSleepingDesc".Translate());
 			options.CheckboxLabeled("Stop fleeing if threat is gone", ref stopFlee, "Pretty sure this works\n\nSetting change doesn't apply to people already fleeing");
@@ -103,7 +108,8 @@ namespace TD_Enhancement_Pack
 			options.Label("Selected stone has a button to smooth it");
 			options.Label("Deep drilling for rock gets a random rock type", tooltip: "Would normally only get one type");
 
-			options.End();
+			options.EndScrollView(ref viewRect);
+			scrollViewHeight = viewRect.height;
 		}
 
 		public override void ExposeData()
