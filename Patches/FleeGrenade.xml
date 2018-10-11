@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationInsert">
+		<xpath>Defs/ThinkTreeDef[defName="HumanlikeConstant"]/thinkRoot/subNodes/li[@Class="ThinkNode_ConditionalCanDoConstantThinkTreeJobNow"]</xpath>
+		<value>
+
+			<li Class="TD_Enhancement_Pack.ThinkNode_ConditionalCanDoDraftedConstantThinkTreeJobNow">
+				<subNodes>
+					<!-- Flee explosion -->
+					<li Class="JobGiver_FleePotentialExplosion" />
+				</subNodes>
+			</li>
+		</value>
+	</Operation>
+</Patch>
+
