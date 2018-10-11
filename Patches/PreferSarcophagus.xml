@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Sarcophagus"]/building/defaultStorageSettings/priority</xpath>
+		<value>
+			<priority>Critical</priority>
+		</value>
+	</Operation>
+</Patch>
