@@ -14,6 +14,7 @@ namespace TD_Enhancement_Pack
 		public bool showStopGizmoDrafted = true;
 
 		public bool showOverlayBuildable = true;
+		public bool showOverlayBeauty = true;
 		public bool showOverlayFertility = true;
 		public bool showOverlayLighting = true;
 		public bool cheatFertilityUnderGrid = true;
@@ -46,6 +47,7 @@ namespace TD_Enhancement_Pack
 			options.Gap();
 			
 			options.CheckboxLabeled("TD.SettingOverlayBuildable".Translate(), ref showOverlayBuildable, "TD.SettingOverlayBuildableDesc".Translate());
+			options.CheckboxLabeled("TD.SettingOverlayBeauty".Translate(), ref showOverlayBeauty);
 			options.CheckboxLabeled("TD.SettingOverlayFertility".Translate(), ref showOverlayFertility);
 			bool before = cheatFertilityUnderGrid;
 			options.CheckboxLabeled("TD.SettingOverlayFertilityUnder".Translate(), ref cheatFertilityUnderGrid);
@@ -85,6 +87,7 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref showStopGizmoDrafted, "showStopGizmoDrafted", true);
 
 			Scribe_Values.Look(ref showOverlayBuildable, "showOverlayBuildable", true);
+			Scribe_Values.Look(ref showOverlayBeauty, "showOverlayBeauty", true);
 			Scribe_Values.Look(ref showOverlayFertility, "showOverlayFertility", true);
 			Scribe_Values.Look(ref showOverlayLighting, "showOverlayLighting", true);
 			Scribe_Values.Look(ref cheatFertilityUnderGrid, "cheatFertilityUnderGrid", true);

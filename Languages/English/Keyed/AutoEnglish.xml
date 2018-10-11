@@ -3,6 +3,7 @@
 	
 	<TD.HexColorValuesOnly>Hex color values only</TD.HexColorValuesOnly>
 	<TD.ToggleBuildable>Toggle the buildable terrain overlay</TD.ToggleBuildable>
+	<TD.ToggleBeauty>Toggle the beauty overlay</TD.ToggleBeauty>
 	<TD.ToggleFertility>Toggle the fertile terrain overlay</TD.ToggleFertility>
 	<TD.ToggleLighting>Toggle the lighting overlay</TD.ToggleLighting>
 	<TDEnhancementPack>TD Enhancement Pack</TDEnhancementPack>
@@ -12,6 +13,7 @@
 	<TD.CountFullyGrown>Grown: {0}</TD.CountFullyGrown>
 	<TD.SettingOverlayBuildable>Enable a buildable terrain overlay</TD.SettingOverlayBuildable>
 	<TD.SettingOverlayBuildableDesc>Red is unbuildable, Yellow is 'Light' Buildable (e.g. not structures mostly)</TD.SettingOverlayBuildableDesc>
+	<TD.SettingOverlayBeauty>Enable a global beauty overlay</TD.SettingOverlayBeauty>
 	<TD.SettingOverlayFertility>Enable a fertility overlay</TD.SettingOverlayFertility>
 	<TD.SettingOverlayFertilityUnder>Fertility overlay shows value for terrain under floors</TD.SettingOverlayFertilityUnder>
 	<TD.SettingOverlayLighting>Enable a lighting overlay</TD.SettingOverlayLighting>
