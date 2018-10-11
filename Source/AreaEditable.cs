@@ -225,7 +225,7 @@ namespace TD_Enhancement_Pack
 	[HarmonyPatch(typeof(Area_Allowed), "ListPriority", MethodType.Getter)]
 	class AreaOrder
 	{
-		public static void ListPriority_Postfix(Area_Allowed __instance, ref int __result)
+		public static void Postfix(Area_Allowed __instance, ref int __result)
 		{
 			__result -= __instance.Map.GetComponent<MapComponent_AreaOrder>()?.AdjustFor(__instance) ?? 0;
 		}
