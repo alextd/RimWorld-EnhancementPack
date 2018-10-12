@@ -18,6 +18,7 @@ namespace TD_Enhancement_Pack
 		public bool showOverlayBuildable = true;
 		public bool showOverlayBeauty = true;
 		public bool showOverlayFertility = true;
+		public bool autoOverlayFertility = true;
 		public bool showOverlayLighting = true;
 		public bool cheatFertilityUnderGrid = true;
 
@@ -68,6 +69,7 @@ namespace TD_Enhancement_Pack
 			options.CheckboxLabeled("TD.SettingOverlayFertilityUnder".Translate(), ref cheatFertilityUnderGrid);
 			if (before != cheatFertilityUnderGrid)
 				FertilityOverlay.DirtyAll();
+			options.CheckboxLabeled("Auto-show fertility overlay when placing growing zones", ref autoOverlayFertility);
 			options.CheckboxLabeled("TD.SettingOverlayLighting".Translate(), ref showOverlayLighting, "TD.SettingOverlayLightingDesc".Translate());
 			options.Gap();
 
@@ -123,6 +125,7 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref showOverlayBuildable, "showOverlayBuildable", true);
 			Scribe_Values.Look(ref showOverlayBeauty, "showOverlayBeauty", true);
 			Scribe_Values.Look(ref showOverlayFertility, "showOverlayFertility", true);
+			Scribe_Values.Look(ref autoOverlayFertility, "autoOverlayFertility", true);
 			Scribe_Values.Look(ref showOverlayLighting, "showOverlayLighting", true);
 			Scribe_Values.Look(ref cheatFertilityUnderGrid, "cheatFertilityUnderGrid", true);
 

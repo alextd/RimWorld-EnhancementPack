@@ -14,7 +14,7 @@
 	<TD.SettingOverlayBuildable>Enable a buildable terrain overlay</TD.SettingOverlayBuildable>
 	<TD.SettingOverlayBuildableDesc>Red is unbuildable, Yellow is 'Light' Buildable (e.g. not structures mostly)</TD.SettingOverlayBuildableDesc>
 	<TD.SettingOverlayBeauty>Enable a global beauty overlay</TD.SettingOverlayBeauty>
-	<TD.SettingOverlayFertility>Enable a fertility overlay</TD.SettingOverlayFertility>
+	<TD.SettingOverlayFertility>Enable a button for the fertility overlay</TD.SettingOverlayFertility>
 	<TD.SettingOverlayFertilityUnder>Fertility overlay shows value for terrain under floors</TD.SettingOverlayFertilityUnder>
 	<TD.SettingOverlayLighting>Enable a lighting overlay</TD.SettingOverlayLighting>
 	<TD.SettingOverlayLightingDesc>Sun-lit outdoor areas are uncolored</TD.SettingOverlayLightingDesc>

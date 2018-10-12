@@ -73,7 +73,8 @@ namespace TD_Enhancement_Pack
 
 		public void Draw()
 		{
-			if (PlaySettings_Patch_Fertility.showFertilityOverlay)
+			if (PlaySettings_Patch_Fertility.showFertilityOverlay || 
+				Settings.Get().autoOverlayFertility && AutoDraw())
 				drawer.MarkForDraw();
 			drawer.CellBoolDrawerUpdate();
 		}
@@ -81,6 +82,11 @@ namespace TD_Enhancement_Pack
 		public void SetDirty()
 		{
 			drawer.SetDirty();
+		}
+
+		public bool AutoDraw()
+		{
+			return Find.DesignatorManager.SelectedDesignator is Designator_ZoneAdd_Growing;
 		}
 	}
 
