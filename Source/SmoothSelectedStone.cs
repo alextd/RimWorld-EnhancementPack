@@ -47,7 +47,14 @@ namespace TD_Enhancement_Pack
 			if (__instance is Designator_SmoothSurface des)
 			{
 				IntVec3 pos = t.Position;
-				des.Map.designationManager.AddDesignation(new Designation(pos, DesignationDefOf.SmoothWall));
+				if (DebugSettings.godMode)
+				{
+					SmoothableWallUtility.SmoothWall(t, __instance.Map.mapPawns.FreeColonistsSpawned.First());
+				}
+				else
+				{
+					des.Map.designationManager.AddDesignation(new Designation(pos, DesignationDefOf.SmoothWall));
+				}
 				des.Map.designationManager.TryRemoveDesignation(pos, DesignationDefOf.Mine);
 
 				return false;
