@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationInsert">
+		<xpath>Defs/DesignationCategoryDef[defName="Zone"]/specialDesignatorClasses/li[text() = 'Designator_ZoneAdd_Growing']</xpath>
+		<value>
+			<li>TD_Enhancement_Pack.Designator_AddMatch_Growing</li>
+		</value>
+	</Operation>
+</Patch>
+

@@ -10,11 +10,16 @@ namespace TD_Enhancement_Pack
 	class Settings : ModSettings
 	{
 		public bool ignoreSleepingEnemies = true;
+		public bool stopFlee = true;
+		public bool dodgeGrenade = false;
 		public bool showStopGizmo = true;
 		public bool showStopGizmoDrafted = true;
 
 		public bool showOverlayBuildable = true;
+		public bool autoOverlayBuildable = true;
+		public bool showOverlayBeauty = true;
 		public bool showOverlayFertility = true;
+		public bool autoOverlayFertility = true;
 		public bool showOverlayLighting = true;
 		public bool cheatFertilityUnderGrid = true;
 
@@ -29,6 +34,15 @@ namespace TD_Enhancement_Pack
 		public bool zoneHarvestableToggle = false;
 		
 		public bool neverHome = true;
+		public bool slaughterZone = true;
+
+		public bool autorebuildDefaultOn = true;
+		public bool mouseoverInfoTopRight = false;
+		public bool alertDeteriorating = true;
+		public bool matchGrowButton = true;
+
+		public Vector2 scrollPosition;
+		public float scrollViewHeight;
 
 		public static Settings Get()
 		{
@@ -38,19 +52,26 @@ namespace TD_Enhancement_Pack
 		public void DoWindowContents(Rect wrect)
 		{
 			var options = new Listing_Standard();
-			options.Begin(wrect);
+			
+			Rect viewRect = new Rect(0f, 0f, wrect.width - 16f, scrollViewHeight);
+			options.BeginScrollViewEx(wrect, ref scrollPosition, ref viewRect);
 			
 			options.CheckboxLabeled("TD.SettingsIgnoreSleeping".Translate(), ref ignoreSleepingEnemies, "TD.SettingsIgnoreSleepingDesc".Translate());
+			options.CheckboxLabeled("TD.SettingStopFlee".Translate(), ref stopFlee, "TD.SettingStopFleeDesc".Translate());
+			options.CheckboxLabeled("TD.SettingDodgeGrenades".Translate(), ref dodgeGrenade, "TD.SettingDodgeGrenadesDesc".Translate());
 			options.CheckboxLabeled("TD.ShowStopButtonDrafted".Translate(), ref showStopGizmoDrafted);
 			options.CheckboxLabeled("TD.ShowStopButtonUnDrafted".Translate(), ref showStopGizmo);
 			options.Gap();
 			
 			options.CheckboxLabeled("TD.SettingOverlayBuildable".Translate(), ref showOverlayBuildable, "TD.SettingOverlayBuildableDesc".Translate());
+			options.CheckboxLabeled("TD.SettingAutoBuildable".Translate(), ref autoOverlayBuildable, "TD.SettingAutoBuildableDesc".Translate());
+			options.CheckboxLabeled("TD.SettingOverlayBeauty".Translate(), ref showOverlayBeauty, "TD.SettingBeautySlow".Translate());
 			options.CheckboxLabeled("TD.SettingOverlayFertility".Translate(), ref showOverlayFertility);
 			bool before = cheatFertilityUnderGrid;
 			options.CheckboxLabeled("TD.SettingOverlayFertilityUnder".Translate(), ref cheatFertilityUnderGrid);
 			if (before != cheatFertilityUnderGrid)
 				FertilityOverlay.DirtyAll();
+			options.CheckboxLabeled("TD.SettingAutoFertility".Translate(), ref autoOverlayFertility);
 			options.CheckboxLabeled("TD.SettingOverlayLighting".Translate(), ref showOverlayLighting, "TD.SettingOverlayLightingDesc".Translate());
 			options.Gap();
 
@@ -68,24 +89,48 @@ namespace TD_Enhancement_Pack
 			options.Gap();
 
 			options.CheckboxLabeled("TD.NeverHome".Translate(), ref neverHome);
-			options.Label("TD.RequiresRestart".Translate());
+			options.CheckboxLabeled("TD.SlaughterZone".Translate(), ref slaughterZone);
 			options.Gap();
+
+			options.CheckboxLabeled("TD.SettingAutoAutorebuild".Translate(), ref autorebuildDefaultOn);
+			options.CheckboxLabeled("TD.SettingTopRightMouseover".Translate(), ref mouseoverInfoTopRight, "TD.SettingTopRightMouseoverDesc".Translate());
+			options.CheckboxLabeled("TD.SettingDeteriorationAlert".Translate(), ref alertDeteriorating, "TD.SettingDeteriorationAlertDesc".Translate());
+			options.CheckboxLabeled("TD.SettingMatchGrow".Translate(), ref matchGrowButton, "TD.SettingMatchGrowDesc".Translate());
+			options.Gap();
+
+			//options.Label("TD.RequiresRestart".Translate());
+			//Insert things here
+			//options.Gap();
 
 			options.Label("TD.OtherFeatures".Translate());
 			options.Label("TD.AreaEditing".Translate());
 			options.Label("TD.FeatureConditionGreen".Translate());
+			options.Label("TD.DebugFullStack".Translate());
+			options.Label("TD.DropPodWhatDropped".Translate());
+			options.Label("TD.SarcophagusPreferred".Translate(), tooltip: "TD.SarcophagusPreferredDesc".Translate());
+			options.Label("TD.DebugGodmodeRoofFloors".Translate());
+			options.Label("TD.NoFrameDecon".Translate(), tooltip: "TD.NoFrameDeconDesc".Translate());
+			options.Label("TD.DropdownBuildingsOrder".Translate(), tooltip: "TD.DropdownBuildingsOrderDesc".Translate());
+			options.Label("TD.SmoothSelectedStone".Translate());
+			options.Label("TD.DeepDrillRandomrock".Translate(), tooltip: "TD.DeepDrillRandomrockDesc".Translate());
 
-			options.End();
+			options.EndScrollView(ref viewRect);
+			scrollViewHeight = viewRect.height;
 		}
 
 		public override void ExposeData()
 		{
 			Scribe_Values.Look(ref ignoreSleepingEnemies, "ignoreSleepingEnemies", true);
+			Scribe_Values.Look(ref stopFlee, "stopFlee", true);
+			Scribe_Values.Look(ref dodgeGrenade, "dodgeGrenade", false);
 			Scribe_Values.Look(ref showStopGizmo, "showStopGizmo", true);
 			Scribe_Values.Look(ref showStopGizmoDrafted, "showStopGizmoDrafted", true);
 
 			Scribe_Values.Look(ref showOverlayBuildable, "showOverlayBuildable", true);
+			Scribe_Values.Look(ref autoOverlayBuildable, "autoOverlayBuildable", true);
+			Scribe_Values.Look(ref showOverlayBeauty, "showOverlayBeauty", true);
 			Scribe_Values.Look(ref showOverlayFertility, "showOverlayFertility", true);
+			Scribe_Values.Look(ref autoOverlayFertility, "autoOverlayFertility", true);
 			Scribe_Values.Look(ref showOverlayLighting, "showOverlayLighting", true);
 			Scribe_Values.Look(ref cheatFertilityUnderGrid, "cheatFertilityUnderGrid", true);
 
@@ -100,6 +145,12 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref zoneHarvestableToggle, "zoneHarvestableToggle", false);
 			
 			Scribe_Values.Look(ref neverHome, "neverHome", true);
+			Scribe_Values.Look(ref slaughterZone, "slaughterZone", true);
+
+			Scribe_Values.Look(ref autorebuildDefaultOn, "autorebuildDefaultOn", true);
+			Scribe_Values.Look(ref mouseoverInfoTopRight, "mouseoverInfoTopRight", false);
+			Scribe_Values.Look(ref alertDeteriorating, "alertDeteriorating", true);
+			Scribe_Values.Look(ref matchGrowButton, "matchGrowButton", true);
 		}
 	}
 }

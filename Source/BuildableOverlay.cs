@@ -54,7 +54,8 @@ namespace TD_Enhancement_Pack
 
 		public void Draw()
 		{
-			if (PlaySettings_Patch.showBuildableOverlay)
+			if (PlaySettings_Patch.showBuildableOverlay ||
+				Settings.Get().autoOverlayBuildable && AutoDraw())
 				drawer.MarkForDraw();
 			drawer.CellBoolDrawerUpdate();
 		}
@@ -62,6 +63,11 @@ namespace TD_Enhancement_Pack
 		public void SetDirty()
 		{
 			drawer.SetDirty();
+		}
+
+		public bool AutoDraw()
+		{
+			return Find.DesignatorManager.SelectedDesignator is Designator_Build;
 		}
 	}
 	
@@ -85,10 +91,9 @@ namespace TD_Enhancement_Pack
 	[HarmonyPatch(typeof(TerrainGrid), "DoTerrainChangedEffects")]
 	static class DoTerrainChangedEffects_Patch
 	{
-		public static void Postfix(TerrainGrid __instance)
+		public static void Postfix(TerrainGrid __instance, Map ___map)
 		{
-			FieldInfo mapField = AccessTools.Field(typeof(TerrainGrid), "map");
-			Map map = (Map)mapField.GetValue(__instance);
+			Map map = ___map;
 
 			if (!BuildableOverlay.buildableOverlays.TryGetValue(map, out BuildableOverlay buildableOverlay))
 			{

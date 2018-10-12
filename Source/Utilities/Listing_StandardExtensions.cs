@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using Verse;
+using Harmony;
 
 namespace TD.Utilities
 {
@@ -37,6 +38,35 @@ namespace TD.Utilities
 
 			Text.Anchor = anchor;
 			ls.Gap(ls.verticalSpacing);
+		}
+
+		public static void BeginScrollViewEx(this Listing_Standard listing, Rect rect, ref Vector2 scrollPosition, ref Rect viewRect)
+		{
+			//Widgets.BeginScrollView(rect, ref scrollPosition, viewRect, true);
+			//rect.height = 100000f;
+			//rect.width -= 20f;
+			//this.Begin(rect.AtZero());
+
+			//Need BeginGroup before ScrollView, listingRect needs rect.width-=20 but the group doesn't
+
+			GUI.BeginGroup(rect);
+			Widgets.BeginScrollView(rect.AtZero(), ref scrollPosition, viewRect, true);
+			
+			rect.height = 100000f;
+			rect.width -= 20f;
+			//base.Begin(rect.AtZero());
+
+
+			//listing.listingRect = rect;
+			AccessTools.Field(typeof(Listing_Standard), "listingRect").SetValue(listing, rect);
+			//listing.columnWidthInt = listing.listingRect.width;
+			AccessTools.Field(typeof(Listing_Standard), "columnWidthInt").SetValue(listing, rect.width);
+			//listing.curX = 0f;
+			AccessTools.Field(typeof(Listing_Standard), "curX").SetValue(listing, 0);
+			//listing.curY = 0f;
+			AccessTools.Field(typeof(Listing_Standard), "curY").SetValue(listing, 0);
+
+			Text.Font = (GameFont)AccessTools.Field(typeof(Listing_Standard), "font").GetValue(listing);
 		}
 	}
 }
