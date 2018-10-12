@@ -21,7 +21,7 @@ namespace TD_Enhancement_Pack
 		{
 			map = m;
 			defaultOpacity = opacity;
-			drawer = new CellBoolDrawer((ICellBoolGiver)this, map.Size.x, map.Size.z, opacity);
+			drawer = new CellBoolDrawer((ICellBoolGiver)this, map.Size.x, map.Size.z, opacity * Settings.Get().overlayOpacity);
 		}
 
 		public Color Color
