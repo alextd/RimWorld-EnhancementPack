@@ -12,37 +12,20 @@ using Harmony;
 namespace TD_Enhancement_Pack
 {
 	[StaticConstructorOnStartup]
-	class LightingOverlay : ICellBoolGiver
+	class LightingOverlay : BaseOverlay
 	{
 		public static Dictionary<Map, LightingOverlay> lightingOverlays = new Dictionary<Map, LightingOverlay>();
 		public float skyGlow;
 
-		private CellBoolDrawer drawer;
-		//private bool[] data;
-		private Map map;
+		public LightingOverlay(Map m) : base(m) { }
 
-		public LightingOverlay(Map m)
-		{
-			map = m;
-			drawer = new CellBoolDrawer((ICellBoolGiver)this, map.Size.x, map.Size.z);
-			//data = new bool[map.cellIndices.NumGridCells];
-		}
-
-		public Color Color
-		{
-			get
-			{
-				return new Color(1f, 1f, 1f);
-			}
-		}
-
-		public bool GetCellBool(int index)
+		public override bool GetCellBool(int index)
 		{
 			return (map.roofGrid.GetCellBool(index) || LightingAt(map, index) > skyGlow)
 				&& !map.fogGrid.IsFogged(index);
 		}
 
-		public Color GetCellExtraColor(int index)
+		public override Color GetCellExtraColor(int index)
 		{
 			return Color.Lerp(Color.red, Color.green, LightingAt(map, index));
 		}
@@ -52,17 +35,7 @@ namespace TD_Enhancement_Pack
 			return map.glowGrid.GameGlowAt(map.cellIndices.IndexToCell(index));
 		}
 
-		public void Draw()
-		{
-			if (PlaySettings_Patch_Lighting.showLightingOverlay)
-				drawer.MarkForDraw();
-			drawer.CellBoolDrawerUpdate();
-		}
-
-		public void SetDirty()
-		{
-			drawer.SetDirty();
-		}
+		public override bool ShouldDraw() => PlaySettings_Patch_Lighting.showLightingOverlay;
 
 		public void SetDirtySky(float newSky)
 		{

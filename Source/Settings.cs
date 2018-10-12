@@ -74,7 +74,10 @@ namespace TD_Enhancement_Pack
 				FertilityOverlay.DirtyAll();
 			options.CheckboxLabeled("TD.SettingAutoFertility".Translate(), ref autoOverlayFertility);
 			options.CheckboxLabeled("TD.SettingOverlayLighting".Translate(), ref showOverlayLighting, "TD.SettingOverlayLightingDesc".Translate());
+			float beforeO = overlayOpacity;
 			options.SliderLabeled("Lower overlay opacities:", ref overlayOpacity, "{0:P0}");
+			if (beforeO != overlayOpacity)
+				BaseOverlay.SetAllOpacity(overlayOpacity);
 			options.Gap();
 
 			options.CheckboxLabeled("TD.SettingTradeClose".Translate(), ref changeSpeedAfterTrader);
