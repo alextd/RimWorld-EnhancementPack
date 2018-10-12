@@ -102,7 +102,7 @@ namespace TD_Enhancement_Pack
 			options.Label("A debug menu action to place a full stack of things");
 			options.Label("The letter for random resource drop pods tell you what dropped");
 			options.Label("Sarcophagus preferred to use over graves", tooltip: "The default settings for a Sarcophagus are Critical so they are used before graves. The settings are already colonist-only, but without setting Critical, colonists would be buried in closer graves instead");
-			options.Label("With debug godmode on, roofs are constructed and removed instantly");
+			options.Label("With debug godmode on, roofs are added/removed instantly, and walls/floors are smoothed instantly");
 			options.Label("Frames can't be deconstructed, only canceled", tooltip: "Deconstruction would return less resources than canceling");
 			options.Label("Dropdown designators get their order set by their contained designators", tooltip: "e.g. colored lights show up in the build menu next to other lights instead of the front of the list");
 			options.Label("Selected stone has a button to smooth it");
