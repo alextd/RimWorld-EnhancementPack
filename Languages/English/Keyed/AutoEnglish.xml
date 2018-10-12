@@ -46,5 +46,36 @@
 	<TD.SettingAllowHarvesting>Growing Zones 'Allow Harvesting' Toggle</TD.SettingAllowHarvesting>
 	<TD.FeatureConditionGreen>Good body conditions are green ; Whole body tag is yellow</TD.FeatureConditionGreen>
 	<TD.WhatDropped>What dropped: {0}</TD.WhatDropped>
+	<TD.Deterioration>Deterioration</TD.Deterioration>
+	<TD.DeteriorationAlert>Something is deteriorating and is getting low on health. Put it indoors to keep it safe.</TD.DeteriorationAlert>
+	<TD.Match>Match</TD.Match>
+	<TD.MatchDesc>Add a growing zone, but only add terrain with fertility that matches the first cell picked</TD.MatchDesc>
+	<TD.SettingStopFlee>Stop fleeing if threat is gone</TD.SettingStopFlee>
+	<TD.SettingStopFleeDesc>Pretty sure this works\n\nSetting change doesn't apply to people already fleeing</TD.SettingStopFleeDesc>
+	<TD.SettingDodgeGrenades>Dodge grenades while drafted</TD.SettingDodgeGrenades>
+	<TD.SettingDodgeGrenadesDesc>Of course this interrupts what you're doing.</TD.SettingDodgeGrenadesDesc>
+	<TD.SettingAutoBuildable>Auto-show buildable terrain overlay when placing buildings</TD.SettingAutoBuildable>
+	<TD.SettingAutoBuildableDesc>So this would be amazing if it said if the current building can be placed there but it's just gonna be red/yellow and you have to figure it out</TD.SettingAutoBuildableDesc>
+	<TD.SettingBeautySlow>I know it slows down the game</TD.SettingBeautySlow>
+	<TD.SettingAutoFertility>Auto-show fertility overlay when placing growing zones</TD.SettingAutoFertility>
+	<TD.SettingAutoAutorebuild>Autorebuild is on for a new game</TD.SettingAutoAutorebuild>
+	<TD.SettingTopRightMouseover>Mouseover tile info is on topright</TD.SettingTopRightMouseover>
+	<TD.SettingTopRightMouseoverDesc>So it shows up when something is selected\n\nOf course this is a bad idea if you still have the learning helper on.</TD.SettingTopRightMouseoverDesc>
+	<TD.SettingDeteriorationAlert>Alert for deteriorating things</TD.SettingDeteriorationAlert>
+	<TD.SettingDeteriorationAlertDesc>Deteriorating things with less than 50% HP, that are not forbidden</TD.SettingDeteriorationAlertDesc>
+	<TD.SettingMatchGrow>Button to make a growing zone and match terrain</TD.SettingMatchGrow>
+	<TD.SettingMatchGrowDesc>Terrain is only added if fertility % matches the first tile selected when dragging</TD.SettingMatchGrowDesc>
+	<TD.DebugFullStack>A debug menu action to place a full stack of things</TD.DebugFullStack>
+	<TD.DropPodWhatDropped>The letter for random resource drop pods tell you what dropped</TD.DropPodWhatDropped>
+	<TD.SarcophagusPreferred>Sarcophagus preferred to use over graves</TD.SarcophagusPreferred>
+	<TD.SarcophagusPreferredDesc>The default settings for a Sarcophagus are Critical so they are used before graves. The settings are already colonist-only, but without setting Critical, colonists would be buried in closer graves instead</TD.SarcophagusPreferredDesc>
+	<TD.DebugGodmodeRoofFloors>With debug godmode on, roofs are added/removed instantly, and walls/floors are smoothed instantly</TD.DebugGodmodeRoofFloors>
+	<TD.NoFrameDecon>Frames can't be deconstructed, only canceled</TD.NoFrameDecon>
+	<TD.NoFrameDeconDesc>Deconstruction would return less resources than canceling</TD.NoFrameDeconDesc>
+	<TD.DropdownBuildingsOrder>Dropdown designators get their order set by their contained designators</TD.DropdownBuildingsOrder>
+	<TD.DropdownBuildingsOrderDesc>e.g. colored lights show up in the build menu next to other lights instead of the front of the list</TD.DropdownBuildingsOrderDesc>
+	<TD.SmoothSelectedStone>Selected stone has a button to smooth it</TD.SmoothSelectedStone>
+	<TD.DeepDrillRandomrock>Deep drilling for rock gets a random rock type</TD.DeepDrillRandomrock>
+	<TD.DeepDrillRandomrockDesc>Would normally only get one type</TD.DeepDrillRandomrockDesc>
 	
 </LanguageData>

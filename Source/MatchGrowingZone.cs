@@ -12,8 +12,8 @@ namespace TD_Enhancement_Pack
 	{
 		public Designator_AddMatch_Growing() : base()
 		{
-			this.defaultLabel = "Match";
-			this.defaultDesc = "Add a growing zone, but only add terrain with fertility that matches the first cell picked";
+			this.defaultLabel = "TD.Match".Translate();
+			this.defaultDesc = "TD.MatchDesc".Translate();
 		}
 		public override AcceptanceReport CanDesignateCell(IntVec3 c)
 		{

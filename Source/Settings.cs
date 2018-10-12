@@ -57,21 +57,21 @@ namespace TD_Enhancement_Pack
 			options.BeginScrollViewEx(wrect, ref scrollPosition, ref viewRect);
 			
 			options.CheckboxLabeled("TD.SettingsIgnoreSleeping".Translate(), ref ignoreSleepingEnemies, "TD.SettingsIgnoreSleepingDesc".Translate());
-			options.CheckboxLabeled("Stop fleeing if threat is gone", ref stopFlee, "Pretty sure this works\n\nSetting change doesn't apply to people already fleeing");
-			options.CheckboxLabeled("Dodge grenades while drafted", ref dodgeGrenade, "Of course this interrupts what you're doing.");
+			options.CheckboxLabeled("TD.SettingStopFlee".Translate(), ref stopFlee, "TD.SettingStopFleeDesc".Translate());
+			options.CheckboxLabeled("TD.SettingDodgeGrenades".Translate(), ref dodgeGrenade, "TD.SettingDodgeGrenadesDesc".Translate());
 			options.CheckboxLabeled("TD.ShowStopButtonDrafted".Translate(), ref showStopGizmoDrafted);
 			options.CheckboxLabeled("TD.ShowStopButtonUnDrafted".Translate(), ref showStopGizmo);
 			options.Gap();
 			
 			options.CheckboxLabeled("TD.SettingOverlayBuildable".Translate(), ref showOverlayBuildable, "TD.SettingOverlayBuildableDesc".Translate());
-			options.CheckboxLabeled("Auto-show buildable terrain overlay when placing buildings", ref autoOverlayBuildable, "So this would be amazing if it said if the current building can be placed there but it's just gonna be red/yellow and you have to figure it out");
-			options.CheckboxLabeled("TD.SettingOverlayBeauty".Translate(), ref showOverlayBeauty, "I know it slows down the game");
+			options.CheckboxLabeled("TD.SettingAutoBuildable".Translate(), ref autoOverlayBuildable, "TD.SettingAutoBuildableDesc".Translate());
+			options.CheckboxLabeled("TD.SettingOverlayBeauty".Translate(), ref showOverlayBeauty, "TD.SettingBeautySlow".Translate());
 			options.CheckboxLabeled("TD.SettingOverlayFertility".Translate(), ref showOverlayFertility);
 			bool before = cheatFertilityUnderGrid;
 			options.CheckboxLabeled("TD.SettingOverlayFertilityUnder".Translate(), ref cheatFertilityUnderGrid);
 			if (before != cheatFertilityUnderGrid)
 				FertilityOverlay.DirtyAll();
-			options.CheckboxLabeled("Auto-show fertility overlay when placing growing zones", ref autoOverlayFertility);
+			options.CheckboxLabeled("TD.SettingAutoFertility".Translate(), ref autoOverlayFertility);
 			options.CheckboxLabeled("TD.SettingOverlayLighting".Translate(), ref showOverlayLighting, "TD.SettingOverlayLightingDesc".Translate());
 			options.Gap();
 
@@ -92,25 +92,27 @@ namespace TD_Enhancement_Pack
 			options.CheckboxLabeled("TD.SlaughterZone".Translate(), ref slaughterZone);
 			options.Gap();
 
-			options.CheckboxLabeled("Autorebuild is on for a new game", ref autorebuildDefaultOn);
-			options.CheckboxLabeled("Mouseover tile info is on topright", ref mouseoverInfoTopRight, "So it shows up when something is selected\n\nOf course this is a bad idea if you still have the learning helper on.");
-			options.CheckboxLabeled("Alert for deteriorating things", ref alertDeteriorating, "Deteriorating things with less than 50% HP, that are not forbidden");
-			options.CheckboxLabeled("Button to make a growing zone and match terrain", ref matchGrowButton, "Terrain is only added if fertility % matches the first tile selected when dragging");
-
-			options.Label("TD.RequiresRestart".Translate());
+			options.CheckboxLabeled("TD.SettingAutoAutorebuild".Translate(), ref autorebuildDefaultOn);
+			options.CheckboxLabeled("TD.SettingTopRightMouseover".Translate(), ref mouseoverInfoTopRight, "TD.SettingTopRightMouseoverDesc".Translate());
+			options.CheckboxLabeled("TD.SettingDeteriorationAlert".Translate(), ref alertDeteriorating, "TD.SettingDeteriorationAlertDesc".Translate());
+			options.CheckboxLabeled("TD.SettingMatchGrow".Translate(), ref matchGrowButton, "TD.SettingMatchGrowDesc".Translate());
 			options.Gap();
+
+			//options.Label("TD.RequiresRestart".Translate());
+			//Insert things here
+			//options.Gap();
 
 			options.Label("TD.OtherFeatures".Translate());
 			options.Label("TD.AreaEditing".Translate());
 			options.Label("TD.FeatureConditionGreen".Translate());
-			options.Label("A debug menu action to place a full stack of things");
-			options.Label("The letter for random resource drop pods tell you what dropped");
-			options.Label("Sarcophagus preferred to use over graves", tooltip: "The default settings for a Sarcophagus are Critical so they are used before graves. The settings are already colonist-only, but without setting Critical, colonists would be buried in closer graves instead");
-			options.Label("With debug godmode on, roofs are added/removed instantly, and walls/floors are smoothed instantly");
-			options.Label("Frames can't be deconstructed, only canceled", tooltip: "Deconstruction would return less resources than canceling");
-			options.Label("Dropdown designators get their order set by their contained designators", tooltip: "e.g. colored lights show up in the build menu next to other lights instead of the front of the list");
-			options.Label("Selected stone has a button to smooth it");
-			options.Label("Deep drilling for rock gets a random rock type", tooltip: "Would normally only get one type");
+			options.Label("TD.DebugFullStack".Translate());
+			options.Label("TD.DropPodWhatDropped".Translate());
+			options.Label("TD.SarcophagusPreferred".Translate(), tooltip: "TD.SarcophagusPreferredDesc".Translate());
+			options.Label("TD.DebugGodmodeRoofFloors".Translate());
+			options.Label("TD.NoFrameDecon".Translate(), tooltip: "TD.NoFrameDeconDesc".Translate());
+			options.Label("TD.DropdownBuildingsOrder".Translate(), tooltip: "TD.DropdownBuildingsOrderDesc".Translate());
+			options.Label("TD.SmoothSelectedStone".Translate());
+			options.Label("TD.DeepDrillRandomrock".Translate(), tooltip: "TD.DeepDrillRandomrockDesc".Translate());
 
 			options.EndScrollView(ref viewRect);
 			scrollViewHeight = viewRect.height;

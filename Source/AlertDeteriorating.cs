@@ -32,8 +32,8 @@ namespace TD_Enhancement_Pack
 
 		public Alert_Deterioration()
 		{
-			defaultLabel = "Deterioration";
-			defaultExplanation = "Something is deteriorating and is getting low on health. Put it indoors to keep it safe.";
+			defaultLabel = "TD.Deterioration".Translate();
+			defaultExplanation = "TD.DeteriorationAlert".Translate();
 		}
 
 		public override AlertReport GetReport()
