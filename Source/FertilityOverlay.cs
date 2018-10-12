@@ -12,7 +12,7 @@ using Harmony;
 namespace TD_Enhancement_Pack
 {
 	[StaticConstructorOnStartup]
-	class FertilityOverlay : ICellBoolGiver
+	class FertilityOverlay : BaseOverlay
 	{
 		public static Dictionary<Map, FertilityOverlay> fertilityOverlays = new Dictionary<Map, FertilityOverlay>();
 
@@ -27,33 +27,16 @@ namespace TD_Enhancement_Pack
 		public static readonly Color noneColor = new Color(1, 0, 0);
 		public static readonly Color lightColor = new Color(.8f, .8f, 0);
 
-		private CellBoolDrawer drawer;
-		//private bool[] data;
-		private Map map;
+		public FertilityOverlay(Map m) : base(m) { }
 
-		public FertilityOverlay(Map m)
-		{
-			map = m;
-			drawer = new CellBoolDrawer((ICellBoolGiver)this, map.Size.x, map.Size.z);
-			//data = new bool[map.cellIndices.NumGridCells];
-		}
-
-		public Color Color
-		{
-			get
-			{
-				return new Color(1f, 1f, 1f);
-			}
-		}
-
-		public bool GetCellBool(int index)
+		public override bool GetCellBool(int index)
 		{
 			float f = FertilityAt(map, index);
 			return f != 1
 				&& !map.fogGrid.IsFogged(index);
 		}
 
-		public Color GetCellExtraColor(int index)
+		public override Color GetCellExtraColor(int index)
 		{
 			float f = FertilityAt(map, index);
 			return f < 1 ? Color.Lerp(Color.red, Color.yellow, f)
@@ -71,23 +54,9 @@ namespace TD_Enhancement_Pack
 			return map.terrainGrid.TerrainAt(index).fertility;
 		}
 
-		public void Draw()
-		{
-			if (PlaySettings_Patch_Fertility.showFertilityOverlay || 
-				Settings.Get().autoOverlayFertility && AutoDraw())
-				drawer.MarkForDraw();
-			drawer.CellBoolDrawerUpdate();
-		}
-
-		public void SetDirty()
-		{
-			drawer.SetDirty();
-		}
-
-		public bool AutoDraw()
-		{
-			return Find.DesignatorManager.SelectedDesignator is Designator_ZoneAdd_Growing;
-		}
+		public override bool ShouldDraw() => PlaySettings_Patch_Fertility.showFertilityOverlay;
+		public override bool ShouldAutoDraw() => Settings.Get().autoOverlayFertility;
+		public override Type AutoDesignator() => typeof(Designator_ZoneAdd_Growing);
 	}
 
 	[HarmonyPatch(typeof(MapInterface), "MapInterfaceUpdate")]

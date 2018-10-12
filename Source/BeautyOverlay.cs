@@ -12,37 +12,20 @@ using Harmony;
 namespace TD_Enhancement_Pack
 {
 	[StaticConstructorOnStartup]
-	class BeautyOverlay : ICellBoolGiver
+	class BeautyOverlay : BaseOverlay
 	{
 		public static Dictionary<Map, BeautyOverlay> beautyOverlays = new Dictionary<Map, BeautyOverlay>();
 
-		private CellBoolDrawer drawer;
-		//private bool[] data;
-		private Map map;
+		public BeautyOverlay(Map m) : base(m) { }
 
-		public BeautyOverlay(Map m)
-		{
-			map = m;
-			drawer = new CellBoolDrawer((ICellBoolGiver)this, map.Size.x, map.Size.z, 0.67f);
-			//data = new bool[map.cellIndices.NumGridCells];
-		}
-
-		public Color Color
-		{
-			get
-			{
-				return new Color(1f, 1f, 1f);
-			}
-		}
-
-		public bool GetCellBool(int index)
+		public override bool GetCellBool(int index)
 		{
 			float b = BeautyAt(map, index);
 			return b != 0
 				&& !map.fogGrid.IsFogged(index);
 		}
 
-		public Color GetCellExtraColor(int index)
+		public override Color GetCellExtraColor(int index)
 		{
 			float amount = BeautyAt(map, index);
 
@@ -61,17 +44,7 @@ namespace TD_Enhancement_Pack
 			return BeautyUtility.CellBeauty(map.cellIndices.IndexToCell(index), map);
 		}
 
-		public void Draw()
-		{
-			if (PlaySettings_Patch_Beauty.showBeautyOverlay)
-				drawer.MarkForDraw();
-			drawer.CellBoolDrawerUpdate();
-		}
-
-		public void SetDirty()
-		{
-			drawer.SetDirty();
-		}
+		public override bool ShouldDraw() => PlaySettings_Patch_Beauty.showBeautyOverlay;
 	}
 
 	[HarmonyPatch(typeof(MapInterface), "MapInterfaceUpdate")]

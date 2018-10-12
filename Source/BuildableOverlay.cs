@@ -12,7 +12,7 @@ using Harmony;
 namespace TD_Enhancement_Pack
 {
 	[StaticConstructorOnStartup]
-	class BuildableOverlay : ICellBoolGiver
+	class BuildableOverlay : BaseOverlay
 	{
 		public static Dictionary<Map, BuildableOverlay> buildableOverlays = new Dictionary<Map, BuildableOverlay>();
 
@@ -20,55 +20,24 @@ namespace TD_Enhancement_Pack
 		public static readonly Color lightColor = new Color(.8f, .4f, 0);
 		public static readonly Color mediumColor = new Color(.8f, .8f, 0);
 
-		private CellBoolDrawer drawer;
-		//private bool[] data;
-		private Map map;
+		public BuildableOverlay(Map m) : base(m) { }
 
-		public BuildableOverlay(Map m)
-		{
-			map = m;
-			drawer = new CellBoolDrawer((ICellBoolGiver)this, map.Size.x, map.Size.z);
-			//data = new bool[map.cellIndices.NumGridCells];
-		}
-
-		public Color Color
-		{
-			get
-			{
-				return new Color(1f, 1f, 1f);
-			}
-		}
-
-		public bool GetCellBool(int index)
+		public override bool GetCellBool(int index)
 		{
 			return !map.terrainGrid.TerrainAt(index).affordances.Contains(TerrainAffordanceDefOf.Heavy) &&
 				!map.fogGrid.IsFogged(index);
 		}
 
-		public Color GetCellExtraColor(int index)
+		public override Color GetCellExtraColor(int index)
 		{
 			return map.terrainGrid.TerrainAt(index).affordances.Contains(TerrainAffordanceDefOf.Medium)
 				? mediumColor : map.terrainGrid.TerrainAt(index).affordances.Contains(TerrainAffordanceDefOf.Light)
 				? lightColor : noneColor ;
 		}
 
-		public void Draw()
-		{
-			if (PlaySettings_Patch.showBuildableOverlay ||
-				Settings.Get().autoOverlayBuildable && AutoDraw())
-				drawer.MarkForDraw();
-			drawer.CellBoolDrawerUpdate();
-		}
-
-		public void SetDirty()
-		{
-			drawer.SetDirty();
-		}
-
-		public bool AutoDraw()
-		{
-			return Find.DesignatorManager.SelectedDesignator is Designator_Build;
-		}
+		public override bool ShouldDraw() => PlaySettings_Patch.showBuildableOverlay;
+		public override bool ShouldAutoDraw() => Settings.Get().autoOverlayBuildable;
+		public override Type AutoDesignator() => typeof(Designator_Build);
 	}
 	
 	[HarmonyPatch(typeof(MapInterface), "MapInterfaceUpdate")]

@@ -22,6 +22,7 @@ namespace TD_Enhancement_Pack
 		public bool autoOverlayFertility = true;
 		public bool showOverlayLighting = true;
 		public bool cheatFertilityUnderGrid = true;
+		public float overlayOpacity = 1.0f;
 
 		public bool changeSpeedAfterTrader = true;
 		public int afterTraderSpeed = 0;
@@ -73,6 +74,10 @@ namespace TD_Enhancement_Pack
 				FertilityOverlay.DirtyAll();
 			options.CheckboxLabeled("TD.SettingAutoFertility".Translate(), ref autoOverlayFertility);
 			options.CheckboxLabeled("TD.SettingOverlayLighting".Translate(), ref showOverlayLighting, "TD.SettingOverlayLightingDesc".Translate());
+			float beforeO = overlayOpacity;
+			options.SliderLabeled("Lower overlay opacities:", ref overlayOpacity, "{0:P0}");
+			if (beforeO != overlayOpacity)
+				BaseOverlay.SetAllOpacity(overlayOpacity);
 			options.Gap();
 
 			options.CheckboxLabeled("TD.SettingTradeClose".Translate(), ref changeSpeedAfterTrader);
@@ -133,6 +138,7 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref autoOverlayFertility, "autoOverlayFertility", true);
 			Scribe_Values.Look(ref showOverlayLighting, "showOverlayLighting", true);
 			Scribe_Values.Look(ref cheatFertilityUnderGrid, "cheatFertilityUnderGrid", true);
+			Scribe_Values.Look(ref overlayOpacity, "overlayOpacity", 1.0f);
 
 			Scribe_Values.Look(ref changeSpeedAfterTrader, "changeSpeedAfterTrader", true);
 			Scribe_Values.Look(ref afterTraderSpeed, "afterTraderSpeed", 0);
