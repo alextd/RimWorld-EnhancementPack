@@ -54,7 +54,8 @@ namespace TD_Enhancement_Pack
 
 		public void Draw()
 		{
-			if (PlaySettings_Patch.showBuildableOverlay)
+			if (PlaySettings_Patch.showBuildableOverlay ||
+				Settings.Get().autoOverlayBuildable && AutoDraw())
 				drawer.MarkForDraw();
 			drawer.CellBoolDrawerUpdate();
 		}
@@ -62,6 +63,11 @@ namespace TD_Enhancement_Pack
 		public void SetDirty()
 		{
 			drawer.SetDirty();
+		}
+
+		public bool AutoDraw()
+		{
+			return Find.DesignatorManager.SelectedDesignator is Designator_Build;
 		}
 	}
 	

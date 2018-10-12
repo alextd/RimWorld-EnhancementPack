@@ -11,7 +11,7 @@
 	<TD.Size>Size: {0}</TD.Size>
 	<TD.CountToSow>To do: {0}</TD.CountToSow>
 	<TD.CountFullyGrown>Grown: {0}</TD.CountFullyGrown>
-	<TD.SettingOverlayBuildable>Enable a buildable terrain overlay</TD.SettingOverlayBuildable>
+	<TD.SettingOverlayBuildable>Enable a button for the buildable terrain overlay</TD.SettingOverlayBuildable>
 	<TD.SettingOverlayBuildableDesc>Red is unbuildable, Yellow is 'Light' Buildable (e.g. not structures mostly)</TD.SettingOverlayBuildableDesc>
 	<TD.SettingOverlayBeauty>Enable a global beauty overlay</TD.SettingOverlayBeauty>
 	<TD.SettingOverlayFertility>Enable a button for the fertility overlay</TD.SettingOverlayFertility>

@@ -16,6 +16,7 @@ namespace TD_Enhancement_Pack
 		public bool showStopGizmoDrafted = true;
 
 		public bool showOverlayBuildable = true;
+		public bool autoOverlayBuildable = true;
 		public bool showOverlayBeauty = true;
 		public bool showOverlayFertility = true;
 		public bool autoOverlayFertility = true;
@@ -63,6 +64,7 @@ namespace TD_Enhancement_Pack
 			options.Gap();
 			
 			options.CheckboxLabeled("TD.SettingOverlayBuildable".Translate(), ref showOverlayBuildable, "TD.SettingOverlayBuildableDesc".Translate());
+			options.CheckboxLabeled("Auto-show buildable terrain overlay when placing buildings", ref autoOverlayBuildable, "So this would be amazing if it said if the current building can be placed there but it's just gonna be red/yellow and you have to figure it out");
 			options.CheckboxLabeled("TD.SettingOverlayBeauty".Translate(), ref showOverlayBeauty, "I know it slows down the game");
 			options.CheckboxLabeled("TD.SettingOverlayFertility".Translate(), ref showOverlayFertility);
 			bool before = cheatFertilityUnderGrid;
@@ -123,6 +125,7 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref showStopGizmoDrafted, "showStopGizmoDrafted", true);
 
 			Scribe_Values.Look(ref showOverlayBuildable, "showOverlayBuildable", true);
+			Scribe_Values.Look(ref autoOverlayBuildable, "autoOverlayBuildable", true);
 			Scribe_Values.Look(ref showOverlayBeauty, "showOverlayBeauty", true);
 			Scribe_Values.Look(ref showOverlayFertility, "showOverlayFertility", true);
 			Scribe_Values.Look(ref autoOverlayFertility, "autoOverlayFertility", true);
