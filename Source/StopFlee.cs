@@ -17,23 +17,25 @@ namespace TD_Enhancement_Pack
 		{
 			if(!Settings.Get().stopFlee)	return;
 
+			if (!(__instance.GetActor() is Pawn pawn) || !pawn.IsFreeColonist) return;
+
 			List<Toil> result = __result.ToList();
 
 			Toil goToil = result.Last();
 			goToil.AddEndCondition(delegate
 			{
 				Thing instigator = __instance.job.GetTarget(TargetIndex.B).Thing;
-				if (instigator is Pawn pawn)
+				if (instigator is Pawn badGuy)
 				{
-					if (pawn.Downed || pawn.Destroyed || pawn.Dead)
+					if (badGuy.Downed || badGuy.Destroyed || badGuy.Dead)
 					{
-						Log.Message($"{__instance.GetActor()} instigator {instigator} is down");
+						Log.Message($"{pawn}'s instigator {instigator} is down");
 						return JobCondition.Succeeded;
 					}
 				}
-				else if (!SelfDefenseUtility.ShouldStartFleeing(__instance.GetActor()))
+				else if (!SelfDefenseUtility.ShouldStartFleeing(pawn))
 				{
-					Log.Message($"{__instance.GetActor()} no longer scared");
+					Log.Message($"{pawn} no longer scared");
 					return JobCondition.Succeeded;
 				}
 				return JobCondition.Ongoing;
