@@ -77,5 +77,6 @@
 	<TD.SmoothSelectedStone>Selected stone has a button to smooth it</TD.SmoothSelectedStone>
 	<TD.DeepDrillRandomrock>Deep drilling for rock gets a random rock type</TD.DeepDrillRandomrock>
 	<TD.DeepDrillRandomrockDesc>Would normally only get one type</TD.DeepDrillRandomrockDesc>
+	<TD.LowerOverlayOpacities>Lower overlay opacities:</TD.LowerOverlayOpacities>
 	
 </LanguageData>
