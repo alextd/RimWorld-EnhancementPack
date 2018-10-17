@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Reflection;
+using System.Reflection.Emit;
 using Verse;
 using RimWorld;
 using Harmony;
@@ -82,7 +83,6 @@ namespace TD_Enhancement_Pack
 		{
 			if(NextDrillResourceComp.Get(map).TryGetValue(p, out DrillData nextDef))
 			{
-				Log.Message($"Using drill data {p}");
 				resDef = nextDef.resDef;
 				countPresent = nextDef.countPresent;
 				cell = nextDef.cell;
@@ -97,7 +97,7 @@ namespace TD_Enhancement_Pack
 			var nextResources = NextDrillResourceComp.Get(map);
 			if (nextResources.ContainsKey(p)) return;
 
-			Log.Message($"Adding drill data {p}");
+			Log.Message($"Adding drill data {p}, {resDef}, {countPresent}, {cell}, {__result}");
 			DrillData drillData;
 			drillData.resDef = resDef;
 			drillData.countPresent = countPresent;
@@ -108,13 +108,29 @@ namespace TD_Enhancement_Pack
 	}
 
 	[HarmonyPatch(typeof(CompDeepDrill), "TryProducePortion")]
-	public static class ClearDDD
+	public static class ClearDDDB
 	{
 		//private void TryProducePortion(float yieldPct)
-		public static void Postfix(CompDeepDrill __instance)
+		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
 		{
-			Log.Message($"Removing Deep Drill {__instance.parent.Position}");
-			NextDrillResourceComp.Get(__instance.parent.Map).Remove(__instance.parent.Position);
+			MethodInfo GetNextResourceInfo = AccessTools.Method(typeof(CompDeepDrill), "GetNextResource");
+
+			MethodInfo ClearInfo = AccessTools.Method(typeof(ClearDDDB), nameof(Clear));
+
+			foreach(CodeInstruction i in instructions)
+			{
+				yield return i;
+				if(i.opcode == OpCodes.Call && i.operand == GetNextResourceInfo)
+				{
+					yield return new CodeInstruction(OpCodes.Ldarg_0);//this (CompDeepDrill)
+					yield return new CodeInstruction(OpCodes.Call, ClearInfo);//this.Clear()
+				}
+			}
+		}
+		public static void Clear(CompDeepDrill ddComp)
+		{
+			Log.Message($"Removing Deep Drill {ddComp.parent.Position}");
+			NextDrillResourceComp.Get(ddComp.parent.Map).Remove(ddComp.parent.Position);
 		}
 	}
 
