@@ -33,6 +33,7 @@ namespace TD_Enhancement_Pack
 
 		public bool showZoneSize = true;
 		public bool zoneHarvestableToggle = false;
+		public bool zoneRefill = false;
 		
 		public bool neverHome = true;
 		public bool slaughterZone = true;
@@ -103,9 +104,9 @@ namespace TD_Enhancement_Pack
 			options.CheckboxLabeled("TD.SettingMatchGrow".Translate(), ref matchGrowButton, "TD.SettingMatchGrowDesc".Translate());
 			options.Gap();
 
-			//options.Label("TD.RequiresRestart".Translate());
-			//Insert things here
-			//options.Gap();
+			options.Label("TD.RequiresRestart".Translate());
+			options.CheckboxLabeled("If you have Allow Tool, stockpiles have an 'urgent refill' toggle", ref zoneRefill, "If a tile in a chosen stockpile is empty, there will be a urgent hauling job to refill it. Great for kitchen/workbench supplies.\n\nRequires Allow Tool");
+			options.GapLine();
 
 			options.Label("TD.OtherFeatures".Translate());
 			options.Label("TD.AreaEditing".Translate());
@@ -149,6 +150,7 @@ namespace TD_Enhancement_Pack
 
 			Scribe_Values.Look(ref showZoneSize, "showZoneSize", true);
 			Scribe_Values.Look(ref zoneHarvestableToggle, "zoneHarvestableToggle", false);
+			Scribe_Values.Look(ref zoneRefill, "zoneRefill", true);
 			
 			Scribe_Values.Look(ref neverHome, "neverHome", true);
 			Scribe_Values.Look(ref slaughterZone, "slaughterZone", true);
