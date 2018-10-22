@@ -52,6 +52,8 @@ namespace TD_Enhancement_Pack
 		{
 			MethodInfo IconInfo = AccessTools.Method(
 				typeof(WidgetRow), nameof(WidgetRow.Icon));
+			MethodInfo LabelInfo = AccessTools.Method(
+				typeof(WidgetRow), nameof(WidgetRow.Label));
 			MethodInfo EndGroupInfo = AccessTools.Method(
 				typeof(GUI), nameof(GUI.EndGroup));
 
@@ -61,6 +63,8 @@ namespace TD_Enhancement_Pack
 				typeof(AreaRowPatch), nameof(DoButtonIcon));
 			MethodInfo DoCopyPasteInfo = AccessTools.Method(
 				typeof(AreaRowPatch), nameof(CopyPasteAreaRow));
+			MethodInfo ReverseDirectionInfo = AccessTools.Method(
+				typeof(AreaRowPatch), nameof(ReverseDirection));
 
 			foreach (CodeInstruction instruction in instructions)
 			{
@@ -82,6 +86,14 @@ namespace TD_Enhancement_Pack
 					yield return new CodeInstruction(OpCodes.Call, DoOrderButtonInfo);  //DoOrderButton(widgetRow, area)
 				}
 
+				if(instruction.opcode == OpCodes.Callvirt && instruction.operand == LabelInfo)
+				{
+					yield return new CodeInstruction(OpCodes.Ldloc_0); //WidgetRow
+					yield return new CodeInstruction(OpCodes.Ldarg_0); //rect
+					yield return new CodeInstruction(OpCodes.Call, ReverseDirectionInfo); //ReverseDirection(widgetRow, rect)
+					yield return new CodeInstruction(OpCodes.Stloc_0); //widgetRow = ReverseDirection(widgetRow, rect)
+				}
+
 				yield return instruction;
 
 				if (instruction.opcode == OpCodes.Stloc_0)
@@ -93,17 +105,26 @@ namespace TD_Enhancement_Pack
 			}
 		}
 
+		public static WidgetRow ReverseDirection(WidgetRow widgetRow, Rect rect)
+		{
+			return new WidgetRow(rect.width, 0f, UIDirection.LeftThenUp, 99999f, 4f);
+		}
+
 		public static void DoOrderButton(WidgetRow widgetRow, Area areaBase)
 		{
 			if (!(areaBase is Area_Allowed area)) return;
 			List<Area> areas = area.Map.areaManager.AllAreas.FindAll(a => a is Area_Allowed);
 			int index = areas.IndexOf(area);
 
-			if (index > 0 && widgetRow.ButtonIcon(TexButton.ReorderUp))
+			if (index > 0)
 			{
-				Area other = areas[index - 1];
-				area.Map.GetComponent<MapComponent_AreaOrder>().Swap(area, other);
+				if (widgetRow.ButtonIcon(TexButton.ReorderUp))
+				{
+					Area other = areas[index - 1];
+					area.Map.GetComponent<MapComponent_AreaOrder>().Swap(area, other);
+				}
 			}
+			else widgetRow.GapButtonIcon();
 			if (index < areas.Count - 1 && widgetRow.ButtonIcon(TexButton.ReorderDown))
 			{
 				Area other = areas[index + 1];
