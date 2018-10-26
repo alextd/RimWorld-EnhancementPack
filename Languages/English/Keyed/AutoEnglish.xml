@@ -78,5 +78,11 @@
 	<TD.DeepDrillRandomrock>Deep drilling for rock gets a random rock type</TD.DeepDrillRandomrock>
 	<TD.DeepDrillRandomrockDesc>Would normally only get one type</TD.DeepDrillRandomrockDesc>
 	<TD.LowerOverlayOpacities>Lower overlay opacities:</TD.LowerOverlayOpacities>
+	<TD.SettingUrgentRefill>If you have Allow Tool, stockpiles have an 'urgent refill' toggle</TD.SettingUrgentRefill>
+	<TD.SettingUrgentRefillDesc>If a tile in a chosen stockpile is empty, there will be a urgent hauling job to refill it. Great for kitchen/workbench supplies.\n\nRequires Allow Tool</TD.SettingUrgentRefillDesc>
+	<TD.WorkGiverRefillZones>refill zones urgently</TD.WorkGiverRefillZones>
+	<TD.RefillingUrgently>refilling urgently</TD.RefillingUrgently>
+	<TD.GizmoUrgentRefill>Urgent Refill</TD.GizmoUrgentRefill>
+	<TD.GizmoUrgentRefillDesc>If any cell is unoccupied, it will be urgently refilled</TD.GizmoUrgentRefillDesc>
 	
 </LanguageData>

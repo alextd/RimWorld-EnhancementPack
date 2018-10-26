@@ -49,11 +49,11 @@ namespace TD_Enhancement_Pack
 			WorkGiverDef urgentRefillDef = new WorkGiverDef()
 			{
 				defName = "HaulUrgentlyRefill",
-				label = "refill zones urgently",
+				label = "TD.WorkGiverRefillZones".Translate(),
 				giverClass = typeof(WorkGiver_HaulUrgentlyRefill),
 				workType = AllowToolDefOf.HaulingUrgent,
-				verb = "refilling urgently",
-				gerund  = "refilling urgently",
+				verb = "TD.RefillingUrgently".Translate(),
+				gerund  = "TD.RefillingUrgently".Translate(),
 				priorityInType = 100,
 				directOrderable = false,
 				requiredCapacities = new List<PawnCapacityDef>() { PawnCapacityDefOf.Manipulation }
@@ -117,8 +117,8 @@ namespace TD_Enhancement_Pack
 			SlotGroup group = parent.GetSlotGroup();
 			__result = __result.Add(new Command_Toggle()
 			{
-				defaultLabel = "Urgent Refill",
-				defaultDesc = "If any cell is unoccupied, it will be urgently refilled",
+				defaultLabel = "TD.GizmoUrgentRefill".Translate(),
+				defaultDesc = "TD.GizmoUrgentRefillDesc".Translate(),
 				icon = haulUrgentlyIcon,
 				isActive = () => group.IsMarkedForRefill(map),
 				toggleAction = delegate

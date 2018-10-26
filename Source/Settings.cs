@@ -105,7 +105,7 @@ namespace TD_Enhancement_Pack
 			options.Gap();
 
 			options.Label("TD.RequiresRestart".Translate());
-			options.CheckboxLabeled("If you have Allow Tool, stockpiles have an 'urgent refill' toggle", ref zoneRefill, "If a tile in a chosen stockpile is empty, there will be a urgent hauling job to refill it. Great for kitchen/workbench supplies.\n\nRequires Allow Tool");
+			options.CheckboxLabeled("TD.SettingUrgentRefill".Translate(), ref zoneRefill, "TD.SettingUrgentRefillDesc".Translate());
 			options.GapLine();
 
 			options.Label("TD.OtherFeatures".Translate());
