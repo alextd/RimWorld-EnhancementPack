@@ -91,7 +91,7 @@ namespace TD_Enhancement_Pack
 		public static bool IsForbiddenByType(Thing thing, Pawn pawn, WorkGiver_Grower workGiver)
 		{
 			if (!Settings.Get().zoneHarvestableToggle
-				|| workGiver is WorkGiver_GrowerSow)
+				|| !(workGiver is WorkGiver_GrowerHarvest))
 				return thing.IsForbidden(pawn);
 
 			//WorkGiver_GrowerHarvest now
