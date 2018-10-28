@@ -91,7 +91,7 @@ namespace TD_Enhancement_Pack
 			options.Gap();
 
 			options.CheckboxLabeled("TD.SettingZoneSize".Translate(), ref showZoneSize);
-			options.CheckboxLabeled("TD.SettingAllowHarvesting".Translate(), ref zoneHarvestableToggle);
+			options.CheckboxLabeled("TD.SettingAllowHarvesting".Translate(), ref zoneHarvestableToggle, "TD.SettingAllowHarvestingDesc".Translate());
 			options.Gap();
 
 			options.CheckboxLabeled("TD.NeverHome".Translate(), ref neverHome);
