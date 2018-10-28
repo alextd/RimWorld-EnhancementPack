@@ -41,8 +41,8 @@
 	<TD.StopDescDrafted>Stop the current action</TD.StopDescDrafted>
 	<TD.StopDescUndrafted>Stop the current job (find another job, which might be the same job)</TD.StopDescUndrafted>
 	<TD.AddedByTD>Added by TD Enhancement Pack</TD.AddedByTD>
-	<TD.AllowHarveseting>Allow harvesting</TD.AllowHarveseting>
-	<TD.AllowHarvesetingDesc>When disabled, colonists will never harvest plants in this zone. They will still sow.</TD.AllowHarvesetingDesc>
+	<TD.AllowHarvesting>Allow harvesting</TD.AllowHarvesting>
+	<TD.AllowHarvestingDesc>When disabled, colonists will never harvest plants in this zone. They will still sow.</TD.AllowHarvestingDesc>
 	<TD.SettingAllowHarvesting>Growing Zones 'Allow Harvesting' Toggle</TD.SettingAllowHarvesting>
 	<TD.FeatureConditionGreen>Good body conditions are green ; Whole body tag is yellow</TD.FeatureConditionGreen>
 	<TD.WhatDropped>What dropped: {0}</TD.WhatDropped>

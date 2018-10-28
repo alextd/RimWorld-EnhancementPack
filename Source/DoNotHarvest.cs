@@ -20,8 +20,8 @@ namespace TD_Enhancement_Pack
 
 			Gizmo harvestGizmo = new Command_Toggle
 			{
-				defaultLabel = "TD.AllowHarveseting".Translate(),
-				defaultDesc = "TD.AllowHarvesetingDesc".Translate(),
+				defaultLabel = "TD.AllowHarvesting".Translate(),
+				defaultDesc = "TD.AllowHarvestingDesc".Translate(),
 				icon = ContentFinder<UnityEngine.Texture2D>.Get("UI/Designators/Harvest", true),
 				isActive = (() => __instance.CanHarvest()),
 				toggleAction = delegate
