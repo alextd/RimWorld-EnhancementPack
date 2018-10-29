@@ -61,7 +61,7 @@ namespace TD_Enhancement_Pack
 			drawer.CellBoolDrawerUpdate();
 		}
 
-		public virtual bool ShouldDraw() => true;
+		public virtual bool ShouldDraw() => false;
 		public virtual bool ShouldAutoDraw() => false;
 
 		public void SetDirty()

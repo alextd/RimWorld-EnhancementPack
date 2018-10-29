@@ -17,6 +17,7 @@ namespace TD_Enhancement_Pack
 
 		public bool showOverlayBuildable = true;
 		public bool autoOverlayBuildable = true;
+		public bool autoOverlaySmoothable = true;
 		public bool showOverlayBeauty = true;
 		public bool showOverlayFertility = true;
 		public bool autoOverlayFertility = true;
@@ -67,6 +68,7 @@ namespace TD_Enhancement_Pack
 			
 			options.CheckboxLabeled("TD.SettingOverlayBuildable".Translate(), ref showOverlayBuildable, "TD.SettingOverlayBuildableDesc".Translate());
 			options.CheckboxLabeled("TD.SettingAutoBuildable".Translate(), ref autoOverlayBuildable, "TD.SettingAutoBuildableDesc".Translate());
+			options.CheckboxLabeled("TD.SettingAutoSmoothable".Translate(), ref autoOverlaySmoothable, "TD.SettingAutoSmoothableDesc".Translate());
 			options.CheckboxLabeled("TD.SettingOverlayBeauty".Translate(), ref showOverlayBeauty, "TD.SettingBeautySlow".Translate());
 			options.CheckboxLabeled("TD.SettingOverlayFertility".Translate(), ref showOverlayFertility);
 			bool before = cheatFertilityUnderGrid;
@@ -134,6 +136,7 @@ namespace TD_Enhancement_Pack
 
 			Scribe_Values.Look(ref showOverlayBuildable, "showOverlayBuildable", true);
 			Scribe_Values.Look(ref autoOverlayBuildable, "autoOverlayBuildable", true);
+			Scribe_Values.Look(ref autoOverlaySmoothable, "autoOverlaySmoothable", true);
 			Scribe_Values.Look(ref showOverlayBeauty, "showOverlayBeauty", true);
 			Scribe_Values.Look(ref showOverlayFertility, "showOverlayFertility", true);
 			Scribe_Values.Look(ref autoOverlayFertility, "autoOverlayFertility", true);
