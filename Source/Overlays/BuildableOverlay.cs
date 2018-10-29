@@ -24,18 +24,47 @@ namespace TD_Enhancement_Pack
 
 		public override bool GetCellBool(int index)
 		{
-			return !map.terrainGrid.TerrainAt(index).affordances.Contains(TerrainAffordanceDefOf.Heavy) &&
-				!map.fogGrid.IsFogged(index);
+			if (map.fogGrid.IsFogged(index))
+				return false;
+
+			TerrainAffordanceDef noShow = curAffordance ?? TerrainAffordanceDefOf.Heavy;
+			return !map.terrainGrid.TerrainAt(index).affordances.Contains(noShow);
 		}
 
 		public override Color GetCellExtraColor(int index)
 		{
-			return map.terrainGrid.TerrainAt(index).affordances.Contains(TerrainAffordanceDefOf.Medium)
-				? mediumColor : map.terrainGrid.TerrainAt(index).affordances.Contains(TerrainAffordanceDefOf.Light)
-				? lightColor : noneColor ;
+			var affordances = map.terrainGrid.TerrainAt(index).affordances;
+			return curAffordance != null ? noneColor :
+				affordances.Contains(TerrainAffordanceDefOf.Medium) ? mediumColor :
+				affordances.Contains(TerrainAffordanceDefOf.Light) ? lightColor
+				: noneColor;
 		}
 
-		public override bool ShouldDraw() => PlaySettings_Patch.showBuildableOverlay;
+		public TerrainAffordanceDef curAffordance;
+		public TerrainAffordanceDef OverrideAffordance()
+		{
+			if (Find.DesignatorManager.SelectedDesignator is Designator_Build des)
+			{
+				TerrainAffordanceDef needed = des.PlacingDef.terrainAffordanceNeeded;
+				return (needed == TerrainAffordanceDefOf.Light
+					|| needed == TerrainAffordanceDefOf.Medium
+					|| needed == TerrainAffordanceDefOf.Heavy) ? null : needed;
+			}
+
+			return null;
+		}
+
+		public override bool ShouldDraw()
+		{
+			TerrainAffordanceDef newAffordance = OverrideAffordance();
+			if(newAffordance != curAffordance)
+			{
+				curAffordance = newAffordance;
+				SetDirty();
+			}
+
+			return PlaySettings_Patch.showBuildableOverlay;
+		}
 		public override bool ShouldAutoDraw() => Settings.Get().autoOverlayBuildable;
 		public override Type AutoDesignator() => typeof(Designator_Build);
 	}
