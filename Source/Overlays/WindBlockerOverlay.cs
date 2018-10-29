@@ -22,7 +22,7 @@ namespace TD_Enhancement_Pack
 				map.thingGrid.ThingsListAtFast(index).Any(t => t.def.blockWind);
 		}
 
-		public override Color GetCellExtraColor(int index) => Color.red;
+		public override Color GetCellExtraColor(int index) => Color.blue;
 
 
 		public override bool ShouldAutoDraw() => Settings.Get().autoOverlayWindBlocker;
