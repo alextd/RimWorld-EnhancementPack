@@ -27,11 +27,9 @@ namespace TD_Enhancement_Pack
 
 		public FertilityOverlay(Map m) : base(m) { }
 
-		public override bool GetCellBool(int index)
+		public override bool ShowCell(int index)
 		{
-			float f = FertilityAt(map, index);
-			return f != 1
-				&& !map.fogGrid.IsFogged(index);
+			return FertilityAt(map, index) != 1;
 		}
 
 		public override Color GetCellExtraColor(int index)

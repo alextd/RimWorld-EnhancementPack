@@ -18,10 +18,9 @@ namespace TD_Enhancement_Pack
 
 		public LightingOverlay(Map m) : base(m) { }
 
-		public override bool GetCellBool(int index)
+		public override bool ShowCell(int index)
 		{
-			return (map.roofGrid.GetCellBool(index) || LightingAt(map, index) > skyGlow)
-				&& !map.fogGrid.IsFogged(index);
+			return map.roofGrid.GetCellBool(index) || LightingAt(map, index) > skyGlow;
 		}
 
 		public override Color GetCellExtraColor(int index)

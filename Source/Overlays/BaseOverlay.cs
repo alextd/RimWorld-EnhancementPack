@@ -72,7 +72,11 @@ namespace TD_Enhancement_Pack
 					overlay.SetOpacity(factor);
 		}
 
-		public abstract bool GetCellBool(int index);
+		public bool GetCellBool(int index)
+		{
+			return !map.fogGrid.IsFogged(index) && ShowCell(index);
+		}
+		public virtual bool ShowCell(int index) => true;
 		public abstract Color GetCellExtraColor(int index);
 
 		public virtual void Update()

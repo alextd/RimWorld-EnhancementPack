@@ -20,11 +20,8 @@ namespace TD_Enhancement_Pack
 
 		public BuildableOverlay(Map m) : base(m) { }
 
-		public override bool GetCellBool(int index)
+		public override bool ShowCell(int index)
 		{
-			if (map.fogGrid.IsFogged(index))
-				return false;
-
 			TerrainAffordanceDef noShow = curAffordance ?? TerrainAffordanceDefOf.Heavy;
 			return !map.terrainGrid.TerrainAt(index).affordances.Contains(noShow);
 		}

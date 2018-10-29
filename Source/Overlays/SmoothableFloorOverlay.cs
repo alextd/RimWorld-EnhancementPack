@@ -16,11 +16,8 @@ namespace TD_Enhancement_Pack
 	{
 		public SmoothableOverlay(Map m) : base(m) { }
 
-		public override bool GetCellBool(int index)
+		public override bool ShowCell(int index)
 		{
-			if (map.fogGrid.IsFogged(index))
-				return false;
-			
 			return map.terrainGrid.TerrainAt(index).affordances.Contains(TerrainAffordanceDefOf.SmoothableStone);
 		}
 		public override Color GetCellExtraColor(int index) => Color.green;

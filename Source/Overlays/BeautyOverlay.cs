@@ -16,11 +16,9 @@ namespace TD_Enhancement_Pack
 	{
 		public BeautyOverlay(Map m) : base(m) { }
 
-		public override bool GetCellBool(int index)
+		public override bool ShowCell(int index)
 		{
-			float b = BeautyAt(map, index);
-			return b != 0
-				&& !map.fogGrid.IsFogged(index);
+			return BeautyAt(map, index) != 0;
 		}
 
 		public override Color GetCellExtraColor(int index)
