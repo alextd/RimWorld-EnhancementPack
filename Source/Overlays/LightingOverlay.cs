@@ -20,17 +20,25 @@ namespace TD_Enhancement_Pack
 
 		public override bool ShowCell(int index)
 		{
-			return map.roofGrid.GetCellBool(index) || LightingAt(map, index) > skyGlow;
+			return map.roofGrid.GetCellBool(index) || LightingAt(index) > skyGlow || GlowerColorAt(index) != null;
 		}
 
 		public override Color GetCellExtraColor(int index)
 		{
-			return Color.Lerp(Color.red, Color.green, LightingAt(map, index));
+			return GlowerColorAt(index) ?? Color.Lerp(Color.red, Color.green, LightingAt(index));
 		}
 
-		public static float LightingAt(Map map, int index)
+		public float LightingAt(int index)
 		{
 			return map.glowGrid.GameGlowAt(map.cellIndices.IndexToCell(index));
+		}
+
+		public Color? GlowerColorAt(int index)
+		{
+			foreach(Thing thing in map.thingGrid.ThingsListAtFast(index))
+				if(thing.TryGetComp<CompGlower>() is CompGlower compGlower)// && compGlower.ShouldBeLitNow)//ShouldBeLitNow private :/
+					return Color.white;
+			return null;
 		}
 
 		public void SetDirtySky(float newSky)
