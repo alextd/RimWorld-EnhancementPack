@@ -45,10 +45,6 @@ namespace TD_Enhancement_Pack
 					|| needed == TerrainAffordanceDefOf.Medium
 					|| needed == TerrainAffordanceDefOf.Heavy) ? null : needed;
 			}
-			if (Find.DesignatorManager.SelectedDesignator is Designator_SmoothSurface desSmooth)
-			{
-				return TerrainAffordanceDefOf.SmoothableStone;
-			}
 
 			return null;
 		}
