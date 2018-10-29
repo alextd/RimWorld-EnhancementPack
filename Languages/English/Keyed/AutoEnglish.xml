@@ -56,7 +56,8 @@
 	<TD.SettingDodgeGrenades>Dodge grenades while drafted</TD.SettingDodgeGrenades>
 	<TD.SettingDodgeGrenadesDesc>Of course this interrupts what you're doing.</TD.SettingDodgeGrenadesDesc>
 	<TD.SettingAutoBuildable>Auto-show buildable terrain overlay when placing buildings</TD.SettingAutoBuildable>
-	<TD.SettingAutoBuildableDesc>So this would be amazing if it said if the current building can be placed there but it's just gonna be red/yellow and you have to figure it out</TD.SettingAutoBuildableDesc>
+	<TD.SettingAutoBuildableDesc>Buildings with unique requirements like bridges and graves will show a overlay of where they can't be built</TD.SettingAutoBuildableDesc>
+	<TD.SettingAutoSmoothable>Auto-highlight smoothable terrain when smoothing things</TD.SettingAutoSmoothable>
 	<TD.SettingBeautySlow>I know it slows down the game</TD.SettingBeautySlow>
 	<TD.SettingAutoFertility>Auto-show fertility overlay when placing growing zones</TD.SettingAutoFertility>
 	<TD.SettingAutoAutorebuild>Autorebuild is on for a new game</TD.SettingAutoAutorebuild>

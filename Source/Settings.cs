@@ -68,7 +68,7 @@ namespace TD_Enhancement_Pack
 			
 			options.CheckboxLabeled("TD.SettingOverlayBuildable".Translate(), ref showOverlayBuildable, "TD.SettingOverlayBuildableDesc".Translate());
 			options.CheckboxLabeled("TD.SettingAutoBuildable".Translate(), ref autoOverlayBuildable, "TD.SettingAutoBuildableDesc".Translate());
-			options.CheckboxLabeled("TD.SettingAutoSmoothable".Translate(), ref autoOverlaySmoothable, "TD.SettingAutoSmoothableDesc".Translate());
+			options.CheckboxLabeled("TD.SettingAutoSmoothable".Translate(), ref autoOverlaySmoothable);
 			options.CheckboxLabeled("TD.SettingOverlayBeauty".Translate(), ref showOverlayBeauty, "TD.SettingBeautySlow".Translate());
 			options.CheckboxLabeled("TD.SettingOverlayFertility".Translate(), ref showOverlayFertility);
 			bool before = cheatFertilityUnderGrid;
