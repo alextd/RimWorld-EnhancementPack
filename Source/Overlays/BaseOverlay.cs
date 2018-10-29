@@ -98,11 +98,14 @@ namespace TD_Enhancement_Pack
 		}
 
 		public virtual Type AutoDesignator() => null;
+		public virtual bool DesignatorVerifier(Designator des) => true;
 
 		public bool AutoDraw()
 		{
-			return Find.DesignatorManager.SelectedDesignator != null &&
-				AutoDesignator().IsAssignableFrom(Find.DesignatorManager.SelectedDesignator.GetType());
+			Designator des = Find.DesignatorManager.SelectedDesignator;
+			return des != null && 
+				AutoDesignator().IsAssignableFrom(des.GetType()) &&	
+				DesignatorVerifier(des);
 		}
 
 		public virtual Texture2D Icon() => null;
