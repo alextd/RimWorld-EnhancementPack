@@ -14,7 +14,6 @@ namespace TD_Enhancement_Pack
 	[StaticConstructorOnStartup]
 	class LightingOverlay : BaseOverlay
 	{
-		public static Dictionary<Map, LightingOverlay> lightingOverlays = new Dictionary<Map, LightingOverlay>();
 		public float skyGlow;
 
 		public LightingOverlay(Map m) : base(m) { }
@@ -35,8 +34,6 @@ namespace TD_Enhancement_Pack
 			return map.glowGrid.GameGlowAt(map.cellIndices.IndexToCell(index));
 		}
 
-		public override bool ShouldDraw() => PlaySettings_Patch_Lighting.showLightingOverlay;
-
 		public void SetDirtySky(float newSky)
 		{
 			if(skyGlow != newSky)
@@ -45,23 +42,11 @@ namespace TD_Enhancement_Pack
 				SetDirty();
 			}
 		}
-	}
 
-	[HarmonyPatch(typeof(MapInterface), "MapInterfaceUpdate")]
-	static class MapInterfaceUpdate_Patch_Lighting
-	{
-		public static void Postfix()
-		{
-			if (Find.CurrentMap == null || WorldRendererUtility.WorldRenderedNow)
-				return;
-
-			if (!LightingOverlay.lightingOverlays.TryGetValue(Find.CurrentMap, out LightingOverlay lightingOverlay))
-			{
-				lightingOverlay = new LightingOverlay(Find.CurrentMap);
-				LightingOverlay.lightingOverlays[Find.CurrentMap] = lightingOverlay;
-			}
-			lightingOverlay.Draw();
-		}
+		private static Texture2D icon = ContentFinder<Texture2D>.Get("LampSun", true);
+		public override Texture2D Icon() => icon;
+		public override bool IconEnabled() => Settings.Get().showOverlayLighting;//from Settings
+		public override string IconTip() => "TD.ToggleLighting".Translate();
 	}
 
 	[HarmonyPatch(typeof(GlowGrid), "MarkGlowGridDirty")]
@@ -69,14 +54,7 @@ namespace TD_Enhancement_Pack
 	{
 		public static void Postfix(GlowGrid __instance, Map ___map)
 		{
-			Map map = ___map;
-
-			if (!LightingOverlay.lightingOverlays.TryGetValue(map, out LightingOverlay lightingOverlay))
-			{
-				lightingOverlay = new LightingOverlay(map);
-				LightingOverlay.lightingOverlays[map] = lightingOverlay;
-			}
-			lightingOverlay.SetDirty();
+			BaseOverlay.SetDirty(typeof(LightingOverlay), ___map);
 		}
 	}
 
@@ -86,32 +64,7 @@ namespace TD_Enhancement_Pack
 		//private void UpdateOverlays(SkyTarget curSky)
 		public static void Postfix(SkyManager __instance, Map ___map)
 		{
-			Map map = ___map;
-
-			if (!LightingOverlay.lightingOverlays.TryGetValue(map, out LightingOverlay lightingOverlay))
-			{
-				lightingOverlay = new LightingOverlay(map);
-				LightingOverlay.lightingOverlays[map] = lightingOverlay;
-			}
-			lightingOverlay.SetDirtySky(__instance.CurSkyGlow);
+			(BaseOverlay.GetOverlay(typeof(LightingOverlay), ___map) as LightingOverlay).SetDirtySky(__instance.CurSkyGlow);
 		}
 	}	
-
-	[HarmonyPatch(typeof(PlaySettings), "DoPlaySettingsGlobalControls")]
-	[StaticConstructorOnStartup]
-	public static class PlaySettings_Patch_Lighting
-	{
-		public static bool showLightingOverlay;
-		private static Texture2D icon = ContentFinder<Texture2D>.Get("LampSun", true);// or WallBricks_MenuIcon;
-
-		[HarmonyPostfix]
-		public static void AddButton(WidgetRow row, bool worldView)
-		{
-			if (!Settings.Get().showOverlayLighting) return;
-			if (worldView) return;
-
-			row.ToggleableIcon(ref showLightingOverlay, icon, "TD.ToggleLighting".Translate());
-		}
-	}
-
 }

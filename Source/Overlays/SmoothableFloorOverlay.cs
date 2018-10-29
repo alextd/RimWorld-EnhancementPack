@@ -14,8 +14,6 @@ namespace TD_Enhancement_Pack
 	[StaticConstructorOnStartup]
 	class SmoothableOverlay : BaseOverlay
 	{
-		public static Dictionary<Map, SmoothableOverlay> smoothableOverlays = new Dictionary<Map, SmoothableOverlay>();
-
 		public SmoothableOverlay(Map m) : base(m) { }
 
 		public override bool GetCellBool(int index)
@@ -31,36 +29,12 @@ namespace TD_Enhancement_Pack
 		public override Type AutoDesignator() => typeof(Designator_SmoothSurface);
 	}
 
-	[HarmonyPatch(typeof(MapInterface), "MapInterfaceUpdate")]
-	static class MapInterfaceUpdate_Patch_Smoothable
-	{
-		public static void Postfix()
-		{
-			if (Find.CurrentMap == null || WorldRendererUtility.WorldRenderedNow)
-				return;
-
-			if (!SmoothableOverlay.smoothableOverlays.TryGetValue(Find.CurrentMap, out SmoothableOverlay smoothableOverlay))
-			{
-				smoothableOverlay = new SmoothableOverlay(Find.CurrentMap);
-				SmoothableOverlay.smoothableOverlays[Find.CurrentMap] = smoothableOverlay;
-			}
-			smoothableOverlay.Draw();
-		}
-	}
-
 	[HarmonyPatch(typeof(TerrainGrid), "DoTerrainChangedEffects")]
 	static class DoTerrainChangedEffects_Patch_Smoothable
 	{
 		public static void Postfix(TerrainGrid __instance, Map ___map)
 		{
-			Map map = ___map;
-
-			if (!SmoothableOverlay.smoothableOverlays.TryGetValue(map, out SmoothableOverlay smoothableOverlay))
-			{
-				smoothableOverlay = new SmoothableOverlay(map);
-				SmoothableOverlay.smoothableOverlays[map] = smoothableOverlay;
-			}
-			smoothableOverlay.SetDirty();
+			BaseOverlay.SetDirty(typeof(SmoothableOverlay), ___map);
 		}
 	}
 }

@@ -14,11 +14,9 @@ namespace TD_Enhancement_Pack
 	[StaticConstructorOnStartup]
 	class FertilityOverlay : BaseOverlay
 	{
-		public static Dictionary<Map, FertilityOverlay> fertilityOverlays = new Dictionary<Map, FertilityOverlay>();
-
 		public static void DirtyAll()
 		{
-			foreach(var kvp in fertilityOverlays)
+			foreach(var kvp in overlays[typeof(FertilityOverlay)])
 			{
 				kvp.Value.SetDirty();
 			}
@@ -53,60 +51,22 @@ namespace TD_Enhancement_Pack
 			}
 			return map.terrainGrid.TerrainAt(index).fertility;
 		}
-
-		public override bool ShouldDraw() => PlaySettings_Patch_Fertility.showFertilityOverlay;
+		
 		public override bool ShouldAutoDraw() => Settings.Get().autoOverlayFertility;
 		public override Type AutoDesignator() => typeof(Designator_ZoneAdd_Growing);
-	}
 
-	[HarmonyPatch(typeof(MapInterface), "MapInterfaceUpdate")]
-	static class MapInterfaceUpdate_Patch_Fertility
-	{
-		public static void Postfix()
-		{
-			if (Find.CurrentMap == null || WorldRendererUtility.WorldRenderedNow)
-				return;
-
-			if (!FertilityOverlay.fertilityOverlays.TryGetValue(Find.CurrentMap, out FertilityOverlay fertilityOverlay))
-			{
-				fertilityOverlay = new FertilityOverlay(Find.CurrentMap);
-				FertilityOverlay.fertilityOverlays[Find.CurrentMap] = fertilityOverlay;
-			}
-			fertilityOverlay.Draw();
-		}
+		private static Texture2D icon = ContentFinder<Texture2D>.Get("CornPlantIcon", true);
+		public override Texture2D Icon() => icon;
+		public override bool IconEnabled() => Settings.Get().showOverlayFertility;//from Settings
+		public override string IconTip() => "TD.ToggleFertility".Translate();
 	}
 
 	[HarmonyPatch(typeof(TerrainGrid), "DoTerrainChangedEffects")]
 	static class DoTerrainChangedEffects_Patch_Fertility
 	{
-		public static void Postfix(TerrainGrid __instance, Map ___map)
+		public static void Postfix(Map ___map)
 		{
-			Map map = ___map;
-
-			if (!FertilityOverlay.fertilityOverlays.TryGetValue(map, out FertilityOverlay fertilityOverlay))
-			{
-				fertilityOverlay = new FertilityOverlay(map);
-				FertilityOverlay.fertilityOverlays[map] = fertilityOverlay;
-			}
-			fertilityOverlay.SetDirty();
+			BaseOverlay.SetDirty(typeof(FertilityOverlay), ___map);
 		}
 	}
-
-	[HarmonyPatch(typeof(PlaySettings), "DoPlaySettingsGlobalControls")]
-	[StaticConstructorOnStartup]
-	public static class PlaySettings_Patch_Fertility
-	{
-		public static bool showFertilityOverlay;
-		private static Texture2D icon = ContentFinder<Texture2D>.Get("CornPlantIcon", true);// or WallBricks_MenuIcon;
-
-		[HarmonyPostfix]
-		public static void AddButton(WidgetRow row, bool worldView)
-		{
-			if (!Settings.Get().showOverlayFertility) return;
-			if (worldView) return;
-
-			row.ToggleableIcon(ref showFertilityOverlay, icon, "TD.ToggleFertility".Translate());
-		}
-	}
-
 }

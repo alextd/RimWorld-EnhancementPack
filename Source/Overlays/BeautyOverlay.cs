@@ -14,8 +14,6 @@ namespace TD_Enhancement_Pack
 	[StaticConstructorOnStartup]
 	class BeautyOverlay : BaseOverlay
 	{
-		public static Dictionary<Map, BeautyOverlay> beautyOverlays = new Dictionary<Map, BeautyOverlay>();
-
 		public BeautyOverlay(Map m) : base(m) { }
 
 		public override bool GetCellBool(int index)
@@ -44,24 +42,11 @@ namespace TD_Enhancement_Pack
 			return BeautyUtility.CellBeauty(map.cellIndices.IndexToCell(index), map);
 		}
 
-		public override bool ShouldDraw() => PlaySettings_Patch_Beauty.showBeautyOverlay;
-	}
+		private static Texture2D icon = ContentFinder<Texture2D>.Get("Heart", true);
+		public override Texture2D Icon() => icon;
+		public override bool IconEnabled() => Settings.Get().showOverlayBeauty;//from Settings
+		public override string IconTip() => "TD.ToggleBeauty".Translate();
 
-	[HarmonyPatch(typeof(MapInterface), "MapInterfaceUpdate")]
-	static class MapInterfaceUpdate_Patch_Beauty
-	{
-		public static void Postfix()
-		{
-			if (Find.CurrentMap == null || WorldRendererUtility.WorldRenderedNow)
-				return;
-
-			if (!BeautyOverlay.beautyOverlays.TryGetValue(Find.CurrentMap, out BeautyOverlay beautyOverlay))
-			{
-				beautyOverlay = new BeautyOverlay(Find.CurrentMap);
-				BeautyOverlay.beautyOverlays[Find.CurrentMap] = beautyOverlay;
-			}
-			beautyOverlay.Draw();
-		}
 	}
 
 	[HarmonyPatch(typeof(TerrainGrid), "DoTerrainChangedEffects")]
@@ -69,14 +54,7 @@ namespace TD_Enhancement_Pack
 	{
 		public static void Postfix(Map ___map)
 		{
-			Map map = ___map;
-
-			if (!BeautyOverlay.beautyOverlays.TryGetValue(map, out BeautyOverlay beautyOverlay))
-			{
-				beautyOverlay = new BeautyOverlay(map);
-				BeautyOverlay.beautyOverlays[map] = beautyOverlay;
-			}
-			beautyOverlay.SetDirty();
+			BaseOverlay.SetDirty(typeof(BeautyOverlay), ___map);
 		}
 	}
 
@@ -85,7 +63,7 @@ namespace TD_Enhancement_Pack
 	{
 		public static void Postfix(Map ___map)
 		{
-			TerrainChangedSetDirty.Postfix(___map);
+			BaseOverlay.SetDirty(typeof(BeautyOverlay), ___map);
 		}
 	}
 
@@ -94,26 +72,7 @@ namespace TD_Enhancement_Pack
 	{
 		public static void Postfix(Map ___map)
 		{
-			TerrainChangedSetDirty.Postfix(___map);
+			BaseOverlay.SetDirty(typeof(BeautyOverlay), ___map);
 		}
 	}
-
-
-	[HarmonyPatch(typeof(PlaySettings), "DoPlaySettingsGlobalControls")]
-	[StaticConstructorOnStartup]
-	public static class PlaySettings_Patch_Beauty
-	{
-		public static bool showBeautyOverlay;
-		private static Texture2D icon = ContentFinder<Texture2D>.Get("Heart", true);
-
-		[HarmonyPostfix]
-		public static void AddButton(WidgetRow row, bool worldView)
-		{
-			if (!Settings.Get().showOverlayBeauty) return;
-			if (worldView) return;
-
-			row.ToggleableIcon(ref showBeautyOverlay, icon, "TD.ToggleBeauty".Translate());
-		}
-	}
-
 }
