@@ -22,6 +22,7 @@ namespace TD_Enhancement_Pack
 		public bool showOverlayBeauty = true;
 		public bool showOverlayFertility = true;
 		public bool autoOverlayFertility = true;
+		public bool showOverlayWalkSpeed = true;
 		public bool showOverlayLighting = true;
 		public bool cheatFertilityUnderGrid = true;
 		public float overlayOpacity = 1.0f;
@@ -79,6 +80,7 @@ namespace TD_Enhancement_Pack
 			if (before != cheatFertilityUnderGrid)
 				FertilityOverlay.DirtyAll();
 			options.CheckboxLabeled("TD.SettingAutoFertility".Translate(), ref autoOverlayFertility);
+			options.CheckboxLabeled("TD.SettingOverlayWalkSpeed".Translate(), ref showOverlayWalkSpeed);
 			options.CheckboxLabeled("TD.SettingOverlayLighting".Translate(), ref showOverlayLighting, "TD.SettingOverlayLightingDesc".Translate());
 			float beforeO = overlayOpacity;
 			options.SliderLabeled("TD.LowerOverlayOpacities".Translate(), ref overlayOpacity, "{0:P0}");
@@ -143,6 +145,7 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref showOverlayBeauty, "showOverlayBeauty", true);
 			Scribe_Values.Look(ref showOverlayFertility, "showOverlayFertility", true);
 			Scribe_Values.Look(ref autoOverlayFertility, "autoOverlayFertility", true);
+			Scribe_Values.Look(ref showOverlayWalkSpeed, "showOverlayWalkSpeed ", true);
 			Scribe_Values.Look(ref showOverlayLighting, "showOverlayLighting", true);
 			Scribe_Values.Look(ref cheatFertilityUnderGrid, "cheatFertilityUnderGrid", true);
 			Scribe_Values.Look(ref overlayOpacity, "overlayOpacity", 1.0f);

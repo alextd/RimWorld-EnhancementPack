@@ -6,6 +6,7 @@
 	<TD.ToggleBeauty>Toggle the beauty overlay</TD.ToggleBeauty>
 	<TD.ToggleFertility>Toggle the fertile terrain overlay</TD.ToggleFertility>
 	<TD.ToggleLighting>Toggle the lighting overlay</TD.ToggleLighting>
+	<TD.ToggleWalkSpeed>Toggle the walkspeed overlay</TD.ToggleWalkSpeed>
 	<TDEnhancementPack>TD Enhancement Pack</TDEnhancementPack>
 	<TD.SizeAndFertile>Size: {0:0} (Fertile: {1:0.0})</TD.SizeAndFertile>
 	<TD.Size>Size: {0}</TD.Size>
@@ -16,6 +17,7 @@
 	<TD.SettingOverlayBeauty>Enable a global beauty overlay</TD.SettingOverlayBeauty>
 	<TD.SettingOverlayFertility>Enable a button for the fertility overlay</TD.SettingOverlayFertility>
 	<TD.SettingOverlayFertilityUnder>Fertility overlay shows value for terrain under floors</TD.SettingOverlayFertilityUnder>
+	<TD.SettingOverlayWalkSpeed>Enable a walkspeed overlay</TD.SettingOverlayWalkSpeed>
 	<TD.SettingOverlayLighting>Enable a lighting overlay</TD.SettingOverlayLighting>
 	<TD.SettingOverlayLightingDesc>Sun-lit outdoor areas are uncolored</TD.SettingOverlayLightingDesc>
 	<TD.SettingTradeClose>Set speed after closing trade or negotiation dialog</TD.SettingTradeClose>
