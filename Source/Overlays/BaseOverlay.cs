@@ -14,7 +14,7 @@ namespace TD_Enhancement_Pack
 	{
 		public static Dictionary<Type, Dictionary<Map, BaseOverlay>> overlays = new Dictionary<Type, Dictionary<Map, BaseOverlay>>();
 
-		public bool toggleShow;
+		public static HashSet<Type> toggleShow = new HashSet<Type>();
 
 		public static BaseOverlay GetOverlay(Type type, Map map)
 		{
@@ -82,7 +82,7 @@ namespace TD_Enhancement_Pack
 
 		public virtual void Update()
 		{
-			if (toggleShow || ShouldAutoDraw() && AutoDraw())
+			if (toggleShow.Contains(this.GetType()) || ShouldAutoDraw() && AutoDraw())
 				drawer.MarkForDraw();
 			drawer.CellBoolDrawerUpdate();
 		}
@@ -141,7 +141,16 @@ namespace TD_Enhancement_Pack
 			{
 				if (!overlay.IconEnabled()) continue;
 
-				row.ToggleableIcon(ref overlay.toggleShow, overlay.Icon(), overlay.IconTip());
+				Type overlayType = overlay.GetType();
+
+				bool show = BaseOverlay.toggleShow.Contains(overlayType);
+				bool oldShow = show;
+				row.ToggleableIcon(ref show, overlay.Icon(), overlay.IconTip());
+				if (show != oldShow)
+				{
+					if (show) BaseOverlay.toggleShow.Add(overlayType);
+					else BaseOverlay.toggleShow.Remove(overlayType);
+				}
 			}
 		}
 	}
