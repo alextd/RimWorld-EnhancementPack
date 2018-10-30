@@ -31,9 +31,10 @@ namespace TD_Enhancement_Pack
 			}
 			return overlay;
 		}
+		public static List<Type> overlayTypes = typeof(BaseOverlay).AllSubclassesNonAbstract().ToList();
 		public static IEnumerable<BaseOverlay> CurrentOverlays()
 		{
-			foreach (Type subType in typeof(BaseOverlay).AllSubclassesNonAbstract())
+			foreach (Type subType in overlayTypes)
 				yield return BaseOverlay.GetOverlay(subType, Find.CurrentMap);
 		}
 
