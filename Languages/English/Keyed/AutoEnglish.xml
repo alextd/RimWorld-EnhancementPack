@@ -60,6 +60,7 @@
 	<TD.SettingAutoBuildable>Auto-show buildable terrain overlay when placing buildings</TD.SettingAutoBuildable>
 	<TD.SettingAutoBuildableDesc>Buildings with unique requirements like bridges and graves will show a overlay of where they can't be built</TD.SettingAutoBuildableDesc>
 	<TD.SettingAutoSmoothable>Auto-highlight smoothable terrain when smoothing things</TD.SettingAutoSmoothable>
+	<TD.SettingAutoTreeGrowth>Auto-highlight tree growth when ordering wood harvest</TD.SettingAutoTreeGrowth>
 	<TD.SettingAutoWindBlocker>Auto-highlight wind-blocking things when placing wind turbines</TD.SettingAutoWindBlocker>
 	<TD.SettingBeautySlow>I know it slows down the game</TD.SettingBeautySlow>
 	<TD.SettingAutoFertility>Auto-show fertility overlay when placing growing zones</TD.SettingAutoFertility>

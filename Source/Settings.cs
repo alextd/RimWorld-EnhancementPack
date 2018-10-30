@@ -18,6 +18,7 @@ namespace TD_Enhancement_Pack
 		public bool showOverlayBuildable = true;
 		public bool autoOverlayBuildable = true;
 		public bool autoOverlaySmoothable = true;
+		public bool autoOverlayTreeGrowth = true;
 		public bool autoOverlayWindBlocker = true;
 		public bool showOverlayBeauty = true;
 		public bool showOverlayFertility = true;
@@ -72,6 +73,7 @@ namespace TD_Enhancement_Pack
 			options.CheckboxLabeled("TD.SettingOverlayBuildable".Translate(), ref showOverlayBuildable, "TD.SettingOverlayBuildableDesc".Translate());
 			options.CheckboxLabeled("TD.SettingAutoBuildable".Translate(), ref autoOverlayBuildable, "TD.SettingAutoBuildableDesc".Translate());
 			options.CheckboxLabeled("TD.SettingAutoSmoothable".Translate(), ref autoOverlaySmoothable);
+			options.CheckboxLabeled("TD.SettingAutoTreeGrowth".Translate(), ref autoOverlayTreeGrowth);
 			options.CheckboxLabeled("TD.SettingAutoWindBlocker".Translate(), ref autoOverlayWindBlocker);
 			options.CheckboxLabeled("TD.SettingOverlayBeauty".Translate(), ref showOverlayBeauty, "TD.SettingBeautySlow".Translate());
 			options.CheckboxLabeled("TD.SettingOverlayFertility".Translate(), ref showOverlayFertility);
@@ -141,6 +143,7 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref showOverlayBuildable, "showOverlayBuildable", true);
 			Scribe_Values.Look(ref autoOverlayBuildable, "autoOverlayBuildable", true);
 			Scribe_Values.Look(ref autoOverlaySmoothable, "autoOverlaySmoothable", true);
+			Scribe_Values.Look(ref autoOverlayTreeGrowth, "autoOverlayTreeGrowth", true);
 			Scribe_Values.Look(ref autoOverlayWindBlocker, "autoOverlayWindBlocker", true);
 			Scribe_Values.Look(ref showOverlayBeauty, "showOverlayBeauty", true);
 			Scribe_Values.Look(ref showOverlayFertility, "showOverlayFertility", true);
