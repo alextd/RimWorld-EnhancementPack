@@ -121,7 +121,6 @@ namespace TD_Enhancement_Pack
 			options.Label("TD.DebugGodmodeRoofFloors".Translate());
 			options.Label("TD.NoFrameDecon".Translate(), tooltip: "TD.NoFrameDeconDesc".Translate());
 			options.Label("TD.DropdownBuildingsOrder".Translate(), tooltip: "TD.DropdownBuildingsOrderDesc".Translate());
-			options.Label("TD.SmoothSelectedStone".Translate());
 			options.Label("TD.DeepDrillRandomrock".Translate(), tooltip: "TD.DeepDrillRandomrockDesc".Translate());
 
 			options.EndScrollView(ref viewRect);
