@@ -44,6 +44,7 @@ namespace TD_Enhancement_Pack
 		public bool mouseoverInfoTopRight = false;
 		public bool alertDeteriorating = true;
 		public bool matchGrowButton = true;
+		public bool deepDrillRandom = true;
 
 		public Vector2 scrollPosition;
 		public float scrollViewHeight;
@@ -106,6 +107,7 @@ namespace TD_Enhancement_Pack
 			options.CheckboxLabeled("TD.SettingTopRightMouseover".Translate(), ref mouseoverInfoTopRight, "TD.SettingTopRightMouseoverDesc".Translate());
 			options.CheckboxLabeled("TD.SettingDeteriorationAlert".Translate(), ref alertDeteriorating, "TD.SettingDeteriorationAlertDesc".Translate());
 			options.CheckboxLabeled("TD.SettingMatchGrow".Translate(), ref matchGrowButton, "TD.SettingMatchGrowDesc".Translate());
+			options.CheckboxLabeled("TD.DeepDrillRandomrock".Translate(), ref deepDrillRandom, "TD.DeepDrillRandomrockDesc".Translate());
 			options.Gap();
 
 			options.Label("TD.RequiresRestart".Translate());
@@ -121,7 +123,6 @@ namespace TD_Enhancement_Pack
 			options.Label("TD.DebugGodmodeRoofFloors".Translate());
 			options.Label("TD.NoFrameDecon".Translate(), tooltip: "TD.NoFrameDeconDesc".Translate());
 			options.Label("TD.DropdownBuildingsOrder".Translate(), tooltip: "TD.DropdownBuildingsOrderDesc".Translate());
-			options.Label("TD.DeepDrillRandomrock".Translate(), tooltip: "TD.DeepDrillRandomrockDesc".Translate());
 
 			options.EndScrollView(ref viewRect);
 			scrollViewHeight = viewRect.height;
@@ -164,6 +165,7 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref mouseoverInfoTopRight, "mouseoverInfoTopRight", false);
 			Scribe_Values.Look(ref alertDeteriorating, "alertDeteriorating", true);
 			Scribe_Values.Look(ref matchGrowButton, "matchGrowButton", true);
+			Scribe_Values.Look(ref deepDrillRandom, "deepDrillRandom", true);
 		}
 	}
 }

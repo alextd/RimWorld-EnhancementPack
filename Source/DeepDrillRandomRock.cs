@@ -16,6 +16,8 @@ namespace TD_Enhancement_Pack
 		//public static ThingDef GetBaseResource(Map map)
 		public static bool Prefix(ref ThingDef __result, Map map)
 		{
+			if (!Settings.Get().deepDrillRandom) return true;
+
 			if (!map.Biome.hasBedrock)
 			{
 				__result = null;
@@ -96,6 +98,9 @@ namespace TD_Enhancement_Pack
 		{
 			var nextResources = NextDrillResourceComp.Get(map);
 			if (nextResources.ContainsKey(p)) return;
+
+			//Use NextDrillResourceComp if it has it, even if settings is off
+			if (!Settings.Get().deepDrillRandom) return;
 
 			Log.Message($"Adding drill data {p}, {resDef}, {countPresent}, {cell}, {__result}");
 			DrillData drillData;
