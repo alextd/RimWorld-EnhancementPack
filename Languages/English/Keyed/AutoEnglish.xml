@@ -20,6 +20,7 @@
 	<TD.SettingOverlayWalkSpeed>Enable a walkspeed overlay</TD.SettingOverlayWalkSpeed>
 	<TD.SettingOverlayLighting>Enable a lighting overlay</TD.SettingOverlayLighting>
 	<TD.SettingOverlayLightingDesc>Sun-lit outdoor areas are uncolored</TD.SettingOverlayLightingDesc>
+	<TD.SettingAutoLighting>Auto-show lighting overlay when placing lights</TD.SettingAutoLighting>
 	<TD.SettingTradeClose>Set speed after closing trade or negotiation dialog</TD.SettingTradeClose>
 	<TD.SettingTradeCloseSpeed>Speed after closing: </TD.SettingTradeCloseSpeed>
 	<TD.SettingSkillGainArrow>Show arrows indicating skill gain</TD.SettingSkillGainArrow>

@@ -20,7 +20,9 @@ namespace TD_Enhancement_Pack
 
 		public override bool ShowCell(int index)
 		{
-			return Find.CurrentMap.roofGrid.GetCellBool(index) || LightingAt(index) > skyGlow || GlowerColorAt(index) != null;
+			Building edifice = Find.CurrentMap.edificeGrid[index];
+			return edifice?.def.passability != Traversability.Impassable &&
+				Find.CurrentMap.roofGrid.GetCellBool(index) || LightingAt(index) > skyGlow || GlowerColorAt(index) != null;
 		}
 
 		public override Color GetCellExtraColor(int index)
@@ -54,6 +56,15 @@ namespace TD_Enhancement_Pack
 		public override Texture2D Icon() => icon;
 		public override bool IconEnabled() => Settings.Get().showOverlayLighting;//from Settings
 		public override string IconTip() => "TD.ToggleLighting".Translate();
+
+		public override bool ShouldAutoDraw() => Settings.Get().autoOverlayLighting;
+		public override Type AutoDesignator() => typeof(Designator_Build);
+		public override bool DesignatorVerifier(Designator des)
+		{
+			return des is Designator_Build desBuild &&
+				desBuild.PlacingDef is ThingDef def &&
+				def.HasComp(typeof(CompGlower));
+		}
 	}
 
 	[HarmonyPatch(typeof(GlowGrid), "MarkGlowGridDirty")]
