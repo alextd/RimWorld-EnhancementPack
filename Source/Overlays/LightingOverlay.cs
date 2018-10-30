@@ -16,11 +16,11 @@ namespace TD_Enhancement_Pack
 	{
 		public float skyGlow;
 
-		public LightingOverlay(Map m) : base(m) { }
+		public LightingOverlay() : base() { }
 
 		public override bool ShowCell(int index)
 		{
-			return map.roofGrid.GetCellBool(index) || LightingAt(index) > skyGlow || GlowerColorAt(index) != null;
+			return Find.CurrentMap.roofGrid.GetCellBool(index) || LightingAt(index) > skyGlow || GlowerColorAt(index) != null;
 		}
 
 		public override Color GetCellExtraColor(int index)
@@ -30,12 +30,12 @@ namespace TD_Enhancement_Pack
 
 		public float LightingAt(int index)
 		{
-			return map.glowGrid.GameGlowAt(map.cellIndices.IndexToCell(index));
+			return Find.CurrentMap.glowGrid.GameGlowAt(Find.CurrentMap.cellIndices.IndexToCell(index));
 		}
 
 		public Color? GlowerColorAt(int index)
 		{
-			foreach(Thing thing in map.thingGrid.ThingsListAtFast(index))
+			foreach(Thing thing in Find.CurrentMap.thingGrid.ThingsListAtFast(index))
 				if(thing.TryGetComp<CompGlower>() is CompGlower compGlower)// && compGlower.ShouldBeLitNow)//ShouldBeLitNow private :/
 					return Color.white;
 			return null;
@@ -59,9 +59,10 @@ namespace TD_Enhancement_Pack
 	[HarmonyPatch(typeof(GlowGrid), "MarkGlowGridDirty")]
 	static class GlowGridDirty_Patch
 	{
-		public static void Postfix(GlowGrid __instance, Map ___map)
+		public static void Postfix(Map ___map)
 		{
-			BaseOverlay.SetDirty(typeof(LightingOverlay), ___map);
+			if (___map == Find.CurrentMap)
+				BaseOverlay.SetDirty(typeof(LightingOverlay));
 		}
 	}
 
@@ -71,7 +72,8 @@ namespace TD_Enhancement_Pack
 		//private void UpdateOverlays(SkyTarget curSky)
 		public static void Postfix(SkyManager __instance, Map ___map)
 		{
-			(BaseOverlay.GetOverlay(typeof(LightingOverlay), ___map) as LightingOverlay).SetDirtySky(__instance.CurSkyGlow);
+			if (___map == Find.CurrentMap)
+				(BaseOverlay.GetOverlay(typeof(LightingOverlay)) as LightingOverlay).SetDirtySky(__instance.CurSkyGlow);
 		}
 	}	
 }

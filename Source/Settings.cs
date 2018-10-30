@@ -78,14 +78,14 @@ namespace TD_Enhancement_Pack
 			bool before = cheatFertilityUnderGrid;
 			options.CheckboxLabeled("TD.SettingOverlayFertilityUnder".Translate(), ref cheatFertilityUnderGrid);
 			if (before != cheatFertilityUnderGrid)
-				FertilityOverlay.DirtyAll();
+				BaseOverlay.SetDirty(typeof(FertilityOverlay));
 			options.CheckboxLabeled("TD.SettingAutoFertility".Translate(), ref autoOverlayFertility);
 			options.CheckboxLabeled("TD.SettingOverlayWalkSpeed".Translate(), ref showOverlayWalkSpeed);
 			options.CheckboxLabeled("TD.SettingOverlayLighting".Translate(), ref showOverlayLighting, "TD.SettingOverlayLightingDesc".Translate());
 			float beforeO = overlayOpacity;
 			options.SliderLabeled("TD.LowerOverlayOpacities".Translate(), ref overlayOpacity, "{0:P0}");
 			if (beforeO != overlayOpacity)
-				BaseOverlay.SetAllOpacity(overlayOpacity);
+				BaseOverlay.ResetAll();
 			options.Gap();
 
 			options.CheckboxLabeled("TD.SettingTradeClose".Translate(), ref changeSpeedAfterTrader);

@@ -18,17 +18,17 @@ namespace TD_Enhancement_Pack
 		public static readonly Color lightColor = new Color(.8f, .4f, 0);
 		public static readonly Color mediumColor = new Color(.8f, .8f, 0);
 
-		public BuildableOverlay(Map m) : base(m) { }
+		public BuildableOverlay() : base() { }
 
 		public override bool ShowCell(int index)
 		{
 			TerrainAffordanceDef noShow = curAffordance ?? TerrainAffordanceDefOf.Heavy;
-			return !map.terrainGrid.TerrainAt(index).affordances.Contains(noShow);
+			return !Find.CurrentMap.terrainGrid.TerrainAt(index).affordances.Contains(noShow);
 		}
 
 		public override Color GetCellExtraColor(int index)
 		{
-			var affordances = map.terrainGrid.TerrainAt(index).affordances;
+			var affordances = Find.CurrentMap.terrainGrid.TerrainAt(index).affordances;
 			return curAffordance != null ? noneColor :
 				affordances.Contains(TerrainAffordanceDefOf.Medium) ? mediumColor :
 				affordances.Contains(TerrainAffordanceDefOf.Light) ? lightColor
@@ -75,7 +75,8 @@ namespace TD_Enhancement_Pack
 	{
 		public static void Postfix(Map ___map)
 		{
-			BaseOverlay.SetDirty(typeof(BuildableOverlay), ___map);
+			if (___map == Find.CurrentMap)
+				BaseOverlay.SetDirty(typeof(BuildableOverlay));
 		}
 	}
 }

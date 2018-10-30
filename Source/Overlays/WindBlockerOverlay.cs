@@ -14,12 +14,12 @@ namespace TD_Enhancement_Pack
 	[StaticConstructorOnStartup]
 	class WindBlockerOverlay : BaseOverlay
 	{
-		public WindBlockerOverlay(Map m) : base(m) { }
+		public WindBlockerOverlay() : base() { }
 
 		public override bool ShowCell(int index)
 		{
-			return map.roofGrid.Roofed(index) || 
-				map.thingGrid.ThingsListAtFast(index).Any(t => t.def.blockWind);
+			return Find.CurrentMap.roofGrid.Roofed(index) ||
+				Find.CurrentMap.thingGrid.ThingsListAtFast(index).Any(t => t.def.blockWind);
 		}
 
 		public override Color GetCellExtraColor(int index) => Color.blue;
@@ -40,7 +40,8 @@ namespace TD_Enhancement_Pack
 	{
 		public static void Postfix(Map ___map)
 		{
-			BaseOverlay.SetDirty(typeof(WindBlockerOverlay), ___map);
+			if (___map == Find.CurrentMap)
+				BaseOverlay.SetDirty(typeof(WindBlockerOverlay));
 		}
 	}
 
@@ -49,8 +50,9 @@ namespace TD_Enhancement_Pack
 	{
 		public static void Postfix(Thing t, Map ___map)
 		{
-			if(t.def.blockWind)
-				BaseOverlay.SetDirty(typeof(WindBlockerOverlay), ___map);
+			if (___map == Find.CurrentMap)
+				if (t.def.blockWind)
+				BaseOverlay.SetDirty(typeof(WindBlockerOverlay));
 		}
 	}
 
@@ -59,8 +61,9 @@ namespace TD_Enhancement_Pack
 	{
 		public static void Postfix(Thing t, Map ___map)
 		{
-			if (t.def.blockWind)
-				BaseOverlay.SetDirty(typeof(WindBlockerOverlay), ___map);
+			if (___map == Find.CurrentMap)
+				if (t.def.blockWind)
+				BaseOverlay.SetDirty(typeof(WindBlockerOverlay));
 		}
 	}
 }

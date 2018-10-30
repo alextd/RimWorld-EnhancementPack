@@ -14,40 +14,29 @@ namespace TD_Enhancement_Pack
 	[StaticConstructorOnStartup]
 	class FertilityOverlay : BaseOverlay
 	{
-		public static void DirtyAll()
-		{
-			foreach(var kvp in overlays[typeof(FertilityOverlay)])
-			{
-				kvp.Value.SetDirty();
-			}
-		}
-
-		public static readonly Color noneColor = new Color(1, 0, 0);
-		public static readonly Color lightColor = new Color(.8f, .8f, 0);
-
-		public FertilityOverlay(Map m) : base(m) { }
+		public FertilityOverlay() : base() { }
 
 		public override bool ShowCell(int index)
 		{
-			return FertilityAt(map, index) != 1;
+			return FertilityAt(index) != 1;
 		}
 
 		public override Color GetCellExtraColor(int index)
 		{
-			float f = FertilityAt(map, index);
+			float f = FertilityAt(index);
 			return f < 1 ? Color.Lerp(Color.red, Color.yellow, f)
 				: Color.Lerp(Color.green, Color.white, f-1);
 		}
 
-		public static float FertilityAt(Map map, int index)
+		public static float FertilityAt(int index)
 		{
 			if (Settings.Get().cheatFertilityUnderGrid)
 			{
 				FieldInfo underGridInfo = AccessTools.Field(typeof(TerrainGrid), "underGrid");
-				if ((underGridInfo.GetValue(map.terrainGrid) as TerrainDef[])[index] is TerrainDef def)
+				if ((underGridInfo.GetValue(Find.CurrentMap.terrainGrid) as TerrainDef[])[index] is TerrainDef def)
 					return def.fertility; 
 			}
-			return map.terrainGrid.TerrainAt(index).fertility;
+			return Find.CurrentMap.terrainGrid.TerrainAt(index).fertility;
 		}
 		
 		public override bool ShouldAutoDraw() => Settings.Get().autoOverlayFertility;
@@ -64,7 +53,8 @@ namespace TD_Enhancement_Pack
 	{
 		public static void Postfix(Map ___map)
 		{
-			BaseOverlay.SetDirty(typeof(FertilityOverlay), ___map);
+			if (___map == Find.CurrentMap)
+				BaseOverlay.SetDirty(typeof(FertilityOverlay));
 		}
 	}
 }

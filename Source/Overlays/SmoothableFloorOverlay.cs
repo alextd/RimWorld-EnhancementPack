@@ -14,11 +14,11 @@ namespace TD_Enhancement_Pack
 	[StaticConstructorOnStartup]
 	class SmoothableOverlay : BaseOverlay
 	{
-		public SmoothableOverlay(Map m) : base(m) { }
+		public SmoothableOverlay() : base() { }
 
 		public override bool ShowCell(int index)
 		{
-			return map.terrainGrid.TerrainAt(index).affordances.Contains(TerrainAffordanceDefOf.SmoothableStone);
+			return Find.CurrentMap.terrainGrid.TerrainAt(index).affordances.Contains(TerrainAffordanceDefOf.SmoothableStone);
 		}
 		public override Color GetCellExtraColor(int index) => Color.green;
 
@@ -29,9 +29,10 @@ namespace TD_Enhancement_Pack
 	[HarmonyPatch(typeof(TerrainGrid), "DoTerrainChangedEffects")]
 	static class DoTerrainChangedEffects_Patch_Smoothable
 	{
-		public static void Postfix(TerrainGrid __instance, Map ___map)
+		public static void Postfix(Map ___map)
 		{
-			BaseOverlay.SetDirty(typeof(SmoothableOverlay), ___map);
+			if (___map == Find.CurrentMap)
+				BaseOverlay.SetDirty(typeof(SmoothableOverlay));
 		}
 	}
 }

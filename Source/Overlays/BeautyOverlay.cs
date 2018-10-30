@@ -14,16 +14,16 @@ namespace TD_Enhancement_Pack
 	[StaticConstructorOnStartup]
 	class BeautyOverlay : BaseOverlay
 	{
-		public BeautyOverlay(Map m) : base(m) { }
+		public BeautyOverlay() : base() { }
 
 		public override bool ShowCell(int index)
 		{
-			return BeautyAt(map, index) != 0;
+			return BeautyAt(index) != 0;
 		}
 
 		public override Color GetCellExtraColor(int index)
 		{
-			float amount = BeautyAt(map, index);
+			float amount = BeautyAt(index);
 
 			bool good = amount > 0;
 			amount = amount > 0 ? amount/50 : -amount/10;
@@ -35,9 +35,9 @@ namespace TD_Enhancement_Pack
 				: Color.Lerp(baseColor, good ? Color.green : Color.red, amount);
 		}
 
-		public static float BeautyAt(Map map, int index)
+		public static float BeautyAt(int index)
 		{
-			return BeautyUtility.CellBeauty(map.cellIndices.IndexToCell(index), map);
+			return BeautyUtility.CellBeauty(Find.CurrentMap.cellIndices.IndexToCell(index), Find.CurrentMap);
 		}
 
 		private static Texture2D icon = ContentFinder<Texture2D>.Get("Heart", true);
@@ -52,7 +52,8 @@ namespace TD_Enhancement_Pack
 	{
 		public static void Postfix(Map ___map)
 		{
-			BaseOverlay.SetDirty(typeof(BeautyOverlay), ___map);
+			if(___map == Find.CurrentMap)
+				BaseOverlay.SetDirty(typeof(BeautyOverlay));
 		}
 	}
 
@@ -61,8 +62,9 @@ namespace TD_Enhancement_Pack
 	{
 		public static void Postfix(Thing t, Map ___map)
 		{
-			if(BeautyUtility.BeautyRelevant(t.def.category))
-				BaseOverlay.SetDirty(typeof(BeautyOverlay), ___map);
+			if (___map == Find.CurrentMap)
+				if (BeautyUtility.BeautyRelevant(t.def.category))
+					BaseOverlay.SetDirty(typeof(BeautyOverlay));
 		}
 	}
 
@@ -71,8 +73,9 @@ namespace TD_Enhancement_Pack
 	{
 		public static void Postfix(Thing t, Map ___map)
 		{
-			if (BeautyUtility.BeautyRelevant(t.def.category))
-				BaseOverlay.SetDirty(typeof(BeautyOverlay), ___map);
+			if (___map == Find.CurrentMap)
+				if (BeautyUtility.BeautyRelevant(t.def.category))
+					BaseOverlay.SetDirty(typeof(BeautyOverlay));
 		}
 	}
 }

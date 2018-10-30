@@ -10,45 +10,35 @@ using Harmony;
 
 namespace TD_Enhancement_Pack
 {
+	[StaticConstructorOnStartup]
 	abstract class BaseOverlay : ICellBoolGiver
 	{
-		public static Dictionary<Type, Dictionary<Map, BaseOverlay>> overlays = new Dictionary<Type, Dictionary<Map, BaseOverlay>>();
+		public static Dictionary<Type, BaseOverlay> overlays = new Dictionary<Type, BaseOverlay>();
 
-		public static HashSet<Type> toggleShow = new HashSet<Type>();
-
-		public static BaseOverlay GetOverlay(Type type, Map map)
+		public static BaseOverlay GetOverlay(Type type)
 		{
-			if (!overlays.TryGetValue(type, out Dictionary<Map, BaseOverlay> overlayDict))
+			if (!overlays.TryGetValue(type, out BaseOverlay overlay))
 			{
-				overlayDict = new Dictionary<Map, BaseOverlay>();
-				overlays[type] = overlayDict;
-			}
-
-			if (!overlayDict.TryGetValue(map, out BaseOverlay overlay))
-			{
-				overlay = Activator.CreateInstance(type, map) as BaseOverlay;
-				overlayDict[map] = overlay;
+				overlay = Activator.CreateInstance(type) as BaseOverlay;
+				overlays[type] = overlay;
 			}
 			return overlay;
 		}
+
 		public static List<Type> overlayTypes = typeof(BaseOverlay).AllSubclassesNonAbstract().ToList();
-		public static IEnumerable<BaseOverlay> CurrentOverlays()
+		public static IEnumerable<BaseOverlay> AllOverlays()
 		{
 			foreach (Type subType in overlayTypes)
-				yield return BaseOverlay.GetOverlay(subType, Find.CurrentMap);
+				yield return BaseOverlay.GetOverlay(subType);
 		}
 
-		protected CellBoolDrawer drawer;
-		protected Map map;
 		protected float defaultOpacity;
 
 
-		public BaseOverlay(Map m) : this(m, 0.33F) { }
-		public BaseOverlay(Map m, float opacity)
+		public BaseOverlay() : this(0.33F) { }
+		public BaseOverlay(float opacity)
 		{
-			map = m;
 			defaultOpacity = opacity;
-			drawer = new CellBoolDrawer((ICellBoolGiver)this, map.Size.x, map.Size.z, opacity * Settings.Get().overlayOpacity);
 		}
 
 		public Color Color
@@ -59,43 +49,51 @@ namespace TD_Enhancement_Pack
 			}
 		}
 
-		public void SetOpacity(float factor)
+		protected CellBoolDrawer drawer;
+		public void MakeDrawer()
 		{
-			AccessTools.Field(typeof(CellBoolDrawer), "opacity").SetValue(drawer, defaultOpacity * factor);
-			AccessTools.Field(typeof(CellBoolDrawer), "material").SetValue(drawer, null);
-			drawer.SetDirty();
+			drawer = new CellBoolDrawer((ICellBoolGiver)this, Find.CurrentMap.Size.x, Find.CurrentMap.Size.z, defaultOpacity * Settings.Get().overlayOpacity);
 		}
 
-		public static void SetAllOpacity(float factor)
+		public static void ResetAll()
 		{
-			foreach (var kvp in overlays)
-				foreach (BaseOverlay overlay in kvp.Value.Values)
-					overlay.SetOpacity(factor);
+			foreach (BaseOverlay overlay in overlays.Values)
+				if(overlay.drawer != null)
+					overlay.MakeDrawer();
 		}
 
 		public bool GetCellBool(int index)
 		{
-			return !map.fogGrid.IsFogged(index) && ShowCell(index);
+			return !Find.CurrentMap.fogGrid.IsFogged(index) && ShowCell(index);
 		}
 		public virtual bool ShowCell(int index) => true;
 		public abstract Color GetCellExtraColor(int index);
+		
 
+		public static HashSet<Type> toggleShow = new HashSet<Type>();
 		public virtual void Update()
 		{
 			if (toggleShow.Contains(this.GetType()) || ShouldAutoDraw() && AutoDraw())
-				drawer.MarkForDraw();
-			drawer.CellBoolDrawerUpdate();
+			{
+				if (drawer == null)
+					MakeDrawer();
+
+				drawer.MarkForDraw();// can't just call ActuallyDraw :/
+				drawer.CellBoolDrawerUpdate();
+			}
+			else
+				drawer = null;
 		}
 		
 		public virtual bool ShouldAutoDraw() => false;
 
 		public void SetDirty()
 		{
-			drawer.SetDirty();
+			drawer?.SetDirty();
 		}
-		public static void SetDirty(Type type, Map map)
+		public static void SetDirty(Type type)
 		{
-			BaseOverlay.GetOverlay(type, map).SetDirty();
+			BaseOverlay.GetOverlay(type).SetDirty();
 		}
 
 		public virtual Type AutoDesignator() => null;
@@ -114,6 +112,15 @@ namespace TD_Enhancement_Pack
 		public virtual string IconTip() => "";
 	}
 
+	[HarmonyPatch(typeof(Game), "CurrentMap", MethodType.Setter)]
+	static class ChangeMapResetOverlays
+	{
+		public static void Postfix()
+		{
+			BaseOverlay.ResetAll();
+		}
+	}
+
 	[HarmonyPatch(typeof(MapInterface), "MapInterfaceUpdate")]
 	static class MapInterfaceUpdate_Patch
 	{
@@ -122,14 +129,13 @@ namespace TD_Enhancement_Pack
 			if (Find.CurrentMap == null || WorldRendererUtility.WorldRenderedNow)
 				return;
 
-			foreach (BaseOverlay overlay in BaseOverlay.CurrentOverlays())
+			foreach (BaseOverlay overlay in BaseOverlay.AllOverlays())
 				overlay.Update();
 		}
 	}
 
 	//Toggle it on buttons
 	[HarmonyPatch(typeof(PlaySettings), "DoPlaySettingsGlobalControls")]
-	[StaticConstructorOnStartup]
 	public static class PlaySettings_Patch
 	{
 		[HarmonyPostfix]
@@ -137,7 +143,7 @@ namespace TD_Enhancement_Pack
 		{
 			if (worldView) return;
 
-			foreach (BaseOverlay overlay in BaseOverlay.CurrentOverlays())
+			foreach (BaseOverlay overlay in BaseOverlay.AllOverlays())
 			{
 				if (!overlay.IconEnabled()) continue;
 

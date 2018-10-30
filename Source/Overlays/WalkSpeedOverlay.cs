@@ -14,24 +14,24 @@ namespace TD_Enhancement_Pack
 	[StaticConstructorOnStartup]
 	class WalkSpeedOverlay : BaseOverlay
 	{
-		public WalkSpeedOverlay(Map m) : base(m) { }
+		public WalkSpeedOverlay() : base() { }
 
 		public override bool ShowCell(int index)
 		{
-			Building edifice = map.edificeGrid[index];
+			Building edifice = Find.CurrentMap.edificeGrid[index];
 			return edifice?.def.passability != Traversability.Impassable;
 		}
 
 		public override Color GetCellExtraColor(int index)
 		{
-			float f = WalkSpeedAt(map, index);
+			float f = WalkSpeedAt(index);
 			return f < 1 ? Color.Lerp(Color.red, Color.green, f * 0.75f)
 				: Color.Lerp(Color.green, Color.white, f - 1);
 		}
 
-		public static float WalkSpeedAt(Map map, int index)
+		public static float WalkSpeedAt(int index)
 		{
-			TerrainDef terrain = map.terrainGrid.TerrainAt(index);
+			TerrainDef terrain = Find.CurrentMap.terrainGrid.TerrainAt(index);
 			//private string SpeedPercentString(float extraPathTicks)
 			return 13f / (terrain.pathCost + 13f);
 		}
@@ -47,7 +47,8 @@ namespace TD_Enhancement_Pack
 	{
 		public static void Postfix(Map ___map)
 		{
-			BaseOverlay.SetDirty(typeof(WalkSpeedOverlay), ___map);
+			if (___map == Find.CurrentMap)
+				BaseOverlay.SetDirty(typeof(WalkSpeedOverlay));
 		}
 	}
 
@@ -56,7 +57,8 @@ namespace TD_Enhancement_Pack
 	{
 		public static void Postfix(Map ___map)
 		{
-			BaseOverlay.SetDirty(typeof(WalkSpeedOverlay), ___map);
+			if (___map == Find.CurrentMap)
+				BaseOverlay.SetDirty(typeof(WalkSpeedOverlay));
 		}
 	}
 
@@ -65,7 +67,8 @@ namespace TD_Enhancement_Pack
 	{
 		public static void Postfix(Map ___map)
 		{
-			BaseOverlay.SetDirty(typeof(WalkSpeedOverlay), ___map);
+			if (___map == Find.CurrentMap)
+				BaseOverlay.SetDirty(typeof(WalkSpeedOverlay));
 		}
 	}
 }
