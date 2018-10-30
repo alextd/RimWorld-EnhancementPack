@@ -25,7 +25,7 @@ namespace TD_Enhancement_Pack
 
 			if (RimWorld.Planet.WorldRendererUtility.WorldRenderedNow) return;
 
-			if (!DebugSettings.godMode && !__instance.IsFreeColonist) return;
+			if (!DebugSettings.godMode && !__instance.IsColonistPlayerControlled) return;
 
 			List<Gizmo> result = __result.ToList();
 			
