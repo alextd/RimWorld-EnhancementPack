@@ -21,7 +21,8 @@ namespace TD_Enhancement_Pack
 						if (!thing.IsForbidden(Faction.OfPlayer) &&
 							SteadyEnvironmentEffects.FinalDeteriorationRate(thing) > 0 &&
 							thing.HitPoints < thing.MaxHitPoints * 0.5f &&
-							!thing.Position.Fogged(map))
+							!thing.Position.Fogged(map) &&
+							(!(thing is Corpse corpse) || corpse.GetRotStage() == RotStage.Fresh))
 						{
 							yield return thing;
 						}
