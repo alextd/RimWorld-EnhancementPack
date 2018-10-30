@@ -47,18 +47,20 @@ namespace TD_Enhancement_Pack
 	[HarmonyPatch(typeof(ThingGrid), "Register")]
 	public static class ThingDirtierRegister_WindBlocker
 	{
-		public static void Postfix(Map ___map)
+		public static void Postfix(Thing t, Map ___map)
 		{
-			BaseOverlay.SetDirty(typeof(WindBlockerOverlay), ___map);
+			if(t.def.blockWind)
+				BaseOverlay.SetDirty(typeof(WindBlockerOverlay), ___map);
 		}
 	}
 
 	[HarmonyPatch(typeof(ThingGrid), "Deregister")]
 	public static class ThingDirtierDeregister_WindBlocker
 	{
-		public static void Postfix(Map ___map)
+		public static void Postfix(Thing t, Map ___map)
 		{
-			BaseOverlay.SetDirty(typeof(WindBlockerOverlay), ___map);
+			if (t.def.blockWind)
+				BaseOverlay.SetDirty(typeof(WindBlockerOverlay), ___map);
 		}
 	}
 }
