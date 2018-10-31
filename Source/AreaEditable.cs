@@ -144,11 +144,11 @@ namespace TD_Enhancement_Pack
 			}
 		}
 		
+		public static MethodInfo IncrementPositionInfo = AccessTools.Method(typeof(WidgetRow), "IncrementPosition");
 		public static void CopyPasteAreaRow(WidgetRow widgetRow, Area area)
 		{
 			//Gap doesn't work if it's the first thing. So dumb. Increment is private. So dumb.
 			//Have to hack in the method call instead AEH.
-			MethodInfo IncrementPositionInfo = AccessTools.Method(typeof(WidgetRow), "IncrementPosition");
 			float gapWidth = WidgetRow.DefaultGap + WidgetRow.IconSize;
 			if (copiedArea == area)
 			{
@@ -207,6 +207,7 @@ namespace TD_Enhancement_Pack
 			}
 		}
 
+		//Unoptimized non-static AccessTools but this isn't called often
 		public static void SetColor(this Area_Allowed area, Color color)
 		{
 			FieldInfo colorInfo = AccessTools.Field(typeof(Area_Allowed), "colorInt");
@@ -269,9 +270,10 @@ namespace TD_Enhancement_Pack
 			areaIndex[b.ID] = temp;
 			SortMap();
 		}
+		public static MethodInfo sortInfo = AccessTools.Method(typeof(AreaManager), "SortAreas");
 		public void SortMap()
 		{
-			AccessTools.Method(typeof(AreaManager), "SortAreas").Invoke(map.areaManager, new object[] { });
+			sortInfo.Invoke(map.areaManager, new object[] { });
 		}
 
 		public void InitIndex()

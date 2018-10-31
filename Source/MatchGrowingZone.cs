@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Reflection;
 using Verse;
 using RimWorld;
 using Harmony;
@@ -15,6 +16,8 @@ namespace TD_Enhancement_Pack
 			this.defaultLabel = "TD.Match".Translate();
 			this.defaultDesc = "TD.MatchDesc".Translate();
 		}
+		
+		public static FieldInfo startDragCellInfo = AccessTools.Field(typeof(DesignationDragger), "startDragCell");
 		public override AcceptanceReport CanDesignateCell(IntVec3 c)
 		{
 			if (!base.CanDesignateCell(c).Accepted)
@@ -29,7 +32,7 @@ namespace TD_Enhancement_Pack
 			}
 			if (Find.DesignatorManager.Dragger.Dragging)
 			{
-				IntVec3 startDragCell = (IntVec3)AccessTools.Field(typeof(DesignationDragger), "startDragCell").GetValue(Find.DesignatorManager.Dragger);
+				IntVec3 startDragCell = (IntVec3)startDragCellInfo.GetValue(Find.DesignatorManager.Dragger);
 				if (grid.FertilityAt(c) != grid.FertilityAt(startDragCell))
 					return false;
 			}

@@ -34,10 +34,11 @@ namespace TD_Enhancement_Pack
 					yield return i;
 			}
 		}
-
+		
+		public static MethodInfo DebugInfo = AccessTools.Method(typeof(Dialog_DebugOptionLister), "DebugAction");
 		public static bool DebugAction(Dialog_DebugOptionLister dialog, string label, Action action)
 		{
-			return (bool)AccessTools.Method(typeof(Dialog_DebugOptionLister), "DebugAction").Invoke(dialog, new object[] {label, action});
+			return (bool)DebugInfo.Invoke(dialog, new object[] {label, action});
 		}
 
 		public static bool InsertFullStackAfter(Dialog_DebugOptionLister dialog, string label, Action action)
