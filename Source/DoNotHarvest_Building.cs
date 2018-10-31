@@ -48,7 +48,7 @@ namespace TD_Enhancement_Pack
 		static DoNotHarvest_Building()
 		{
 			HarmonyMethod transpiler = new HarmonyMethod(typeof(DoNotHarvest_Building), nameof(DoNotHarvest_Building.Transpiler));
-			HarmonyInstance harmony = HarmonyInstance.Create("Uuugggg.rimworld.Replace_Stuff.main");
+			HarmonyInstance harmony = HarmonyInstance.Create("Uuugggg.rimworld.TD_Enhancement_Pack.main");
 
 			MethodInfo IsForbiddenInfo = AccessTools.Method(typeof(ForbidUtility), "IsForbidden", new Type[] { typeof(Thing), typeof(Pawn)});
 			Func<MethodInfo, bool> check = delegate (MethodInfo method)
