@@ -12,15 +12,14 @@
 	<TD.Size>Size: {0}</TD.Size>
 	<TD.CountToSow>To do: {0}</TD.CountToSow>
 	<TD.CountFullyGrown>Grown: {0}</TD.CountFullyGrown>
-	<TD.SettingOverlayBuildable>Enable a button for the buildable terrain overlay</TD.SettingOverlayBuildable>
-	<TD.SettingOverlayBuildableDesc>Red is unbuildable, Yellow is 'Light' Buildable (e.g. not structures mostly)</TD.SettingOverlayBuildableDesc>
-	<TD.SettingOverlayBeauty>Enable a global beauty overlay</TD.SettingOverlayBeauty>
-	<TD.SettingOverlayFertility>Enable a button for the fertility overlay</TD.SettingOverlayFertility>
+	<TD.SettingOverlayBuildable>Enable a toggle for a buildable terrain overlay</TD.SettingOverlayBuildable>
+	<TD.SettingOverlayBuildableDesc>Red is unbuildable terrain, Orange is 'Medium', Yellow is 'Light'</TD.SettingOverlayBuildableDesc>
+	<TD.SettingOverlayBeauty>Enable a toggle for a beauty overlay</TD.SettingOverlayBeauty>
+	<TD.SettingOverlayFertility>Enable a toggle for a fertility overlay</TD.SettingOverlayFertility>
 	<TD.SettingOverlayFertilityUnder>Fertility overlay shows value for terrain under floors</TD.SettingOverlayFertilityUnder>
-	<TD.SettingOverlayWalkSpeed>Enable a walkspeed overlay</TD.SettingOverlayWalkSpeed>
-	<TD.SettingOverlayLighting>Enable a lighting overlay</TD.SettingOverlayLighting>
+	<TD.SettingOverlayWalkSpeed>Enable a toggle for a walkspeed overlay</TD.SettingOverlayWalkSpeed>
+	<TD.SettingOverlayLighting>Enable a toggle for a lighting overlay</TD.SettingOverlayLighting>
 	<TD.SettingOverlayLightingDesc>Sun-lit outdoor areas are uncolored</TD.SettingOverlayLightingDesc>
-	<TD.SettingAutoLighting>Auto-show lighting overlay when placing lights</TD.SettingAutoLighting>
 	<TD.SettingTradeClose>Set speed after closing trade or negotiation dialog</TD.SettingTradeClose>
 	<TD.SettingTradeCloseSpeed>Speed after closing: </TD.SettingTradeCloseSpeed>
 	<TD.SettingSkillGainArrow>Show arrows indicating skill gain</TD.SettingSkillGainArrow>
@@ -28,6 +27,7 @@
 	<TD.SettingSkillLossArrow>Show arrows indicating skill loss</TD.SettingSkillLossArrow>
 	<TD.SettingSkillLossArrowDesc>Skills slowly lose experience after level 10 (The arrow can be very faded for slow rates)</TD.SettingSkillLossArrowDesc>
 	<TD.SettingZoneSize>Show Stockpile/Growing zone area size and info</TD.SettingZoneSize>
+	<TD.SettingZoneSizeDesc>Growing zones show count of empty / mature plots. The "Fertile" count is the approximate equivalent number of 100% fertility land (e.g 100 plots with 140% fertility would yield about the same as 140 at 100% fertiliity) (And this takes into acount plant fertility sensitivity)</TD.SettingZoneSizeDesc>
 	<TD.OtherFeatures>Other features:</TD.OtherFeatures>
 	<TD.AreaEditing>Areas can be reordered, recolored, and copy/pasted in the area manager</TD.AreaEditing>
 	<TD.NeverHome>Make an area named 'Never Home' and the area will never be added to the Home Area</TD.NeverHome>
@@ -62,15 +62,16 @@
 	<TD.SettingAutoBuildableDesc>Buildings with unique requirements like bridges and graves will show a overlay of where they can't be built</TD.SettingAutoBuildableDesc>
 	<TD.SettingAutoSmoothable>Auto-highlight smoothable terrain when smoothing things</TD.SettingAutoSmoothable>
 	<TD.SettingAutoTreeGrowth>Auto-highlight tree growth when ordering wood harvest</TD.SettingAutoTreeGrowth>
+	<TD.SettingAutoTreeGrowthDesc>Red is unharvestable \nGreen is harvestable \nWhite is fully mature \nYellow is harvestable "soon"</TD.SettingAutoTreeGrowthDesc>
 	<TD.SettingAutoWindBlocker>Auto-highlight wind-blocking things when placing wind turbines</TD.SettingAutoWindBlocker>
-	<TD.SettingBeautySlow>I know it slows down the game</TD.SettingBeautySlow>
 	<TD.SettingAutoFertility>Auto-show fertility overlay when placing growing zones</TD.SettingAutoFertility>
+	<TD.SettingAutoLighting>Auto-show lighting overlay when placing lights</TD.SettingAutoLighting>
 	<TD.SettingAutoAutorebuild>Autorebuild is on for a new game</TD.SettingAutoAutorebuild>
 	<TD.SettingTopRightMouseover>Mouseover tile info is on topright</TD.SettingTopRightMouseover>
 	<TD.SettingTopRightMouseoverDesc>So it shows up when something is selected\n\nOf course this is a bad idea if you still have the learning helper on.</TD.SettingTopRightMouseoverDesc>
 	<TD.SettingDeteriorationAlert>Alert for deteriorating things</TD.SettingDeteriorationAlert>
-	<TD.SettingDeteriorationAlertDesc>Deteriorating things with less than 50% HP, that are not forbidden</TD.SettingDeteriorationAlertDesc>
-	<TD.SettingMatchGrow>Button to make a growing zone and match terrain</TD.SettingMatchGrow>
+	<TD.SettingDeteriorationAlertDesc>Deteriorating things with less than 50% HP, that are not forbidden, and this doesn't include rotting corpses.</TD.SettingDeteriorationAlertDesc>
+	<TD.SettingMatchGrow>Enable a tool to make a growing zone that matches terrain</TD.SettingMatchGrow>
 	<TD.SettingMatchGrowDesc>Terrain is only added if fertility % matches the first tile selected when dragging</TD.SettingMatchGrowDesc>
 	<TD.DebugFullStack>A debug menu action to place a full stack of things</TD.DebugFullStack>
 	<TD.DropPodWhatDropped>The letter for random resource drop pods tell you what dropped</TD.DropPodWhatDropped>
@@ -82,8 +83,8 @@
 	<TD.DropdownBuildingsOrder>Dropdown designators get their order set by their contained designators</TD.DropdownBuildingsOrder>
 	<TD.DropdownBuildingsOrderDesc>e.g. colored lights show up in the build menu next to other lights instead of the front of the list</TD.DropdownBuildingsOrderDesc>
 	<TD.SmoothSelectedStone>Selected stone has a button to smooth it</TD.SmoothSelectedStone>
-	<TD.DeepDrillRandomrock>Deep drilling for rock gets a random rock type</TD.DeepDrillRandomrock>
-	<TD.DeepDrillRandomrockDesc>Would normally only get one type</TD.DeepDrillRandomrockDesc>
+	<TD.DeepDrillRandomrock>Deep drilling for stone gets a random stone type</TD.DeepDrillRandomrock>
+	<TD.DeepDrillRandomrockDesc>It would normally only get one type. Now it's random from the stone types available on the map.</TD.DeepDrillRandomrockDesc>
 	<TD.LowerOverlayOpacities>Lower overlay opacities:</TD.LowerOverlayOpacities>
 	<TD.SettingUrgentRefill>If you have Allow Tool, stockpiles have an 'urgent refill' toggle</TD.SettingUrgentRefill>
 	<TD.SettingUrgentRefillDesc>If a tile in a chosen stockpile is empty, there will be a urgent hauling job to refill it. Great for kitchen/workbench supplies.\n\nRequires Allow Tool</TD.SettingUrgentRefillDesc>

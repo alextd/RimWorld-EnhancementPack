@@ -68,5 +68,12 @@ namespace TD.Utilities
 
 			Text.Font = (GameFont)AccessTools.Field(typeof(Listing_Standard), "font").GetValue(listing);
 		}
+
+		public static void LabelHeader(this Listing_Standard listing, string label, float maxHeight = -1, string tooltip = null)
+		{
+			Text.Font = GameFont.Medium;
+			listing.Label(label, maxHeight, tooltip);
+			Text.Font = GameFont.Small;
+		}
 	}
 }
