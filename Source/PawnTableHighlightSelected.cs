@@ -12,9 +12,19 @@ using UnityEngine;
 
 namespace TD_Enhancement_Pack
 {
+	[StaticConstructorOnStartup]
 	[HarmonyPatch(typeof(PawnTable), "PawnTableOnGUI")]
-	class PawnTableHighlightSelected
+	static class PawnTableHighlightSelected
 	{
+		static PawnTableHighlightSelected()
+		{
+			MethodInfo workTabPrefix = AccessTools.Method("PawnTable_PawnTableOnGUI:Prefix");
+			if (workTabPrefix == null) return;
+			Log.Message($"workTabPrefix is {workTabPrefix}");
+
+			HarmonyInstance.Create("Uuugggg.rimworld.TD_Enhancement_Pack.main").Patch(workTabPrefix,
+				transpiler: new HarmonyMethod(typeof(PawnTableHighlightSelected), "Transpiler"));
+		}
 		//public void PawnTableOnGUI(Vector2 position)
 		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
 		{
@@ -31,15 +41,10 @@ namespace TD_Enhancement_Pack
 					rectInst = instList[i - 1];
 				}
 
-				if (inst.opcode == OpCodes.Ldarg_0 &&
-					i + 4 < instList.Count &&
-					instList[i + 4].operand == AccessTools.Property(typeof(Pawn), "Downed").GetGetMethod())
+				if (inst.operand == AccessTools.Property(typeof(Pawn), "Downed").GetGetMethod())
 				{
+					yield return new CodeInstruction(OpCodes.Dup);//copy Pawn for HighlightSelectedPawn
 					yield return rectInst;//rect
-					yield return instList[i];//this
-					yield return instList[i + 1];//this.cachedPawns
-					yield return instList[i + 2];//this.cachedPawns, index
-					yield return instList[i + 3];//this.cachedPawns[index]
 
 					//HighlightSelectedPawn(rect, this.cachedPawns[index])
 					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(PawnTableHighlightSelected), "HighlightSelectedPawn"));
@@ -48,7 +53,7 @@ namespace TD_Enhancement_Pack
 			}
 		}
 
-		public static void HighlightSelectedPawn(Rect rect, Pawn pawn)
+		public static void HighlightSelectedPawn(Pawn pawn, Rect rect)
 		{
 			if(Find.Selector.IsSelected(pawn))
 			{
