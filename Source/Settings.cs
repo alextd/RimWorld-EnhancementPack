@@ -45,6 +45,8 @@ namespace TD_Enhancement_Pack
 		public bool slaughterZone = true;
 
 		public bool autorebuildDefaultOn = true;
+		public bool pawnTableHighlightSelected = true;
+		public bool pawnTableClickSelect = false;
 		public bool mouseoverInfoTopRight = false;
 		public bool alertDeteriorating = true;
 		public bool matchGrowButton = true;
@@ -67,19 +69,19 @@ namespace TD_Enhancement_Pack
 
 
 			//Area / Zone things
-			options.LabelHeader("TD.SettingHeaderArea".Translate());
+			options.LabelHeader("Area / Zone things");
 			options.CheckboxLabeled("TD.SettingMatchGrow".Translate(), ref matchGrowButton, "TD.SettingMatchGrowDesc".Translate());
 			options.CheckboxLabeled("TD.SettingZoneSize".Translate(), ref showZoneSize, "TD.SettingZoneSizeDesc".Translate());
 			options.CheckboxLabeled("TD.SettingAllowHarvesting".Translate(), ref zoneHarvestableToggle, "TD.SettingAllowHarvestingDesc".Translate());
 			options.CheckboxLabeled("TD.NeverHome".Translate(), ref neverHome);
 			options.CheckboxLabeled("TD.SlaughterZone".Translate(), ref slaughterZone);
-			options.CheckboxLabeled("TD.SettingCleanZoneEdges".Translate(), ref fieldEdgesRedo);
+			options.CheckboxLabeled("Cleaner zone edges (And range indicators)", ref fieldEdgesRedo);
 			options.Label("TD.AreaEditing".Translate());
 			options.GapLine();
 
 
 			//Overlays
-			options.LabelHeader("TD.SettingHeaderOverlays".Translate());
+			options.LabelHeader("Overlays");
 			options.CheckboxLabeled("TD.SettingOverlayBuildable".Translate(), ref showOverlayBuildable, "TD.SettingOverlayBuildableDesc".Translate());
 			options.CheckboxLabeled("TD.SettingAutoBuildable".Translate(), ref autoOverlayBuildable, "TD.SettingAutoBuildableDesc".Translate());
 			options.Gap();
@@ -108,7 +110,7 @@ namespace TD_Enhancement_Pack
 
 
 			//Game improvements
-			options.LabelHeader("TD.SettingHeaderGameImprovements".Translate());
+			options.LabelHeader("Game improvements");
 			options.CheckboxLabeled("TD.DeepDrillRandomrock".Translate(), ref deepDrillRandom, "TD.DeepDrillRandomrockDesc".Translate());
 			options.CheckboxLabeled("TD.SettingAutoAutorebuild".Translate(), ref autorebuildDefaultOn);
 			options.Label("TD.SarcophagusPreferred".Translate(), tooltip: "TD.SarcophagusPreferredDesc".Translate());
@@ -116,7 +118,9 @@ namespace TD_Enhancement_Pack
 
 
 			//Notifications / Info
-			options.LabelHeader("TD.SettingHeaderInfo".Translate());
+			options.LabelHeader("Notifications / Info");
+			options.CheckboxLabeled("TD.SettingPawnTableHighlightSelected".Translate(), ref pawnTableHighlightSelected);
+			options.CheckboxLabeled("TD.SettingPawnTableClickSelect".Translate(), ref pawnTableClickSelect, "TD.SettingPawnTableClickSelectDesc".Translate());
 			options.CheckboxLabeled("TD.SettingTopRightMouseover".Translate(), ref mouseoverInfoTopRight, "TD.SettingTopRightMouseoverDesc".Translate());
 			options.CheckboxLabeled("TD.SettingDeteriorationAlert".Translate(), ref alertDeteriorating, "TD.SettingDeteriorationAlertDesc".Translate());
 			options.CheckboxLabeled("TD.SettingTradeClose".Translate(), ref changeSpeedAfterTrader);
@@ -132,7 +136,7 @@ namespace TD_Enhancement_Pack
 
 
 			//AI
-			options.LabelHeader("TD.SettingHeaderAI".Translate());
+			options.LabelHeader("AI / behavior");
 			options.CheckboxLabeled("TD.SettingsIgnoreSleeping".Translate(), ref ignoreSleepingEnemies, "TD.SettingsIgnoreSleepingDesc".Translate());
 			options.CheckboxLabeled("TD.SettingStopFlee".Translate(), ref stopFlee, "TD.SettingStopFleeDesc".Translate());
 			options.CheckboxLabeled("TD.SettingDodgeGrenades".Translate(), ref dodgeGrenade, "TD.SettingDodgeGrenadesDesc".Translate());
@@ -194,6 +198,8 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref slaughterZone, "slaughterZone", true);
 
 			Scribe_Values.Look(ref autorebuildDefaultOn, "autorebuildDefaultOn", true);
+			Scribe_Values.Look(ref pawnTableHighlightSelected, "pawnTableHighlightSelected", true);
+			Scribe_Values.Look(ref pawnTableClickSelect, "pawnTableClickSelect", false);
 			Scribe_Values.Look(ref mouseoverInfoTopRight, "mouseoverInfoTopRight", false);
 			Scribe_Values.Look(ref alertDeteriorating, "alertDeteriorating", true);
 			Scribe_Values.Look(ref matchGrowButton, "matchGrowButton", true);

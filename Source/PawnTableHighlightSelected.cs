@@ -55,6 +55,8 @@ namespace TD_Enhancement_Pack
 
 		public static void HighlightSelectedPawn(Pawn pawn, Rect rect)
 		{
+			if (!Settings.Get().pawnTableHighlightSelected) return;
+
 			if(Find.Selector.IsSelected(pawn))
 			{
 				Widgets.DrawBox(rect);
@@ -88,6 +90,12 @@ namespace TD_Enhancement_Pack
 		//public static void TryJumpAndSelect(GlobalTargetInfo target)
 		public static void ClickPawn(GlobalTargetInfo target)
 		{
+			if (!Settings.Get().pawnTableClickSelect)
+			{
+				CameraJumper.TryJumpAndSelect(target);
+				return;
+			}
+
 			if (Current.ProgramState != ProgramState.Playing)
 				return;
 
@@ -122,6 +130,10 @@ namespace TD_Enhancement_Pack
 			}
 		}
 
-		public static void Nevermind(MainTabsRoot o1, bool o2) { }
+		public static void Nevermind(MainTabsRoot o1, bool o2)
+		{
+			if (!Settings.Get().pawnTableClickSelect)
+				o1.EscapeCurrentTab(o2);
+		}
 	}
 }

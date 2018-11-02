@@ -69,6 +69,9 @@
 	<TD.SettingAutoAutorebuild>Autorebuild is on for a new game</TD.SettingAutoAutorebuild>
 	<TD.SettingTopRightMouseover>Mouseover tile info is on topright</TD.SettingTopRightMouseover>
 	<TD.SettingTopRightMouseoverDesc>So it shows up when something is selected\n\nOf course this is a bad idea if you still have the learning helper on.</TD.SettingTopRightMouseoverDesc>
+	<TD.SettingPawnTableHighlightSelected>Show selected pawns in tables</TD.SettingPawnTableHighlightSelected>
+	<TD.SettingPawnTableClickSelect>Mouse clicks in pawn tables select them. (Alt-click to work as before)</TD.SettingPawnTableClickSelect>
+	<TD.SettingPawnTableClickSelectDesc>Should behave intuitively like any other selection. Press Esc to close the tab window.\n\nShift-click to select/deselect multiple. Double click to center camera. Right-click to select a single pawn. Alt-click to close window, select and go to that one pawn.</TD.SettingPawnTableClickSelectDesc>
 	<TD.SettingDeteriorationAlert>Alert for deteriorating things</TD.SettingDeteriorationAlert>
 	<TD.SettingDeteriorationAlertDesc>Deteriorating things with less than 50% HP, that are not forbidden, and this doesn't include rotting corpses.</TD.SettingDeteriorationAlertDesc>
 	<TD.SettingMatchGrow>Enable a tool to make a growing zone that matches terrain</TD.SettingMatchGrow>
@@ -91,7 +94,8 @@
 	<TD.WorkGiverRefillZones>refill zones urgently</TD.WorkGiverRefillZones>
 	<TD.RefillingUrgently>refilling urgently</TD.RefillingUrgently>
 	<TD.GizmoUrgentRefill>Urgent Refill</TD.GizmoUrgentRefill>
-	<TD.GizmoUrgentRefillDesc>If any cell is unoccupied, it will be urgently refilled</TD.GizmoUrgentRefillDesc>	<TD.SettingHeaderArea>Area / Zone things</TD.SettingHeaderArea>
+	<TD.GizmoUrgentRefillDesc>If any cell is unoccupied, it will be urgently refilled</TD.GizmoUrgentRefillDesc>
+	<TD.SettingHeaderArea>Area / Zone things</TD.SettingHeaderArea>
 	<TD.SettingHeaderOverlays>Overlays</TD.SettingHeaderOverlays>
 	<TD.SettingHeaderGameImprovements>Game improvements</TD.SettingHeaderGameImprovements>
 	<TD.SettingHeaderInfo>Notifications / Info</TD.SettingHeaderInfo>
