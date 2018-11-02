@@ -12,61 +12,6 @@ using UnityEngine;
 
 namespace TD_Enhancement_Pack
 {
-	[StaticConstructorOnStartup]
-	[HarmonyPatch(typeof(PawnTable), "PawnTableOnGUI")]
-	static class PawnTableHighlightSelected
-	{
-		static PawnTableHighlightSelected()
-		{
-			MethodInfo workTabPrefix = AccessTools.Method("PawnTable_PawnTableOnGUI:Prefix");
-			if (workTabPrefix == null) return;
-			Log.Message($"workTabPrefix is {workTabPrefix}");
-
-			HarmonyInstance.Create("Uuugggg.rimworld.TD_Enhancement_Pack.main").Patch(workTabPrefix,
-				transpiler: new HarmonyMethod(typeof(PawnTableHighlightSelected), "Transpiler"));
-		}
-		//public void PawnTableOnGUI(Vector2 position)
-		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
-		{
-			MethodInfo MouseIsOverInfo = AccessTools.Method("Mouse:IsOver");
-
-			CodeInstruction rectInst = null;
-			List <CodeInstruction> instList = instructions.ToList();
-			for (int i = 0; i < instList.Count; i++)
-			{
-				CodeInstruction inst = instList[i];
-
-				if (inst.opcode == OpCodes.Call && inst.operand == MouseIsOverInfo)
-				{
-					rectInst = instList[i - 1];
-				}
-
-				if (inst.operand == AccessTools.Property(typeof(Pawn), "Downed").GetGetMethod())
-				{
-					yield return new CodeInstruction(OpCodes.Dup);//copy Pawn for HighlightSelectedPawn
-					yield return rectInst;//rect
-
-					//HighlightSelectedPawn(rect, this.cachedPawns[index])
-					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(PawnTableHighlightSelected), "HighlightSelectedPawn"));
-				}
-				yield return inst;
-			}
-		}
-
-		public static void HighlightSelectedPawn(Pawn pawn, Rect rect)
-		{
-			if (!Settings.Get().pawnTableHighlightSelected) return;
-
-			if(Find.Selector.IsSelected(pawn))
-			{
-				Widgets.DrawBox(rect);
-				GUI.color = Color.grey;
-				Widgets.DrawBox(rect.ContractedBy(1));
-				GUI.color = Color.white;
-			}
-		}
-	}
-
 	[HarmonyPatch(typeof(PawnColumnWorker_Label), "DoCell")]
 	class LabelAddSelection
 	{
@@ -85,6 +30,14 @@ namespace TD_Enhancement_Pack
 				
 				yield return i;
 			}
+		}
+
+		public static void Postfix(Rect rect, Pawn pawn)
+		{
+			if (!Settings.Get().pawnTableHighlightSelected) return;
+
+			if (Find.Selector.IsSelected(pawn))
+				Widgets.DrawHighlightSelected(rect);
 		}
 
 		//public static void TryJumpAndSelect(GlobalTargetInfo target)
