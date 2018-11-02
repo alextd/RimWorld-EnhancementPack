@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<News>
+	<li>
+		<assemblyVersion>1.0.0</assemblyVersion>
+		<content>Hey! Now using news. Check out all the features in the settings window (maybe turn them on!) or click the link.
+
+Latest updates:
+- Caravans are auto-filled with things that are selected on the map.
+- Zone/Range highlighting looks a lot better (it's the corners)
+
+(Open mods settings to turn this on)
+- Clicking names in Pawn tables (e.g. the Work tab) now highlight and select pawns just like clicking them on the map does, instead of closing the tab and jumping to them. Alt-click to close and jump like before.</content>
+		<linkUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=1339135272</linkUrl>
+	</li>
+</News>

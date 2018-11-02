@@ -27,8 +27,8 @@
   <Target Name="Rebuild" />
   <PropertyGroup>
     <PostBuildEvent>if $(Configuration) == Release (
-echo F|xcopy "$(ProjectDir)About\About-Release.xml" "$(OutputPath)About\About.xml" /C /Y /K /Q /D
-echo F|xcopy "$(ProjectDir)About\Preview.png" "$(OutputPath)About\Preview.png" /S /C /Y /K /Q /D
+xcopy "$(ProjectDir)About" "$(OutputPath)About" /S /C /Y /K  /I /Q /D
+echo F|move /Y "$(OutputPath)About\About-Release.xml" "$(OutputPath)About\About.xml"
 xcopy "$(ProjectDir)Defs" "$(OutputPath)Defs" /S /C /Y /K  /I /Q /D
 xcopy "$(ProjectDir)Patches" "$(OutputPath)Patches" /S /C /Y /K  /I /Q /D
 xcopy "$(ProjectDir)Languages" "$(OutputPath)Languages" /S /C /Y /K  /I /Q /D
