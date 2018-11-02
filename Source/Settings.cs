@@ -45,6 +45,7 @@ namespace TD_Enhancement_Pack
 		public bool slaughterZone = true;
 
 		public bool autorebuildDefaultOn = true;
+		public bool caravanLoadSelection = true;
 		public bool pawnTableHighlightSelected = true;
 		public bool pawnTableClickSelect = false;
 		public bool mouseoverInfoTopRight = false;
@@ -113,6 +114,7 @@ namespace TD_Enhancement_Pack
 			options.LabelHeader("Game improvements");
 			options.CheckboxLabeled("TD.DeepDrillRandomrock".Translate(), ref deepDrillRandom, "TD.DeepDrillRandomrockDesc".Translate());
 			options.CheckboxLabeled("TD.SettingAutoAutorebuild".Translate(), ref autorebuildDefaultOn);
+			options.CheckboxLabeled("TD.CaravanLoadSelection".Translate(), ref caravanLoadSelection);
 			options.Label("TD.SarcophagusPreferred".Translate(), tooltip: "TD.SarcophagusPreferredDesc".Translate());
 			options.GapLine();
 
@@ -198,6 +200,7 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref slaughterZone, "slaughterZone", true);
 
 			Scribe_Values.Look(ref autorebuildDefaultOn, "autorebuildDefaultOn", true);
+			Scribe_Values.Look(ref caravanLoadSelection, "caravanLoadSelection", true);
 			Scribe_Values.Look(ref pawnTableHighlightSelected, "pawnTableHighlightSelected", true);
 			Scribe_Values.Look(ref pawnTableClickSelect, "pawnTableClickSelect", false);
 			Scribe_Values.Look(ref mouseoverInfoTopRight, "mouseoverInfoTopRight", false);

@@ -67,6 +67,7 @@
 	<TD.SettingAutoFertility>Auto-show fertility overlay when placing growing zones</TD.SettingAutoFertility>
 	<TD.SettingAutoLighting>Auto-show lighting overlay when placing lights</TD.SettingAutoLighting>
 	<TD.SettingAutoAutorebuild>Autorebuild is on for a new game</TD.SettingAutoAutorebuild>
+	<TD.CaravanLoadSelection>Forming a caravan pre-selects all the things that are selected on the map</TD.CaravanLoadSelection>
 	<TD.SettingTopRightMouseover>Mouseover tile info is on topright</TD.SettingTopRightMouseover>
 	<TD.SettingTopRightMouseoverDesc>So it shows up when something is selected\n\nOf course this is a bad idea if you still have the learning helper on.</TD.SettingTopRightMouseoverDesc>
 	<TD.SettingPawnTableHighlightSelected>Show selected pawns in tables</TD.SettingPawnTableHighlightSelected>

@@ -16,6 +16,8 @@ namespace TD_Enhancement_Pack
 		//private void CalculateAndRecacheTransferables()
 		public static void Postfix(Dialog_FormCaravan __instance)
 		{
+			if (!Settings.Get().caravanLoadSelection) return;
+
 			foreach (object obj in Find.Selector.SelectedObjectsListForReading.Where(o => o is Thing))
 				if (obj is Thing thing)
 				{
