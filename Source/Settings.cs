@@ -37,6 +37,7 @@ namespace TD_Enhancement_Pack
 		public bool skillDownArrows = true;
 
 		public bool showZoneSize = true;
+		public bool fieldEdgesRedo = true;
 		public bool zoneHarvestableToggle = false;
 		public bool zoneRefill = false;
 		
@@ -72,6 +73,7 @@ namespace TD_Enhancement_Pack
 			options.CheckboxLabeled("TD.SettingAllowHarvesting".Translate(), ref zoneHarvestableToggle, "TD.SettingAllowHarvestingDesc".Translate());
 			options.CheckboxLabeled("TD.NeverHome".Translate(), ref neverHome);
 			options.CheckboxLabeled("TD.SlaughterZone".Translate(), ref slaughterZone);
+			options.CheckboxLabeled("Cleaner zone edges (And range indicators)", ref fieldEdgesRedo);
 			options.Label("TD.AreaEditing".Translate());
 			options.GapLine();
 
@@ -184,6 +186,7 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref skillDownArrows, "skillDownArrows", true);
 
 			Scribe_Values.Look(ref showZoneSize, "showZoneSize", true);
+			Scribe_Values.Look(ref fieldEdgesRedo, "fieldEdgesRedo", true);
 			Scribe_Values.Look(ref zoneHarvestableToggle, "zoneHarvestableToggle", false);
 			Scribe_Values.Look(ref zoneRefill, "zoneRefill", true);
 			

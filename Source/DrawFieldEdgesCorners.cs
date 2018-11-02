@@ -18,6 +18,8 @@ namespace TD_Enhancement_Pack
 		//public static void DrawFieldEdges(List<IntVec3> cells, Color color)
 		public static bool Prefix(List<IntVec3> cells, Color color)
 		{
+			if (!Settings.Get().fieldEdgesRedo) return true;
+
 			Map currentMap = Find.CurrentMap;
 			MaterialRequest req = new MaterialRequest
 			{
