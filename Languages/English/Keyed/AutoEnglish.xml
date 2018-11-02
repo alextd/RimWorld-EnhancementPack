@@ -91,7 +91,12 @@
 	<TD.WorkGiverRefillZones>refill zones urgently</TD.WorkGiverRefillZones>
 	<TD.RefillingUrgently>refilling urgently</TD.RefillingUrgently>
 	<TD.GizmoUrgentRefill>Urgent Refill</TD.GizmoUrgentRefill>
-	<TD.GizmoUrgentRefillDesc>If any cell is unoccupied, it will be urgently refilled</TD.GizmoUrgentRefillDesc>
+	<TD.GizmoUrgentRefillDesc>If any cell is unoccupied, it will be urgently refilled</TD.GizmoUrgentRefillDesc>	<TD.SettingHeaderArea>Area / Zone things</TD.SettingHeaderArea>
+	<TD.SettingHeaderOverlays>Overlays</TD.SettingHeaderOverlays>
+	<TD.SettingHeaderGameImprovements>Game improvements</TD.SettingHeaderGameImprovements>
+	<TD.SettingHeaderInfo>Notifications / Info</TD.SettingHeaderInfo>
+	<TD.SettingHeaderAI>AI / behavior</TD.SettingHeaderAI>
+	<TD.SettingCleanZoneEdges>Cleaner zone edges (And range indicators)</TD.SettingCleanZoneEdges>
 	
 
 </LanguageData>
