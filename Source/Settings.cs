@@ -171,7 +171,7 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref showOverlayBeauty, "showOverlayBeauty", true);
 			Scribe_Values.Look(ref showOverlayFertility, "showOverlayFertility", true);
 			Scribe_Values.Look(ref autoOverlayFertility, "autoOverlayFertility", true);
-			Scribe_Values.Look(ref showOverlayWalkSpeed, "showOverlayWalkSpeed ", true);
+			Scribe_Values.Look(ref showOverlayWalkSpeed, "showOverlayWalkSpeed", true);
 			Scribe_Values.Look(ref showOverlayLighting, "showOverlayLighting", true);
 			Scribe_Values.Look(ref cheatFertilityUnderGrid, "cheatFertilityUnderGrid", true);
 			Scribe_Values.Look(ref overlayOpacity, "overlayOpacity", 1.0f);
