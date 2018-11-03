@@ -32,6 +32,8 @@ namespace TD_Enhancement_Pack
 
 		public static bool OrRightClick(bool result, Event ev)
 		{
+			if (!Settings.Get().blueprintAnyStuff) return result;
+
 			return result || ev.button == 1;
 		}
 	}
@@ -43,6 +45,8 @@ namespace TD_Enhancement_Pack
 		//public override GizmoResult GizmoOnGUI(Vector2 topLeft, float maxWidth)
 		public static void Postfix(ref GizmoResult __result)
 		{
+			if (!Settings.Get().blueprintAnyStuff) return;
+
 			if (__result.State == GizmoState.OpenedFloatMenu)
 				__result = new GizmoResult(GizmoState.Interacted, __result.InteractEvent);
 		}
