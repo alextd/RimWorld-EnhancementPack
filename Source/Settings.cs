@@ -19,6 +19,8 @@ namespace TD_Enhancement_Pack
 		public bool autoOverlayBuildable = true;
 		public bool autoOverlaySmoothable = true;
 		public bool autoOverlayTreeGrowth = true;
+		public bool showOverlayPlantHarvest = true;
+		public bool autoOverlayPlantHarvest = true;
 		public bool autoOverlayWindBlocker = true;
 		public bool autoOverlayLighting = true;
 		public bool showOverlayBeauty = true;
@@ -100,6 +102,9 @@ namespace TD_Enhancement_Pack
 			options.CheckboxLabeled("TD.SettingOverlayWalkSpeed".Translate(), ref showOverlayWalkSpeed);
 			options.CheckboxLabeled("TD.SettingOverlayBeauty".Translate(), ref showOverlayBeauty);
 			options.Gap();
+			options.CheckboxLabeled("TD.SettingOverlayPlantHarvest".Translate(), ref showOverlayPlantHarvest);
+			options.CheckboxLabeled("TD.SettingAutoPlantHarvest".Translate(), ref autoOverlayPlantHarvest);
+			options.Gap();
 			options.CheckboxLabeled("TD.SettingAutoSmoothable".Translate(), ref autoOverlaySmoothable);
 			options.CheckboxLabeled("TD.SettingAutoTreeGrowth".Translate(), ref autoOverlayTreeGrowth, "TD.SettingAutoTreeGrowthDesc".Translate());
 			options.CheckboxLabeled("TD.SettingAutoWindBlocker".Translate(), ref autoOverlayWindBlocker);
@@ -176,6 +181,8 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref autoOverlayBuildable, "autoOverlayBuildable", true);
 			Scribe_Values.Look(ref autoOverlaySmoothable, "autoOverlaySmoothable", true);
 			Scribe_Values.Look(ref autoOverlayTreeGrowth, "autoOverlayTreeGrowth", true);
+			Scribe_Values.Look(ref showOverlayPlantHarvest, "showOverlayPlantHarvest", true);
+			Scribe_Values.Look(ref autoOverlayPlantHarvest, "autoOverlayPlantHarvest", true);
 			Scribe_Values.Look(ref autoOverlayWindBlocker, "autoOverlayWindBlocker", true);
 			Scribe_Values.Look(ref autoOverlayLighting, "autoOverlayLighting", true);
 			Scribe_Values.Look(ref showOverlayBeauty, "showOverlayBeauty", true);
