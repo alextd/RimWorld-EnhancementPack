@@ -12,6 +12,9 @@ namespace TD.Utilities
 {
 	class HugsLibUpdateNews
 	{
+		public static string modVersion = "1.0.0";
+
+
 		public const string UpdateNewsFileDir = "About";
 		public const string UpdateNewsFileName = "UpdateNews.xml";
 		
@@ -35,6 +38,8 @@ namespace TD.Utilities
 			Type dbType = typeof(DefDatabase<>).MakeGenericType(new Type[] { typeUpdateFeatureDef });
 			MethodInfo addMethod = AccessTools.Method(dbType, "Add", new Type[] { typeUpdateFeatureDef });
 
+			string identifier = mod.Content.Name.Replace(" ", "");
+
 			try
 			{
 				XDocument doc = XDocument.Load(filePath);
@@ -48,17 +53,22 @@ namespace TD.Utilities
 
 					object updateDef = Activator.CreateInstance(typeUpdateFeatureDef);
 					modNameReadableField.SetValue(updateDef, mod.Content.Name);
-					modIdentifierField.SetValue(updateDef, mod.Content.Identifier);
+					modIdentifierField.SetValue(updateDef, identifier);
 					assemblyVersionField.SetValue(updateDef, assemblyVersion.Value);
 					contentField.SetValue(updateDef, content.Value);
 					linkUrlField.SetValue(updateDef, linkUrl.Value);
-					defNameField.SetValue(updateDef, (mod.Content.Name + assemblyVersion.Value).Replace(" ", "").Replace(".", "_"));
+					defNameField.SetValue(updateDef, (identifier + assemblyVersion.Value).Replace(".", "_"));
 					addMethod.Invoke(null, new object[] { updateDef });
 				}
+
+				var hubsLibController = AccessTools.Property(AccessTools.TypeByName("HugsLibController"), "Instance").GetValue(null, null);
+				var updateFeatures = AccessTools.Property(AccessTools.TypeByName("HugsLibController"), "UpdateFeatures").GetValue(hubsLibController, null);
+				AccessTools.Method(AccessTools.TypeByName("UpdateFeatureManager"), "InspectActiveMod").
+					Invoke(updateFeatures, new object[] { identifier, new Version(modVersion) });
 			}
 			catch (Exception e)
 			{
-				Log.Warning($"Opening XML failed: {filePath}, Exception: {e}");
+				Log.Warning($"{identifier} tried to create HugsLibs news, but failed: {filePath}, Exception: {e}");
 			}
 		}
 	}
