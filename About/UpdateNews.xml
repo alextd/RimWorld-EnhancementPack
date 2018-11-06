@@ -2,10 +2,12 @@
 <News>
 	<li>
 		<assemblyVersion>1.0.0</assemblyVersion>
-		<content>Hey! Now using news. Check out all the features in the settings window (maybe turn them on!) or click the link.
+		<content>Hey! Now using news. Check out all the features in the settings window (maybe turn them on or off) or click the link.
 
 Latest updates:
+- Lots of overlays, and they auto-show when using certain tools.
 - Caravans are auto-filled with things that are selected on the map.
+- Blueprints can be designated with any stuff : right click the button to get the list
 - Zone/Range highlighting looks a lot better (it's the corners)|img:AreaHighlightBad,AreaHighlightGood|
 
 (Open mods settings to turn this on)
