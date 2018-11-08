@@ -77,8 +77,9 @@
 	<TD.SettingPawnTableHighlightSelected>Show selected pawns in tables</TD.SettingPawnTableHighlightSelected>
 	<TD.SettingPawnTableClickSelect>Mouse clicks in pawn tables select them. (Alt-click to work as before)</TD.SettingPawnTableClickSelect>
 	<TD.SettingPawnTableClickSelectDesc>Should behave intuitively like any other selection. Press Esc to close the tab window.\n\nShift-click to select/deselect multiple. Double click to center camera. Right-click to select a single pawn. Alt-click to close window, select and go to that one pawn.</TD.SettingPawnTableClickSelectDesc>
-	<TD.SettingDeteriorationAlert>Alert for deteriorating things</TD.SettingDeteriorationAlert>
-	<TD.SettingDeteriorationAlertDesc>Deteriorating things with less than 50% HP, that are not forbidden, and this doesn't include rotting corpses.</TD.SettingDeteriorationAlertDesc>
+	<TD.SettingAlertDeterioration>Alert for deteriorating things</TD.SettingAlertDeterioration>
+	<TD.SettingAlertDeteriorationDesc>Deteriorating things with less than 50% HP, that are not forbidden, and this doesn't include rotting corpses.</TD.SettingAlertDeteriorationDesc>
+	<TD.SettingAlertNoBill>Alert for workbenches with no bills set up</TD.SettingAlertNoBill>
 	<TD.SettingMatchGrow>Enable a tool to make a growing zone that matches terrain</TD.SettingMatchGrow>
 	<TD.SettingMatchGrowDesc>Terrain is only added if fertility % matches the first tile selected when dragging</TD.SettingMatchGrowDesc>
 	<TD.DropPodWhatDropped>The letter for random resource drop pods tell you what dropped</TD.DropPodWhatDropped>
@@ -107,5 +108,7 @@
 	<TD.SettingHeaderAI>AI / behavior</TD.SettingHeaderAI>
 	<TD.SettingCleanZoneEdges>Cleaner zone edges (And range indicators)</TD.SettingCleanZoneEdges>
 	
+
+
 
 </LanguageData>

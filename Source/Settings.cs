@@ -53,7 +53,10 @@ namespace TD_Enhancement_Pack
 		public bool pawnTableHighlightSelected = true;
 		public bool pawnTableClickSelect = false;
 		public bool mouseoverInfoTopRight = false;
+
 		public bool alertDeteriorating = true;
+		public bool alertNoBill = true;
+
 		public bool matchGrowButton = true;
 		public bool deepDrillRandom = true;
 
@@ -132,7 +135,8 @@ namespace TD_Enhancement_Pack
 			options.CheckboxLabeled("TD.SettingPawnTableHighlightSelected".Translate(), ref pawnTableHighlightSelected);
 			options.CheckboxLabeled("TD.SettingPawnTableClickSelect".Translate(), ref pawnTableClickSelect, "TD.SettingPawnTableClickSelectDesc".Translate());
 			options.CheckboxLabeled("TD.SettingTopRightMouseover".Translate(), ref mouseoverInfoTopRight, "TD.SettingTopRightMouseoverDesc".Translate());
-			options.CheckboxLabeled("TD.SettingDeteriorationAlert".Translate(), ref alertDeteriorating, "TD.SettingDeteriorationAlertDesc".Translate());
+			options.CheckboxLabeled("TD.SettingAlertDeterioration".Translate(), ref alertDeteriorating, "TD.SettingAlertDeteriorationDesc".Translate());
+			options.CheckboxLabeled("TD.SettingAlertNoBill".Translate(), ref alertNoBill);
 			options.CheckboxLabeled("TD.SettingTradeClose".Translate(), ref changeSpeedAfterTrader);
 			options.SliderLabeled("TD.SettingTradeCloseSpeed".Translate(), ref afterTraderSpeed, "{0}x", 0, 4);
 			options.Gap();
@@ -215,7 +219,10 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref pawnTableHighlightSelected, "pawnTableHighlightSelected", true);
 			Scribe_Values.Look(ref pawnTableClickSelect, "pawnTableClickSelect", false);
 			Scribe_Values.Look(ref mouseoverInfoTopRight, "mouseoverInfoTopRight", false);
+
 			Scribe_Values.Look(ref alertDeteriorating, "alertDeteriorating", true);
+			Scribe_Values.Look(ref alertNoBill, "alertNoBill", true);
+
 			Scribe_Values.Look(ref matchGrowButton, "matchGrowButton", true);
 			Scribe_Values.Look(ref deepDrillRandom, "deepDrillRandom", true);
 		}
