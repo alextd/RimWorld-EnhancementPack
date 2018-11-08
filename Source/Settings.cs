@@ -160,8 +160,6 @@ namespace TD_Enhancement_Pack
 			options.GapLine();
 
 			options.Label("TD.OtherFeatures".Translate());
-			options.Label("TD.DebugFullStack".Translate());
-			options.Label("TD.DebugGodmodeRoofFloors".Translate());
 			options.Label("TD.NoFrameDecon".Translate(), tooltip: "TD.NoFrameDeconDesc".Translate());
 			options.Label("TD.DropdownBuildingsOrder".Translate(), tooltip: "TD.DropdownBuildingsOrderDesc".Translate());
 

@@ -81,11 +81,9 @@
 	<TD.SettingDeteriorationAlertDesc>Deteriorating things with less than 50% HP, that are not forbidden, and this doesn't include rotting corpses.</TD.SettingDeteriorationAlertDesc>
 	<TD.SettingMatchGrow>Enable a tool to make a growing zone that matches terrain</TD.SettingMatchGrow>
 	<TD.SettingMatchGrowDesc>Terrain is only added if fertility % matches the first tile selected when dragging</TD.SettingMatchGrowDesc>
-	<TD.DebugFullStack>A debug menu action to place a full stack of things</TD.DebugFullStack>
 	<TD.DropPodWhatDropped>The letter for random resource drop pods tell you what dropped</TD.DropPodWhatDropped>
 	<TD.SarcophagusPreferred>Sarcophagus preferred to use over graves</TD.SarcophagusPreferred>
 	<TD.SarcophagusPreferredDesc>The default settings for a Sarcophagus are Critical so they are used before graves. The settings are already colonist-only, but without setting Critical, colonists would be buried in closer graves instead</TD.SarcophagusPreferredDesc>
-	<TD.DebugGodmodeRoofFloors>With debug godmode on, roofs are added/removed instantly, and walls/floors are smoothed instantly</TD.DebugGodmodeRoofFloors>
 	<TD.NoFrameDecon>Frames can't be deconstructed, only canceled</TD.NoFrameDecon>
 	<TD.NoFrameDeconDesc>Deconstruction would return less resources than canceling</TD.NoFrameDeconDesc>
 	<TD.DropdownBuildingsOrder>Dropdown designators get their order set by their contained designators</TD.DropdownBuildingsOrder>
