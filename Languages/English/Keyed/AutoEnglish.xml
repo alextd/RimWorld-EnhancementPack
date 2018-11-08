@@ -24,6 +24,7 @@
 	<TD.SettingOverlayPlantHarvest>Enable a toggle for a harvest overlay</TD.SettingOverlayPlantHarvest>
 	<TD.SettingTradeClose>Set speed after closing trade or negotiation dialog</TD.SettingTradeClose>
 	<TD.SettingTradeCloseSpeed>Speed after closing: </TD.SettingTradeCloseSpeed>
+	<TD.SettingResearchingArrow>Show arrow indicating research in progress</TD.SettingResearchingArrow>
 	<TD.SettingSkillGainArrow>Show arrows indicating skill gain</TD.SettingSkillGainArrow>
 	<TD.SettingSkillGainArrowDesc>In the Character Tab</TD.SettingSkillGainArrowDesc>
 	<TD.SettingSkillLossArrow>Show arrows indicating skill loss</TD.SettingSkillLossArrow>

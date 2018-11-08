@@ -142,6 +142,7 @@ namespace TD_Enhancement_Pack
 			options.CheckboxLabeled("TD.SettingTradeClose".Translate(), ref changeSpeedAfterTrader);
 			options.SliderLabeled("TD.SettingTradeCloseSpeed".Translate(), ref afterTraderSpeed, "{0}x", 0, 4);
 			options.Gap();
+			options.CheckboxLabeled("TD.SettingResearchingArrow".Translate(), ref researchingArrow);
 			options.CheckboxLabeled("TD.SettingSkillGainArrow".Translate(), ref skillUpArrows, "TD.SettingSkillGainArrowDesc".Translate());
 			options.CheckboxLabeled("TD.SettingSkillLossArrow".Translate(), ref skillDownArrows, "TD.SettingSkillLossArrowDesc".Translate());
 			skillArrows = skillUpArrows || skillDownArrows;
@@ -203,6 +204,7 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref changeSpeedAfterTrader, "changeSpeedAfterTrader", true);
 			Scribe_Values.Look(ref afterTraderSpeed, "afterTraderSpeed", 0);
 
+			Scribe_Values.Look(ref researchingArrow, "researchingArrow", true);
 			Scribe_Values.Look(ref skillArrows, "skillArrows", true);
 			Scribe_Values.Look(ref skillUpArrows, "skillUpArrows", true);
 			Scribe_Values.Look(ref skillDownArrows, "skillDownArrows", true);
