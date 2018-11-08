@@ -42,8 +42,7 @@ namespace TD_Enhancement_Pack
 		public static void Postfix(float amount)
 		{
 			if (!Settings.Get().researchingArrow) return;
-
-			Log.Message($"research {amount}");
+			
 			ResearchingIndicator.amount = 0.5f + amount / maxAmount / 2 ;
 			ResearchingIndicator.showUntilTick = (GenTicks.TicksGame + 200);
 		}
