@@ -35,6 +35,8 @@ namespace TD_Enhancement_Pack
 		public bool changeSpeedAfterTrader = true;
 		public int afterTraderSpeed = 0;
 
+		public bool researchingArrow = true;
+
 		public bool skillArrows = true;
 		public bool skillUpArrows = true;
 		public bool skillDownArrows = true;
