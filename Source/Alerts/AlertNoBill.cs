@@ -31,8 +31,8 @@ namespace TD_Enhancement_Pack
 
 		public Alert_NoBill()
 		{
-			defaultLabel = "Empty Workbench";
-			defaultExplanation = "There is a workbench with no work bills set up";
+			defaultLabel = "TD.EmptyWorkbench".Translate();
+			defaultExplanation = "TD.EmptyWorkbenchDesc".Translate();
 		}
 
 		public override AlertReport GetReport()

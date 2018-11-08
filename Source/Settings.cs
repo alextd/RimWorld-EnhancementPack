@@ -79,19 +79,19 @@ namespace TD_Enhancement_Pack
 
 
 			//Area / Zone things
-			options.LabelHeader("Area / Zone things");
+			options.LabelHeader("TD.SettingsHeaderArea".Translate());
 			options.CheckboxLabeled("TD.SettingMatchGrow".Translate(), ref matchGrowButton, "TD.SettingMatchGrowDesc".Translate());
 			options.CheckboxLabeled("TD.SettingZoneSize".Translate(), ref showZoneSize, "TD.SettingZoneSizeDesc".Translate());
 			options.CheckboxLabeled("TD.SettingAllowHarvesting".Translate(), ref zoneHarvestableToggle, "TD.SettingAllowHarvestingDesc".Translate());
 			options.CheckboxLabeled("TD.NeverHome".Translate(), ref neverHome);
 			options.CheckboxLabeled("TD.SlaughterZone".Translate(), ref slaughterZone);
-			options.CheckboxLabeled("Cleaner zone edges (And range indicators)", ref fieldEdgesRedo);
+			options.CheckboxLabeled("TD.SettingsCleanZone".Translate(), ref fieldEdgesRedo);
 			options.Label("TD.AreaEditing".Translate());
 			options.GapLine();
 
 
 			//Overlays
-			options.LabelHeader("Overlays");
+			options.LabelHeader("TD.SettingsHeaderOverlays".Translate());
 			options.CheckboxLabeled("TD.SettingOverlayBuildable".Translate(), ref showOverlayBuildable, "TD.SettingOverlayBuildableDesc".Translate());
 			options.CheckboxLabeled("TD.SettingAutoBuildable".Translate(), ref autoOverlayBuildable, "TD.SettingAutoBuildableDesc".Translate());
 			options.Gap();
@@ -123,7 +123,7 @@ namespace TD_Enhancement_Pack
 
 
 			//Game improvements
-			options.LabelHeader("Game improvements");
+			options.LabelHeader("TD.SettingsHeaderGame".Translate());
 			options.CheckboxLabeled("TD.DeepDrillRandomrock".Translate(), ref deepDrillRandom, "TD.DeepDrillRandomrockDesc".Translate());
 			options.CheckboxLabeled("TD.SettingAutoAutorebuild".Translate(), ref autorebuildDefaultOn);
 			options.CheckboxLabeled("TD.CaravanLoadSelection".Translate(), ref caravanLoadSelection);
@@ -133,7 +133,7 @@ namespace TD_Enhancement_Pack
 
 
 			//Notifications / Info
-			options.LabelHeader("Notifications / Info");
+			options.LabelHeader("TD.SettingsHeaderInfo".Translate());
 			options.CheckboxLabeled("TD.SettingPawnTableHighlightSelected".Translate(), ref pawnTableHighlightSelected);
 			options.CheckboxLabeled("TD.SettingPawnTableClickSelect".Translate(), ref pawnTableClickSelect, "TD.SettingPawnTableClickSelectDesc".Translate());
 			options.CheckboxLabeled("TD.SettingTopRightMouseover".Translate(), ref mouseoverInfoTopRight, "TD.SettingTopRightMouseoverDesc".Translate());
@@ -152,7 +152,7 @@ namespace TD_Enhancement_Pack
 
 
 			//AI
-			options.LabelHeader("AI / behavior");
+			options.LabelHeader("TD.SettingsHeaderAI".Translate());
 			options.CheckboxLabeled("TD.SettingsIgnoreSleeping".Translate(), ref ignoreSleepingEnemies, "TD.SettingsIgnoreSleepingDesc".Translate());
 			options.CheckboxLabeled("TD.SettingStopFlee".Translate(), ref stopFlee, "TD.SettingStopFleeDesc".Translate());
 			options.CheckboxLabeled("TD.SettingDodgeGrenades".Translate(), ref dodgeGrenade, "TD.SettingDodgeGrenadesDesc".Translate());

@@ -107,6 +107,14 @@
 	<TD.SettingHeaderInfo>Notifications / Info</TD.SettingHeaderInfo>
 	<TD.SettingHeaderAI>AI / behavior</TD.SettingHeaderAI>
 	<TD.SettingCleanZoneEdges>Cleaner zone edges (And range indicators)</TD.SettingCleanZoneEdges>
+	<TD.SettingsHeaderArea>Area / Zone things</TD.SettingsHeaderArea>
+	<TD.SettingsCleanZone>Cleaner zone edges (And range indicators)</TD.SettingsCleanZone>
+	<TD.SettingsHeaderOverlays>Overlays</TD.SettingsHeaderOverlays>
+	<TD.SettingsHeaderGame>Game improvements</TD.SettingsHeaderGame>
+	<TD.SettingsHeaderInfo>Notifications / Info</TD.SettingsHeaderInfo>
+	<TD.SettingsHeaderAI>AI / behavior</TD.SettingsHeaderAI>
+	<TD.EmptyWorkbench>Empty Workbench</TD.EmptyWorkbench>
+	<TD.EmptyWorkbenchDesc>There is a workbench with no work bills set up</TD.EmptyWorkbenchDesc>
 	
 
 
