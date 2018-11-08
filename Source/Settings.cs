@@ -14,6 +14,7 @@ namespace TD_Enhancement_Pack
 		public bool dodgeGrenade = false;
 		public bool showStopGizmo = true;
 		public bool showStopGizmoDrafted = true;
+		public bool cameraDragFixes = true;
 
 		public bool showOverlayBuildable = true;
 		public bool autoOverlayBuildable = true;
@@ -157,6 +158,7 @@ namespace TD_Enhancement_Pack
 
 			options.Label("TD.RequiresRestart".Translate());
 			options.CheckboxLabeled("TD.SettingUrgentRefill".Translate(), ref zoneRefill, "TD.SettingUrgentRefillDesc".Translate());
+			options.CheckboxLabeled("TD.SettingCameraDragFix".Translate(), ref cameraDragFixes, "TD.SettingCameraDragFixDesc".Translate());
 			options.GapLine();
 
 			options.Label("TD.OtherFeatures".Translate());
@@ -174,6 +176,7 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref dodgeGrenade, "dodgeGrenade", false);
 			Scribe_Values.Look(ref showStopGizmo, "showStopGizmo", true);
 			Scribe_Values.Look(ref showStopGizmoDrafted, "showStopGizmoDrafted", true);
+			Scribe_Values.Look(ref cameraDragFixes, "cameraDragFixes", true);
 
 			Scribe_Values.Look(ref showOverlayBuildable, "showOverlayBuildable", true);
 			Scribe_Values.Look(ref autoOverlayBuildable, "autoOverlayBuildable", true);

@@ -11,7 +11,26 @@ using UnityEngine;
 
 namespace TD_Enhancement_Pack
 {
-	[HarmonyPatch(typeof(CameraMapConfig_Normal), MethodType.Constructor)]
+	[StaticConstructorOnStartup]
+	static class CameraFixPatches
+	{
+		static CameraFixPatches()
+		{
+			if (!Settings.Get().cameraDragFixes) return;
+			HarmonyInstance harmony = HarmonyInstance.Create("Uuugggg.rimworld.TD_Enhancement_Pack.main");
+
+			//Turn off DefOf warning since harmony patches trigger it.
+			harmony.Patch(AccessTools.Constructor(typeof(CameraMapConfig_Normal)),
+				postfix: new HarmonyMethod(typeof(CameraDragFixes), "Postfix"));
+			harmony.Patch(AccessTools.Method(typeof(CameraDriver), "Update"),
+				postfix: new HarmonyMethod(typeof(FixUpdate), "Postfix"), transpiler: new HarmonyMethod(typeof(FixUpdate), "Transpiler"));
+			harmony.Patch(AccessTools.Method(typeof(CameraDriver), "OnGUI"),
+				prefix: new HarmonyMethod(typeof(FixOnGUI), "Prefix"), transpiler: new HarmonyMethod(typeof(FixOnGUI), "Transpiler"));
+		}
+	}
+
+
+	//[HarmonyPatch(typeof(CameraMapConfig_Normal), MethodType.Constructor)]
 	class CameraDragFixes
 	{
 		//CameraMapConfig_Normal
@@ -20,30 +39,11 @@ namespace TD_Enhancement_Pack
 			__instance.dollyRateMouseDrag = 2.0f;//harded div by 2 somewhere in camera driver
 		}
 	}
-	[HarmonyPatch(typeof(CameraDriver), "Update")]
-	class CameraDriverUpdate
-	{
-		//CameraMapConfig_Normal
-		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
-		{
-			foreach (CodeInstruction i in instructions)
-			{
-				if (i.opcode == OpCodes.Ldc_R4)
-				{
-					if (i.operand.ChangeType<float>() == 0.7f)//scale factor for zoomed out, from 0 to ?
-						i.operand = 1.3f;//trial and errored this
-					//else if (i.operand.ChangeType<float>() == 0.3f)//base scroll factor when zoomed in 100%
-					//	i.operand = 1.0f;
-				}
-				yield return i;
-			}
-		}
-	}
 
 	//don't set this.mouseDragVect = Vector2.zero at end of OnGUI;
 	//set this.mouseDragVect = Vector2.zero in a prefix
 	//so Update can see this.mouseDragVect is not zero
-	[HarmonyPatch(typeof(CameraDriver), "OnGUI")]
+	//[HarmonyPatch(typeof(CameraDriver), "OnGUI")]
 	static class FixOnGUI
 	{
 		//private Vector2 mouseDragVect = Vector2.zero;
@@ -98,6 +98,13 @@ namespace TD_Enhancement_Pack
 
 			foreach (CodeInstruction i in instructions)
 			{
+				if (i.opcode == OpCodes.Ldc_R4)
+				{
+					if (i.operand.ChangeType<float>() == 0.7f)//scale factor for zoomed out, from 0 to ?
+						i.operand = 1.3f;//trial and errored this
+					//else if (i.operand.ChangeType<float>() == 0.3f)//base scroll factor when zoomed in 100%
+					//	i.operand = 1.0f;
+				}
 				yield return i;
 				
 				if (i.opcode == OpCodes.Call && i.operand == HitchReduceFactor)
