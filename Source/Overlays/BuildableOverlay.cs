@@ -22,12 +22,19 @@ namespace TD_Enhancement_Pack
 
 		public override bool ShowCell(int index)
 		{
+			if(placingGeothermal)
+			{
+				return Find.CurrentMap.thingGrid.ThingsListAtFast(index).Any(t => t.def == ThingDefOf.SteamGeyser);
+			}
 			TerrainAffordanceDef noShow = curAffordance ?? TerrainAffordanceDefOf.Heavy;
 			return !Find.CurrentMap.terrainGrid.TerrainAt(index).affordances.Contains(noShow);
 		}
 
 		public override Color GetCellExtraColor(int index)
 		{
+			if (placingGeothermal)
+				return Color.green;
+
 			var affordances = Find.CurrentMap.terrainGrid.TerrainAt(index).affordances;
 			return curAffordance != null ? noneColor :
 				affordances.Contains(TerrainAffordanceDefOf.Medium) ? mediumColor :
@@ -48,14 +55,32 @@ namespace TD_Enhancement_Pack
 
 			return null;
 		}
+		public bool placingGeothermal;
+		public bool PlacingGeothermal()
+		{
+			if (Find.DesignatorManager.SelectedDesignator is Designator_Build des)
+			{
+				return des.PlacingDef == ThingDefOf.GeothermalGenerator;
+			}
+
+			return false;
+		}
 
 		public override void Update()
 		{
 			TerrainAffordanceDef newAffordance = OverrideAffordance();
-			if(newAffordance != curAffordance)
+			if (newAffordance != curAffordance)
 			{
 				Log.Message($"newAffordance is {newAffordance}");
 				curAffordance = newAffordance;
+				SetDirty();
+			}
+
+			bool newGeo = PlacingGeothermal();
+			if (newGeo != placingGeothermal)
+			{
+				Log.Message($"newGeo is {newGeo}");
+				placingGeothermal = newGeo;
 				SetDirty();
 			}
 
