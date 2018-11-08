@@ -14,4 +14,12 @@ Latest updates:
 - Clicking names in Pawn tables (e.g. the Work tab) now highlight and select pawns just like clicking them on the map does, instead of closing the tab and jumping to them. Alt-click to close and jump like before.|img:TableSelection|</content>
 		<linkUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=1339135272</linkUrl>
 	</li>
+	
+	<li>
+		<assemblyVersion>1.1.1</assemblyVersion>
+		<content>- Geothermal vents are highlighted when building generators.
+- Panning the camera with the middle-mouse button is better.
+		</content>
+		<linkUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=1339135272</linkUrl>
+	</li>
 </News>
