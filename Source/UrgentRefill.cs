@@ -164,10 +164,16 @@ namespace TD_Enhancement_Pack
 		{
 			base.ExposeData();
 			Scribe_Collections.Look(ref markedForRefillBuilding, "markedForRefillBuilding", LookMode.Reference);
-			if (markedForRefillBuilding == null) markedForRefillBuilding = new HashSet<Building_Storage>();
+			if (markedForRefillBuilding == null)
+				markedForRefillBuilding = new HashSet<Building_Storage>();
+			else
+				markedForRefillBuilding.RemoveWhere(b => b == null);
 
 			Scribe_Collections.Look(ref markedForRefillStockpile, "markedForRefillStockpile", LookMode.Reference);
-			if (markedForRefillStockpile == null) markedForRefillStockpile = new HashSet<Zone_Stockpile>();
+			if (markedForRefillStockpile == null)
+				markedForRefillStockpile = new HashSet<Zone_Stockpile>();
+			else
+				markedForRefillStockpile.RemoveWhere(s => s == null);
 		}
 	}
 	
