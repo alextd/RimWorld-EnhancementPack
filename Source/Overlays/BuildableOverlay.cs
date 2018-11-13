@@ -11,6 +11,12 @@ using Harmony;
 
 namespace TD_Enhancement_Pack
 {
+	[DefOf]
+	public static class MoreThingDefOf
+	{
+		public static ThingDef MoisturePump;
+	}
+
 	[StaticConstructorOnStartup]
 	class BuildableOverlay : BaseOverlay
 	{
@@ -26,13 +32,18 @@ namespace TD_Enhancement_Pack
 			{
 				return Find.CurrentMap.thingGrid.ThingsListAtFast(index).Any(t => t.def == ThingDefOf.SteamGeyser);
 			}
+			if(placingMoisturePump)
+			{
+				return Find.CurrentMap.terrainGrid.TerrainAt(index)?.driesTo != null ||
+					Find.CurrentMap.terrainGrid.UnderTerrainAt(index)?.driesTo != null;
+			}
 			TerrainAffordanceDef noShow = curAffordance ?? TerrainAffordanceDefOf.Heavy;
 			return !Find.CurrentMap.terrainGrid.TerrainAt(index).affordances.Contains(noShow);
 		}
 
 		public override Color GetCellExtraColor(int index)
 		{
-			if (placingGeothermal)
+			if (placingGeothermal || placingMoisturePump)
 				return Color.green;
 
 			var affordances = Find.CurrentMap.terrainGrid.TerrainAt(index).affordances;
@@ -65,6 +76,16 @@ namespace TD_Enhancement_Pack
 
 			return false;
 		}
+		public bool placingMoisturePump;
+		public bool PlacingMoisturePump()
+		{
+			if (Find.DesignatorManager.SelectedDesignator is Designator_Build des)
+			{
+				return des.PlacingDef == MoreThingDefOf.MoisturePump;
+			}
+
+			return false;
+		}
 
 		public override void Update()
 		{
@@ -84,8 +105,24 @@ namespace TD_Enhancement_Pack
 				SetDirty();
 			}
 
+			bool newPump = PlacingMoisturePump();
+			if (newPump != placingMoisturePump)
+			{
+				Log.Message($"newPump is {newPump}");
+				placingMoisturePump = newPump;
+				SetDirty();
+			}
+
 			base.Update();
 		}
+
+		public override void PostDraw()
+		{
+			if(placingMoisturePump)
+				foreach (Thing thing in Find.CurrentMap.listerThings.ThingsOfDef(MoreThingDefOf.MoisturePump))
+						thing.DrawExtraSelectionOverlays();
+		}
+
 		public override bool ShouldAutoDraw() => Settings.Get().autoOverlayBuildable;
 		public override Type AutoDesignator() => typeof(Designator_Build);
 

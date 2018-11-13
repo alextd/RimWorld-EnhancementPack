@@ -80,10 +80,13 @@ namespace TD_Enhancement_Pack
 
 				drawer.MarkForDraw();// can't just call ActuallyDraw :/
 				drawer.CellBoolDrawerUpdate();
+				PostDraw();
 			}
 			else
 				drawer = null;
 		}
+
+		public virtual void PostDraw() { }
 		
 		public virtual bool ShouldAutoDraw() => false;
 
