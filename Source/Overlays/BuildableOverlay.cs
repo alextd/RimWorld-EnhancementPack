@@ -43,8 +43,13 @@ namespace TD_Enhancement_Pack
 
 		public override Color GetCellExtraColor(int index)
 		{
-			if (placingGeothermal || placingMoisturePump)
+			if (placingGeothermal)
 				return Color.green;
+			if (placingMoisturePump)
+			{
+				return moisturePumpCells.Contains(Find.CurrentMap.cellIndices.IndexToCell(index))
+					? Color.blue * 0.5f : Color.green;
+			}
 
 			var affordances = Find.CurrentMap.terrainGrid.TerrainAt(index).affordances;
 			return curAffordance != null ? noneColor :
@@ -66,6 +71,7 @@ namespace TD_Enhancement_Pack
 
 			return null;
 		}
+
 		public bool placingGeothermal;
 		public bool PlacingGeothermal()
 		{
@@ -76,6 +82,8 @@ namespace TD_Enhancement_Pack
 
 			return false;
 		}
+
+		private static HashSet<IntVec3> moisturePumpCells = new HashSet<IntVec3>();
 		public bool placingMoisturePump;
 		public bool PlacingMoisturePump()
 		{
@@ -112,15 +120,33 @@ namespace TD_Enhancement_Pack
 				placingMoisturePump = newPump;
 				SetDirty();
 			}
+			if (placingMoisturePump && dirty)
+			{
+				HashSet<IntVec3> centers = new HashSet<IntVec3>(Find.CurrentMap.listerThings.ThingsOfDef(MoreThingDefOf.MoisturePump).Select(t => t.Position));
+
+				centers.AddRange(Find.CurrentMap.listerThings.ThingsInGroup(ThingRequestGroup.Blueprint)
+					.Where(bp => GenConstruct.BuiltDefOf(bp.def) == MoreThingDefOf.MoisturePump).Select(t => t.Position).ToList());
+
+				moisturePumpCells.Clear();
+
+				float radius = MoreThingDefOf.MoisturePump.specialDisplayRadius;
+				foreach (IntVec3 center in centers)
+				{
+					int num = GenRadial.NumCellsInRadius(radius);
+					for (int i = 0; i < num; i++)
+						moisturePumpCells.Add(center + GenRadial.RadialPattern[i]);
+				}
+			}
 
 			base.Update();
 		}
 
 		public override void PostDraw()
 		{
-			if(placingMoisturePump)
-				foreach (Thing thing in Find.CurrentMap.listerThings.ThingsOfDef(MoreThingDefOf.MoisturePump))
-						thing.DrawExtraSelectionOverlays();
+			if (placingMoisturePump)
+			{
+				GenDraw.DrawFieldEdges(moisturePumpCells.ToList(), Color.blue);
+			}
 		}
 
 		public override bool ShouldAutoDraw() => Settings.Get().autoOverlayBuildable;
@@ -139,6 +165,28 @@ namespace TD_Enhancement_Pack
 		{
 			if (___map == Find.CurrentMap)
 				BaseOverlay.SetDirty(typeof(BuildableOverlay));
+		}
+	}
+
+	[HarmonyPatch(typeof(ThingGrid), "Register")]
+	public static class ThingDirtierRegister_Pump
+	{
+		public static void Postfix(Thing t, Map ___map)
+		{
+			if (___map == Find.CurrentMap)
+				if (GenConstruct.BuiltDefOf(t.def) == MoreThingDefOf.MoisturePump)
+					BaseOverlay.SetDirty(typeof(BuildableOverlay));
+		}
+	}
+
+	[HarmonyPatch(typeof(ThingGrid), "Deregister")]
+	public static class ThingDirtierDeregister_Pump
+	{
+		public static void Postfix(Thing t, Map ___map)
+		{
+			if (___map == Find.CurrentMap)
+				if (GenConstruct.BuiltDefOf(t.def) == MoreThingDefOf.MoisturePump)
+					BaseOverlay.SetDirty(typeof(BuildableOverlay));
 		}
 	}
 }

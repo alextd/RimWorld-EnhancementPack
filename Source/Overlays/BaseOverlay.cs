@@ -81,6 +81,7 @@ namespace TD_Enhancement_Pack
 				drawer.MarkForDraw();// can't just call ActuallyDraw :/
 				drawer.CellBoolDrawerUpdate();
 				PostDraw();
+				dirty = false;
 			}
 			else
 				drawer = null;
@@ -90,9 +91,11 @@ namespace TD_Enhancement_Pack
 		
 		public virtual bool ShouldAutoDraw() => false;
 
+		public bool dirty = true;
 		public void SetDirty()
 		{
 			drawer?.SetDirty();
+			dirty = true;
 		}
 		public static void SetDirty(Type type)
 		{
