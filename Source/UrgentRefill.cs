@@ -144,7 +144,7 @@ namespace TD_Enhancement_Pack
 	internal static class ZoneStockpile_GetGizmos_Patch
 	{
 		[HarmonyPostfix]
-		public static void InsertUrgentRefillGizmos(ref IEnumerable<Gizmo> __result, Building_Storage __instance)
+		public static void InsertUrgentRefillGizmos(ref IEnumerable<Gizmo> __result, Zone_Stockpile __instance)
 		{
 			SlotGroup_GetGizmos_Patch.InsertUrgentRefillGizmos(ref __result, __instance.Map, __instance);
 		}
