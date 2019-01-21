@@ -2,7 +2,9 @@
 <ModMetaData>
 	<name>TD Enhancement Pack</name>
 	<author>Uuugggg</author>
-	<targetVersion>1.0.0</targetVersion>
+	<supportedVersions>
+		<li>1.0.0</li>
+	</supportedVersions>
 	<description>Various things that just should be in the game.
 
 Check Steam or in-game settings for features since I don't want to update yet another list here.</description>
