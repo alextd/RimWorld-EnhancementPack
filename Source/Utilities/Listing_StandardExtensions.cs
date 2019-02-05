@@ -49,6 +49,7 @@ namespace TD.Utilities
 		public static FieldInfo curXInfo = AccessTools.Field(typeof(Listing_Standard), "curX");
 		//listing.curY = 0f;
 		public static FieldInfo curYInfo = AccessTools.Field(typeof(Listing_Standard), "curY");
+		public static FieldInfo fontInfo = AccessTools.Field(typeof(Listing_Standard), "font");
 		public static void BeginScrollViewEx(this Listing_Standard listing, Rect rect, ref Vector2 scrollPosition, ref Rect viewRect)
 		{
 			//Widgets.BeginScrollView(rect, ref scrollPosition, viewRect, true);
@@ -75,7 +76,7 @@ namespace TD.Utilities
 			//listing.curY = 0f;
 			curYInfo.SetValue(listing, 0);
 
-			Text.Font = (GameFont)AccessTools.Field(typeof(Listing_Standard), "font").GetValue(listing);
+			Text.Font = (GameFont)fontInfo.GetValue(listing);
 		}
 
 		public static void LabelHeader(this Listing_Standard listing, string label, float maxHeight = -1, string tooltip = null)
