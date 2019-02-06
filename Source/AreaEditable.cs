@@ -66,6 +66,8 @@ namespace TD_Enhancement_Pack
 				typeof(AreaRowPatch), nameof(CopyPasteAreaRow));
 			MethodInfo ReverseDirectionInfo = AccessTools.Method(
 				typeof(AreaRowPatch), nameof(ReverseDirection));
+			MethodInfo FocusAreaInfo = AccessTools.Method(
+				typeof(AreaRowPatch), nameof(FocusArea));
 
 			foreach (CodeInstruction i in instructions)
 			{
@@ -97,6 +99,12 @@ namespace TD_Enhancement_Pack
 
 				yield return i;
 
+				if (i.opcode == OpCodes.Callvirt && i.operand == LabelInfo)
+				{
+					yield return new CodeInstruction(OpCodes.Ldarg_1); //Area
+					yield return new CodeInstruction(OpCodes.Call, FocusAreaInfo); //FocusArea(rect, area)
+				}
+
 				if (i.opcode == OpCodes.Stloc_0)
 				{
 					yield return new CodeInstruction(OpCodes.Ldloc_0); //widgetRow
@@ -104,6 +112,18 @@ namespace TD_Enhancement_Pack
 					yield return new CodeInstruction(OpCodes.Call, DoCopyPasteInfo);
 				}
 			}
+		}
+
+		public static FieldInfo SelectedAreaInfo = AccessTools.Field(typeof(Designator_AreaAllowed), "selectedArea");
+		public static Rect FocusArea(Rect labelArea, Area area)
+		{
+			if(Widgets.ButtonInvisible(labelArea))
+			{
+				Find.WindowStack.TryRemove(typeof(Dialog_ManageAreas), false);
+				SelectedAreaInfo.SetValue(null, area);
+				Find.DesignatorManager.Select(DesignatorUtility.FindAllowedDesignator<Designator_AreaAllowedExpand>());
+			}
+			return labelArea;
 		}
 
 		public static WidgetRow ReverseDirection(WidgetRow widgetRow, Rect rect)
