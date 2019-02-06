@@ -18,7 +18,11 @@ namespace TD_Enhancement_Pack
 
 		public override bool ShowCell(int index)
 		{
-			return Find.CurrentMap.terrainGrid.TerrainAt(index).affordances.Contains(TerrainAffordanceDefOf.SmoothableStone);
+			Map map = Find.CurrentMap;
+			if (map.edificeGrid[index] is Thing wall)
+				return wall.def.IsSmoothable;
+			else
+				return map.terrainGrid.TerrainAt(index).affordances.Contains(TerrainAffordanceDefOf.SmoothableStone);
 		}
 		public override Color GetCellExtraColor(int index) => Color.green;
 
