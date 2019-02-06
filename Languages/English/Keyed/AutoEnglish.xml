@@ -115,7 +115,7 @@
 	<TD.SettingsHeaderInfo>Notifications / Info</TD.SettingsHeaderInfo>
 	<TD.SettingsHeaderAI>AI / behavior</TD.SettingsHeaderAI>
 	<TD.EmptyWorkbench>Empty Workbench</TD.EmptyWorkbench>
-	<TD.EmptyWorkbenchDesc>There is a workbench with no work bills set up</TD.EmptyWorkbenchDesc>
+	<TD.EmptyWorkbenchDesc>There is a workbench with no work bills set up</TD.EmptyWorkbenchDesc>	<TD.ClearEntireArea>Clear entire area (but don't delete from the list)</TD.ClearEntireArea>
 	
 
 

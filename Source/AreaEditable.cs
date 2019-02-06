@@ -118,7 +118,7 @@ namespace TD_Enhancement_Pack
 			List<Area> areas = area.Map.areaManager.AllAreas.FindAll(a => a is Area_Allowed);
 			int index = areas.IndexOf(area);
 
-			if (widgetRow.ButtonIcon(TexButton.Clear, "Clear entire area (but don't delete from the list)"))
+			if (widgetRow.ButtonIcon(TexButton.Clear, "TD.ClearEntireArea".Translate()))
 			{
 				BoolGrid grid = (BoolGrid) innerGridInfo.GetValue(area);
 				grid.Clear();
