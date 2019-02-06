@@ -19,7 +19,7 @@ namespace TD_Enhancement_Pack
 		public override bool ShowCell(int index)
 		{
 			foreach (Thing thing in Find.CurrentMap.thingGrid.ThingsListAtFast(index))
-				if (thing.def.plant?.harvestTag == "Wood")
+				if (thing.def.plant is PlantProperties props && props.harvestTag == "Wood" && props.Harvestable)
 					return true;
 			return false;
 		}
