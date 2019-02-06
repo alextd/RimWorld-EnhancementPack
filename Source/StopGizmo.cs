@@ -38,7 +38,7 @@ namespace TD_Enhancement_Pack
 				{
 					foreach (Pawn pawn in Find.Selector.SelectedObjects.Where(o => o is Pawn).Cast<Pawn>())
 					{
-						pawn.jobs.StopAll(true);
+						pawn.jobs.StopAll(false);
 					}
 				},
 				hotKey = KeyBindingDefOf.Designator_Deconstruct,
