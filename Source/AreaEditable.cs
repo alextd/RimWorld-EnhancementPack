@@ -18,6 +18,7 @@ namespace TD_Enhancement_Pack
 		public static readonly Texture2D ReorderDown = ContentFinder<Texture2D>.Get("UI/Buttons/ReorderDown", true);
 		public static readonly Texture2D Copy = ContentFinder<Texture2D>.Get("UI/Buttons/Copy");
 		public static readonly Texture2D Paste = ContentFinder<Texture2D>.Get("UI/Buttons/Paste");
+		public static readonly Texture2D Clear = ContentFinder<Texture2D>.Get("UI/Buttons/DragHash");
 	}
 
 	[HarmonyPatch(typeof(Dialog_ManageAreas), "InitialSize", MethodType.Getter)]
@@ -110,12 +111,19 @@ namespace TD_Enhancement_Pack
 			return new WidgetRow(rect.width, 0f, UIDirection.LeftThenUp, 99999f, 4f);
 		}
 
+		public static FieldInfo innerGridInfo = AccessTools.Field(typeof(Area), "innerGrid");
 		public static void DoOrderButton(WidgetRow widgetRow, Area areaBase)
 		{
 			if (!(areaBase is Area_Allowed area)) return;
 			List<Area> areas = area.Map.areaManager.AllAreas.FindAll(a => a is Area_Allowed);
 			int index = areas.IndexOf(area);
 
+			if (widgetRow.ButtonIcon(TexButton.Clear, "Clear entire area (but don't delete from the list)"))
+			{
+				BoolGrid grid = (BoolGrid) innerGridInfo.GetValue(area);
+				grid.Clear();
+				area.Invert(); area.Invert();//this is stupid but easiest way to access Dirtier
+			}
 			if (index > 0)
 			{
 				if (widgetRow.ButtonIcon(TexButton.ReorderUp))
