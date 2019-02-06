@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Linq;
 using System;
 using Verse;
 using UnityEngine;
@@ -20,8 +21,9 @@ namespace TD_Enhancement_Pack
 			HarmonyInstance harmony = HarmonyInstance.Create("Uuugggg.rimworld.TD_Enhancement_Pack.main");
 			
 			//Turn off DefOf warning since harmony patches trigger it.
-			harmony.Patch(AccessTools.Method(typeof(DefOfHelper), "EnsureInitializedInCtor"),
-				new HarmonyMethod(typeof(Mod), "EnsureInitializedInCtorPrefix"), null);
+			MethodInfo DefOfHelperInfo = AccessTools.Method(typeof(DefOfHelper), "EnsureInitializedInCtor");
+			if(!harmony.GetPatchedMethods().Contains(DefOfHelperInfo))
+			harmony.Patch(DefOfHelperInfo, new HarmonyMethod(typeof(Mod), "EnsureInitializedInCtorPrefix"), null);
 			
 			harmony.PatchAll();
 		}
