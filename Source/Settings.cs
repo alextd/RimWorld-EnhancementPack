@@ -12,6 +12,7 @@ namespace TD_Enhancement_Pack
 		public bool ignoreSleepingEnemies = true;
 		public bool stopFlee = true;
 		public bool dodgeGrenade = false;
+		public bool dodgeGrenadeUnlessBelt = true;
 		public bool showStopGizmo = true;
 		public bool showStopGizmoDrafted = true;
 		public bool cameraDragFixes = true;
@@ -157,6 +158,7 @@ namespace TD_Enhancement_Pack
 			options.CheckboxLabeled("TD.SettingsIgnoreSleeping".Translate(), ref ignoreSleepingEnemies, "TD.SettingsIgnoreSleepingDesc".Translate());
 			options.CheckboxLabeled("TD.SettingStopFlee".Translate(), ref stopFlee, "TD.SettingStopFleeDesc".Translate());
 			options.CheckboxLabeled("TD.SettingDodgeGrenades".Translate(), ref dodgeGrenade, "TD.SettingDodgeGrenadesDesc".Translate());
+			options.CheckboxLabeled("TD.SettingDodgeGrenadesUnlessBelt".Translate(), ref dodgeGrenadeUnlessBelt);
 			options.Gap();
 			options.CheckboxLabeled("TD.ShowStopButtonDrafted".Translate(), ref showStopGizmoDrafted);
 			options.CheckboxLabeled("TD.ShowStopButtonUnDrafted".Translate(), ref showStopGizmo);
@@ -181,6 +183,7 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref ignoreSleepingEnemies, "ignoreSleepingEnemies", true);
 			Scribe_Values.Look(ref stopFlee, "stopFlee", true);
 			Scribe_Values.Look(ref dodgeGrenade, "dodgeGrenade", false);
+			Scribe_Values.Look(ref dodgeGrenadeUnlessBelt, "dodgeGrenadeUnlessBelt", true);
 			Scribe_Values.Look(ref showStopGizmo, "showStopGizmo", true);
 			Scribe_Values.Look(ref showStopGizmoDrafted, "showStopGizmoDrafted", true);
 			Scribe_Values.Look(ref cameraDragFixes, "cameraDragFixes", true);

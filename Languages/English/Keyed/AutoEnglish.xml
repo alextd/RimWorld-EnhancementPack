@@ -61,6 +61,7 @@
 	<TD.SettingStopFleeDesc>Pretty sure this works\n\nSetting change doesn't apply to people already fleeing</TD.SettingStopFleeDesc>
 	<TD.SettingDodgeGrenades>Dodge grenades while drafted</TD.SettingDodgeGrenades>
 	<TD.SettingDodgeGrenadesDesc>Of course this interrupts what you're doing.</TD.SettingDodgeGrenadesDesc>
+	<TD.SettingDodgeGrenadesUnlessBelt>Don't dodge if shield belt is worn</TD.SettingDodgeGrenadesUnlessBelt>
 	<TD.SettingAutoBuildable>Auto-show buildable terrain overlay when placing buildings</TD.SettingAutoBuildable>
 	<TD.SettingAutoBuildableDesc>Buildings with unique requirements like bridges and graves will show a overlay of where they can't be built</TD.SettingAutoBuildableDesc>
 	<TD.SettingAutoSmoothable>Auto-highlight smoothable terrain when smoothing things</TD.SettingAutoSmoothable>
@@ -115,8 +116,10 @@
 	<TD.SettingsHeaderInfo>Notifications / Info</TD.SettingsHeaderInfo>
 	<TD.SettingsHeaderAI>AI / behavior</TD.SettingsHeaderAI>
 	<TD.EmptyWorkbench>Empty Workbench</TD.EmptyWorkbench>
-	<TD.EmptyWorkbenchDesc>There is a workbench with no work bills set up</TD.EmptyWorkbenchDesc>	<TD.ClearEntireArea>Clear entire area (but don't delete from the list)</TD.ClearEntireArea>
+	<TD.EmptyWorkbenchDesc>There is a workbench with no work bills set up</TD.EmptyWorkbenchDesc>
+	<TD.ClearEntireArea>Clear entire area (but don't delete from the list)</TD.ClearEntireArea>
 	
+
 
 
 

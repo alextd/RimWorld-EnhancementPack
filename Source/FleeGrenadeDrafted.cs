@@ -14,7 +14,8 @@ namespace TD_Enhancement_Pack
 		protected override bool Satisfied(Pawn pawn)
 		{
 			return Settings.Get().dodgeGrenade &&
-				!pawn.Downed && !pawn.IsBurning() && !pawn.InMentalState && pawn.Awake();
+				!pawn.Downed && !pawn.IsBurning() && !pawn.InMentalState && pawn.Awake() &&
+				(!Settings.Get().dodgeGrenadeUnlessBelt || !pawn.apparel.WornApparel.Any(a => a is ShieldBelt));
 		}
 	}
 }
