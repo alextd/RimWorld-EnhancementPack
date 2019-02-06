@@ -127,6 +127,9 @@ namespace TD_Enhancement_Pack
 				centers.AddRange(Find.CurrentMap.listerThings.ThingsInGroup(ThingRequestGroup.Blueprint)
 					.Where(bp => GenConstruct.BuiltDefOf(bp.def) == MoreThingDefOf.MoisturePump).Select(t => t.Position).ToList());
 
+				centers.AddRange(Find.CurrentMap.listerThings.ThingsInGroup(ThingRequestGroup.BuildingFrame)
+					.Where(frame => GenConstruct.BuiltDefOf(frame.def) == MoreThingDefOf.MoisturePump).Select(t => t.Position).ToList());
+
 				moisturePumpCells.Clear();
 
 				float radius = MoreThingDefOf.MoisturePump.specialDisplayRadius;
