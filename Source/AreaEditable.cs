@@ -67,11 +67,11 @@ namespace TD_Enhancement_Pack
 			MethodInfo ReverseDirectionInfo = AccessTools.Method(
 				typeof(AreaRowPatch), nameof(ReverseDirection));
 
-			foreach (CodeInstruction instruction in instructions)
+			foreach (CodeInstruction i in instructions)
 			{
 
 				//IL_0055: callvirt instance valuetype[UnityEngine]UnityEngine.Rect Verse.WidgetRow::Icon(class [UnityEngine] UnityEngine.Texture2D, string)
-				if (instruction.opcode == OpCodes.Callvirt && instruction.operand == IconInfo)
+				if (i.opcode == OpCodes.Callvirt && i.operand == IconInfo)
 				{
 					yield return new CodeInstruction(OpCodes.Ldarg_1); //Area
 					yield return new CodeInstruction(OpCodes.Callvirt, DoButtonIconInfo); //WidgetRow
@@ -79,15 +79,15 @@ namespace TD_Enhancement_Pack
 					continue;
 				}
 
-				if (instruction.opcode == OpCodes.Call && instruction.operand == EndGroupInfo)
+				if (i.opcode == OpCodes.Call && i.operand == EndGroupInfo)
 				{
-					yield return new CodeInstruction(OpCodes.Ldloc_0) { labels = instruction.labels }; //WidgetRow
-					instruction.labels = new List<Label>();
+					yield return new CodeInstruction(OpCodes.Ldloc_0) { labels = i.labels }; //WidgetRow
+					i.labels = new List<Label>();
 					yield return new CodeInstruction(OpCodes.Ldarg_1); //Area
 					yield return new CodeInstruction(OpCodes.Call, DoOrderButtonInfo);  //DoOrderButton(widgetRow, area)
 				}
 
-				if(instruction.opcode == OpCodes.Callvirt && instruction.operand == LabelInfo)
+				if(i.opcode == OpCodes.Callvirt && i.operand == LabelInfo)
 				{
 					yield return new CodeInstruction(OpCodes.Ldloc_0); //WidgetRow
 					yield return new CodeInstruction(OpCodes.Ldarg_0); //rect
@@ -95,9 +95,9 @@ namespace TD_Enhancement_Pack
 					yield return new CodeInstruction(OpCodes.Stloc_0); //widgetRow = ReverseDirection(widgetRow, rect)
 				}
 
-				yield return instruction;
+				yield return i;
 
-				if (instruction.opcode == OpCodes.Stloc_0)
+				if (i.opcode == OpCodes.Stloc_0)
 				{
 					yield return new CodeInstruction(OpCodes.Ldloc_0); //widgetRow
 					yield return new CodeInstruction(OpCodes.Ldarg_1); //Area
