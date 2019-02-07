@@ -25,7 +25,8 @@ namespace TD_Enhancement_Pack
 
 			if (RimWorld.Planet.WorldRendererUtility.WorldRenderedNow) return;
 
-			if (!DebugSettings.godMode && !__instance.IsColonistPlayerControlled) return;
+			if (!DebugSettings.godMode && !
+				(__instance.IsColonistPlayerControlled && (__instance.CurJobDef?.playerInterruptible ?? true))) return;
 
 			List<Gizmo> result = __result.ToList();
 			
