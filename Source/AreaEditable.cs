@@ -117,7 +117,8 @@ namespace TD_Enhancement_Pack
 		public static FieldInfo SelectedAreaInfo = AccessTools.Field(typeof(Designator_AreaAllowed), "selectedArea");
 		public static Rect FocusArea(Rect labelArea, Area area)
 		{
-			if(Widgets.ButtonInvisible(labelArea))
+			labelArea.width -= (labelArea.height + WidgetRow.DefaultGap) * 3;
+			if (Widgets.ButtonInvisible(labelArea))
 			{
 				Find.WindowStack.TryRemove(typeof(Dialog_ManageAreas), false);
 				SelectedAreaInfo.SetValue(null, area);
