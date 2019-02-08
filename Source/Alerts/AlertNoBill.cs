@@ -20,6 +20,7 @@ namespace TD_Enhancement_Pack
 					{
 						if (!thing.IsForbidden(Faction.OfPlayer) &&
 							thing is Building_WorkTable workTable &&
+							workTable.GetInspectTabs()?.Count() > 0 &&
 							workTable.BillStack.Count == 0)
 						{
 							yield return thing;
