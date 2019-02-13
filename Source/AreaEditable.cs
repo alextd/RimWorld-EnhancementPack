@@ -180,19 +180,22 @@ namespace TD_Enhancement_Pack
 			//Have to hack in the method call instead AEH.
 			float gapWidth = WidgetRow.DefaultGap + WidgetRow.IconSize;
 			if (copiedArea == area)
-			{
-				IncrementPositionInfo.Invoke(widgetRow, new object[] { gapWidth * 2});
-				return;
-			}
-
-			if (widgetRow.ButtonIcon(TexButton.Copy))
+				IncrementPositionInfo.Invoke(widgetRow, new object[] { gapWidth});
+			else if (widgetRow.ButtonIcon(TexButton.Copy))
 				copiedArea = area;
-
-			if (copiedArea == null)
-				IncrementPositionInfo.Invoke(widgetRow, new object[] { gapWidth });
-			else if (widgetRow.ButtonIcon(TexButton.Paste))
+			
+			if (widgetRow.ButtonIcon(TexButton.Paste))
+			{
+				if(copiedArea == null || copiedArea == area || Event.current.button == 1)
+				{
+					List<FloatMenuOption> otherAreas = new List<FloatMenuOption>(area.Map.areaManager.AllAreas
+						.FindAll(a => !(a is Area_Allowed))
+						.ConvertAll(a => new FloatMenuOption(a.Label, () => PasteArea(a, area), mouseoverGuiAction: () => a.MarkForDraw())));
+					Find.WindowStack.Add(new FloatMenu(otherAreas, "Paste from"));
+				}
+				else
 					PasteArea(copiedArea, area);
-				
+			}
 		}
 
 		public static void PasteArea(Area copy, Area paste)
