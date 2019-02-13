@@ -22,4 +22,18 @@ Latest updates:
 		</content>
 		<linkUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=1339135272</linkUrl>
 	</li>
+
+	<li>
+		<assemblyVersion>1.2.0</assemblyVersion>
+		<content>- ZOOM TO MOUSE. Turn it on in the settings.
+(Also some old updates not yet mentioned:)
+- Alert for workbench with no bill (now ignoring modded benches that don't use bills)
+- An icon showing research is in progress on the research tab
+- Placing moisture pumps shows an overlay of current pump coverage
+- Area manager can clear an entire area
+- Clicking on the area jumps to adding to that area
+- Dodge grenades can be ignored if a shield belt is worn
+		</content>
+		<linkUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=1339135272</linkUrl>
+	</li>
 </News>
