@@ -63,6 +63,8 @@ namespace TD_Enhancement_Pack
 		public bool matchGrowButton = true;
 		public bool deepDrillRandom = true;
 
+		public bool zoomToMouse = false;
+
 		public Vector2 scrollPosition;
 		public float scrollViewHeight;
 
@@ -171,6 +173,7 @@ namespace TD_Enhancement_Pack
 			options.GapLine();
 
 			options.Label("TD.OtherFeatures".Translate());
+			options.CheckboxLabeled("Zoom to Mouse", ref zoomToMouse);
 			options.Label("TD.NoFrameDecon".Translate(), tooltip: "TD.NoFrameDeconDesc".Translate());
 			options.Label("TD.DropdownBuildingsOrder".Translate(), tooltip: "TD.DropdownBuildingsOrderDesc".Translate());
 
@@ -232,6 +235,8 @@ namespace TD_Enhancement_Pack
 
 			Scribe_Values.Look(ref matchGrowButton, "matchGrowButton", true);
 			Scribe_Values.Look(ref deepDrillRandom, "deepDrillRandom", true);
+
+			Scribe_Values.Look(ref zoomToMouse, "zoomToMouse", false);
 		}
 	}
 }
