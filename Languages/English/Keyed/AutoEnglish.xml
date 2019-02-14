@@ -80,8 +80,9 @@
 	<TD.SettingPawnTableClickSelect>Mouse clicks in pawn tables select them. (Alt-click to work as before)</TD.SettingPawnTableClickSelect>
 	<TD.SettingPawnTableClickSelectDesc>Should behave intuitively like any other selection. Press Esc to close the tab window.\n\nShift-click to select/deselect multiple. Double click to center camera. Right-click to select a single pawn. Alt-click to close window, select and go to that one pawn.</TD.SettingPawnTableClickSelectDesc>
 	<TD.SettingAlertDeterioration>Alert for deteriorating things</TD.SettingAlertDeterioration>
-	<TD.SettingAlertHeatstroke>Alert for colonists with heatstroke</TD.SettingAlertHeatstroke>
 	<TD.SettingAlertDeteriorationDesc>Deteriorating things with less than 50% HP, that are not forbidden, and this doesn't include rotting corpses.</TD.SettingAlertDeteriorationDesc>
+	<TD.SettingAlertHeatstroke>Alert for colonists with heatstroke</TD.SettingAlertHeatstroke>
+	<TD.SettingAlertBurning>Alert for colonists that are burning</TD.SettingAlertBurning>
 	<TD.SettingAlertNoBill>Alert for workbenches with no bills set up</TD.SettingAlertNoBill>
 	<TD.SettingMatchGrow>Enable a tool to make a growing zone that matches terrain</TD.SettingMatchGrow>
 	<TD.SettingMatchGrowDesc>Terrain is only added if fertility % matches the first tile selected when dragging</TD.SettingMatchGrowDesc>

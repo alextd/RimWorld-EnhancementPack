@@ -7,7 +7,7 @@ using RimWorld;
 
 namespace TD_Enhancement_Pack.Alerts
 {
-	public class Alert_Heatstroke: Alert
+	public class Alert_Burning : Alert_Critical
 	{
 		private IEnumerable<Pawn> BurningPawns
 		{
@@ -17,8 +17,7 @@ namespace TD_Enhancement_Pack.Alerts
 				{
 					foreach (Pawn pawn in map.mapPawns.FreeColonistsSpawned)
 					{
-						if (pawn.AmbientTemperature > pawn.SafeTemperatureRange().max && 
-							pawn.health.hediffSet.HasHediff(HediffDefOf.Heatstroke, true))
+						if (pawn.AmbientTemperature > pawn.SafeTemperatureRange().max + 150f)//150f hardcoded in HediffGiver_Heat
 						{
 							yield return pawn;
 						}
@@ -27,15 +26,15 @@ namespace TD_Enhancement_Pack.Alerts
 			}
 		}
 
-		public Alert_Heatstroke()
+		public Alert_Burning()
 		{
-			defaultLabel = HediffDefOf.Heatstroke.LabelCap;
-			defaultExplanation = "A colonist is gaining heatstroke. That's not a good thing.";
+			defaultLabel = "Burning".Translate();
+			defaultExplanation = "A colonist is burning, and is rapidly gaining heatstroke.";
 		}
 
 		public override AlertReport GetReport()
 		{
-			return Settings.Get().alertHeatstroke ?
+			return Settings.Get().alertBurning ?
 				AlertReport.CulpritsAre(BurningPawns) :
 				AlertReport.Inactive;
 		}
