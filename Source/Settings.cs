@@ -143,11 +143,6 @@ namespace TD_Enhancement_Pack
 			options.CheckboxLabeled("TD.SettingPawnTableHighlightSelected".Translate(), ref pawnTableHighlightSelected);
 			options.CheckboxLabeled("TD.SettingPawnTableClickSelect".Translate(), ref pawnTableClickSelect, "TD.SettingPawnTableClickSelectDesc".Translate());
 			options.CheckboxLabeled("TD.SettingTopRightMouseover".Translate(), ref mouseoverInfoTopRight, "TD.SettingTopRightMouseoverDesc".Translate());
-			options.CheckboxLabeled("TD.SettingAlertDeterioration".Translate(), ref alertDeteriorating, "TD.SettingAlertDeteriorationDesc".Translate());
-			options.CheckboxLabeled("TD.SettingAlertHeatstroke".Translate(), ref alertHeatstroke);
-			options.CheckboxLabeled("TD.SettingAlertBurning".Translate(), ref alertBurning);
-			options.CheckboxLabeled("TD.SettingAlertToxic".Translate(), ref alertToxic);
-			options.CheckboxLabeled("TD.SettingAlertNoBill".Translate(), ref alertNoBill);
 			options.CheckboxLabeled("TD.SettingTradeClose".Translate(), ref changeSpeedAfterTrader);
 			options.SliderLabeled("TD.SettingTradeCloseSpeed".Translate(), ref afterTraderSpeed, "{0}x", 0, 4);
 			options.Gap();
@@ -158,6 +153,16 @@ namespace TD_Enhancement_Pack
 			options.Gap();
 			options.Label("TD.FeatureConditionGreen".Translate());
 			options.Label("TD.DropPodWhatDropped".Translate());
+			options.GapLine();
+
+
+			//Notifications / Info
+			options.LabelHeader("TD.SettingsHeaderAlerts".Translate());
+			options.CheckboxLabeled("TD.SettingAlertDeterioration".Translate(), ref alertDeteriorating, "TD.SettingAlertDeteriorationDesc".Translate());
+			options.CheckboxLabeled("TD.SettingAlertHeatstroke".Translate(), ref alertHeatstroke);
+			options.CheckboxLabeled("TD.SettingAlertBurning".Translate(), ref alertBurning);
+			options.CheckboxLabeled("TD.SettingAlertToxic".Translate(), ref alertToxic);
+			options.CheckboxLabeled("TD.SettingAlertNoBill".Translate(), ref alertNoBill);
 			options.GapLine();
 
 

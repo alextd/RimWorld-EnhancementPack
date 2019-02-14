@@ -117,6 +117,7 @@
 	<TD.SettingsHeaderOverlays>Overlays</TD.SettingsHeaderOverlays>
 	<TD.SettingsHeaderGame>Game improvements</TD.SettingsHeaderGame>
 	<TD.SettingsHeaderInfo>Notifications / Info</TD.SettingsHeaderInfo>
+	<TD.SettingsHeaderAlerts>Alerts</TD.SettingsHeaderAlerts>
 	<TD.SettingsHeaderAI>AI / behavior</TD.SettingsHeaderAI>
 	<TD.EmptyWorkbench>Empty Workbench</TD.EmptyWorkbench>
 	<TD.EmptyWorkbenchDesc>There is a workbench with no work bills set up</TD.EmptyWorkbenchDesc>
