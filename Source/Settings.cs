@@ -60,6 +60,7 @@ namespace TD_Enhancement_Pack
 		public bool alertDeteriorating = true;
 		public bool alertHeatstroke = true;
 		public bool alertBurning = true;
+		public bool alertToxic = true;
 		public bool alertNoBill = true;
 
 		public bool matchGrowButton = true;
@@ -145,6 +146,7 @@ namespace TD_Enhancement_Pack
 			options.CheckboxLabeled("TD.SettingAlertDeterioration".Translate(), ref alertDeteriorating, "TD.SettingAlertDeteriorationDesc".Translate());
 			options.CheckboxLabeled("TD.SettingAlertHeatstroke".Translate(), ref alertHeatstroke);
 			options.CheckboxLabeled("TD.SettingAlertBurning".Translate(), ref alertBurning);
+			options.CheckboxLabeled("TD.SettingAlertToxic".Translate(), ref alertToxic);
 			options.CheckboxLabeled("TD.SettingAlertNoBill".Translate(), ref alertNoBill);
 			options.CheckboxLabeled("TD.SettingTradeClose".Translate(), ref changeSpeedAfterTrader);
 			options.SliderLabeled("TD.SettingTradeCloseSpeed".Translate(), ref afterTraderSpeed, "{0}x", 0, 4);
@@ -237,6 +239,7 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref alertDeteriorating, "alertDeteriorating", true);
 			Scribe_Values.Look(ref alertHeatstroke, "alertHeatstroke", true);
 			Scribe_Values.Look(ref alertBurning, "alertBurning", true);
+			Scribe_Values.Look(ref alertToxic, "alertToxic", true);
 			Scribe_Values.Look(ref alertNoBill, "alertNoBill", true);
 
 			Scribe_Values.Look(ref matchGrowButton, "matchGrowButton", true);

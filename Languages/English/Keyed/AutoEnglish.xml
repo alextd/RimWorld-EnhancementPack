@@ -83,6 +83,7 @@
 	<TD.SettingAlertDeteriorationDesc>Deteriorating things with less than 50% HP, that are not forbidden, and this doesn't include rotting corpses.</TD.SettingAlertDeteriorationDesc>
 	<TD.SettingAlertHeatstroke>Alert for colonists with heatstroke</TD.SettingAlertHeatstroke>
 	<TD.SettingAlertBurning>Alert for colonists that are burning</TD.SettingAlertBurning>
+	<TD.SettingAlertToxic>Alert for colonists that are getting toxic buildup</TD.SettingAlertToxic>
 	<TD.SettingAlertNoBill>Alert for workbenches with no bills set up</TD.SettingAlertNoBill>
 	<TD.SettingMatchGrow>Enable a tool to make a growing zone that matches terrain</TD.SettingMatchGrow>
 	<TD.SettingMatchGrowDesc>Terrain is only added if fertility % matches the first tile selected when dragging</TD.SettingMatchGrowDesc>
