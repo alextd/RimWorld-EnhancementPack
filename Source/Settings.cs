@@ -58,6 +58,7 @@ namespace TD_Enhancement_Pack
 		public bool mouseoverInfoTopRight = false;
 
 		public bool alertDeteriorating = true;
+		public bool alertHeatstroke = true;
 		public bool alertNoBill = true;
 
 		public bool matchGrowButton = true;
@@ -141,6 +142,7 @@ namespace TD_Enhancement_Pack
 			options.CheckboxLabeled("TD.SettingPawnTableClickSelect".Translate(), ref pawnTableClickSelect, "TD.SettingPawnTableClickSelectDesc".Translate());
 			options.CheckboxLabeled("TD.SettingTopRightMouseover".Translate(), ref mouseoverInfoTopRight, "TD.SettingTopRightMouseoverDesc".Translate());
 			options.CheckboxLabeled("TD.SettingAlertDeterioration".Translate(), ref alertDeteriorating, "TD.SettingAlertDeteriorationDesc".Translate());
+			options.CheckboxLabeled("TD.SettingAlertHeatstroke".Translate(), ref alertHeatstroke);
 			options.CheckboxLabeled("TD.SettingAlertNoBill".Translate(), ref alertNoBill);
 			options.CheckboxLabeled("TD.SettingTradeClose".Translate(), ref changeSpeedAfterTrader);
 			options.SliderLabeled("TD.SettingTradeCloseSpeed".Translate(), ref afterTraderSpeed, "{0}x", 0, 4);
@@ -231,6 +233,7 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref mouseoverInfoTopRight, "mouseoverInfoTopRight", false);
 
 			Scribe_Values.Look(ref alertDeteriorating, "alertDeteriorating", true);
+			Scribe_Values.Look(ref alertHeatstroke, "alertHeatstroke", true);
 			Scribe_Values.Look(ref alertNoBill, "alertNoBill", true);
 
 			Scribe_Values.Look(ref matchGrowButton, "matchGrowButton", true);
