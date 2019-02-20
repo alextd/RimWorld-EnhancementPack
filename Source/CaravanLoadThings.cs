@@ -26,11 +26,13 @@ namespace TD_Enhancement_Pack
 	{
 		public static List<ThingCountUNLIMITED> savedManifest;//TODO clear items when destroyed I guess
 		public static Map savedMap;
-		//private void CalculateAndRecacheTransferables()
+		public static bool caravan;//or pods
+
 		public static void Prefix(Dialog_FormCaravan __instance, Map ___map)
 		{
 			if (!Settings.Get().caravanSaveManifest) return;
 
+			caravan = true;
 			savedManifest = new List<ThingCountUNLIMITED>();
 			//bool matchesSelection = true;	//Ideally it wouldn't save if it matches selection but that's hard to figure out, can just hit reset button.
 
@@ -97,7 +99,8 @@ namespace TD_Enhancement_Pack
 		public static void AddThings(Dialog_FormCaravan dialog, Map map)
 		{
 			//Add manifest
-			if (Settings.Get().caravanSaveManifest && map == SaveManifest.savedMap && SaveManifest.savedMap != null)
+			if (Settings.Get().caravanSaveManifest && SaveManifest.caravan &&
+				map == SaveManifest.savedMap && SaveManifest.savedMap != null)
 			{
 				foreach (ThingCountUNLIMITED thingCount in SaveManifest.savedManifest)
 				{
@@ -117,6 +120,72 @@ namespace TD_Enhancement_Pack
 						transferableOneWay?.AdjustTo(transferableOneWay.ClampAmount(transferableOneWay.CountToTransfer + thing.stackCount));
 					}
 			}
+		}
+	}
+
+
+	//Now for transport pods.
+
+	//Should be Dialog_LoadTransporters but no override of PostClose
+	[HarmonyPatch(typeof(Window), "PostClose")]
+	public static class PodsSaveManifest
+	{
+		public static FieldInfo transferablesInfo = AccessTools.Field(typeof(Dialog_LoadTransporters), "transferables");
+		public static List<TransferableOneWay> Transferables(this Dialog_LoadTransporters dialog) =>
+			(List<TransferableOneWay>)transferablesInfo.GetValue(dialog);
+
+		//This should also be 'Map ___map' but THE PATCH IS NOT ACTUALLY Dialog_LoadTransporters NOW IS IT?
+		public static FieldInfo mapInfo = AccessTools.Field(typeof(Dialog_LoadTransporters), "map");
+		public static Map Map(this Dialog_LoadTransporters dialog) =>
+			(Map)mapInfo.GetValue(dialog);
+
+		public static void Prefix(Window __instance)
+		{
+			if (__instance is Dialog_LoadTransporters dialog)
+			{ 
+				if (!Settings.Get().caravanSaveManifest) return;
+
+				SaveManifest.caravan = false;
+				SaveManifest.savedManifest = new List<ThingCountUNLIMITED>();
+
+				foreach (TransferableOneWay tr in dialog.Transferables())
+				{
+					if (tr.CountToTransfer > 0)
+					{
+						Log.Message($"Saving {tr.AnyThing}:{tr.CountToTransfer}");
+						SaveManifest.savedManifest.Add(new ThingCountUNLIMITED(tr.AnyThing, tr.CountToTransfer));
+					}
+				}
+
+				if (SaveManifest.savedManifest.Count == 0)
+				{
+					SaveManifest.savedManifest = null;
+					SaveManifest.savedMap = null;
+				}
+				else
+					SaveManifest.savedMap = dialog.Map();
+			}
+		}
+	}
+
+
+	[HarmonyPatch(typeof(Dialog_LoadTransporters), "PostOpen")]
+	static class PodsLoadManifest
+	{
+		public static void Postfix(Dialog_LoadTransporters __instance, Map ___map)
+		{
+			//Add manifest
+			if (Settings.Get().caravanSaveManifest && !SaveManifest.caravan &&
+				___map == SaveManifest.savedMap && SaveManifest.savedMap != null)
+			{
+				foreach (ThingCountUNLIMITED thingCount in SaveManifest.savedManifest)
+				{
+					Log.Message($"Loading {thingCount.thing}:{thingCount.count}");
+					TransferableOneWay transferableOneWay = TransferableUtility.TransferableMatching<TransferableOneWay>(thingCount.thing, __instance.Transferables(), TransferAsOneMode.PodsOrCaravanPacking);
+					transferableOneWay?.AdjustTo(transferableOneWay.ClampAmount(transferableOneWay.CountToTransfer + thingCount.count));
+				}
+			}
+			//No selection like caravans - you're already selecting pods!
 		}
 	}
 }
