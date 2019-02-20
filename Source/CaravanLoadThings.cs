@@ -30,7 +30,7 @@ namespace TD_Enhancement_Pack
 		public static void Prefix(Dialog_FormCaravan __instance, Map ___map)
 		{
 			savedManifest = new List<ThingCountUNLIMITED>();
-			//bool matchesSelection = true;
+			//bool matchesSelection = true;	//Ideally it wouldn't save if it matches selection but that's hard to figure out, can just hit reset button.
 
 			foreach (TransferableOneWay tr in __instance.transferables)
 			{
@@ -85,7 +85,7 @@ namespace TD_Enhancement_Pack
 				if (i.opcode == OpCodes.Call && i.operand == CalculateAndRecacheTransferablesInfo)
 				{
 					yield return new CodeInstruction(OpCodes.Ldarg_0);//Dialog
-					yield return new CodeInstruction(OpCodes.Ldarg_0);
+					yield return new CodeInstruction(OpCodes.Ldarg_0);//Dialog
 					yield return new CodeInstruction(OpCodes.Ldfld, AccessTools.Field(typeof(Dialog_FormCaravan), "map"));//Dialog.map
 					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(LoadManifest), nameof(AddThings)));//AddManifest(Dialog, Dialog.map)
 				}
@@ -110,7 +110,7 @@ namespace TD_Enhancement_Pack
 				foreach (object obj in Find.Selector.SelectedObjectsListForReading.Where(o => o is Thing))
 					if (obj is Thing thing)
 					{
-						Log.Message($"adding {thing}:{thing.stackCount}");
+						Log.Message($"Adding Selected {thing}:{thing.stackCount}");
 						TransferableOneWay transferableOneWay = TransferableUtility.TransferableMatching<TransferableOneWay>(thing, dialog.transferables, TransferAsOneMode.PodsOrCaravanPacking);
 						transferableOneWay?.AdjustTo(transferableOneWay.ClampAmount(transferableOneWay.CountToTransfer + thing.stackCount));
 					}
