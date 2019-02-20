@@ -73,6 +73,8 @@
 	<TD.SettingAutoPlantHarvest>Auto-show harvest overlay when ordering plant harvesting</TD.SettingAutoPlantHarvest>
 	<TD.SettingAutoAutorebuild>Autorebuild is on for a new game</TD.SettingAutoAutorebuild>
 	<TD.CaravanLoadSelection>Forming a caravan pre-selects all the things that are selected on the map</TD.CaravanLoadSelection>
+	<TD.CaravanSaveManifest>Closing the caravan dialog will remember the list of things to send, and opening it again will re-select them</TD.CaravanSaveManifest>
+	<TD.CaravanDesc>*Note: Closing and re-opening with newly selected items won't add them, since the previous selection was saved: Just hit the reset button and re-open the window to get newly selected items.</TD.CaravanDesc>
 	<TD.BlueprintAnyStuff>Right-click a building tool to select any material to build from (even when you don't have it available)</TD.BlueprintAnyStuff>
 	<TD.SettingTopRightMouseover>Mouseover tile info is on topright</TD.SettingTopRightMouseover>
 	<TD.SettingTopRightMouseoverDesc>So it shows up when something is selected\n\nOf course this is a bad idea if you still have the learning helper on.</TD.SettingTopRightMouseoverDesc>

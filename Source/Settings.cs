@@ -52,6 +52,7 @@ namespace TD_Enhancement_Pack
 
 		public bool autorebuildDefaultOn = true;
 		public bool caravanLoadSelection = true;
+		public bool caravanSaveManifest = true;
 		public bool blueprintAnyStuff = true;
 		public bool pawnTableHighlightSelected = true;
 		public bool pawnTableClickSelect = false;
@@ -132,7 +133,11 @@ namespace TD_Enhancement_Pack
 			options.LabelHeader("TD.SettingsHeaderGame".Translate());
 			options.CheckboxLabeled("TD.DeepDrillRandomrock".Translate(), ref deepDrillRandom, "TD.DeepDrillRandomrockDesc".Translate());
 			options.CheckboxLabeled("TD.SettingAutoAutorebuild".Translate(), ref autorebuildDefaultOn);
+			options.Gap();
 			options.CheckboxLabeled("TD.CaravanLoadSelection".Translate(), ref caravanLoadSelection);
+			options.CheckboxLabeled("TD.CaravanSaveManifest".Translate(), ref caravanSaveManifest);
+			options.Label("TD.CaravanDesc".Translate());
+			options.Gap();
 			options.CheckboxLabeled("TD.BlueprintAnyStuff".Translate(), ref blueprintAnyStuff);
 			options.Label("TD.SarcophagusPreferred".Translate(), tooltip: "TD.SarcophagusPreferredDesc".Translate());
 			options.GapLine();
@@ -236,6 +241,7 @@ namespace TD_Enhancement_Pack
 
 			Scribe_Values.Look(ref autorebuildDefaultOn, "autorebuildDefaultOn", true);
 			Scribe_Values.Look(ref caravanLoadSelection, "caravanLoadSelection", true);
+			Scribe_Values.Look(ref caravanSaveManifest, "caravanSaveManifest", true);
 			Scribe_Values.Look(ref blueprintAnyStuff, "blueprintAnyStuff", true);
 			Scribe_Values.Look(ref pawnTableHighlightSelected, "pawnTableHighlightSelected", true);
 			Scribe_Values.Look(ref pawnTableClickSelect, "pawnTableClickSelect", false);

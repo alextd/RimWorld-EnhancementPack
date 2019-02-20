@@ -29,6 +29,8 @@ namespace TD_Enhancement_Pack
 		//private void CalculateAndRecacheTransferables()
 		public static void Prefix(Dialog_FormCaravan __instance, Map ___map)
 		{
+			if (!Settings.Get().caravanSaveManifest) return;
+
 			savedManifest = new List<ThingCountUNLIMITED>();
 			//bool matchesSelection = true;	//Ideally it wouldn't save if it matches selection but that's hard to figure out, can just hit reset button.
 
@@ -95,7 +97,7 @@ namespace TD_Enhancement_Pack
 		public static void AddThings(Dialog_FormCaravan dialog, Map map)
 		{
 			//Add manifest
-			if (map == SaveManifest.savedMap && SaveManifest.savedMap != null)
+			if (Settings.Get().caravanSaveManifest && map == SaveManifest.savedMap && SaveManifest.savedMap != null)
 			{
 				foreach (ThingCountUNLIMITED thingCount in SaveManifest.savedManifest)
 				{
