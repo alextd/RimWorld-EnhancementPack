@@ -127,7 +127,7 @@ namespace TD_Enhancement_Pack
 	//Now for transport pods.
 
 	//Should be Dialog_LoadTransporters but no override of PostClose
-	//[HarmonyPatch(typeof(Window), "PostClose")]
+	[HarmonyPatch(typeof(Window), "PostClose")]
 	public static class PodsSaveManifest
 	{
 		public static FieldInfo transferablesInfo = AccessTools.Field(typeof(Dialog_LoadTransporters), "transferables");
@@ -169,7 +169,7 @@ namespace TD_Enhancement_Pack
 	}
 
 
-	//[HarmonyPatch(typeof(Dialog_LoadTransporters), "PostOpen")]
+	[HarmonyPatch(typeof(Dialog_LoadTransporters), "PostOpen")]
 	static class PodsLoadManifest
 	{
 		public static void Postfix(Dialog_LoadTransporters __instance, Map ___map)
