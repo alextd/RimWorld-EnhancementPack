@@ -127,7 +127,12 @@ namespace TD_Enhancement_Pack
 	//Now for transport pods.
 
 	//Should be Dialog_LoadTransporters but no override of PostClose
-	[HarmonyPatch(typeof(Window), "PostClose")]
+	//[HarmonyPatch(typeof(Window), "PostClose")]
+	//Okay this patch is how it should be
+	//Seems on mac/linux, patching an empty virtual method causes a crash
+	//So let's patch the one place this method is actually called
+	//public bool TryRemove(Window window, bool doCloseSound = true)
+	[HarmonyPatch(typeof(WindowStack), nameof(WindowStack.TryRemove), new Type[] { typeof(Window), typeof(bool)})]
 	public static class PodsSaveManifest
 	{
 		public static FieldInfo transferablesInfo = AccessTools.Field(typeof(Dialog_LoadTransporters), "transferables");
@@ -139,7 +144,23 @@ namespace TD_Enhancement_Pack
 		public static Map Map(this Dialog_LoadTransporters dialog) =>
 			(Map)mapInfo.GetValue(dialog);
 
-		public static void Prefix(Window __instance)
+		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+		{
+			MethodInfo PostCloseInfo = AccessTools.Method(typeof(Window), nameof(Window.PostClose));
+			foreach(CodeInstruction i in instructions)
+			{
+				if (i.opcode == OpCodes.Callvirt && i.operand == PostCloseInfo)
+				{
+					yield return new CodeInstruction(OpCodes.Dup);//Window window2 = window
+					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(PodsSaveManifest), nameof(PostClosePrefix)));//PostClosePrefix(window2)
+					//followed by PostClose(window)
+				}
+
+				yield return i;
+			}
+		}
+		
+		public static void PostClosePrefix(Window __instance)
 		{
 			if (__instance is Dialog_LoadTransporters dialog)
 			{ 
