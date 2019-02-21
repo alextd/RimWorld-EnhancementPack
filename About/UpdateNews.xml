@@ -36,4 +36,13 @@ Latest updates:
 		</content>
 		<linkUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=1339135272</linkUrl>
 	</li>
+
+	<li>
+		<assemblyVersion>1.2.1</assemblyVersion>
+		<content>- Paste Home/Roof area into other areas by right-clicking the paste icon|img:PasteHomeArea|
+- Alerts for concerning levels of toxic buildup and heatstroke affecting your colonists (hypothermia already has an alert)
+- Selected items for caravans and transport pods are saved when you close and re-open the same window
+		</content>
+		<linkUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=1339135272</linkUrl>
+	</li>
 </News>
