@@ -18,7 +18,7 @@ namespace TD_Enhancement_Pack
 		}
 	}
 
-	[HarmonyPatch(typeof(Dialog_Negotiation), "Close")]
+	[HarmonyPatch(typeof(Window), "Close")]
 	public static class PauseAfterNegotiation
 	{
 		//Dialog_Negotiation inherits Window
