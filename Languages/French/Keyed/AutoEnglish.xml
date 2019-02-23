@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+	<!-- EN: Hex color values only -->
+	<TD.HexColorValuesOnly>Codes de couleur Hex uniquement</TD.HexColorValuesOnly>
+	<!-- EN: Toggle the buildable terrain overlay -->
+	<TD.ToggleBuildable>Activer/Désactiver la zone de surbrillance des terrains constructibles</TD.ToggleBuildable>
+	<!-- EN: Toggle the beauty overlay -->
+	<TD.ToggleBeauty>Activer/Désactiver la zone de surbrillance de l'esthétisme</TD.ToggleBeauty>
+	<!-- EN: Toggle the fertile terrain overlay -->
+	<TD.ToggleFertility>Activer/Désactiver la zone de surbrillance de la fertilité des sols</TD.ToggleFertility>
+	<!-- EN: Toggle the lighting overlay -->
+	<TD.ToggleLighting>Activer/Désactiver la zone de surbrillance de l'éclairage</TD.ToggleLighting>
+	<!-- EN: Toggle the walkspeed overlay -->
+	<TD.ToggleWalkSpeed>Activer/Désactiver la zone de surbrillance de la vitesse de déplacement</TD.ToggleWalkSpeed>
+	<!-- EN: Toggle the harvest overlay -->
+	<TD.TogglePlantHarveset>Activer/Désactiver la zone de surbrillance de la récolte</TD.TogglePlantHarveset>
+	<!-- EN: TD Enhancement Pack -->
+	<TDEnhancementPack>TD Enhancement Pack</TDEnhancementPack>
+	<!-- EN: Size: {0:0} (Fertile: {1:0.0}) -->
+	<TD.SizeAndFertile>Taille: {0:0} (Fertile: {1:0.0})</TD.SizeAndFertile>
+	<!-- EN: Size: {0} -->
+	<TD.Size>Taille: {0}</TD.Size>
+	<!-- EN: To do: {0} -->
+	<TD.CountToSow>Reste à semer: {0}</TD.CountToSow>
+	<!-- EN: Grown: {0} -->
+	<TD.CountFullyGrown>Mûr: {0}</TD.CountFullyGrown>
+	<!-- EN: Enable a toggle for a buildable terrain overlay -->
+	<TD.SettingOverlayBuildable>Ajouter un bouton d'activation/désactivation de la zone de surbrillance des terrains constructibles sur le HUD</TD.SettingOverlayBuildable>
+	<!-- EN: Red is unbuildable terrain, Orange is 'Medium', Yellow is 'Light' -->
+	<TD.SettingOverlayBuildableDesc>Rouge pour les terrains non constructibles, Orange pour 'Modéré', Jaune pour 'Léger'</TD.SettingOverlayBuildableDesc>
+	<!-- EN: Enable a toggle for a beauty overlay -->
+	<TD.SettingOverlayBeauty>Ajouter un bouton d'activation/désactivation de la zone de surbrillance de l'esthétisme sur le HUD</TD.SettingOverlayBeauty>
+	<!-- EN: Enable a toggle for a fertility overlay -->
+	<TD.SettingOverlayFertility>Ajouter un bouton d'activation/désactivation de la zone de surbrillance de la fertilité des sols sur le HUD</TD.SettingOverlayFertility>
+	<!-- EN: Fertility overlay shows value for terrain under floors -->
+	<TD.SettingOverlayFertilityUnder>Mettre aussi en surbrillance la fertilité des sols se trouvant sous les sols construits</TD.SettingOverlayFertilityUnder>
+	<!-- EN: Enable a toggle for a walkspeed overlay -->
+	<TD.SettingOverlayWalkSpeed>Ajouter un bouton d'activation/désactivation de la zone de surbrillance de la vitesse de déplacement sur le HUD</TD.SettingOverlayWalkSpeed>
+	<!-- EN: Enable a toggle for a lighting overlay -->
+	<TD.SettingOverlayLighting>Ajouter un bouton d'activation/désactivation de la zone de surbrillance de l'éclairage sur le HUD</TD.SettingOverlayLighting>
+	<!-- EN: Sun-lit outdoor areas are uncolored -->
+	<TD.SettingOverlayLightingDesc>Les zones extérieures éclairées par la lumière du jour ne sont pas colorées</TD.SettingOverlayLightingDesc>
+	<!-- EN: Enable a toggle for a harvest overlay -->
+	<TD.SettingOverlayPlantHarvest>Ajouter un bouton d'activation/désactivation de la zone de surbrillance de la récolte sur le HUD</TD.SettingOverlayPlantHarvest>
+	<!-- EN: Set speed after closing trade or negotiation dialog -->
+	<TD.SettingTradeClose>Régler la vitesse du jeu après avoir fermé la fenêtre de dialogue (commerce ou négociation)</TD.SettingTradeClose>
+	<!-- EN: Speed after closing:  -->
+	<TD.SettingTradeCloseSpeed>Vitesse après fermeture de la fenêtre : </TD.SettingTradeCloseSpeed>
+	<!-- EN: Show arrow indicating research in progress -->
+	<TD.SettingResearchingArrow>Afficher une flèche indiquant qu'une recherche est en cours</TD.SettingResearchingArrow>
+	<!-- EN: Show arrows indicating skill gain -->
+	<TD.SettingSkillGainArrow>Afficher des flèches quand des compétences augmentent</TD.SettingSkillGainArrow>
+	<!-- EN: In the Character Tab -->
+	<TD.SettingSkillGainArrowDesc>Dans la fenêtre de personnage</TD.SettingSkillGainArrowDesc>
+	<!-- EN: Show arrows indicating skill loss -->
+	<TD.SettingSkillLossArrow>Afficher des flèches quand des compétences diminuent</TD.SettingSkillLossArrow>
+	<!-- EN: Skills slowly lose experience after level 10 (The arrow can be very faded for slow rates) -->
+	<TD.SettingSkillLossArrowDesc>Les compétences diminuent lentement après le niveau 10 (La flèche d'une compétence peut être fortement estompée si celle-ci diminue très lentement)</TD.SettingSkillLossArrowDesc>
+	<!-- EN: Show Stockpile/Growing zone area size and info -->
+	<TD.SettingZoneSize>Afficher la taille et des informations supplémentaires sur les zones de stockage et les zones agricoles</TD.SettingZoneSize>
+	<!-- EN: Growing zones show count of empty / mature plots. The "Fertile" count is the approximate equivalent number of 100% fertility land (e.g 100 plots with 140% fertility would yield about the same as 140 at 100% fertiliity) (And this takes into acount plant fertility sensitivity) -->
+	<TD.SettingZoneSizeDesc>Les zones agricoles affichent le nombre de parcelles non semées et mûres. Le nombre "Fertile" est une approximation équivalente à un sol fertile à 100% (par exemple, 100 parcelles d'un sol fertile à 140% donneraient à peu près le même résultat que 140 parcelles d'un sol fertile à 100%) (Cela prend aussi en compte la sensibilité à la fertilité de la plante)</TD.SettingZoneSizeDesc>
+	<!-- EN: Other features: -->
+	<TD.OtherFeatures>Autres features :</TD.OtherFeatures>
+	<!-- EN: Areas can be reordered, recolored, and copy/pasted in the area manager -->
+	<TD.AreaEditing>Les zones peuvent être récupérées, recolorées, et copiées/collées dans le gestionnaire de zones</TD.AreaEditing>
+	<!-- EN: Make an area named 'Never Home' and the area will never be added to the Home Area -->
+	<TD.NeverHome>Renommer une zone 'Never Home' et elle ne sera jamais ajoutée à la zone de base</TD.NeverHome>
+	<!-- EN: Make an area named 'Slaughter' and the animals will only be slaughtered in that area -->
+	<TD.SlaughterZone>Renommer une zone 'Slaughter' et les animaux ne seront abattus que dans celle-ci</TD.SlaughterZone>
+	<!-- EN: These require a restart to take effect: -->
+	<TD.RequiresRestart>Les features suivantes requièrent un redémarrage pour être prises en compte :</TD.RequiresRestart>
+	<!-- EN: (various) selected items are given a count -->
+	<TD.VariousCount>Le nombre d'objets (divers) sélectionnés est affiché</TD.VariousCount>
+	<!-- EN: Food 'rotted away' messages are clickable to see where it was -->
+	<TD.RottedAwayClickable>Les messages 'Tel aliment a pourri dans le stockage' sont maintenant cliquable pour voir où il se trouvait</TD.RottedAwayClickable>
+	<!-- EN: Popup messages like '% recruit chance' (text motes) stay onscreen in realtime, so they don't dissappear at high speeds -->
+	<TD.PopupMessageRealtime>Les messages popup lors des tentatives de recrutement restent affichés en temps réel, et donc ne disparaissent plus en vitesse accélérée</TD.PopupMessageRealtime>
+	<!-- EN: Undrafted colonists ignore sleeping enemies -->
+	<TD.SettingsIgnoreSleeping>Les colons non enrôlés ignorent les ennemis endormis</TD.SettingsIgnoreSleeping>
+	<!-- EN: This applies to the 'Attack' Reaction mode. Would you believe your colonists would attack sleeping megascarabs if they happened to haul near them? -->
+	<TD.SettingsIgnoreSleepingDesc>Cela s'applique à la réaction 'Attaque' lorsque des ennemis sont proches. Pensez-vous réellement que vos colons attaqueraient des mégascarabées endormis s'ils transportent quelque chose proches d'eux ?</TD.SettingsIgnoreSleepingDesc>
+	<!-- EN: Show stop button (undrafted) -->
+	<TD.ShowStopButtonUnDrafted>Affiche le bouton 'Stop' (si non enrôlé)</TD.ShowStopButtonUnDrafted>
+	<!-- EN: Show stop button (drafted) -->
+	<TD.ShowStopButtonDrafted>Affiche le bouton 'Stop' (si enrôlé)</TD.ShowStopButtonDrafted>
+	<!-- EN: Stop -->
+	<TD.StopGizmo>Stop</TD.StopGizmo>
+	<!-- EN: Stop the current action -->
+	<TD.StopDescDrafted>Arrêter l'action en cours</TD.StopDescDrafted>
+	<!-- EN: Stop the current job (find another job, which might be the same job) -->
+	<TD.StopDescUndrafted>Arrêter le travail en cours (trouver un autre travail, qui peut être le même travail)</TD.StopDescUndrafted>
+	<!-- EN: Added by TD Enhancement Pack -->
+	<TD.AddedByTD>Ajouté par TD Enhancement Pack</TD.AddedByTD>
+	<!-- EN: Allow harvesting -->
+	<TD.AllowHarvesting>Autoriser la récolte</TD.AllowHarvesting>
+	<!-- EN: When disabled, colonists will never harvest plants in this zone. They will still sow. -->
+	<TD.AllowHarvestingDesc>Si désactivé, les colons ne seront pas autorisés à récolter cette zone. La zone sera quand même semée.</TD.AllowHarvestingDesc>
+	<!-- EN: Growing Zones 'Allow Harvesting' Toggle -->
+	<TD.SettingAllowHarvesting>Ajouter le bouton d'activation/désactivation 'Autoriser la récolte' dans les zones agricoles</TD.SettingAllowHarvesting>
+	<!-- EN: Also applies to Hydroponics (forbidden status is just for sowing then) -->
+	<TD.SettingAllowHarvestingDesc>S'applique aussi aux bassins hydroponiques (Si désactivé, n'autorise alors que le semis)</TD.SettingAllowHarvestingDesc>
+	<!-- EN: Good body conditions are green ; Whole body tag is yellow -->
+	<TD.FeatureConditionGreen>Les bonnes conditions de santé sont vertes ; Ce qui concerne tout le corps est jaune</TD.FeatureConditionGreen>
+	<!-- EN: What dropped: {0} -->
+	<TD.WhatDropped>Ce qui a été largué : {0}</TD.WhatDropped>
+	<!-- EN: Deterioration -->
+	<TD.Deterioration>Détérioration</TD.Deterioration>
+	<!-- EN: Something is deteriorating and is getting low on health. Put it indoors to keep it safe. -->
+	<TD.DeteriorationAlert>Un objet se détériore et a une santé basse. Placez-le en intérieur pour le protéger.</TD.DeteriorationAlert>
+	<!-- EN: Match -->
+	<TD.Match>Correspondance</TD.Match>
+	<!-- EN: Add a growing zone, but only add terrain with fertility that matches the first cell picked -->
+	<TD.MatchDesc>Créer une zone agricole, mais n'ajouter que les parcelles dont la fertilité est la même que la première parcelle sélectionnée</TD.MatchDesc>
+	<!-- EN: Stop fleeing if threat is gone -->
+	<TD.SettingStopFlee>Arrêter de fuir lorsqu'il n'y a plus de menaces</TD.SettingStopFlee>
+	<!-- EN: Pretty sure this works\n\nSetting change doesn't apply to people already fleeing -->
+	<TD.SettingStopFleeDesc>Quasiment certain que ça fonctionne\n\nNe s'applique pas aux colons qui sont déjà en train de fuir</TD.SettingStopFleeDesc>
+	<!-- EN: Dodge grenades while drafted -->
+	<TD.SettingDodgeGrenades>Esquiver les grenades quand enrôlé</TD.SettingDodgeGrenades>
+	<!-- EN: Of course this interrupts what you're doing. -->
+	<TD.SettingDodgeGrenadesDesc>Evidemment, cela interrompt l'action en cours</TD.SettingDodgeGrenadesDesc>
+	<!-- EN: Don't dodge if shield belt is worn -->
+	<TD.SettingDodgeGrenadesUnlessBelt>Ne pas esquiver si un bouclier d'énergie est équipé</TD.SettingDodgeGrenadesUnlessBelt>
+	<!-- EN: Auto-show buildable terrain overlay when placing buildings -->
+	<TD.SettingAutoBuildable>Afficher automatiquement la zone de surbrillance des terrains constructibles lors des constructions</TD.SettingAutoBuildable>
+	<!-- EN: Buildings with unique requirements like bridges and graves will show a overlay of where they can't be built -->
+	<TD.SettingAutoBuildableDesc>Les constructions avec une exigence unique comme les ponts ou les tombes afficheront en zone de surbrillance les endroits où ils ne peuvent pas être construits</TD.SettingAutoBuildableDesc>
+	<!-- EN: Auto-highlight smoothable terrain when smoothing things -->
+	<TD.SettingAutoSmoothable>Afficher automatiquement en surbrillance les terrains pouvant être aplanis lorsque l'outil 'Aplanir surface' est utilisé</TD.SettingAutoSmoothable>
+	<!-- EN: Auto-highlight tree growth when ordering wood chopping -->
+	<TD.SettingAutoTreeGrowth>Afficher automatiquement en surbrillance la croissance des arbres lorsque l'outil 'Couper du bois' est utilisé</TD.SettingAutoTreeGrowth>
+	<!-- EN: Red is unharvestable \nGreen is harvestable \nWhite is fully mature \nYellow is harvestable "soon" -->
+	<TD.SettingAutoTreeGrowthDesc>Rouge pour 'non récoltable' \nVert pour 'récoltable' \nBlanc pour 'complètement mûr' \nJaune pour 'bientôt récoltable'</TD.SettingAutoTreeGrowthDesc>
+	<!-- EN: Auto-highlight wind-blocking things when placing wind turbines -->
+	<TD.SettingAutoWindBlocker>Afficher automatiquement en surbrillance les objets bloquant le vent lorsque vous placez une éolienne</TD.SettingAutoWindBlocker>
+	<!-- EN: Auto-show fertility overlay when placing growing zones -->
+	<TD.SettingAutoFertility>Afficher automatiquement la zone de surbrillance de la fertilité des sols lorsque vous placez des zones agricoles</TD.SettingAutoFertility>
+	<!-- EN: Auto-show lighting overlay when placing lights -->
+	<TD.SettingAutoLighting>Afficher automatiquement la zone de surbrillance de l'éclairage lorsque vous placez des lumières</TD.SettingAutoLighting>
+	<!-- EN: Auto-show harvest overlay when ordering plant harvesting -->
+	<TD.SettingAutoPlantHarvest>Afficher automatiquement la zone de surbrillance de la récolte lorsque l'outil 'Récolter' est utilisé</TD.SettingAutoPlantHarvest>
+	<!-- EN: Autorebuild is on for a new game -->
+	<TD.SettingAutoAutorebuild>L'auto-reconstruction est activée pour une nouvelle partie</TD.SettingAutoAutorebuild>
+	<!-- EN: Forming a caravan pre-selects all the things that are selected on the map -->
+	<TD.CaravanLoadSelection>Former une caravane présélectionne tout ce qui est séléctionné sur la carte</TD.CaravanLoadSelection>
+	<!-- EN: Closing the caravan/transport-pod dialog will remember the list of things to send, and opening it again will re-select them -->
+	<TD.CaravanSaveManifest>Fermer la fenêtre de dialogue des caravanes ou capsules de transport gardera en mémoire ce qui avait été séléctionné</TD.CaravanSaveManifest>
+	<!-- EN: *Note: Closing and re-opening with newly selected items won't add them, since the previous selection was saved: Just hit the reset button and re-open the window to get newly selected items. -->
+	<TD.CaravanDesc>*Remarque : Fermer puis réouvrir la fenêtre avec de nouveaux objets séléctionnés sur la carte ne les ajoutera pas à la liste, la première sélection ayant été sauvegardée : Dans ce cas, utiliser d'abord le bouton de réinitialisation.</TD.CaravanDesc>
+	<!-- EN: Right-click a building tool to select any material to build from (even when you don't have it available) -->
+	<TD.BlueprintAnyStuff>Faire un clic droit sur un outil de construction affiche tous les matériaux possibles (même si vous ne les possédez pas)</TD.BlueprintAnyStuff>
+	<!-- EN: Mouseover tile info is on topright -->
+	<TD.SettingTopRightMouseover>Placer les informations concernant la case survolée à la souris en haut à droite de l'écran</TD.SettingTopRightMouseover>
+	<!-- EN: So it shows up when something is selected\n\nOf course this is a bad idea if you still have the learning helper on. -->
+	<TD.SettingTopRightMouseoverDesc>Cela permet de voir ces informations même si un objet est sélectionné\n\nEvidemment c'est une mauvaise idée si l'assistant d'apprentissage est toujours activé.</TD.SettingTopRightMouseoverDesc>
+	<!--EN: Show selected pawns in tables -->
+	<TD.SettingPawnTableHighlightSelected>Surligner les colons sélectionnés dans les tableurs</TD.SettingPawnTableHighlightSelected>
+	<!--EN: Mouse clicks in pawn tables select them. (Alt-click to work as before) -->
+	<TD.SettingPawnTableClickSelect>Cliquer sur les colons dans les tableurs les sélectionne seulement. (Alt + clic pour utiliser la fonction de base)</TD.SettingPawnTableClickSelect>
+	<!-- EN: Should behave intuitively like any other selection. Press Esc to close the tab window.\n\nShift-click to select/deselect multiple. Double click to center camera. Right-click to select a single pawn. Alt-click to close window, select and go to that one pawn. -->
+	<TD.SettingPawnTableClickSelectDesc>Devrait se comporter intuitivement comme toute autre sélection. Appuyer sur Echap pour fermer le tableur.\n\nShift + clic pour sélectionner/désélectionner plusieurs colons.\nDouble-clic pour centrer la caméra sur le colon.\nClic droit pour sélectionner un seul colon.\nAlt + clic pour fermer la fenêtre, sélectionner et centrer la caméra sur le colon.</TD.SettingPawnTableClickSelectDesc>
+	<!-- EN: Alert for deteriorating things -->
+	<TD.SettingAlertDeterioration>Afficher une alerte quand un objet se détériore</TD.SettingAlertDeterioration>
+	<!-- EN: Deteriorating things with less than 50% HP, that are not forbidden, and this doesn't include rotting corpses. -->
+	<TD.SettingAlertDeteriorationDesc>Pour les objets se détériorant et ayant moins de 50% de points de vie, qui ne sont pas interdits. N'inclut pas les corps pourrissants</TD.SettingAlertDeteriorationDesc>
+	<!-- EN: Alert for colonists with heatstroke -->
+	<TD.SettingAlertHeatstroke>Afficher une alerte quand un colon souffre d'insolation</TD.SettingAlertHeatstroke>
+	<!-- EN: Alert for colonists that are burning -->
+	<TD.SettingAlertBurning>Afficher une alerte quand un colon brûle</TD.SettingAlertBurning>
+	<!-- EN: Alert for colonists that are getting toxic buildup -->
+	<TD.SettingAlertToxic>Afficher une alerte quand un colon est empoisonné</TD.SettingAlertToxic>
+	<!-- EN: Alert for workbenches with no bills set up -->
+	<TD.SettingAlertNoBill>Afficher une alerte quand un établi n'a aucune tâche d'assignée</TD.SettingAlertNoBill>
+	<!-- EN: Enable a tool to make a growing zone that matches terrain -->
+	<TD.SettingMatchGrow>Ajouter un outil pour créer une zone agricole qui correspond à la fertilité du terrain</TD.SettingMatchGrow>
+	<!-- EN: Terrain is only added if fertility % matches the first tile selected when dragging -->
+	<TD.SettingMatchGrowDesc>N'ajoute que les parcelles dont la fertilité est la même que la première parcelle sélectionnée</TD.SettingMatchGrowDesc>
+	<!-- EN: The letter for random resource drop pods tell you what dropped -->
+	<TD.DropPodWhatDropped>Le message indiquant qu'un largage aléatoire d'objets via des capsules de transport est arrivé indique de quels objets il s'agit</TD.DropPodWhatDropped>
+	<!-- EN: Sarcophagus preferred to use over graves -->
+	<TD.SarcophagusPreferred>Les sarcophages sont priorisés par rapport aux tombes</TD.SarcophagusPreferred>
+	<!-- EN: The default settings for a Sarcophagus are Critical so they are used before graves. The settings are already colonist-only, but without setting Critical, colonists would be buried in closer graves instead -->
+	<TD.SarcophagusPreferredDesc>Le réglage par défaut pour les sarcophages est 'Critique' pour qu'ils soient utilisés en priorité avant les tombes. Les réglages sont déjà 'uniquement pour les colons', mais sans le réglage 'Critique', ils seraient enterrés dans les tombes les plus proches</TD.SarcophagusPreferredDesc>
+	<!-- EN: Frames can't be deconstructed, only canceled -->
+	<TD.NoFrameDecon>Les structures non terminées ne peuvent pas être démolies, mais seulement annulées</TD.NoFrameDecon>
+	<!-- EN: Deconstruction would return less resources than canceling -->
+	<TD.NoFrameDeconDesc>La démolition d'une structure non terminée redonnerait moins de ressources que son annulation</TD.NoFrameDeconDesc>
+	<!-- EN: Dropdown designators get their order set by their contained designators -->
+	<TD.DropdownBuildingsOrder>Dropdown designators get their order set by their contained designators</TD.DropdownBuildingsOrder>
+	<!-- EN: e.g. colored lights show up in the build menu next to other lights instead of the front of the list -->
+	<TD.DropdownBuildingsOrderDesc>Par exemple, les lumières colorées sont affichées à coté des autres types d'éclairage au lieu du début de la liste</TD.DropdownBuildingsOrderDesc>
+	<!-- EN: Selected stone has a button to smooth it -->
+	<TD.SmoothSelectedStone>Une roche sélectionnée possède un bouton 'Aplanir surface'</TD.SmoothSelectedStone>
+	<!-- EN: Deep drilling for stone gets a random stone type -->
+	<TD.DeepDrillRandomrock>Le forage en profondeur pour la roche donne un type de roche aléatoire</TD.DeepDrillRandomrock>
+	<!-- EN: It would normally only get one type. Now it's random from the stone types available on the map. -->
+	<TD.DeepDrillRandomrockDesc>Par défaut, cela ne donne qu'un seul type de roche. Désormais, cela peut être n'importe quel type de roche disponible sur la carte à chaque fois.</TD.DeepDrillRandomrockDesc>
+	<!-- EN: Lower overlay opacities: -->
+	<TD.LowerOverlayOpacities>Réduire l'opacité des zones de surbrillance :</TD.LowerOverlayOpacities>
+	<!-- EN: If you have Allow Tool, stockpiles have an 'urgent refill' toggle -->
+	<TD.SettingUrgentRefill>Si vous avez 'Allow Tool', les zones de stockage possèdent un bouton 'Remplir en urgence'</TD.SettingUrgentRefill>
+	<!-- EN: If a tile in a chosen stockpile is empty, there will be a urgent hauling job to refill it. Great for kitchen/workbench supplies.\n\nRequires Allow Tool -->
+	<TD.SettingUrgentRefillDesc>Si une case de la zone de stockage choisie est vide, une tâche de transport en urgence sera assignée pour la remplir. Parfait pour les provisions liées à une cuisine ou un établi.\n\n Nécessite le mod 'Allow Tool'</TD.SettingUrgentRefillDesc>
+	<!-- EN: Fix camera middle-mouse dragging -->
+	<TD.SettingCameraDragFix>Corrige le déplacement de la caméra avec le bouton du milieu de la souris</TD.SettingCameraDragFix>
+	<!-- EN: Dragging attaches the map to the cursor instead of moving at some who-knows-what speed\n\nDragging at low FPS is not affected\n\nThe sliding of the map after mouse is stopped is removed -->
+	<TD.SettingCameraDragFixDesc>Le bouton du milieu de la souris attache désormais la carte au curseur de la souris au lieu de déplacer la caméra à Dieu sait quelle vitesse\n\nLe déplacement à faible FPS n'est pas affecté\n\nLe glissement de la carte après l'arrêt de la souris a été retiré</TD.SettingCameraDragFixDesc>
+	<!-- EN: refill zones urgently -->
+	<TD.WorkGiverRefillZones>Remplir les zones en urgence</TD.WorkGiverRefillZones>
+	<!-- EN: refilling urgently -->
+	<TD.RefillingUrgently>Remplir en urgence</TD.RefillingUrgently>
+	<!-- EN: Urgent Refill -->
+	<TD.GizmoUrgentRefill>Remplir en urgence</TD.GizmoUrgentRefill>
+	<!-- EN: If any cell is unoccupied, it will be urgently refilled -->
+	<TD.GizmoUrgentRefillDesc>Si au moins une case est inoccupée, elle sera remplie en urgence</TD.GizmoUrgentRefillDesc>
+	<!-- EN: Area / Zone things -->
+	<TD.SettingHeaderArea>Zones</TD.SettingHeaderArea>
+	<!-- EN: Overlays -->
+	<TD.SettingHeaderOverlays>Zones de surbrillance</TD.SettingHeaderOverlays>
+	<!-- EN: Game improvements -->
+	<TD.SettingHeaderGameImprovements>Améliorations du jeu</TD.SettingHeaderGameImprovements>
+	<!-- EN: Notifications / Info -->
+	<TD.SettingHeaderInfo>Notifications / Info</TD.SettingHeaderInfo>
+	<!-- EN: AI / behavior -->
+	<TD.SettingHeaderAI>IA / Comportements</TD.SettingHeaderAI>
+	<!-- EN: Cleaner zone edges (And range indicators) -->
+	<TD.SettingCleanZoneEdges>Bords des zones moins marqués (Et indicateurs de taille)</TD.SettingCleanZoneEdges>
+	<!-- EN: Area / Zone things -->
+	<TD.SettingsHeaderArea>Zones</TD.SettingsHeaderArea>
+	<!-- EN: Cleaner zone edges (And range indicators) -->
+	<TD.SettingsCleanZone>Bords des zones moins marqués (Et indicateurs de taille)</TD.SettingsCleanZone>
+	<!-- EN: Overlays -->
+	<TD.SettingsHeaderOverlays>Zones de surbrillance</TD.SettingsHeaderOverlays>
+	<!-- EN: Game improvements -->
+	<TD.SettingsHeaderGame>Améliorations du jeu</TD.SettingsHeaderGame>
+	<!-- EN: Notifications / Info -->
+	<TD.SettingsHeaderInfo>Notifications / Info</TD.SettingsHeaderInfo>
+	<!-- EN: Alerts -->
+	<TD.SettingsHeaderAlerts>Alertes</TD.SettingsHeaderAlerts>
+	<!-- EN: AI / behavior -->
+	<TD.SettingsHeaderAI>IA / Comportements</TD.SettingsHeaderAI>
+	<!-- EN: Empty Workbench -->
+	<TD.EmptyWorkbench>Établi vide</TD.EmptyWorkbench>
+	<!-- EN: There is a workbench with no work bills set up -->
+	<TD.EmptyWorkbenchDesc>Un établi n'a aucune tâche assignée</TD.EmptyWorkbenchDesc>
+	<!-- EN: Clear entire area (but don't delete from the list) -->
+	<TD.ClearEntireArea>Effacer toute la zone (ne la supprime pas de la liste)</TD.ClearEntireArea>
+	
+	
+
+
+
+
+</LanguageData>
