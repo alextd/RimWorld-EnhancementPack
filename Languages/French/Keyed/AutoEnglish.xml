@@ -110,7 +110,7 @@
 	<!-- EN: Something is deteriorating and is getting low on health. Put it indoors to keep it safe. -->
 	<TD.DeteriorationAlert>Un objet se détériore et a une santé basse. Placez-le en intérieur pour le protéger.</TD.DeteriorationAlert>
 	<!-- EN: Match -->
-	<TD.Match>Correspondance</TD.Match>
+	<TD.Match>Match</TD.Match>
 	<!-- EN: Add a growing zone, but only add terrain with fertility that matches the first cell picked -->
 	<TD.MatchDesc>Créer une zone agricole, mais n'ajouter que les parcelles dont la fertilité est la même que la première parcelle sélectionnée</TD.MatchDesc>
 	<!-- EN: Stop fleeing if threat is gone -->
@@ -142,7 +142,7 @@
 	<!-- EN: Auto-show harvest overlay when ordering plant harvesting -->
 	<TD.SettingAutoPlantHarvest>Afficher automatiquement la zone de surbrillance de la récolte lorsque l'outil 'Récolter' est utilisé</TD.SettingAutoPlantHarvest>
 	<!-- EN: Autorebuild is on for a new game -->
-	<TD.SettingAutoAutorebuild>L'auto-reconstruction est activée pour une nouvelle partie</TD.SettingAutoAutorebuild>
+	<TD.SettingAutoAutorebuild>Un bouton d'activation/désactivation de l'auto-reconstruction est ajouté sur le HUD</TD.SettingAutoAutorebuild>
 	<!-- EN: Forming a caravan pre-selects all the things that are selected on the map -->
 	<TD.CaravanLoadSelection>Former une caravane présélectionne tout ce qui est séléctionné sur la carte</TD.CaravanLoadSelection>
 	<!-- EN: Closing the caravan/transport-pod dialog will remember the list of things to send, and opening it again will re-select them -->
@@ -188,9 +188,9 @@
 	<!-- EN: Deconstruction would return less resources than canceling -->
 	<TD.NoFrameDeconDesc>La démolition d'une structure non terminée redonnerait moins de ressources que son annulation</TD.NoFrameDeconDesc>
 	<!-- EN: Dropdown designators get their order set by their contained designators -->
-	<TD.DropdownBuildingsOrder>Dropdown designators get their order set by their contained designators</TD.DropdownBuildingsOrder>
+	<TD.DropdownBuildingsOrder>Les sous-catégories d'outils/structures se trouvent dans le menu déroulant de leur catégorie</TD.DropdownBuildingsOrder>
 	<!-- EN: e.g. colored lights show up in the build menu next to other lights instead of the front of the list -->
-	<TD.DropdownBuildingsOrderDesc>Par exemple, les lumières colorées sont affichées à coté des autres types d'éclairage au lieu du début de la liste</TD.DropdownBuildingsOrderDesc>
+	<TD.DropdownBuildingsOrderDesc>Par exemple, les lumières colorées se trouvent dans le menu déroulant du lampadaire au lieu d'être une structure à part</TD.DropdownBuildingsOrderDesc>
 	<!-- EN: Selected stone has a button to smooth it -->
 	<TD.SmoothSelectedStone>Une roche sélectionnée possède un bouton 'Aplanir surface'</TD.SmoothSelectedStone>
 	<!-- EN: Deep drilling for stone gets a random stone type -->
