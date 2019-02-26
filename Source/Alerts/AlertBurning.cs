@@ -29,7 +29,7 @@ namespace TD_Enhancement_Pack.Alerts
 		public Alert_Burning()
 		{
 			defaultLabel = "Burning".Translate();
-			defaultExplanation = "A colonist is burning, and is rapidly gaining heatstroke.";
+			defaultExplanation = "TD.AlertBurning".Translate();
 		}
 
 		public override AlertReport GetReport()

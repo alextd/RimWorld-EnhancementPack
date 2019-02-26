@@ -30,7 +30,7 @@ namespace TD_Enhancement_Pack.Alerts
 		public Alert_Heatstroke()
 		{
 			defaultLabel = HediffDefOf.Heatstroke.LabelCap;
-			defaultExplanation = "A colonist is gaining heatstroke. That's not a good thing.";
+			defaultExplanation = "TD.AlertHeatstrike".Translate();
 		}
 
 		public override AlertReport GetReport()
