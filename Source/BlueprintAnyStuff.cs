@@ -34,6 +34,8 @@ namespace TD_Enhancement_Pack
 		{
 			if (!Settings.Get().blueprintAnyStuff) return result;
 
+			if (ev == null) return result;	//NO event? too bad. (probably a mod)
+
 			return result || ev.button == 1;
 		}
 	}
