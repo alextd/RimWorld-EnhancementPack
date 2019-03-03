@@ -191,7 +191,7 @@ namespace TD_Enhancement_Pack
 					List<FloatMenuOption> otherAreas = new List<FloatMenuOption>(area.Map.areaManager.AllAreas
 						.FindAll(a => !(a is Area_Allowed))
 						.ConvertAll(a => new FloatMenuOption(a.Label, () => PasteArea(a, area), mouseoverGuiAction: () => a.MarkForDraw())));
-					Find.WindowStack.Add(new FloatMenu(otherAreas, "Paste from"));
+					Find.WindowStack.Add(new FloatMenu(otherAreas, "TD.PasteFrom".Translate()));
 				}
 				else
 					PasteArea(copiedArea, area);

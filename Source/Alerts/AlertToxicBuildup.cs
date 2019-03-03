@@ -29,7 +29,7 @@ namespace TD_Enhancement_Pack.Alerts
 		public Alert_Toxic()
 		{
 			defaultLabel = HediffDefOf.ToxicBuildup.LabelCap;
-			defaultExplanation = "A colonist has non-trivial levels of toxic buildup. That's not a good thing.";
+			defaultExplanation = "TD.AlertToxic".Translate();
 		}
 
 		public override AlertReport GetReport()
