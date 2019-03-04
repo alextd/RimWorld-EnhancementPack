@@ -54,7 +54,7 @@ namespace TD_Enhancement_Pack
 		{
 			//Find selected thing or thing to build for BuildableExtras
 			ThingDef def = null;
-			if (Find.DesignatorManager.SelectedDesignator is Designator_Build des)
+			if (Find.DesignatorManager.SelectedDesignator is Designator_Place des)
 				def = des.PlacingDef as ThingDef;
 			if (def == null)
 				def = Find.Selector.SingleSelectedThing?.def;
@@ -87,7 +87,7 @@ namespace TD_Enhancement_Pack
 		}
 
 		public override bool ShouldAutoDraw() => Settings.Get().autoOverlayBuildable;
-		public override Type AutoDesignator() => typeof(Designator_Build);
+		public override Type AutoDesignator() => typeof(Designator_Place);
 
 		public static Texture2D icon = ContentFinder<Texture2D>.Get("UI/Icons/ThingCategories/StoneBlocks", true);
 		public override Texture2D Icon() => icon;
