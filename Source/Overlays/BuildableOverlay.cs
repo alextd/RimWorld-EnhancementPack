@@ -47,8 +47,7 @@ namespace TD_Enhancement_Pack
 				return Find.CurrentMap.terrainGrid.TerrainAt(index)?.driesTo != null ||
 					Find.CurrentMap.terrainGrid.UnderTerrainAt(index)?.driesTo != null;
 			}
-			TerrainAffordanceDef noShow = curAffordance ?? TerrainAffordanceDefOf.Heavy;
-			return !Find.CurrentMap.terrainGrid.TerrainAt(index).affordances.Contains(noShow);
+			return !Find.CurrentMap.terrainGrid.TerrainAt(index).affordances.Contains(TerrainAffordanceDefOf.Heavy);
 		}
 
 		public override Color GetCellExtraColor(int index)
@@ -64,26 +63,9 @@ namespace TD_Enhancement_Pack
 			}
 
 			var affordances = Find.CurrentMap.terrainGrid.TerrainAt(index).affordances;
-			return curAffordance != null ? noneColor :
-				affordances.Contains(TerrainAffordanceDefOf.Medium) ? mediumColor :
+			return affordances.Contains(TerrainAffordanceDefOf.Medium) ? mediumColor :
 				affordances.Contains(TerrainAffordanceDefOf.Light) ? lightColor
 				: noneColor;
-		}
-
-		//Most things needs light/medium/heavy, so BuildableOverlay handles those normally: clear/yellow/red
-		//If the thing to build needs something else, use special affordance overaly with clear/red
-		public TerrainAffordanceDef curAffordance;
-		public TerrainAffordanceDef SpecialAffordance()
-		{
-			if (Find.DesignatorManager.SelectedDesignator is Designator_Build des)
-			{
-				TerrainAffordanceDef needed = des.PlacingDef.terrainAffordanceNeeded;
-				return (needed == TerrainAffordanceDefOf.Light
-					|| needed == TerrainAffordanceDefOf.Medium
-					|| needed == TerrainAffordanceDefOf.Heavy) ? null : needed;
-			}
-
-			return null;
 		}
 
 		//Buildings that cover an area with an aura shows total coverage
@@ -107,15 +89,6 @@ namespace TD_Enhancement_Pack
 				foreach (BuildableExtras extra in extras)
 					if (extra.MakeActive(def))
 						SetDirty();
-						
-			}
-
-			TerrainAffordanceDef newAffordance = SpecialAffordance();
-			if (newAffordance != curAffordance)
-			{
-				Log.Message($"newAffordance is {newAffordance}");
-				curAffordance = newAffordance;
-				SetDirty();
 			}
 
 			bool newPump = PlacingMoisturePump();
@@ -226,5 +199,24 @@ namespace TD_Enhancement_Pack
 				Find.CurrentMap.thingGrid.ThingsListAtFast(index).Any(t => t.def == ThingDefOf.SteamGeyser);
 		public override Color GetCellExtraColor(int index) => Color.green;
 		public override bool Matches(BuildableDef def) => def == ThingDefOf.GeothermalGenerator;
+	}
+	
+	//Most things needs light/medium/heavy, so BuildableOverlay handles those normally: clear/yellow/red
+	//If the thing to build needs something else, use special affordance overaly with clear/red
+	public class SpecialAffordanceExtra : BuildableExtras
+	{
+		public override bool ShowCell(int index) =>
+			!Find.CurrentMap.terrainGrid.TerrainAt(index).affordances.Contains(curAffordance);
+		public override Color GetCellExtraColor(int index) => BuildableOverlay.noneColor;
+
+		public TerrainAffordanceDef curAffordance;
+		public override bool Matches(BuildableDef def)
+		{
+			curAffordance = def.terrainAffordanceNeeded;
+			return curAffordance != TerrainAffordanceDefOf.Light
+				&& curAffordance != TerrainAffordanceDefOf.Medium
+				&& curAffordance != TerrainAffordanceDefOf.Heavy;
+		}
+
 	}
 }
