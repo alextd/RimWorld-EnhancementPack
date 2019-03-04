@@ -52,9 +52,15 @@ namespace TD_Enhancement_Pack
 
 		public override void Update()
 		{
+			//Find selected thing or thing to build for BuildableExtras
+			ThingDef def = null;
 			if (Find.DesignatorManager.SelectedDesignator is Designator_Build des)
+				def = des.PlacingDef as ThingDef;
+			if (def == null)
+				def = Find.Selector.SingleSelectedThing?.def;
+			if (def != null)
 			{
-				BuildableDef def = des.PlacingDef;
+				def = GenConstruct.BuiltDefOf(def) as ThingDef;
 				foreach (BuildableExtras extra in extras)
 					if (extra.MakeActive(def))
 						SetDirty();
@@ -63,6 +69,13 @@ namespace TD_Enhancement_Pack
 					foreach (BuildableExtras extra in extras.Where(ex => ex.active))
 						extra.Init();
 			}
+			else
+				foreach (BuildableExtras extra in extras)
+					if (extra.active)
+					{
+						extra.active = false;
+						SetDirty();
+					}
 
 			base.Update();
 		}
@@ -99,8 +112,8 @@ namespace TD_Enhancement_Pack
 
 		public abstract bool ShowCell(int index);
 		public virtual Color GetCellExtraColor(int index) => Color.green;
-		public abstract bool Matches(BuildableDef def);
-		public bool MakeActive(BuildableDef def)
+		public abstract bool Matches(ThingDef def);
+		public bool MakeActive(ThingDef def)
 		{
 			bool nowActive = Matches(def);
 			if (nowActive != active)
@@ -120,7 +133,7 @@ namespace TD_Enhancement_Pack
 		public override bool ShowCell(int index) =>
 				Find.CurrentMap.thingGrid.ThingsListAtFast(index).Any(t => t.def == ThingDefOf.SteamGeyser);
 
-		public override bool Matches(BuildableDef def) => def == ThingDefOf.GeothermalGenerator;
+		public override bool Matches(ThingDef def) => def == ThingDefOf.GeothermalGenerator;
 	}
 	
 	//Most things needs light/medium/heavy, so BuildableOverlay handles those normally: clear/yellow/red
@@ -133,14 +146,14 @@ namespace TD_Enhancement_Pack
 		public override Color GetCellExtraColor(int index) => BuildableOverlay.noneColor;
 
 		public TerrainAffordanceDef curAffordance;
-		public override bool Matches(BuildableDef def)
+		public override bool Matches(ThingDef def)
 		{
 			curAffordance = def.terrainAffordanceNeeded;
-			return curAffordance != TerrainAffordanceDefOf.Light
+			return curAffordance != null
+				&& curAffordance != TerrainAffordanceDefOf.Light
 				&& curAffordance != TerrainAffordanceDefOf.Medium
 				&& curAffordance != TerrainAffordanceDefOf.Heavy;
 		}
-
 	}
 
 	//Buildings that cover an area with an aura shows total coverage
@@ -156,7 +169,7 @@ namespace TD_Enhancement_Pack
 
 		public abstract ThingDef MatchingDef();
 		public virtual float Radius() => MatchingDef().specialDisplayRadius;
-		public override bool Matches(BuildableDef def) => def == MatchingDef();
+		public override bool Matches(ThingDef def) => def == MatchingDef();
 
 		public override void Init()
 		{
