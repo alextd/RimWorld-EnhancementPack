@@ -58,8 +58,10 @@ namespace TD_Enhancement_Pack
 				: noneColor;
 		}
 
+		//Most things needs light/medium/heavy, so BuildableOverlay handles those normally: clear/yellow/red
+		//If the thing to build needs something else, use special affordance overaly with clear/red
 		public TerrainAffordanceDef curAffordance;
-		public TerrainAffordanceDef OverrideAffordance()
+		public TerrainAffordanceDef SpecialAffordance()
 		{
 			if (Find.DesignatorManager.SelectedDesignator is Designator_Build des)
 			{
@@ -72,6 +74,7 @@ namespace TD_Enhancement_Pack
 			return null;
 		}
 
+		//Geothermal generator can only be placed on certain tiles, highlight them instead.
 		public bool placingGeothermal;
 		public bool PlacingGeothermal()
 		{
@@ -83,6 +86,7 @@ namespace TD_Enhancement_Pack
 			return false;
 		}
 
+		//Buildings that cover an area with an aura shows total coverage
 		private static HashSet<IntVec3> moisturePumpCells = new HashSet<IntVec3>();
 		public bool placingMoisturePump;
 		public bool PlacingMoisturePump()
@@ -97,7 +101,7 @@ namespace TD_Enhancement_Pack
 
 		public override void Update()
 		{
-			TerrainAffordanceDef newAffordance = OverrideAffordance();
+			TerrainAffordanceDef newAffordance = SpecialAffordance();
 			if (newAffordance != curAffordance)
 			{
 				Log.Message($"newAffordance is {newAffordance}");
