@@ -152,7 +152,7 @@
 	<!-- EN: Right-click a building tool to select any material to build from (even when you don't have it available) -->
 	<TD.BlueprintAnyStuff>Faire un clic droit sur un outil de construction affiche tous les matériaux possibles (même si vous ne les possédez pas)</TD.BlueprintAnyStuff>
 	<!-- EN: Mouseover tile info is on topright -->
-	<TD.SettingTopRightMouseover>Placer les informations concernant la case survolée à la souris en haut à droite de l'écran</TD.SettingTopRightMouseover>
+	<TD.SettingTopRightMouseover>Placer les informations de la case survolée par le curseur de la souris en haut à droite de l'écran</TD.SettingTopRightMouseover>
 	<!-- EN: So it shows up when something is selected\n\nOf course this is a bad idea if you still have the learning helper on. -->
 	<TD.SettingTopRightMouseoverDesc>Cela permet de voir ces informations même si un objet est sélectionné\n\nEvidemment c'est une mauvaise idée si l'assistant d'apprentissage est toujours activé.</TD.SettingTopRightMouseoverDesc>
 	<!--EN: Show selected pawns in tables -->
@@ -170,7 +170,7 @@
 	<!-- EN: Alert for colonists that are burning -->
 	<TD.SettingAlertBurning>Afficher une alerte quand un colon brûle</TD.SettingAlertBurning>
 	<!-- EN: Alert for colonists that are getting toxic buildup -->
-	<TD.SettingAlertToxic>Afficher une alerte quand un colon est empoisonné</TD.SettingAlertToxic>
+	<TD.SettingAlertToxic>Afficher une alerte quand le taux de toxicité d'un colon augmente</TD.SettingAlertToxic>
 	<!-- EN: Alert for workbenches with no bills set up -->
 	<TD.SettingAlertNoBill>Afficher une alerte quand un établi n'a aucune tâche d'assignée</TD.SettingAlertNoBill>
 	<!-- EN: Enable a tool to make a growing zone that matches terrain -->
@@ -247,7 +247,16 @@
 	<TD.EmptyWorkbenchDesc>Un établi n'a aucune tâche assignée</TD.EmptyWorkbenchDesc>
 	<!-- EN: Clear entire area (but don't delete from the list) -->
 	<TD.ClearEntireArea>Effacer toute la zone (ne la supprime pas de la liste)</TD.ClearEntireArea>
-	
+	<!-- EN: Paste from -->
+	<TD.PasteFrom>Coller depuis</TD.PasteFrom>
+	<!-- EN: Zoom to Mouse -->
+	<TD.SettingsZoomToMouse>Zoomer sur le curseur de la souris</TD.SettingsZoomToMouse>
+	<!-- EN: A colonist is burning, and is rapidly gaining heatstroke. -->
+	<TD.AlertBurning>Un colon brûle, et peut rapidement attraper un coup de chaleur.</TD.AlertBurning>
+	<!-- EN: A colonist is gaining heatstroke. That's not a good thing. -->
+	<TD.AlertHeatstrike>Un colon a attrapé un coup de chaleur. Ce n'est pas bon signe.</TD.AlertHeatstrike>
+	<!-- EN: A colonist has non-trivial levels of toxic buildup. That's not a good thing. -->
+	<TD.AlertToxic>Un colon possède un taux de toxicité important. Ce n'est pas bon signe.</TD.AlertToxic>
 	
 
 
