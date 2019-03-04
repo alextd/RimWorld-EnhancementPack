@@ -57,7 +57,7 @@ namespace TD_Enhancement_Pack
 			if (Find.DesignatorManager.SelectedDesignator is Designator_Place des)
 				def = des.PlacingDef as ThingDef;
 			if (def == null)
-				def = Find.Selector.SingleSelectedThing?.def;
+				def = Find.Selector.SingleSelectedThing.GetInnerIfMinified()?.def;
 			if (def != null)
 			{
 				def = GenConstruct.BuiltDefOf(def) as ThingDef;
