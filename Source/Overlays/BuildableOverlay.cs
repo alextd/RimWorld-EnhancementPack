@@ -219,6 +219,10 @@ namespace TD_Enhancement_Pack
 	{
 		public override ThingDef MatchingDef() => ThingDefOf.FirefoamPopper;
 	}
+	public class PsychicEmanatorExtra : CoverageExtra
+	{
+		public override ThingDef MatchingDef() => ThingDefOf.PsychicEmanator;
+	}
 
 	//Moisture pumps show overlay AND coverage
 	public class MoisturePumpExtra : CoverageExtra
