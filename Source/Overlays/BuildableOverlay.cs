@@ -94,7 +94,7 @@ namespace TD_Enhancement_Pack
 		public bool active;
 
 		public abstract bool ShowCell(int index);
-		public abstract Color GetCellExtraColor(int index);
+		public virtual Color GetCellExtraColor(int index) => Color.green;
 		public abstract bool Matches(BuildableDef def);
 		public bool MakeActive(BuildableDef def)
 		{
@@ -116,8 +116,6 @@ namespace TD_Enhancement_Pack
 	{
 		public override bool ShowCell(int index) =>
 				Find.CurrentMap.thingGrid.ThingsListAtFast(index).Any(t => t.def == ThingDefOf.SteamGeyser);
-
-		public override Color GetCellExtraColor(int index) => Color.green;
 
 		public override bool Matches(BuildableDef def) => def == ThingDefOf.GeothermalGenerator;
 	}
@@ -143,50 +141,60 @@ namespace TD_Enhancement_Pack
 	}
 
 	//Buildings that cover an area with an aura shows total coverage
-	public class CoverageExtra : BuildableExtras
+	public abstract class CoverageExtra : BuildableExtras
 	{
-		public override bool ShowCell(int index) =>
-			Find.CurrentMap.terrainGrid.TerrainAt(index)?.driesTo != null ||
-			Find.CurrentMap.terrainGrid.UnderTerrainAt(index)?.driesTo != null;
+		protected static HashSet<IntVec3> covered = new HashSet<IntVec3>();
 
-		private static HashSet<IntVec3> moisturePumpCells = new HashSet<IntVec3>();
-		public override Color GetCellExtraColor(int index) =>
-			moisturePumpCells.Contains(Find.CurrentMap.cellIndices.IndexToCell(index))
-				? Color.blue* 0.5f : Color.green;
+		public override bool ShowCell(int index) => false;
 
-		public override bool Matches(BuildableDef def) => def == MoreThingDefOf.MoisturePump;
+		public abstract ThingDef MatchingDef();
+		public override bool Matches(BuildableDef def) => def == MatchingDef();
 
 		public override void Init()
 		{
-			HashSet<IntVec3> centers = new HashSet<IntVec3>(Find.CurrentMap.listerThings.ThingsOfDef(MoreThingDefOf.MoisturePump).Select(t => t.Position));
+			HashSet<IntVec3> centers = new HashSet<IntVec3>(Find.CurrentMap.listerThings.ThingsOfDef(MatchingDef()).Select(t => t.Position));
 
 			centers.AddRange(Find.CurrentMap.listerThings.ThingsInGroup(ThingRequestGroup.Blueprint)
-				.Where(bp => GenConstruct.BuiltDefOf(bp.def) == MoreThingDefOf.MoisturePump).Select(t => t.Position).ToList());
+				.Where(bp => GenConstruct.BuiltDefOf(bp.def) == MatchingDef()).Select(t => t.Position).ToList());
 
 			centers.AddRange(Find.CurrentMap.listerThings.ThingsInGroup(ThingRequestGroup.BuildingFrame)
-				.Where(frame => GenConstruct.BuiltDefOf(frame.def) == MoreThingDefOf.MoisturePump).Select(t => t.Position).ToList());
+				.Where(frame => GenConstruct.BuiltDefOf(frame.def) == MatchingDef()).Select(t => t.Position).ToList());
 
-			moisturePumpCells.Clear();
+			covered.Clear();
 
-			float radius = MoreThingDefOf.MoisturePump.specialDisplayRadius;
+			float radius = MatchingDef().specialDisplayRadius;
 			foreach (IntVec3 center in centers)
 			{
 				int num = GenRadial.NumCellsInRadius(radius);
 				for (int i = 0; i < num; i++)
-					moisturePumpCells.Add(center + GenRadial.RadialPattern[i]);
+					covered.Add(center + GenRadial.RadialPattern[i]);
 			}
 		}
 
 		public override void PostDraw()
 		{
-			GenDraw.DrawFieldEdges(moisturePumpCells.ToList(), Color.blue);
+			GenDraw.DrawFieldEdges(covered.ToList(), Color.blue);
 		}
 	}
 
+	//Moisture pumps show overlay AND coverage
 	[DefOf]
 	public static class MoreThingDefOf
 	{
 		public static ThingDef MoisturePump;
+	}
+
+	public class MoisturePumpExtra : CoverageExtra
+	{
+		public override bool ShowCell(int index) =>
+			Find.CurrentMap.terrainGrid.TerrainAt(index)?.driesTo != null ||
+			Find.CurrentMap.terrainGrid.UnderTerrainAt(index)?.driesTo != null;
+
+		public override Color GetCellExtraColor(int index) =>
+			covered.Contains(Find.CurrentMap.cellIndices.IndexToCell(index))
+				? Color.blue * 0.5f : Color.green;
+
+		public override ThingDef MatchingDef() => MoreThingDefOf.MoisturePump;
 	}
 
 	[HarmonyPatch(typeof(ThingGrid), "Register")]
@@ -196,7 +204,7 @@ namespace TD_Enhancement_Pack
 		{
 			if (___map == Find.CurrentMap)
 				if (GenConstruct.BuiltDefOf(t.def) == MoreThingDefOf.MoisturePump &&
-					BuildableOverlay.ExtraActive(typeof(CoverageExtra)))
+					BuildableOverlay.ExtraActive(typeof(MoisturePumpExtra)))
 					BaseOverlay.SetDirty(typeof(BuildableOverlay));
 		}
 	}
@@ -208,7 +216,7 @@ namespace TD_Enhancement_Pack
 		{
 			if (___map == Find.CurrentMap)
 				if (GenConstruct.BuiltDefOf(t.def) == MoreThingDefOf.MoisturePump &&
-					BuildableOverlay.ExtraActive(typeof(CoverageExtra)))
+					BuildableOverlay.ExtraActive(typeof(MoisturePumpExtra)))
 					BaseOverlay.SetDirty(typeof(BuildableOverlay));
 		}
 	}
