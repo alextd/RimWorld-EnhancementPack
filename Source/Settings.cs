@@ -19,6 +19,8 @@ namespace TD_Enhancement_Pack
 
 		public bool showOverlayBuildable = true;
 		public bool autoOverlayBuildable = true;
+		public bool showOverlayCoverage = true;
+		public bool autoOverlayCoverage = true;
 		public bool autoOverlaySmoothable = true;
 		public bool autoOverlayTreeGrowth = true;
 		public bool showOverlayPlantHarvest = true;
@@ -102,6 +104,9 @@ namespace TD_Enhancement_Pack
 			options.LabelHeader("TD.SettingsHeaderOverlays".Translate());
 			options.CheckboxLabeled("TD.SettingOverlayBuildable".Translate(), ref showOverlayBuildable, "TD.SettingOverlayBuildableDesc".Translate());
 			options.CheckboxLabeled("TD.SettingAutoBuildable".Translate(), ref autoOverlayBuildable, "TD.SettingAutoBuildableDesc".Translate());
+			options.Gap();
+			options.CheckboxLabeled("TD.SettingOverlayCoverage".Translate(), ref showOverlayCoverage, "TD.SettingOverlayCoverageDesc".Translate());
+			options.CheckboxLabeled("TD.SettingAutoCoverage".Translate(), ref autoOverlayCoverage, "TD.SettingAutoCoverageDesc".Translate());
 			options.Gap();
 			options.CheckboxLabeled("TD.SettingOverlayFertility".Translate(), ref showOverlayFertility);
 			bool before = cheatFertilityUnderGrid;
@@ -211,6 +216,8 @@ namespace TD_Enhancement_Pack
 
 			Scribe_Values.Look(ref showOverlayBuildable, "showOverlayBuildable", true);
 			Scribe_Values.Look(ref autoOverlayBuildable, "autoOverlayBuildable", true);
+			Scribe_Values.Look(ref showOverlayCoverage, "showOverlayCoverage", true);
+			Scribe_Values.Look(ref autoOverlayCoverage, "autoOverlayCoverage", true);
 			Scribe_Values.Look(ref autoOverlaySmoothable, "autoOverlaySmoothable", true);
 			Scribe_Values.Look(ref autoOverlayTreeGrowth, "autoOverlayTreeGrowth", true);
 			Scribe_Values.Look(ref showOverlayPlantHarvest, "showOverlayPlantHarvest", true);

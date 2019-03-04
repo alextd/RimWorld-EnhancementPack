@@ -84,8 +84,12 @@ namespace TD_Enhancement_Pack
 				dirty = false;
 			}
 			else
+			{
 				drawer = null;
+				Clear();
+			}
 		}
+		public virtual void Clear() { }
 
 		public virtual void PostDraw() { }
 		

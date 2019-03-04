@@ -9,7 +9,7 @@ using RimWorld;
 using RimWorld.Planet;
 using Harmony;
 
-namespace TD_Enhancement_Pack
+namespace TD_Enhancement_Pack.Overlays
 {
 	[StaticConstructorOnStartup]
 	class BuildableOverlay : BaseOverlay
@@ -52,22 +52,12 @@ namespace TD_Enhancement_Pack
 
 		public override void Update()
 		{
-			//Find selected thing or thing to build for BuildableExtras
-			ThingDef def = null;
-			if (Find.DesignatorManager.SelectedDesignator is Designator_Place des)
-				def = des.PlacingDef as ThingDef;
-			if (def == null)
-				def = Find.Selector.SingleSelectedThing.GetInnerIfMinified()?.def;
-			if (def != null)
+			if (Find.DesignatorManager.SelectedDesignator is Designator_Place des
+				&& des.PlacingDef is ThingDef def)
 			{
-				def = GenConstruct.BuiltDefOf(def) as ThingDef;
 				foreach (BuildableExtras extra in extras)
 					if (extra.MakeActive(def))
 						SetDirty();
-
-				if (dirty)  //From MakeActive or otherwise
-					foreach (BuildableExtras extra in extras.Where(ex => ex.active))
-						extra.Init();
 			}
 			else
 				foreach (BuildableExtras extra in extras)
@@ -78,12 +68,6 @@ namespace TD_Enhancement_Pack
 					}
 
 			base.Update();
-		}
-
-		public override void PostDraw()
-		{
-			foreach (BuildableExtras extra in extras.Where(ex => ex.active))
-				extra.PostDraw();
 		}
 
 		public override bool ShouldAutoDraw() => Settings.Get().autoOverlayBuildable;
@@ -123,8 +107,15 @@ namespace TD_Enhancement_Pack
 			}
 			return false;
 		}
-		public virtual void Init() { }
-		public virtual void PostDraw() { }
+	}
+
+	//Don't do moisture pump: coverage overlay handles it.
+	//This is an annoying place to decide this
+	public class MoisturePumpExtra : BuildableExtras
+	{
+		public override bool ShowCell(int index) => false;
+
+		public override bool Matches(ThingDef def) => def == MoreThingDefOf.MoisturePump;
 	}
 
 	//Geothermal generator can only be placed on certain tiles, highlight them instead.
@@ -153,109 +144,6 @@ namespace TD_Enhancement_Pack
 				&& curAffordance != TerrainAffordanceDefOf.Light
 				&& curAffordance != TerrainAffordanceDefOf.Medium
 				&& curAffordance != TerrainAffordanceDefOf.Heavy;
-		}
-	}
-
-	//Buildings that cover an area with an aura shows total coverage
-	public abstract class CoverageExtra : BuildableExtras
-	{
-		public static Color coveredColor = Color.blue * 0.5f;
-		protected static HashSet<IntVec3> covered = new HashSet<IntVec3>();
-
-		public override bool ShowCell(int index) =>
-			covered.Contains(Find.CurrentMap.cellIndices.IndexToCell(index));
-
-		public override Color GetCellExtraColor(int index) => coveredColor;
-
-		public abstract ThingDef MatchingDef();
-		public virtual float Radius() => MatchingDef().specialDisplayRadius;
-		public override bool Matches(ThingDef def) => def == MatchingDef();
-
-		public override void Init()
-		{
-			HashSet<IntVec3> centers = new HashSet<IntVec3>(Find.CurrentMap.listerThings.ThingsOfDef(MatchingDef()).Select(t => t.Position));
-
-			centers.AddRange(Find.CurrentMap.listerThings.ThingsInGroup(ThingRequestGroup.Blueprint)
-				.Where(bp => GenConstruct.BuiltDefOf(bp.def) == MatchingDef()).Select(t => t.Position).ToList());
-
-			centers.AddRange(Find.CurrentMap.listerThings.ThingsInGroup(ThingRequestGroup.BuildingFrame)
-				.Where(frame => GenConstruct.BuiltDefOf(frame.def) == MatchingDef()).Select(t => t.Position).ToList());
-
-			covered.Clear();
-
-			float radius = Radius();
-			foreach (IntVec3 center in centers)
-			{
-				int num = GenRadial.NumCellsInRadius(radius);
-				for (int i = 0; i < num; i++)
-					covered.Add(center + GenRadial.RadialPattern[i]);
-			}
-		}
-
-		public override void PostDraw()
-		{
-			GenDraw.DrawFieldEdges(covered.ToList(), Color.blue);
-		}
-	}
-
-	//Things that have coverage
-	//Could this list be automated? Things that have a range and that range overlap is not additive? Nah.
-	[DefOf]
-	public static class MoreThingDefOf
-	{
-		public static ThingDef MoisturePump;
-		public static ThingDef SunLamp;
-	}
-	public class TradeBeaconExtra : CoverageExtra
-	{
-		public override ThingDef MatchingDef() => ThingDefOf.OrbitalTradeBeacon;
-		public override float Radius() => 7.9f;//Building_OrbitalTradeBeacon.TradeRadius;
-	}
-	public class SunLampExtra : CoverageExtra
-	{
-		public override ThingDef MatchingDef() => MoreThingDefOf.SunLamp;
-	}
-	public class FirefoamPopperExtra : CoverageExtra
-	{
-		public override ThingDef MatchingDef() => ThingDefOf.FirefoamPopper;
-	}
-	public class PsychicEmanatorExtra : CoverageExtra
-	{
-		public override ThingDef MatchingDef() => ThingDefOf.PsychicEmanator;
-	}
-
-	//Moisture pumps show overlay AND coverage
-	public class MoisturePumpExtra : CoverageExtra
-	{
-		public override bool ShowCell(int index) =>
-			Find.CurrentMap.terrainGrid.TerrainAt(index)?.driesTo != null ||
-			Find.CurrentMap.terrainGrid.UnderTerrainAt(index)?.driesTo != null;
-
-		public override Color GetCellExtraColor(int index) =>
-			covered.Contains(Find.CurrentMap.cellIndices.IndexToCell(index))
-				? coveredColor : Color.green;
-
-		public override ThingDef MatchingDef() => MoreThingDefOf.MoisturePump;
-	}
-
-	[HarmonyPatch(typeof(ThingGrid), "Register")]
-	public static class BuildingDirtierRegister
-	{
-		public static void Postfix(Thing t, Map ___map)
-		{
-			if (___map == Find.CurrentMap)
-				if (BuildableOverlay.ActiveExtra() is CoverageExtra extra &&
-					GenConstruct.BuiltDefOf(t.def) == extra.MatchingDef())
-					BaseOverlay.SetDirty(typeof(BuildableOverlay));
-		}
-	}
-
-	[HarmonyPatch(typeof(ThingGrid), "Deregister")]
-	public static class BuildingDirtierDeregister
-	{
-		public static void Postfix(Thing t, Map ___map)
-		{
-			BuildingDirtierRegister.Postfix(t, ___map);
 		}
 	}
 }
