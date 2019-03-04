@@ -20,7 +20,7 @@ namespace TD_Enhancement_Pack
 
 		//Extras class to handle any specific overlay for specific defs
 		public static List<BuildableExtras> extras = new List<BuildableExtras>();
-		public static bool ExtraActive(Type type) => extras.Any(ex => ex.GetType() == type && ex.active);
+		public static BuildableExtras ActiveExtra() => extras.FirstOrDefault(ex => ex.active);
 
 		static BuildableOverlay()
 		{
@@ -58,6 +58,10 @@ namespace TD_Enhancement_Pack
 				foreach (BuildableExtras extra in extras)
 					if (extra.MakeActive(def))
 						SetDirty();
+
+				if (dirty)  //From MakeActive or otherwise
+					foreach (BuildableExtras extra in extras.Where(ex => ex.active))
+						extra.Init();
 			}
 
 			base.Update();
@@ -102,7 +106,6 @@ namespace TD_Enhancement_Pack
 			if (nowActive != active)
 			{
 				active = nowActive;
-				Init();
 				return true;
 			}
 			return false;
@@ -143,11 +146,16 @@ namespace TD_Enhancement_Pack
 	//Buildings that cover an area with an aura shows total coverage
 	public abstract class CoverageExtra : BuildableExtras
 	{
+		public static Color coveredColor = Color.blue * 0.5f;
 		protected static HashSet<IntVec3> covered = new HashSet<IntVec3>();
 
-		public override bool ShowCell(int index) => false;
+		public override bool ShowCell(int index) =>
+			covered.Contains(Find.CurrentMap.cellIndices.IndexToCell(index));
+
+		public override Color GetCellExtraColor(int index) => coveredColor;
 
 		public abstract ThingDef MatchingDef();
+		public virtual float Radius() => MatchingDef().specialDisplayRadius;
 		public override bool Matches(BuildableDef def) => def == MatchingDef();
 
 		public override void Init()
@@ -162,7 +170,7 @@ namespace TD_Enhancement_Pack
 
 			covered.Clear();
 
-			float radius = MatchingDef().specialDisplayRadius;
+			float radius = Radius();
 			foreach (IntVec3 center in centers)
 			{
 				int num = GenRadial.NumCellsInRadius(radius);
@@ -177,13 +185,29 @@ namespace TD_Enhancement_Pack
 		}
 	}
 
-	//Moisture pumps show overlay AND coverage
+	//Things that have coverage
+	//Could this list be automated? Things that have a range and that range overlap is not additive? Nah.
 	[DefOf]
 	public static class MoreThingDefOf
 	{
 		public static ThingDef MoisturePump;
+		public static ThingDef SunLamp;
+	}
+	public class TradeBeaconExtra : CoverageExtra
+	{
+		public override ThingDef MatchingDef() => ThingDefOf.OrbitalTradeBeacon;
+		public override float Radius() => 7.9f;//Building_OrbitalTradeBeacon.TradeRadius;
+	}
+	public class SunLampExtra : CoverageExtra
+	{
+		public override ThingDef MatchingDef() => MoreThingDefOf.SunLamp;
+	}
+	public class FirefoamPopperExtra : CoverageExtra
+	{
+		public override ThingDef MatchingDef() => ThingDefOf.FirefoamPopper;
 	}
 
+	//Moisture pumps show overlay AND coverage
 	public class MoisturePumpExtra : CoverageExtra
 	{
 		public override bool ShowCell(int index) =>
@@ -192,32 +216,29 @@ namespace TD_Enhancement_Pack
 
 		public override Color GetCellExtraColor(int index) =>
 			covered.Contains(Find.CurrentMap.cellIndices.IndexToCell(index))
-				? Color.blue * 0.5f : Color.green;
+				? coveredColor : Color.green;
 
 		public override ThingDef MatchingDef() => MoreThingDefOf.MoisturePump;
 	}
 
 	[HarmonyPatch(typeof(ThingGrid), "Register")]
-	public static class ThingDirtierRegister_Pump
+	public static class BuildingDirtierRegister
 	{
 		public static void Postfix(Thing t, Map ___map)
 		{
 			if (___map == Find.CurrentMap)
-				if (GenConstruct.BuiltDefOf(t.def) == MoreThingDefOf.MoisturePump &&
-					BuildableOverlay.ExtraActive(typeof(MoisturePumpExtra)))
+				if (BuildableOverlay.ActiveExtra() is CoverageExtra extra &&
+					GenConstruct.BuiltDefOf(t.def) == extra.MatchingDef())
 					BaseOverlay.SetDirty(typeof(BuildableOverlay));
 		}
 	}
 
 	[HarmonyPatch(typeof(ThingGrid), "Deregister")]
-	public static class ThingDirtierDeregister_Pump
+	public static class BuildingDirtierDeregister
 	{
 		public static void Postfix(Thing t, Map ___map)
 		{
-			if (___map == Find.CurrentMap)
-				if (GenConstruct.BuiltDefOf(t.def) == MoreThingDefOf.MoisturePump &&
-					BuildableOverlay.ExtraActive(typeof(MoisturePumpExtra)))
-					BaseOverlay.SetDirty(typeof(BuildableOverlay));
+			BuildingDirtierRegister.Postfix(t, ___map);
 		}
 	}
 }
