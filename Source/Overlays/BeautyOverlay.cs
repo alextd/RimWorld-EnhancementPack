@@ -58,7 +58,7 @@ namespace TD_Enhancement_Pack
 	}
 
 	[HarmonyPatch(typeof(ThingGrid), "Register")]
-	public static class ThingDirtierRegister
+	public static class BeautyDirtierRegister
 	{
 		public static void Postfix(Thing t, Map ___map)
 		{
@@ -69,13 +69,11 @@ namespace TD_Enhancement_Pack
 	}
 
 	[HarmonyPatch(typeof(ThingGrid), "Deregister")]
-	public static class ThingDirtierDeregister
+	public static class BeautyDirtierDeregister
 	{
 		public static void Postfix(Thing t, Map ___map)
 		{
-			if (___map == Find.CurrentMap)
-				if (BeautyUtility.BeautyRelevant(t.def.category))
-					BaseOverlay.SetDirty(typeof(BeautyOverlay));
+			BeautyDirtierRegister.Postfix(t, ___map);
 		}
 	}
 }
