@@ -24,15 +24,25 @@ namespace TD_Enhancement_Pack
 		public static readonly Color lightColor = new Color(.8f, .4f, 0);
 		public static readonly Color mediumColor = new Color(.8f, .8f, 0);
 
+		public static List<BuildableExtras> extras = new List<BuildableExtras>(); 
+
+		static BuildableOverlay()
+		{
+			extras.Clear();
+			foreach (Type current in typeof(BuildableExtras).AllLeafSubclasses())
+				extras.Add((BuildableExtras)Activator.CreateInstance(current));
+		}
+
+
 		public BuildableOverlay() : base() { }
 
 		public override bool ShowCell(int index)
 		{
-			if(placingGeothermal)
-			{
-				return Find.CurrentMap.thingGrid.ThingsListAtFast(index).Any(t => t.def == ThingDefOf.SteamGeyser);
-			}
-			if(placingMoisturePump)
+			foreach (BuildableExtras extra in extras)
+				if (extra.active)
+					return extra.ShowCell(index);
+
+			if (placingMoisturePump)
 			{
 				return Find.CurrentMap.terrainGrid.TerrainAt(index)?.driesTo != null ||
 					Find.CurrentMap.terrainGrid.UnderTerrainAt(index)?.driesTo != null;
@@ -43,8 +53,10 @@ namespace TD_Enhancement_Pack
 
 		public override Color GetCellExtraColor(int index)
 		{
-			if (placingGeothermal)
-				return Color.green;
+			foreach (BuildableExtras extra in extras)
+				if (extra.active)
+					return extra.GetCellExtraColor(index);
+
 			if (placingMoisturePump)
 			{
 				return moisturePumpCells.Contains(Find.CurrentMap.cellIndices.IndexToCell(index))
@@ -74,18 +86,6 @@ namespace TD_Enhancement_Pack
 			return null;
 		}
 
-		//Geothermal generator can only be placed on certain tiles, highlight them instead.
-		public bool placingGeothermal;
-		public bool PlacingGeothermal()
-		{
-			if (Find.DesignatorManager.SelectedDesignator is Designator_Build des)
-			{
-				return des.PlacingDef == ThingDefOf.GeothermalGenerator;
-			}
-
-			return false;
-		}
-
 		//Buildings that cover an area with an aura shows total coverage
 		private static HashSet<IntVec3> moisturePumpCells = new HashSet<IntVec3>();
 		public bool placingMoisturePump;
@@ -101,19 +101,20 @@ namespace TD_Enhancement_Pack
 
 		public override void Update()
 		{
+			if (Find.DesignatorManager.SelectedDesignator is Designator_Build des)
+			{
+				BuildableDef def = des.PlacingDef;
+				foreach (BuildableExtras extra in extras)
+					if (extra.MakeActive(def))
+						SetDirty();
+						
+			}
+
 			TerrainAffordanceDef newAffordance = SpecialAffordance();
 			if (newAffordance != curAffordance)
 			{
 				Log.Message($"newAffordance is {newAffordance}");
 				curAffordance = newAffordance;
-				SetDirty();
-			}
-
-			bool newGeo = PlacingGeothermal();
-			if (newGeo != placingGeothermal)
-			{
-				Log.Message($"newGeo is {newGeo}");
-				placingGeothermal = newGeo;
 				SetDirty();
 			}
 
@@ -164,7 +165,7 @@ namespace TD_Enhancement_Pack
 		public override bool IconEnabled() => Settings.Get().showOverlayBuildable;
 		public override string IconTip() => "TD.ToggleBuildable".Translate();
 	}
-	
+
 	[HarmonyPatch(typeof(TerrainGrid), "DoTerrainChangedEffects")]
 	static class DoTerrainChangedEffects_Patch
 	{
@@ -195,5 +196,35 @@ namespace TD_Enhancement_Pack
 				if (GenConstruct.BuiltDefOf(t.def) == MoreThingDefOf.MoisturePump)
 					BaseOverlay.SetDirty(typeof(BuildableOverlay));
 		}
+	}
+
+	//Overide Designator_build things based on def
+	public abstract class BuildableExtras
+	{
+		public bool active;
+
+		public abstract bool ShowCell(int index);
+		public abstract Color GetCellExtraColor(int index);
+		public abstract bool Matches(BuildableDef def);
+		public bool MakeActive(BuildableDef def)
+		{
+			bool nowActive = Matches(def);
+			if (nowActive != active)
+			{
+				active = nowActive;
+				return true;
+			}
+			return false;
+		}
+		public virtual void PostDraw() { }
+	}
+
+	//Geothermal generator can only be placed on certain tiles, highlight them instead.
+	public class GeothermalExtra : BuildableExtras
+	{
+		public override bool ShowCell(int index) =>
+				Find.CurrentMap.thingGrid.ThingsListAtFast(index).Any(t => t.def == ThingDefOf.SteamGeyser);
+		public override Color GetCellExtraColor(int index) => Color.green;
+		public override bool Matches(BuildableDef def) => def == ThingDefOf.GeothermalGenerator;
 	}
 }
