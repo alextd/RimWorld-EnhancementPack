@@ -63,6 +63,7 @@ namespace TD_Enhancement_Pack
 		public bool alertBurning = true;
 		public bool alertToxic = true;
 		public bool alertNoBill = true;
+		public bool alertWindBlocker = true;
 
 		public bool matchGrowButton = true;
 		public bool deepDrillRandom = true;
@@ -168,6 +169,7 @@ namespace TD_Enhancement_Pack
 			options.CheckboxLabeled("TD.SettingAlertBurning".Translate(), ref alertBurning);
 			options.CheckboxLabeled("TD.SettingAlertToxic".Translate(), ref alertToxic);
 			options.CheckboxLabeled("TD.SettingAlertNoBill".Translate(), ref alertNoBill);
+			options.CheckboxLabeled("Alert for wind-blocked turbines", ref alertWindBlocker);
 			options.GapLine();
 
 
@@ -252,6 +254,7 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref alertBurning, "alertBurning", true);
 			Scribe_Values.Look(ref alertToxic, "alertToxic", true);
 			Scribe_Values.Look(ref alertNoBill, "alertNoBill", true);
+			Scribe_Values.Look(ref alertWindBlocker, "alertWindBlocker", true);
 
 			Scribe_Values.Look(ref matchGrowButton, "matchGrowButton", true);
 			Scribe_Values.Look(ref deepDrillRandom, "deepDrillRandom", true);
