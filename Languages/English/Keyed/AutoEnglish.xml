@@ -140,5 +140,7 @@
 	<TD.WindBlocked>Wind blocked</TD.WindBlocked>
 	<TD.WindBlockedDesc>Something is blocking wind, and you probably don't want it blocking wind</TD.WindBlockedDesc>
 	<TD.Show>Show "{0}"</TD.Show>
-
+	<TD.SettingHeaderToggleButtons>Show/Hide Toggle Buttons (at bottom-right)</TD.SettingHeaderToggleButtons>
+	<TD.SettingHeaderToggleButtonsDesc>Since this mod adds so many overlay toggles, how about we remove some of those buttons you never use:</TD.SettingHeaderToggleButtonsDesc>
+	
 </LanguageData>

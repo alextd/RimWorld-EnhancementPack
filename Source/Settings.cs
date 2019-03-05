@@ -148,8 +148,8 @@ namespace TD_Enhancement_Pack
 
 
 			//Hide bottom-right Toggleable buttons
-			options.LabelHeader("Show/Hide Toggle Buttons (at bottom-right)");
-			options.Label("Since this mod adds so many overlay toggles, how about we remove some of those buttons you never use:");
+			options.LabelHeader("TD.SettingHeaderToggleButtons".Translate());
+			options.Label("TD.SettingHeaderToggleButtonsDesc".Translate());
 			options.CheckboxLabeled("TD.Show".Translate("ShowLearningHelperWhenEmptyToggleButton".Translate().Split('\n')[0]), ref showToggleLearning);
 			options.CheckboxLabeled("TD.Show".Translate("ZoneVisibilityToggleButton".Translate().Split('\n')[0]), ref showToggleZone);
 			options.CheckboxLabeled("TD.Show".Translate("ShowBeautyToggleButton".Translate().Split('\n')[0]), ref showToggleBeauty);
