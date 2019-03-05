@@ -128,7 +128,8 @@
 	<TD.SettingsHeaderAI>AI / behavior</TD.SettingsHeaderAI>
 	<TD.EmptyWorkbench>Empty Workbench</TD.EmptyWorkbench>
 	<TD.EmptyWorkbenchDesc>There is a workbench with no work bills set up</TD.EmptyWorkbenchDesc>
-	<TD.ClearEntireArea>Clear entire area (but don't delete from the list)</TD.ClearEntireArea>	<TD.PasteFrom>Paste from</TD.PasteFrom>
+	<TD.ClearEntireArea>Clear entire area (but don't delete from the list)</TD.ClearEntireArea>
+	<TD.PasteFrom>Paste from</TD.PasteFrom>
 	<TD.SettingsZoomToMouse>Zoom to Mouse</TD.SettingsZoomToMouse>
 	<TD.AlertBurning>A colonist is burning, and is rapidly gaining heatstroke.</TD.AlertBurning>
 	<TD.AlertHeatstrike>A colonist is gaining heatstroke. That's not a good thing.</TD.AlertHeatstrike>
