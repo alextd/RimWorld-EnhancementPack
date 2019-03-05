@@ -153,8 +153,8 @@ namespace TD_Enhancement_Pack
 
 			//Notifications / Info
 			options.LabelHeader("TD.SettingsHeaderInfo".Translate());
-			options.CheckboxLabeled("Resource readout state is saved per-game (categorized mode)", ref rememberResourceReadout);
-			options.CheckboxLabeled("New game: resource readout starts with each category open", ref startOpenResourceReadout);
+			options.CheckboxLabeled("TD.SettingRememberResourceReadout".Translate(), ref rememberResourceReadout);
+			options.CheckboxLabeled("TD.SettingNewGameOpenResourceReadout".Translate(), ref startOpenResourceReadout);
 			options.CheckboxLabeled("TD.SettingPawnTableHighlightSelected".Translate(), ref pawnTableHighlightSelected);
 			options.CheckboxLabeled("TD.SettingPawnTableClickSelect".Translate(), ref pawnTableClickSelect, "TD.SettingPawnTableClickSelectDesc".Translate());
 			options.CheckboxLabeled("TD.SettingTopRightMouseover".Translate(), ref mouseoverInfoTopRight, "TD.SettingTopRightMouseoverDesc".Translate());
@@ -178,7 +178,7 @@ namespace TD_Enhancement_Pack
 			options.CheckboxLabeled("TD.SettingAlertBurning".Translate(), ref alertBurning);
 			options.CheckboxLabeled("TD.SettingAlertToxic".Translate(), ref alertToxic);
 			options.CheckboxLabeled("TD.SettingAlertNoBill".Translate(), ref alertNoBill);
-			options.CheckboxLabeled("Alert for wind-blocked turbines", ref alertWindBlocker);
+			options.CheckboxLabeled("TD.AlertWindBlocked".Translate(), ref alertWindBlocker);
 			options.GapLine();
 
 

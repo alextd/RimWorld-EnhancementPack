@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
-	
+
 	<TD.HexColorValuesOnly>Hex color values only</TD.HexColorValuesOnly>
 	<TD.ToggleBuildable>Toggle the buildable terrain overlay</TD.ToggleBuildable>
 	<TD.ToggleCoverage>Toggle the building coverage overlay (shown when selected buildings have coverage)</TD.ToggleCoverage>
@@ -134,5 +134,10 @@
 	<TD.AlertBurning>A colonist is burning, and is rapidly gaining heatstroke.</TD.AlertBurning>
 	<TD.AlertHeatstrike>A colonist is gaining heatstroke. That's not a good thing.</TD.AlertHeatstrike>
 	<TD.AlertToxic>A colonist has non-trivial levels of toxic buildup. That's not a good thing.</TD.AlertToxic>
-	
+	<TD.SettingRememberResourceReadout>Resource readout state is saved per-game (categorized mode)</TD.SettingRememberResourceReadout>
+	<TD.SettingNewGameOpenResourceReadout>New game: resource readout starts with each category open</TD.SettingNewGameOpenResourceReadout>
+	<TD.AlertWindBlocked>Alert for wind-blocked turbines</TD.AlertWindBlocked>
+	<TD.WindBlocked>Wind blocked</TD.WindBlocked>
+	<TD.WindBlockedDesc>Something is blocking wind, and you probably don't want it blocking wind</TD.WindBlockedDesc>
+
 </LanguageData>

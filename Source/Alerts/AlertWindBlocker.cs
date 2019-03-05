@@ -29,8 +29,8 @@ namespace TD_Enhancement_Pack.Alerts
 
 		public Alert_WindBlocker()
 		{
-			defaultLabel = "Wind blocked";
-			defaultExplanation = "Something is blocking wind, and you probably don't want it blocking wind";
+			defaultLabel = "TD.WindBlocked".Translate();
+			defaultExplanation = "TD.WindBlockedDesc".Translate();
 		}
 
 		public override AlertReport GetReport()
