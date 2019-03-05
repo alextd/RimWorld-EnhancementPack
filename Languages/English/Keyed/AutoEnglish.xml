@@ -3,6 +3,7 @@
 	
 	<TD.HexColorValuesOnly>Hex color values only</TD.HexColorValuesOnly>
 	<TD.ToggleBuildable>Toggle the buildable terrain overlay</TD.ToggleBuildable>
+	<TD.ToggleCoverage>Toggle the building coverage overlay (shown when selected buildings have coverage)</TD.ToggleCoverage>
 	<TD.ToggleBeauty>Toggle the beauty overlay</TD.ToggleBeauty>
 	<TD.ToggleFertility>Toggle the fertile terrain overlay</TD.ToggleFertility>
 	<TD.ToggleLighting>Toggle the lighting overlay</TD.ToggleLighting>
@@ -14,7 +15,9 @@
 	<TD.CountToSow>To do: {0}</TD.CountToSow>
 	<TD.CountFullyGrown>Grown: {0}</TD.CountFullyGrown>
 	<TD.SettingOverlayBuildable>Enable a toggle for a buildable terrain overlay</TD.SettingOverlayBuildable>
-	<TD.SettingOverlayBuildableDesc>Red is unbuildable terrain, Orange is 'Medium', Yellow is 'Light'</TD.SettingOverlayBuildableDesc>
+	<TD.SettingOverlayBuildableDesc>Red is unbuildable terrain, Orange is 'Medium', Yellow is 'Light', and clear is 'Heavy' (pretty much everything can be built on 'Heavy')</TD.SettingOverlayBuildableDesc>
+	<TD.SettingOverlayCoverage>Enable a toggle for a building coverage overlay</TD.SettingOverlayCoverage>
+	<TD.SettingOverlayCoverageDesc>Buildings like trade beacons show their collective range when selected</TD.SettingOverlayCoverageDesc>
 	<TD.SettingOverlayBeauty>Enable a toggle for a beauty overlay</TD.SettingOverlayBeauty>
 	<TD.SettingOverlayFertility>Enable a toggle for a fertility overlay</TD.SettingOverlayFertility>
 	<TD.SettingOverlayFertilityUnder>Fertility overlay shows value for terrain under floors</TD.SettingOverlayFertilityUnder>
@@ -64,6 +67,8 @@
 	<TD.SettingDodgeGrenadesUnlessBelt>Don't dodge if shield belt is worn</TD.SettingDodgeGrenadesUnlessBelt>
 	<TD.SettingAutoBuildable>Auto-show buildable terrain overlay when placing buildings</TD.SettingAutoBuildable>
 	<TD.SettingAutoBuildableDesc>Buildings with unique requirements like bridges and graves will show a overlay of where they can't be built</TD.SettingAutoBuildableDesc>
+	<TD.SettingAutoCoverage>Auto-show building coverage overlay when placing buildings</TD.SettingAutoCoverage>
+	<TD.SettingAutoCoverageDesc>Buildings like trade beacons show their collective range</TD.SettingAutoCoverageDesc>
 	<TD.SettingAutoSmoothable>Auto-highlight smoothable terrain when smoothing things</TD.SettingAutoSmoothable>
 	<TD.SettingAutoTreeGrowth>Auto-highlight tree growth when ordering wood chopping</TD.SettingAutoTreeGrowth>
 	<TD.SettingAutoTreeGrowthDesc>Red is unharvestable \nGreen is harvestable \nWhite is fully mature \nYellow is harvestable "soon"</TD.SettingAutoTreeGrowthDesc>
