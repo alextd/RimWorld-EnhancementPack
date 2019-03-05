@@ -139,5 +139,6 @@
 	<TD.AlertWindBlocked>Alert for wind-blocked turbines</TD.AlertWindBlocked>
 	<TD.WindBlocked>Wind blocked</TD.WindBlocked>
 	<TD.WindBlockedDesc>Something is blocking wind, and you probably don't want it blocking wind</TD.WindBlockedDesc>
+	<TD.Show>Show "{0}"</TD.Show>
 
 </LanguageData>

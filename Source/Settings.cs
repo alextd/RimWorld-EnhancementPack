@@ -74,6 +74,16 @@ namespace TD_Enhancement_Pack
 
 		public bool zoomToMouse = false;
 
+		public bool showToggleLearning = true;
+		public bool showToggleZone = true;
+		public bool showToggleBeauty = true;
+		public bool showToggleRoomstats = true;
+		public bool showToggleColonists = true;
+		public bool showToggleRoof = true;
+		public bool showToggleHomeArea = true;
+		public bool showToggleRebuild = true;
+		public bool showToggleCategorized = true;
+
 		public Vector2 scrollPosition;
 		public float scrollViewHeight;
 
@@ -137,6 +147,21 @@ namespace TD_Enhancement_Pack
 			options.GapLine();
 
 
+			//Hide bottom-right Toggleable buttons
+			options.LabelHeader("Show/Hide Toggle Buttons (at bottom-right)");
+			options.Label("Since this mod adds so many overlay toggles, how about we remove some of those buttons you never use:");
+			options.CheckboxLabeled("TD.Show".Translate("ShowLearningHelperWhenEmptyToggleButton".Translate().Split('\n')[0]), ref showToggleLearning);
+			options.CheckboxLabeled("TD.Show".Translate("ZoneVisibilityToggleButton".Translate().Split('\n')[0]), ref showToggleZone);
+			options.CheckboxLabeled("TD.Show".Translate("ShowBeautyToggleButton".Translate().Split('\n')[0]), ref showToggleBeauty);
+			options.CheckboxLabeled("TD.Show".Translate("ShowRoomStatsToggleButton".Translate().Split('\n')[0]), ref showToggleRoomstats);
+			options.CheckboxLabeled("TD.Show".Translate("ShowColonistBarToggleButton".Translate().Split('\n')[0]), ref showToggleColonists);
+			options.CheckboxLabeled("TD.Show".Translate("ShowRoofOverlayToggleButton".Translate().Split('\n')[0]), ref showToggleRoof);
+			options.CheckboxLabeled("TD.Show".Translate("AutoHomeAreaToggleButton".Translate().Split('\n')[0]), ref showToggleHomeArea);
+			options.CheckboxLabeled("TD.Show".Translate("AutoRebuildButton".Translate().Split('\n')[0]), ref showToggleRebuild);
+			options.CheckboxLabeled("TD.Show".Translate("CategorizedResourceReadoutToggleButton".Translate().Split('\n')[0]), ref showToggleCategorized);
+			options.GapLine();
+
+
 			//Game improvements
 			options.LabelHeader("TD.SettingsHeaderGame".Translate());
 			options.CheckboxLabeled("TD.DeepDrillRandomrock".Translate(), ref deepDrillRandom, "TD.DeepDrillRandomrockDesc".Translate());
@@ -171,7 +196,7 @@ namespace TD_Enhancement_Pack
 			options.GapLine();
 
 
-			//Notifications / Info
+			//Alerts
 			options.LabelHeader("TD.SettingsHeaderAlerts".Translate());
 			options.CheckboxLabeled("TD.SettingAlertDeterioration".Translate(), ref alertDeteriorating, "TD.SettingAlertDeteriorationDesc".Translate());
 			options.CheckboxLabeled("TD.SettingAlertHeatstroke".Translate(), ref alertHeatstroke);
@@ -248,7 +273,7 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref fieldEdgesRedo, "fieldEdgesRedo", true);
 			Scribe_Values.Look(ref zoneHarvestableToggle, "zoneHarvestableToggle", false);
 			Scribe_Values.Look(ref zoneRefill, "zoneRefill", true);
-			
+
 			Scribe_Values.Look(ref neverHome, "neverHome", true);
 			Scribe_Values.Look(ref slaughterZone, "slaughterZone", true);
 
@@ -273,6 +298,16 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref deepDrillRandom, "deepDrillRandom", true);
 
 			Scribe_Values.Look(ref zoomToMouse, "zoomToMouse", false);
+
+			Scribe_Values.Look(ref showToggleLearning, "showToggleLearning", true);
+			Scribe_Values.Look(ref showToggleZone, "showToggleZone", true);
+			Scribe_Values.Look(ref showToggleBeauty, "showToggleBeauty", true);
+			Scribe_Values.Look(ref showToggleRoomstats, "showToggleRoomstats", true);
+			Scribe_Values.Look(ref showToggleColonists, "showToggleColonists", true);
+			Scribe_Values.Look(ref showToggleRoof, "showToggleRoof", true);
+			Scribe_Values.Look(ref showToggleHomeArea, "showToggleHomeArea", true);
+			Scribe_Values.Look(ref showToggleRebuild, "showToggleRebuild", true);
+			Scribe_Values.Look(ref showToggleCategorized, "showToggleCategorized", true);
 		}
 	}
 }
