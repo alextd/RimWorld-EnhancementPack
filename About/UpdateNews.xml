@@ -45,4 +45,14 @@ Latest updates:
 		</content>
 		<linkUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=1339135272</linkUrl>
 	</li>
+
+	<li>
+		<assemblyVersion>1.2.4</assemblyVersion>
+		<content>- New "Coverage" Overlay for selected buildings like trade beacons and moisture pumps, showing total coverage of all buildings
+- Alert for wind-blocked turbines
+- Resource readout is saved with your game, so loading your game will remember which categories to open
+- Options in settings to hide the bottom-right toggle buttons
+		</content>
+		<linkUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=1339135272</linkUrl>
+	</li>
 </News>
