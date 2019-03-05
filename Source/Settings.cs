@@ -57,6 +57,8 @@ namespace TD_Enhancement_Pack
 		public bool caravanSaveManifest = true;
 		public bool blueprintAnyStuff = true;
 		public bool pawnTableHighlightSelected = true;
+		public bool rememberResourceReadout = true;
+		public bool startOpenResourceReadout = false;
 		public bool pawnTableClickSelect = false;
 		public bool mouseoverInfoTopRight = false;
 
@@ -151,6 +153,8 @@ namespace TD_Enhancement_Pack
 
 			//Notifications / Info
 			options.LabelHeader("TD.SettingsHeaderInfo".Translate());
+			options.CheckboxLabeled("Resource readout state is saved per-game (categorized mode)", ref rememberResourceReadout);
+			options.CheckboxLabeled("New game: resource readout starts with each category open", ref startOpenResourceReadout);
 			options.CheckboxLabeled("TD.SettingPawnTableHighlightSelected".Translate(), ref pawnTableHighlightSelected);
 			options.CheckboxLabeled("TD.SettingPawnTableClickSelect".Translate(), ref pawnTableClickSelect, "TD.SettingPawnTableClickSelectDesc".Translate());
 			options.CheckboxLabeled("TD.SettingTopRightMouseover".Translate(), ref mouseoverInfoTopRight, "TD.SettingTopRightMouseoverDesc".Translate());
@@ -253,6 +257,8 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref caravanSaveManifest, "caravanSaveManifest", true);
 			Scribe_Values.Look(ref blueprintAnyStuff, "blueprintAnyStuff", true);
 			Scribe_Values.Look(ref pawnTableHighlightSelected, "pawnTableHighlightSelected", true);
+			Scribe_Values.Look(ref rememberResourceReadout, "rememberResourceReadout", true);
+			Scribe_Values.Look(ref startOpenResourceReadout, "startOpenResourceReadout", false);
 			Scribe_Values.Look(ref pawnTableClickSelect, "pawnTableClickSelect", false);
 			Scribe_Values.Look(ref mouseoverInfoTopRight, "mouseoverInfoTopRight", false);
 
