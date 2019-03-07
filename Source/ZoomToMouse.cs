@@ -33,7 +33,7 @@ namespace TD_Enhancement_Pack
 		public static MethodInfo ApplyInfo = AccessTools.Method(typeof(CameraDriver), "ApplyPositionToGameObject");
 		public static void Adjust(CameraDriver driver, float rootSize)
 		{
-			if(!Settings.Get().zoomToMouse)
+			if(!Settings.Get().zoomToMouse || Event.current.shift)
 			{
 				rootSizeInfo.SetValue(driver, rootSize);
 				return;

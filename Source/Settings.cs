@@ -225,7 +225,7 @@ namespace TD_Enhancement_Pack
 			options.GapLine();
 
 			options.Label("TD.OtherFeatures".Translate());
-			options.CheckboxLabeled("TD.SettingsZoomToMouse".Translate(), ref zoomToMouse);
+			options.CheckboxLabeled("TD.SettingsZoomToMouse".Translate(), ref zoomToMouse, "TD.SettingsZoomToMouseDesc".Translate());
 			options.Label("TD.NoFrameDecon".Translate(), tooltip: "TD.NoFrameDeconDesc".Translate());
 			options.Label("TD.DropdownBuildingsOrder".Translate(), tooltip: "TD.DropdownBuildingsOrderDesc".Translate());
 

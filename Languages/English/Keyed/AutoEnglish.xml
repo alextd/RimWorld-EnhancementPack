@@ -131,6 +131,7 @@
 	<TD.ClearEntireArea>Clear entire area (but don't delete from the list)</TD.ClearEntireArea>
 	<TD.PasteFrom>Paste from</TD.PasteFrom>
 	<TD.SettingsZoomToMouse>Zoom to Mouse</TD.SettingsZoomToMouse>
+	<TD.SettingsZoomToMouseDesc>(Shift-zoom will zoom to center)</TD.SettingsZoomToMouseDesc>
 	<TD.AlertBurning>A colonist is burning, and is rapidly gaining heatstroke.</TD.AlertBurning>
 	<TD.AlertHeatstrike>A colonist is gaining heatstroke. That's not a good thing.</TD.AlertHeatstrike>
 	<TD.AlertToxic>A colonist has non-trivial levels of toxic buildup. That's not a good thing.</TD.AlertToxic>
