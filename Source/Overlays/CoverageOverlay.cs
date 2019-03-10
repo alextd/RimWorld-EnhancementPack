@@ -113,11 +113,12 @@ namespace TD_Enhancement_Pack.Overlays
 
 		public virtual Color GetCellExtraColor(int index) => coveredColor;
 
-		public abstract ThingDef MatchingDef();
-		public virtual float Radius() => MatchingDef().specialDisplayRadius;
+		public abstract ThingDef PlacingDef();
+		public virtual ThingDef CoverageDef() => PlacingDef();
+		public virtual float Radius() => CoverageDef().specialDisplayRadius;
 		public bool MakeActive(ThingDef def)
 		{
-			bool nowActive = def == MatchingDef();
+			bool nowActive = def == PlacingDef();
 			if (nowActive != active)
 			{
 				active = nowActive;
@@ -128,13 +129,13 @@ namespace TD_Enhancement_Pack.Overlays
 
 		public void Init()
 		{
-			HashSet<IntVec3> centers = new HashSet<IntVec3>(Find.CurrentMap.listerThings.ThingsOfDef(MatchingDef()).Select(t => t.Position));
+			HashSet<IntVec3> centers = new HashSet<IntVec3>(Find.CurrentMap.listerThings.ThingsOfDef(CoverageDef()).Select(t => t.Position));
 
 			centers.AddRange(Find.CurrentMap.listerThings.ThingsInGroup(ThingRequestGroup.Blueprint)
-				.Where(bp => GenConstruct.BuiltDefOf(bp.def) == MatchingDef()).Select(t => t.Position).ToList());
+				.Where(bp => GenConstruct.BuiltDefOf(bp.def) == CoverageDef()).Select(t => t.Position).ToList());
 
 			centers.AddRange(Find.CurrentMap.listerThings.ThingsInGroup(ThingRequestGroup.BuildingFrame)
-				.Where(frame => GenConstruct.BuiltDefOf(frame.def) == MatchingDef()).Select(t => t.Position).ToList());
+				.Where(frame => GenConstruct.BuiltDefOf(frame.def) == CoverageDef()).Select(t => t.Position).ToList());
 
 			covered.Clear();
 
@@ -168,20 +169,20 @@ namespace TD_Enhancement_Pack.Overlays
 	}
 	public class TradeBeaconType : CoverageType
 	{
-		public override ThingDef MatchingDef() => ThingDefOf.OrbitalTradeBeacon;
+		public override ThingDef PlacingDef() => ThingDefOf.OrbitalTradeBeacon;
 		public override float Radius() => 7.9f;//Building_OrbitalTradeBeacon.TradeRadius;
 	}
 	public class SunLampType : CoverageType
 	{
-		public override ThingDef MatchingDef() => MoreThingDefOf.SunLamp;
+		public override ThingDef PlacingDef() => MoreThingDefOf.SunLamp;
 	}
 	public class FirefoamPopperType : CoverageType
 	{
-		public override ThingDef MatchingDef() => ThingDefOf.FirefoamPopper;
+		public override ThingDef PlacingDef() => ThingDefOf.FirefoamPopper;
 	}
 	public class PsychicEmanatorType : CoverageType
 	{
-		public override ThingDef MatchingDef() => ThingDefOf.PsychicEmanator;
+		public override ThingDef PlacingDef() => ThingDefOf.PsychicEmanator;
 	}
 
 	//Moisture pumps show overlay AND coverage
@@ -195,7 +196,7 @@ namespace TD_Enhancement_Pack.Overlays
 			covered.Contains(Find.CurrentMap.cellIndices.IndexToCell(index))
 				? coveredColor : Color.green;
 
-		public override ThingDef MatchingDef() => MoreThingDefOf.MoisturePump;
+		public override ThingDef PlacingDef() => MoreThingDefOf.MoisturePump;
 	}
 
 	[HarmonyPatch(typeof(ThingGrid), "Register")]
@@ -205,7 +206,7 @@ namespace TD_Enhancement_Pack.Overlays
 		{
 			if (___map == Find.CurrentMap)
 				if (CoverageOverlay.activeType != null &&
-					GenConstruct.BuiltDefOf(t.def) == CoverageOverlay.activeType.MatchingDef())
+					GenConstruct.BuiltDefOf(t.def) == CoverageOverlay.activeType.CoverageDef())
 					BaseOverlay.SetDirty(typeof(CoverageOverlay));
 		}
 	}
