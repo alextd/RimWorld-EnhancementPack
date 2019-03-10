@@ -105,13 +105,14 @@ namespace TD_Enhancement_Pack.Overlays
 	{
 		public bool active;
 
-		public static Color coveredColor = Color.blue * 0.5f;
+		public static Color coveredColor = Color.blue;
 		protected static HashSet<IntVec3> covered = new HashSet<IntVec3>();
 
 		public virtual bool ShowCell(int index) =>
 			covered.Contains(Find.CurrentMap.cellIndices.IndexToCell(index));
 
-		public virtual Color GetCellExtraColor(int index) => coveredColor;
+		public virtual Color GetCellExtraColor(int index) => GetCoverageEdgeColor() * 0.5f;
+		public virtual Color GetCoverageEdgeColor() => coveredColor;
 
 		public abstract ThingDef PlacingDef();
 		public virtual ThingDef CoverageDef() => PlacingDef();
@@ -155,7 +156,7 @@ namespace TD_Enhancement_Pack.Overlays
 
 		public void PostDraw()
 		{
-			GenDraw.DrawFieldEdges(covered.ToList(), Color.blue);
+			GenDraw.DrawFieldEdges(covered.ToList(), GetCoverageEdgeColor());
 		}
 	}
 
@@ -183,6 +184,42 @@ namespace TD_Enhancement_Pack.Overlays
 	public class PsychicEmanatorType : CoverageType
 	{
 		public override ThingDef PlacingDef() => ThingDefOf.PsychicEmanator;
+	}
+
+	[DefOf]
+	public static class TrapThingDefOf
+	{
+		public static ThingDef TrapIED_HighExplosive;
+		public static ThingDef TrapIED_Incendiary;
+		public static ThingDef TrapIED_EMP;
+		public static ThingDef TrapIED_Firefoam;
+		public static ThingDef TrapIED_AntigrainWarhead;
+	}
+	public abstract class TrapType : CoverageType
+	{
+		public override ThingDef CoverageDef() => TrapThingDefOf.TrapIED_HighExplosive;
+		public override Color GetCoverageEdgeColor() => Color.red;
+	}
+	//Okay at this point I should make a class to handle all these at once ohwell
+	public class IEDTrapType : TrapType
+	{
+		public override ThingDef PlacingDef() => TrapThingDefOf.TrapIED_HighExplosive;
+	}
+	public class FireTrapType : TrapType
+	{
+		public override ThingDef PlacingDef() => TrapThingDefOf.TrapIED_Incendiary;
+	}
+	public class EMPTrapType : TrapType
+	{
+		public override ThingDef PlacingDef() => TrapThingDefOf.TrapIED_EMP;
+	}
+	public class FirefoamTrapType : TrapType
+	{
+		public override ThingDef PlacingDef() => TrapThingDefOf.TrapIED_Firefoam;
+	}
+	public class AntigrainTrapType : TrapType
+	{
+		public override ThingDef PlacingDef() => TrapThingDefOf.TrapIED_AntigrainWarhead;
 	}
 
 	//Moisture pumps show overlay AND coverage
