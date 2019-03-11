@@ -18,11 +18,31 @@ namespace TD_Enhancement_Pack
 			if (___selOutfitInt == null) return;
 
 			Rect butRect = new Rect(inRect.width - 150f, 0f, 150f, 35f);//otherwise tediously transpile it in, this dialog isn't using Listing
-			if (Widgets.ButtonText(butRect, "Copy Outfit"))
+			if (Widgets.ButtonText(butRect, "Make Copy"))
 			{
 				ThingFilter selFilter = ___selOutfitInt.filter;
 				___selOutfitInt = Current.Game.outfitDatabase.MakeNewOutfit();
 				___selOutfitInt.filter.CopyAllowancesFrom(selFilter);
+			}
+		}
+	}
+
+	//While I'm here, I might as well copy Food Restriction. Drug Policies don't have easily copieable settings
+
+	[HarmonyPatch(typeof(Dialog_ManageFoodRestrictions), nameof(Dialog_ManageFoodRestrictions.DoWindowContents))]
+	class CopyFoodRestriction
+	{
+		//public override void DoWindowContents(Rect inRect);
+		public static void Postfix(Rect inRect, ref FoodRestriction ___selFoodRestrictionInt)
+		{
+			if (___selFoodRestrictionInt == null) return;
+
+			Rect butRect = new Rect(inRect.width - 150f, 0f, 150f, 35f);//otherwise tediously transpile it in, this dialog isn't using Listing
+			if (Widgets.ButtonText(butRect, "Make Copy"))
+			{
+				ThingFilter selFilter = ___selFoodRestrictionInt.filter;
+				___selFoodRestrictionInt = Current.Game.foodRestrictionDatabase.MakeNewFoodRestriction();
+				___selFoodRestrictionInt.filter.CopyAllowancesFrom(selFilter);
 			}
 		}
 	}
