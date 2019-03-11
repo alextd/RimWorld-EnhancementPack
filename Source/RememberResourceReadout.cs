@@ -14,7 +14,7 @@ namespace TD_Enhancement_Pack
 		{
 			if(Settings.Get().rememberResourceReadout)
 				foreach (var resource in DefDatabase<ThingCategoryDef>.AllDefs.Where(cat => cat.resourceReadoutRoot))
-					SaveTree(resource.treeNode, 0, 32);
+					SaveTree(resource.treeNode, 0, 32);//32 being the bit for Resource Readout
 		}
 
 		public void SaveTree(TreeNode_ThingCategory node, int nestLevel, int openMask)
