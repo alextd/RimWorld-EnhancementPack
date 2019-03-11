@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  
+  <TransferableSorterDef>
+    <defName>MarketValuePerMass</defName>
+    <label>value/mass</label>
+    <comparerClass>TD_Enhancement_Pack.TransferableComparer_ValuePerMass</comparerClass>
+  </TransferableSorterDef>
+  
+</Defs>
