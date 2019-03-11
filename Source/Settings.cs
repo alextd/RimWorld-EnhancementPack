@@ -53,6 +53,7 @@ namespace TD_Enhancement_Pack
 		public bool slaughterZone = true;
 
 		public bool autorebuildDefaultOn = true;
+		public bool autoRebuildTransportPod = false;
 		public bool caravanLoadSelection = true;
 		public bool caravanSaveManifest = true;
 		public bool blueprintAnyStuff = true;
@@ -167,6 +168,7 @@ namespace TD_Enhancement_Pack
 			options.LabelHeader("TD.SettingsHeaderGame".Translate());
 			options.CheckboxLabeled("TD.DeepDrillRandomrock".Translate(), ref deepDrillRandom, "TD.DeepDrillRandomrockDesc".Translate());
 			options.CheckboxLabeled("TD.SettingAutoAutorebuild".Translate(), ref autorebuildDefaultOn);
+			options.CheckboxLabeled("TD.SettingAutoRebuildTransportPod".Translate(), ref autoRebuildTransportPod);
 			options.Gap();
 			options.CheckboxLabeled("TD.CaravanLoadSelection".Translate(), ref caravanLoadSelection);
 			options.CheckboxLabeled("TD.CaravanSaveManifest".Translate(), ref caravanSaveManifest);
@@ -280,6 +282,7 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref slaughterZone, "slaughterZone", true);
 
 			Scribe_Values.Look(ref autorebuildDefaultOn, "autorebuildDefaultOn", true);
+			Scribe_Values.Look(ref autoRebuildTransportPod, "autoRebuildTransportPod", false);
 			Scribe_Values.Look(ref caravanLoadSelection, "caravanLoadSelection", true);
 			Scribe_Values.Look(ref caravanSaveManifest, "caravanSaveManifest", true);
 			Scribe_Values.Look(ref blueprintAnyStuff, "blueprintAnyStuff", true);
