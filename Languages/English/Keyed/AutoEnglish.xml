@@ -147,6 +147,7 @@
 	<TD.Show>Show "{0}"</TD.Show>
 	<TD.SettingHeaderToggleButtons>Show/Hide Toggle Buttons (at bottom-right)</TD.SettingHeaderToggleButtons>
 	<TD.SettingHeaderToggleButtonsDesc>Since this mod adds so many overlay toggles, how about we remove some of those buttons you never use:</TD.SettingHeaderToggleButtonsDesc>
+	<TD.MakeCopy>Make Copy</TD.MakeCopy>
 	
 
 </LanguageData>
