@@ -84,6 +84,7 @@
 	<TD.SettingTopRightMouseover>Mouseover tile info is on topright</TD.SettingTopRightMouseover>
 	<TD.SettingTopRightMouseoverDesc>So it shows up when something is selected\n\nOf course this is a bad idea if you still have the learning helper on.</TD.SettingTopRightMouseoverDesc>
 	<TD.SettingPawnTableHighlightSelected>Show selected pawns in tables</TD.SettingPawnTableHighlightSelected>
+	<TD.SettingPawnTableArrowMouseover>Show arrow pointing to pawn in tables</TD.SettingPawnTableArrowMouseover>
 	<TD.SettingPawnTableClickSelect>Mouse clicks in pawn tables select them. (Alt-click to work as before)</TD.SettingPawnTableClickSelect>
 	<TD.SettingPawnTableClickSelectDesc>Should behave intuitively like any other selection. Press Esc to close the tab window.\n\nShift-click to select/deselect multiple. Double click to center camera. Right-click to select a single pawn. Alt-click to close window, select and go to that one pawn.</TD.SettingPawnTableClickSelectDesc>
 	<TD.SettingAlertDeterioration>Alert for deteriorating things</TD.SettingAlertDeterioration>

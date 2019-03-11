@@ -57,6 +57,7 @@ namespace TD_Enhancement_Pack
 		public bool caravanSaveManifest = true;
 		public bool blueprintAnyStuff = true;
 		public bool pawnTableHighlightSelected = true;
+		public bool pawnTableArrowMouseover = true;
 		public bool rememberResourceReadout = true;
 		public bool startOpenResourceReadout = false;
 		public bool pawnTableClickSelect = false;
@@ -181,6 +182,7 @@ namespace TD_Enhancement_Pack
 			options.CheckboxLabeled("TD.SettingRememberResourceReadout".Translate(), ref rememberResourceReadout);
 			options.CheckboxLabeled("TD.SettingNewGameOpenResourceReadout".Translate(), ref startOpenResourceReadout);
 			options.CheckboxLabeled("TD.SettingPawnTableHighlightSelected".Translate(), ref pawnTableHighlightSelected);
+			options.CheckboxLabeled("TD.SettingPawnTableArrowMouseover".Translate(), ref pawnTableArrowMouseover);
 			options.CheckboxLabeled("TD.SettingPawnTableClickSelect".Translate(), ref pawnTableClickSelect, "TD.SettingPawnTableClickSelectDesc".Translate());
 			options.CheckboxLabeled("TD.SettingTopRightMouseover".Translate(), ref mouseoverInfoTopRight, "TD.SettingTopRightMouseoverDesc".Translate());
 			options.CheckboxLabeled("TD.SettingTradeClose".Translate(), ref changeSpeedAfterTrader);
@@ -282,6 +284,7 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref caravanSaveManifest, "caravanSaveManifest", true);
 			Scribe_Values.Look(ref blueprintAnyStuff, "blueprintAnyStuff", true);
 			Scribe_Values.Look(ref pawnTableHighlightSelected, "pawnTableHighlightSelected", true);
+			Scribe_Values.Look(ref pawnTableArrowMouseover, "pawnTableArrowMouseover", true);
 			Scribe_Values.Look(ref rememberResourceReadout, "rememberResourceReadout", true);
 			Scribe_Values.Look(ref startOpenResourceReadout, "startOpenResourceReadout", false);
 			Scribe_Values.Look(ref pawnTableClickSelect, "pawnTableClickSelect", false);

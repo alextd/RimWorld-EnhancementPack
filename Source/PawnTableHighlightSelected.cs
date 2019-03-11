@@ -34,10 +34,17 @@ namespace TD_Enhancement_Pack
 
 		public static void Postfix(Rect rect, Pawn pawn)
 		{
-			if (!Settings.Get().pawnTableHighlightSelected) return;
+			if (Settings.Get().pawnTableHighlightSelected)
+				if (Find.Selector.IsSelected(pawn))
+					Widgets.DrawHighlightSelected(rect);
 
-			if (Find.Selector.IsSelected(pawn))
-				Widgets.DrawHighlightSelected(rect);
+			if (Settings.Get().pawnTableArrowMouseover)
+				if (Mouse.IsOver(rect))
+				{
+					Vector3 center = UI.UIToMapPosition((float)(UI.screenWidth / 2), (float)(UI.screenHeight / 2));
+					bool arrow = (center - pawn.DrawPos).MagnitudeHorizontalSquared() >= 121f;//Normal arrow is 9^2, using 11^1 seems good too.
+					TargetHighlighter.Highlight(pawn, arrow, true, true);
+				}
 		}
 
 		//public static void TryJumpAndSelect(GlobalTargetInfo target)
