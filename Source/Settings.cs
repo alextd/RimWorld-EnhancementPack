@@ -56,6 +56,7 @@ namespace TD_Enhancement_Pack
 		public bool autoRebuildTransportPod = false;
 		public bool caravanLoadSelection = true;
 		public bool caravanSaveManifest = true;
+		public bool tradeRequestWorstFirst = true;
 		public bool blueprintAnyStuff = true;
 		public bool pawnTableHighlightSelected = true;
 		public bool pawnTableArrowMouseover = true;
@@ -173,6 +174,7 @@ namespace TD_Enhancement_Pack
 			options.CheckboxLabeled("TD.CaravanLoadSelection".Translate(), ref caravanLoadSelection);
 			options.CheckboxLabeled("TD.CaravanSaveManifest".Translate(), ref caravanSaveManifest);
 			options.Label("TD.CaravanDesc".Translate());
+			options.CheckboxLabeled("TD.CaravanWorstFirst".Translate(), ref tradeRequestWorstFirst, "TD.CaravanWorstFirstDesc".Translate());
 			options.Gap();
 			options.CheckboxLabeled("TD.BlueprintAnyStuff".Translate(), ref blueprintAnyStuff);
 			options.Label("TD.SarcophagusPreferred".Translate(), tooltip: "TD.SarcophagusPreferredDesc".Translate());
@@ -285,6 +287,7 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref autoRebuildTransportPod, "autoRebuildTransportPod", false);
 			Scribe_Values.Look(ref caravanLoadSelection, "caravanLoadSelection", true);
 			Scribe_Values.Look(ref caravanSaveManifest, "caravanSaveManifest", true);
+			Scribe_Values.Look(ref tradeRequestWorstFirst, "tradeRequestWorstFirst", true);
 			Scribe_Values.Look(ref blueprintAnyStuff, "blueprintAnyStuff", true);
 			Scribe_Values.Look(ref pawnTableHighlightSelected, "pawnTableHighlightSelected", true);
 			Scribe_Values.Look(ref pawnTableArrowMouseover, "pawnTableArrowMouseover", true);
