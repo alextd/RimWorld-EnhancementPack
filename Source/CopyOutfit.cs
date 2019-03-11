@@ -15,10 +15,11 @@ namespace TD_Enhancement_Pack
 		//public override void DoWindowContents(Rect inRect);
 		public static void Postfix(Rect inRect, ref Outfit ___selOutfitInt)
 		{
+			if (!Settings.Get().copyPolicyButton) return;
 			if (___selOutfitInt == null) return;
 
 			Rect butRect = new Rect(inRect.width - 150f, 0f, 150f, 35f);//otherwise tediously transpile it in, this dialog isn't using Listing
-			if (Widgets.ButtonText(butRect, "TD.MakeCopy".Translate()))
+			if (Widgets.ButtonText(butRect, "Make Copy"))
 			{
 				ThingFilter selFilter = ___selOutfitInt.filter;
 				___selOutfitInt = Current.Game.outfitDatabase.MakeNewOutfit();
@@ -35,10 +36,11 @@ namespace TD_Enhancement_Pack
 		//public override void DoWindowContents(Rect inRect);
 		public static void Postfix(Rect inRect, ref FoodRestriction ___selFoodRestrictionInt)
 		{
+			if (!Settings.Get().copyPolicyButton) return;
 			if (___selFoodRestrictionInt == null) return;
 
 			Rect butRect = new Rect(inRect.width - 150f, 0f, 150f, 35f);//otherwise tediously transpile it in, this dialog isn't using Listing
-			if (Widgets.ButtonText(butRect, "TD.MakeCopy".Translate()))
+			if (Widgets.ButtonText(butRect, "Make Copy"))
 			{
 				ThingFilter selFilter = ___selFoodRestrictionInt.filter;
 				___selFoodRestrictionInt = Current.Game.foodRestrictionDatabase.MakeNewFoodRestriction();

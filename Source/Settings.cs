@@ -58,6 +58,8 @@ namespace TD_Enhancement_Pack
 		public bool caravanSaveManifest = true;
 		public bool tradeRequestWorstFirst = true;
 		public bool blueprintAnyStuff = true;
+		public bool copyPolicyButton = true;
+
 		public bool pawnTableHighlightSelected = true;
 		public bool pawnTableArrowMouseover = true;
 		public bool rememberResourceReadout = true;
@@ -177,6 +179,7 @@ namespace TD_Enhancement_Pack
 			options.CheckboxLabeled("TD.CaravanWorstFirst".Translate(), ref tradeRequestWorstFirst, "TD.CaravanWorstFirstDesc".Translate());
 			options.Gap();
 			options.CheckboxLabeled("TD.BlueprintAnyStuff".Translate(), ref blueprintAnyStuff);
+			options.CheckboxLabeled("TD.SettingCopyPolicy".Translate(), ref copyPolicyButton);
 			options.Label("TD.SarcophagusPreferred".Translate(), tooltip: "TD.SarcophagusPreferredDesc".Translate());
 			options.GapLine();
 
@@ -289,6 +292,7 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref caravanSaveManifest, "caravanSaveManifest", true);
 			Scribe_Values.Look(ref tradeRequestWorstFirst, "tradeRequestWorstFirst", true);
 			Scribe_Values.Look(ref blueprintAnyStuff, "blueprintAnyStuff", true);
+			Scribe_Values.Look(ref copyPolicyButton, "copyPolicyButton", true);
 			Scribe_Values.Look(ref pawnTableHighlightSelected, "pawnTableHighlightSelected", true);
 			Scribe_Values.Look(ref pawnTableArrowMouseover, "pawnTableArrowMouseover", true);
 			Scribe_Values.Look(ref rememberResourceReadout, "rememberResourceReadout", true);
