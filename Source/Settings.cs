@@ -89,6 +89,13 @@ namespace TD_Enhancement_Pack
 		public bool showToggleRebuild = true;
 		public bool showToggleCategorized = true;
 
+		public bool colorVariation = false;
+		public bool colorGenerator = false;
+		public float colorGenChance = 0.5f;
+		public bool colorFixStuffColor = false;
+		public bool colorFixDominant = false;
+
+
 		public Vector2 scrollPosition;
 		public float scrollViewHeight;
 
@@ -181,6 +188,24 @@ namespace TD_Enhancement_Pack
 			options.CheckboxLabeled("TD.BlueprintAnyStuff".Translate(), ref blueprintAnyStuff);
 			options.CheckboxLabeled("TD.SettingCopyPolicy".Translate(), ref copyPolicyButton);
 			options.Label("TD.SarcophagusPreferred".Translate(), tooltip: "TD.SarcophagusPreferredDesc".Translate());
+			options.GapLine();
+
+
+			//Color variations
+			options.LabelHeader("Color Variations");
+			options.CheckboxLabeled("Apply a slight color variation on crafted items", ref colorVariation, "Specifically, up to +/- 5% on HSV.\n\nApparel only, since weapons are not as color-customizable.");
+			options.CheckboxLabeled("Use the color generator on crafted items", ref colorGenerator, "You know those items that other factions get in many colors - you can too!");
+			options.SliderLabeled("Chance to use color generator instead of ingredient color:", ref colorGenChance, "{0:P0}", 0, 1);
+			options.Gap();
+
+			if (options.ButtonTextLabeled("Re-apply color variations to all current things", "Go"))
+				ReapplyAll.Go();
+			options.Label("(This also applies the next two options, whether or not they are checked)");
+
+			options.Gap();
+
+			options.CheckboxLabeled("Fix to use correct color of ingredient", ref colorFixStuffColor, "For example, there should be no white-colored flak armor. It gets the 'white' from steel, but steel should be grey, like it is with weapons. It's only 'white' because the steel .png file is already colored, unlike cloth/leather. Also: Plasteel-colored marine armor looks cool!");
+			options.CheckboxLabeled("Ignore uncolored ingredients", ref colorFixDominant, "Some all-white armor is due to components not having a color at all. Components should not be able to impart their non-color to the items crafted from them.");
 			options.GapLine();
 
 
@@ -321,6 +346,12 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref showToggleHomeArea, "showToggleHomeArea", true);
 			Scribe_Values.Look(ref showToggleRebuild, "showToggleRebuild", true);
 			Scribe_Values.Look(ref showToggleCategorized, "showToggleCategorized", true);
+
+			Scribe_Values.Look(ref colorVariation, "colorVariation", false);
+			Scribe_Values.Look(ref colorGenerator, "colorGenerator", false);
+			Scribe_Values.Look(ref colorGenChance, "colorGenChance", 0.5f);
+			Scribe_Values.Look(ref colorFixStuffColor, "colorFixStuffColor", false);
+			Scribe_Values.Look(ref colorFixDominant, "colorFixDominant", false);
 		}
 	}
 }

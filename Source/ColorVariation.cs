@@ -56,7 +56,7 @@ namespace TD_Enhancement_Pack
 			{
 				yield return i;
 
-				if(i.opcode == OpCodes.Call && i.operand == MakeRecipeProductsInfo)
+				if (i.opcode == OpCodes.Call && i.operand == MakeRecipeProductsInfo)
 				{
 					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ColorVariation), nameof(Variate)));
 				}
@@ -67,28 +67,47 @@ namespace TD_Enhancement_Pack
 		{
 			foreach (Thing t in things)
 			{
-				if(t is ThingWithComps thing)
+				VaryColor(t);
+				yield return t;
+			}
+		}
+
+		public static void VaryColor(Thing t)
+		{
+			if (!Settings.Get().colorGenerator && !Settings.Get().colorVariation) return;
+
+			if (t is ThingWithComps thing)
+			{
+				if (thing.GetComp<CompColorable>() is CompColorable comp)// && thing.DrawColor != Color.white)// && comp.Active)
 				{
-					if (thing.GetComp<CompColorable>() is CompColorable comp)// && thing.DrawColor != Color.white)// && comp.Active)
-					{
-						Log.Message($"{thing} color was {thing.DrawColor}/{comp.Active}:{comp.Color}");
-						Color color = thing.DrawColor;
+					Log.Message($"{thing} color was {thing.DrawColor}/{comp.Active}:{comp.Color}");
+					Color color = thing.DrawColor;
+
+					//Use Color generator.
+					//This is sorta redundant since the recipe just overwrote what might've been a color generated color, 
+					//but only cloth allows it, but since it's overwritten it doesn't matter that cloth allows it. Aeh.
+					if (Settings.Get().colorGenerator)
 						if (!thing.def.MadeFromStuff && thing.def.colorGenerator != null)
 						{
-							if(Rand.Value < 0.5f) //20% chance to colorgenerate instead of stuff color
+							if (Rand.Value < Settings.Get().colorGenChance) //.2 = 20% chance to colorgenerate instead of stuff color
 								color = thing.def.colorGenerator.NewRandomizedColor();
 						}
 
+					if (Settings.Get().colorVariation)
+					{
+						//Deviate a little.
 						Color.RGBToHSV(color, out float h, out float s, out float v);
 						//hsv makes colored things look more varied, and whiter things less varied.
-						comp.Color = Color.HSVToRGB(
-							Mathf.Clamp01(h + (Rand.Value - 0.5f) / 10),
-							Mathf.Clamp01(s + (Rand.Value - 0.5f) / 10),
-							Mathf.Clamp01(v + (Rand.Value - 0.5f) / 10));
-						Log.Message($"{thing} color now {thing.DrawColor}/{comp.Active}:{comp.Color}");
+						color = Color.HSVToRGB(
+						Mathf.Clamp01(h + (Rand.Value - 0.5f) / 10),
+						Mathf.Clamp01(s + (Rand.Value - 0.5f) / 10),
+						Mathf.Clamp01(v + (Rand.Value - 0.5f) / 10));
 					}
+
+					if (color != thing.DrawColor)
+						comp.Color = color;
+					Log.Message($"{thing} color now {thing.DrawColor}/{comp.Active}:{comp.Color}");
 				}
-				yield return t;
 			}
 		}
 
@@ -113,6 +132,8 @@ namespace TD_Enhancement_Pack
 		//public virtual Color DrawColor
 		public static Color StuffColor(Thing stuff)
 		{
+			if (!Settings.Get().colorFixStuffColor) return stuff.DrawColor;
+
 			return stuff.def.stuffProps?.color ?? stuff.DrawColor;
 		}
 	}
@@ -131,11 +152,46 @@ namespace TD_Enhancement_Pack
 		//public static T RandomElementByWeight<T>(this IEnumerable<T> source, Func<T, float> weightSelector)
 		public static Thing StuffOnly(this IEnumerable<Thing> source, Func<Thing, float> weightSelector)
 		{
+			if (!Settings.Get().colorFixDominant) return source.RandomElementByWeight(weightSelector);
+
 			List<Thing> stuffThings = source.Where(t => t.def.IsStuff).ToList();
-			if(stuffThings.NullOrEmpty())
+			if (stuffThings.NullOrEmpty())
 				return source.RandomElementByWeight(weightSelector);
 			return stuffThings.RandomElementByWeight(weightSelector);
 			//return source.MaxBy(weightSelector);	//only the one ever
+		}
+	}
+
+	public static class ReapplyAll
+	{
+		public static void ReDo(IEnumerable<Thing> things)
+		{
+			//Re-do recipe color making
+			foreach(Thing thing in things.Where(t => t.TryGetComp<CompColorable>() != null && (!t.def.costList.NullOrEmpty() || t.def.costStuffCount > 0)))
+			{
+				Log.Message($"REDOING {thing}");
+				if (thing.def.MadeFromStuff)
+					thing.SetColor(thing.Stuff.stuffProps.color);
+				else
+					thing.SetColor(thing.def.costList?.Where(c => c.thingDef.IsStuff).RandomElementByWeightWithFallback(c => c.count)?.thingDef.stuffProps.color ?? thing.DrawColor);
+				ColorVariation.VaryColor(thing);
+			}
+			//Variation
+		}
+		public static void Go()
+		{
+			Log.Message("GOING");
+			foreach(Map map in Find.Maps)
+			{
+				foreach(Pawn pawn in map.mapPawns.FreeColonists)
+				{
+					Log.Message($"MR {pawn}");
+					ReDo(pawn.inventory.GetDirectlyHeldThings());
+					ReDo(pawn.apparel.WornApparel.Cast<Thing>());
+				}
+
+				ReDo(map.listerThings.AllThings);
+			}
 		}
 	}
 }
