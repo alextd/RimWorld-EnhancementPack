@@ -180,6 +180,12 @@ namespace TD_Enhancement_Pack
 		}
 		public static void Go()
 		{
+			if(!Settings.Get().colorRedoWarned)
+			{
+				Find.WindowStack.Add(new Dialog_MessageBox("This button changes a lot of colors. You may want to back up your save file unless you're sure you want colors changed.", "OK, I get it", title: "Hold on"));
+				Settings.Get().colorRedoWarned = true;
+				return;
+			}
 			Log.Message("GOING");
 			foreach(Map map in Find.Maps)
 			{
@@ -188,6 +194,7 @@ namespace TD_Enhancement_Pack
 					Log.Message($"MR {pawn}");
 					ReDo(pawn.inventory.GetDirectlyHeldThings());
 					ReDo(pawn.apparel.WornApparel.Cast<Thing>());
+					pawn.apparel.Notify_ApparelAdded(null);
 				}
 
 				ReDo(map.listerThings.AllThings);

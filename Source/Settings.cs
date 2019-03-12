@@ -94,6 +94,7 @@ namespace TD_Enhancement_Pack
 		public float colorGenChance = 0.5f;
 		public bool colorFixStuffColor = false;
 		public bool colorFixDominant = false;
+		public bool colorRedoWarned = false;
 
 
 		public Vector2 scrollPosition;
@@ -352,6 +353,7 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref colorGenChance, "colorGenChance", 0.5f);
 			Scribe_Values.Look(ref colorFixStuffColor, "colorFixStuffColor", false);
 			Scribe_Values.Look(ref colorFixDominant, "colorFixDominant", false);
+			Scribe_Values.Look(ref colorRedoWarned, "colorRedoWarned", false);
 		}
 	}
 }
