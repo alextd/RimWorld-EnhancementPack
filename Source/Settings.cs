@@ -193,20 +193,20 @@ namespace TD_Enhancement_Pack
 
 
 			//Color variations
-			options.LabelHeader("Color Variations");
-			options.CheckboxLabeled("Apply a slight color variation on crafted items", ref colorVariation, "Specifically, up to +/- 5% on HSV.\n\nApparel only, since weapons are not as color-customizable.");
-			options.CheckboxLabeled("Use the color generator on crafted items", ref colorGenerator, "You know those items that other factions get in many colors - you can too!");
-			options.SliderLabeled("Chance to use color generator instead of ingredient color:", ref colorGenChance, "{0:P0}", 0, 1);
+			options.LabelHeader("TD.SettingHeaderColorVariations".Translate());
+			options.CheckboxLabeled("TD.SettingColorVariation".Translate(), ref colorVariation, "TD.SettingColorVariationDesc".Translate());
+			options.CheckboxLabeled("TD.SettingColorGenerator".Translate(), ref colorGenerator, "TD.SettingColorGeneratorDesc".Translate());
+			options.SliderLabeled("TD.SettingColorGeneratorChance".Translate(), ref colorGenChance, "{0:P0}", 0, 1);
 			options.Gap();
 
-			if (options.ButtonTextLabeled("Re-apply color variations to all current things", "Go"))
+			if (options.ButtonTextLabeled("TD.SettingReapplyColorVariations".Translate(), "TD.Go".Translate()))
 				ReapplyAll.Go();
-			options.Label("(This also applies the next two options, whether or not they are checked)");
+			options.Label("TD.SettingReapplyColorVariationsDesc".Translate());
 
 			options.Gap();
 
-			options.CheckboxLabeled("Fix to use correct color of ingredient", ref colorFixStuffColor, "For example, there should be no white-colored flak armor. It gets the 'white' from steel, but steel should be grey, like it is with weapons. It's only 'white' because the steel .png file is already colored, unlike cloth/leather. Also: Plasteel-colored marine armor looks cool!");
-			options.CheckboxLabeled("Ignore uncolored ingredients", ref colorFixDominant, "Some all-white armor is due to components not having a color at all. Components should not be able to impart their non-color to the items crafted from them.");
+			options.CheckboxLabeled("TD.SettingFixColorStuff".Translate(), ref colorFixStuffColor, "TD.SettingFixColorStuffDesc".Translate());
+			options.CheckboxLabeled("TD.SettingFixUncoloredStuff".Translate(), ref colorFixDominant, "TD.SettingFixUncoloredStuffDesc".Translate());
 			options.GapLine();
 
 

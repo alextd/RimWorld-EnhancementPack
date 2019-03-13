@@ -149,6 +149,23 @@
 	<TD.SettingHeaderToggleButtons>Show/Hide Toggle Buttons (at bottom-right)</TD.SettingHeaderToggleButtons>
 	<TD.SettingHeaderToggleButtonsDesc>Since this mod adds so many overlay toggles, how about we remove some of those buttons you never use:</TD.SettingHeaderToggleButtonsDesc>
 	<TD.MakeCopy>Make Copy</TD.MakeCopy>
+	<TD.WarningReColorAll>That button will change the color of a lot of things. You may want to back up your save file unless you're sure you want colors changed.</TD.WarningReColorAll>
+	<TD.OKIGetIt>OK, I get it</TD.OKIGetIt>
+	<TD.HoldOn>Hold on</TD.HoldOn>
+	<TD.MakeCopy>Make Copy</TD.MakeCopy>
+	<TD.SettingHeaderColorVariations>Color Variations</TD.SettingHeaderColorVariations>
+	<TD.SettingColorVariation>Apply a slight color variation on crafted items</TD.SettingColorVariation>
+	<TD.SettingColorVariationDesc>Specifically, up to +/- 5% on HSV.\n\nApparel only, since weapons are not as color-customizable.</TD.SettingColorVariationDesc>
+	<TD.SettingColorGenerator>Use the color generator on crafted items</TD.SettingColorGenerator>
+	<TD.SettingColorGeneratorDesc>You know those items that other factions get in many colors - you can too!</TD.SettingColorGeneratorDesc>
+	<TD.SettingColorGeneratorChance>Chance to use color generator instead of ingredient color:</TD.SettingColorGeneratorChance>
+	<TD.SettingReapplyColorVariations>Re-apply color variations to all current things</TD.SettingReapplyColorVariations>
+	<TD.Go>Go</TD.Go>
+	<TD.SettingReapplyColorVariationsDesc>(This also applies the next two options, whether or not they are checked)</TD.SettingReapplyColorVariationsDesc>
+	<TD.SettingFixColorStuff>Fix to use correct color of ingredient</TD.SettingFixColorStuff>
+	<TD.SettingFixColorStuffDesc>For example, there should be no white-colored flak armor. It gets the 'white' from steel, but steel should be grey, like it is with weapons. It's only 'white' because the steel .png file is already colored, unlike cloth/leather. Also: Plasteel-colored marine armor looks cool!</TD.SettingFixColorStuffDesc>
+	<TD.SettingFixUncoloredStuff>Ignore uncolored ingredients</TD.SettingFixUncoloredStuff>
+	<TD.SettingFixUncoloredStuffDesc>Some all-white armor is due to components not having a color at all. Components should not be able to impart their non-color to the items crafted from them.</TD.SettingFixUncoloredStuffDesc>
 	
 
 </LanguageData>

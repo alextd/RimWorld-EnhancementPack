@@ -185,7 +185,7 @@ namespace TD_Enhancement_Pack
 		{
 			if(!Settings.Get().colorRedoWarned)
 			{
-				Find.WindowStack.Add(new Dialog_MessageBox("That button will change the color of a lot of things. You may want to back up your save file unless you're sure you want colors changed.", "OK, I get it", title: "Hold on"));
+				Find.WindowStack.Add(new Dialog_MessageBox("TD.WarningReColorAll".Translate(), "TD.OKIGetIt".Translate(), title: "TD.HoldOn".Translate()));
 				Settings.Get().colorRedoWarned = true;
 				return;
 			}
