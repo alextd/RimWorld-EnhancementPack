@@ -78,12 +78,12 @@ namespace TD_Enhancement_Pack
 
 			if (t is ThingWithComps thing)
 			{
-				if (thing.GetComp<CompColorable>() is CompColorable comp)// && thing.DrawColor != Color.white)// && comp.Active)
+				if (thing.GetComp<CompColorable>() is CompColorable comp)
 				{
 					Log.Message($"{thing} color was {thing.DrawColor}/{comp.Active}:{comp.Color}");
 					Color color = thing.DrawColor;
 
-					//Use Color generator.
+					//Override with Color generator?
 					//This is sorta redundant since the recipe just overwrote what might've been a color generated color, 
 					//but only cloth allows it, but since it's overwritten it doesn't matter that cloth allows it. Aeh.
 					if (Settings.Get().colorGenerator)
@@ -99,7 +99,7 @@ namespace TD_Enhancement_Pack
 						Color.RGBToHSV(color, out float h, out float s, out float v);
 						//hsv makes colored things look more varied, and whiter things less varied.
 						color = Color.HSVToRGB(
-						Mathf.Clamp01(h + (Rand.Value - 0.5f) / 10),
+						Mathf.Clamp01(h + (Rand.Value - 0.5f) / 10),	// +/- 5%
 						Mathf.Clamp01(s + (Rand.Value - 0.5f) / 10),
 						Mathf.Clamp01(v + (Rand.Value - 0.5f) / 10));
 					}
@@ -175,7 +175,7 @@ namespace TD_Enhancement_Pack
 				Log.Message($"REDOING {thing}");
 				if (thing.def.MadeFromStuff)
 					thing.SetColor(thing.Stuff.stuffProps.color);
-				else
+				else // This will forget if the stuff had compcolorable set.
 					thing.SetColor(thing.def.costList?.Where(c => c.thingDef.IsStuff).RandomElementByWeightWithFallback(c => c.count)?.thingDef.stuffProps.color ?? thing.DrawColor);
 				ColorVariation.VaryColor(thing);
 			}
