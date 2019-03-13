@@ -134,6 +134,9 @@ namespace TD_Enhancement_Pack
 		{
 			if (!Settings.Get().colorFixStuffColor) return stuff.DrawColor;
 
+			if (stuff.TryGetComp<CompColorable>() is CompColorable comp && comp.Active)
+				return comp.Color;
+
 			return stuff.def.stuffProps?.color ?? stuff.DrawColor;
 		}
 	}
