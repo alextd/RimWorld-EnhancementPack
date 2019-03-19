@@ -152,7 +152,6 @@
 	<TD.WarningReColorAll>That button will change the color of a lot of things. You may want to back up your save file unless you're sure you want colors changed.</TD.WarningReColorAll>
 	<TD.OKIGetIt>OK, I get it</TD.OKIGetIt>
 	<TD.HoldOn>Hold on</TD.HoldOn>
-	<TD.MakeCopy>Make Copy</TD.MakeCopy>
 	<TD.SettingHeaderColorVariations>Color Variations</TD.SettingHeaderColorVariations>
 	<TD.SettingColorVariation>Apply a slight color variation on crafted items</TD.SettingColorVariation>
 	<TD.SettingColorVariationDesc>Specifically, up to +/- 5% on HSV.\n\nApparel only, since weapons are not as color-customizable.</TD.SettingColorVariationDesc>
