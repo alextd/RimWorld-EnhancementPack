@@ -55,4 +55,24 @@ Latest updates:
 		</content>
 		<linkUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=1339135272</linkUrl>
 	</li>
+
+	<li>
+		<assemblyVersion>1.2.5</assemblyVersion>
+		<content>News in order of excitement (You'll need to turn some of these on)
+
+- Color variation! A few fixes, and new features. Applies to apparel.
+-- Fixes coloring of things made from steel ending up while (flak vests)
+-- Ability to create things with pre-set colors varieties, like you see with raider armor
+-- A universal, slight color variation, so every devilstrand shirt you make isn't the exact same color.
+- With Zoom-To-Mouse, shift-zoom zooms to center
+- Trade requests take your least valuable items first (still requiring normal quality)
+- Trade windows can sort by "Value per kg"
+- Transport pods re-build after launch
+- Pawn tables (like Work/Wildlife) show an arrow pointing to hovered names
+- A button to copy a policy (instead of just making a new, blank one)
+- Low Food/Medicine alerts name the map they apply to, if you have multiple bases
+- Show IED trap radius, even when placing other traps
+		</content>
+		<linkUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=1339135272</linkUrl>
+	</li>
 </News>
