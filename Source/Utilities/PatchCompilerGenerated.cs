@@ -22,7 +22,6 @@ namespace TD.Utilities
 				
 				foreach (MethodInfo method in AccessTools.GetDeclaredMethods(type).Where(check))
 				{
-					Log.Message($"Dynamic patching {method}");
 					harmony.Patch(method, prefix, postfix, transpiler);
 				}
 			}
