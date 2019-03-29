@@ -16,6 +16,7 @@ namespace TD_Enhancement_Pack
 		public bool showStopGizmo = true;
 		public bool showStopGizmoDrafted = true;
 		public bool cameraDragFixes = true;
+		public bool billCountEquippedAny = true;
 
 		public bool showOverlayBuildable = true;
 		public bool autoOverlayBuildable = true;
@@ -188,6 +189,7 @@ namespace TD_Enhancement_Pack
 			options.Gap();
 			options.CheckboxLabeled("TD.BlueprintAnyStuff".Translate(), ref blueprintAnyStuff);
 			options.CheckboxLabeled("TD.SettingCopyPolicy".Translate(), ref copyPolicyButton);
+			options.CheckboxLabeled("TD.SettingBillCountEquippedAny".Translate(), ref billCountEquippedAny, "TD.SettingBillCountEquippedAnyDesc".Translate());
 			options.Label("TD.SarcophagusPreferred".Translate(), tooltip: "TD.SarcophagusPreferredDesc".Translate());
 			options.GapLine();
 
@@ -277,6 +279,7 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref showStopGizmo, "showStopGizmo", true);
 			Scribe_Values.Look(ref showStopGizmoDrafted, "showStopGizmoDrafted", true);
 			Scribe_Values.Look(ref cameraDragFixes, "cameraDragFixes", true);
+			Scribe_Values.Look(ref billCountEquippedAny, "billCountEquippedAny", true);
 
 			Scribe_Values.Look(ref showOverlayBuildable, "showOverlayBuildable", true);
 			Scribe_Values.Look(ref autoOverlayBuildable, "autoOverlayBuildable", true);

@@ -85,6 +85,8 @@
 	<TD.CaravanWorstFirstDesc>Keep in mind that at least normal quality is still required, but this avoids donating legendary items when you have normal available.</TD.CaravanWorstFirstDesc>
 	<TD.BlueprintAnyStuff>Right-click a building tool to select any material to build from (even when you don't have it available)</TD.BlueprintAnyStuff>
 	<TD.SettingCopyPolicy>Show A "Make Copy" button in the Outfit/Food policy settings</TD.SettingCopyPolicy>
+	<TD.SettingBillCountEquippedAny>Show The "Count Equipped" option for every bill</TD.SettingBillCountEquippedAny>
+	<TD.SettingBillCountEquippedAnyDesc>Weapon and Apparel always do, but why not count meals + medicine in your inventory?</TD.SettingBillCountEquippedAnyDesc>
 	<TD.SettingTopRightMouseover>Mouseover tile info is on topright</TD.SettingTopRightMouseover>
 	<TD.SettingTopRightMouseoverDesc>So it shows up when something is selected\n\nOf course this is a bad idea if you still have the learning helper on.</TD.SettingTopRightMouseoverDesc>
 	<TD.SettingPawnTableHighlightSelected>Show selected pawns in tables</TD.SettingPawnTableHighlightSelected>
