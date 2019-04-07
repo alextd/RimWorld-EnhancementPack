@@ -113,7 +113,7 @@ namespace TD_Enhancement_Pack
 			var options = new Listing_Standard();
 			
 			Rect viewRect = new Rect(0f, 0f, wrect.width - 16f, scrollViewHeight);
-			options.BeginScrollViewEx(wrect, ref scrollPosition, ref viewRect);
+			options.BeginScrollViewEx(wrect, ref scrollPosition, viewRect);
 
 
 			//Area / Zone things
