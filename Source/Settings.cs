@@ -45,6 +45,8 @@ namespace TD_Enhancement_Pack
 		public bool skillUpArrows = true;
 		public bool skillDownArrows = true;
 
+		public bool dropPodWhatDropped = true;
+
 		public bool showZoneSize = true;
 		public bool fieldEdgesRedo = true;
 		public bool zoneHarvestableToggle = false;
@@ -227,9 +229,9 @@ namespace TD_Enhancement_Pack
 			options.CheckboxLabeled("TD.SettingSkillGainArrow".Translate(), ref skillUpArrows, "TD.SettingSkillGainArrowDesc".Translate());
 			options.CheckboxLabeled("TD.SettingSkillLossArrow".Translate(), ref skillDownArrows, "TD.SettingSkillLossArrowDesc".Translate());
 			skillArrows = skillUpArrows || skillDownArrows;
+			options.CheckboxLabeled("TD.DropPodWhatDropped".Translate(), ref dropPodWhatDropped);
 			options.Gap();
 			options.Label("TD.FeatureConditionGreen".Translate());
-			options.Label("TD.DropPodWhatDropped".Translate());
 			options.GapLine();
 
 
@@ -306,6 +308,8 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref skillArrows, "skillArrows", true);
 			Scribe_Values.Look(ref skillUpArrows, "skillUpArrows", true);
 			Scribe_Values.Look(ref skillDownArrows, "skillDownArrows", true);
+
+			Scribe_Values.Look(ref dropPodWhatDropped, "dropPodWhatDropped", true);
 
 			Scribe_Values.Look(ref showZoneSize, "showZoneSize", true);
 			Scribe_Values.Look(ref fieldEdgesRedo, "fieldEdgesRedo", true);

@@ -38,7 +38,8 @@ namespace TD_Enhancement_Pack
 
 		public static void ReceiveLetterAppend(LetterStack stack, string label, string text, LetterDef textLetterDef, LookTargets lookTargets, Faction relatedFaction = null, string debugInfo = null)
 		{
-			text += "\n\n" + "TD.WhatDropped".Translate(thingLabel);
+			if(Settings.Get().dropPodWhatDropped)
+				text += "\n\n" + "TD.WhatDropped".Translate(thingLabel);
 			stack.ReceiveLetter(label, text, textLetterDef, lookTargets, relatedFaction, debugInfo);
 		}
 	}
