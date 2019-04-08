@@ -16,84 +16,134 @@ namespace TD_Enhancement_Pack
 	class LabelAddSelection
 	{
 		//public override void DoCell(Rect rect, Pawn pawn, PawnTable table)
-		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+		public static bool dragSelect = false;
+		public static bool dragDeselect = false;
+		public static bool dragJump = false;
+		public static void Prefix(Rect rect, Pawn pawn, PawnTable table)
 		{
-			MethodInfo TryJumpAndSelectInfo = AccessTools.Method("CameraJumper:TryJumpAndSelect");
-			MethodInfo EscapeCurrentTabInfo = AccessTools.Method("MainTabsRoot:EscapeCurrentTab");
-			
-			foreach(CodeInstruction i in instructions)
+			//from DoCell:
+			Rect rowRect = new Rect(rect.x, rect.y, rect.width, Mathf.Min(rect.height, 30f));
+
+			//Ripped out of My List Everything mod
+			if (Mouse.IsOver(rowRect))
 			{
-				if (i.opcode == OpCodes.Call && i.operand == TryJumpAndSelectInfo)
-					i.operand = AccessTools.Method(typeof(LabelAddSelection), "ClickPawn");
-				if (i.opcode == OpCodes.Callvirt && i.operand == EscapeCurrentTabInfo)
-					i.operand = AccessTools.Method(typeof(LabelAddSelection), "Nevermind");
-				
-				yield return i;
+				if (Event.current.type == EventType.mouseDown)
+				{
+					if (Event.current.clickCount == 2 && Event.current.button == 0)
+					{
+						PawnTableAddSelection.selectAllDef = pawn.def;
+					}
+					if (Event.current.shift)
+					{
+						if (Find.Selector.IsSelected(pawn))
+						{
+							dragDeselect = true;
+							Find.Selector.Deselect(pawn);
+						}
+						else
+						{
+							dragSelect = true;
+							Find.Selector.Select(pawn);
+						}
+					}
+					else if (Event.current.alt)
+					{
+						Find.MainTabsRoot.EscapeCurrentTab(false);
+						CameraJumper.TryJumpAndSelect(pawn);
+					}
+					else
+					{
+						if (Event.current.button == 1)
+						{
+							CameraJumper.TryJump(pawn);
+							dragJump = true;
+						}
+						else if (Find.Selector.IsSelected(pawn))
+						{
+							CameraJumper.TryJump(pawn);
+							dragSelect = true;
+						}
+						else
+						{
+							Find.Selector.ClearSelection();
+							Find.Selector.Select(pawn);
+							dragSelect = true;
+						}
+					}
+				}
+				if (Event.current.type == EventType.mouseDrag)
+				{
+					if (dragJump)
+						CameraJumper.TryJump(pawn);
+					else if (dragSelect)
+						Find.Selector.Select(pawn, false);
+					else if (dragDeselect)
+						Find.Selector.Deselect(pawn);
+				}
 			}
 		}
 
+		//Don't do normal selecion button
+		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+		{
+			return Harmony.Transpilers.MethodReplacer(instructions,
+				AccessTools.Method("Widgets:ButtonInvisible"),
+				AccessTools.Method(typeof(LabelAddSelection), nameof(NoButtonInvisible)));
+		}
+
+		//public static bool ButtonInvisible(Rect butRect, bool doMouseoverSound = false)
+		public static bool NoButtonInvisible(Rect butRect, bool doMouseoverSound)
+		{
+			return false;
+		}
+
+		//Draw selection and mouseover highlights
 		public static void Postfix(Rect rect, Pawn pawn)
 		{
+			//from DoCell:
+			Rect rowRect = new Rect(rect.x, rect.y, rect.width, Mathf.Min(rect.height, 30f));
+
 			if (Settings.Get().pawnTableHighlightSelected)
 				if (Find.Selector.IsSelected(pawn))
-					Widgets.DrawHighlightSelected(rect);
+					Widgets.DrawHighlightSelected(rowRect);
 
 			if (Settings.Get().pawnTableArrowMouseover)
-				if (Mouse.IsOver(rect))
+				if (Mouse.IsOver(rowRect))
 				{
 					Vector3 center = UI.UIToMapPosition((float)(UI.screenWidth / 2), (float)(UI.screenHeight / 2));
 					bool arrow = (center - pawn.DrawPos).MagnitudeHorizontalSquared() >= 121f;//Normal arrow is 9^2, using 11^1 seems good too.
 					TargetHighlighter.Highlight(pawn, arrow, true, true);
 				}
 		}
+	}
 
-		//public static void TryJumpAndSelect(GlobalTargetInfo target)
-		public static void ClickPawn(GlobalTargetInfo target)
+	[HarmonyPatch(typeof(PawnTable), nameof(PawnTable.PawnTableOnGUI))]
+	public static class PawnTableAddSelection
+	{
+		public static ThingDef selectAllDef;
+
+		//public void PawnTableOnGUI(Vector2 position);
+		public static void Prefix()
 		{
-			if (!Settings.Get().pawnTableClickSelect)
+			//Clear dragging status before table draws
+			if (!Input.GetMouseButton(0))
 			{
-				CameraJumper.TryJumpAndSelect(target);
-				return;
+				LabelAddSelection.dragSelect = false;
+				LabelAddSelection.dragDeselect = false;
 			}
+			if (!Input.GetMouseButton(1))
+				LabelAddSelection.dragJump = false;
 
-			if (Current.ProgramState != ProgramState.Playing)
-				return;
-
-			if (target.Thing is Pawn pawn && pawn.Spawned)
-			{
-				if (Event.current.shift)
-				{
-					if (Find.Selector.IsSelected(pawn))
-						Find.Selector.Deselect(pawn);
-					else
-						Find.Selector.Select(pawn);
-				}
-				else if (Event.current.alt)
-				{
-					Find.MainTabsRoot.EscapeCurrentTab(false);
-					CameraJumper.TryJumpAndSelect(target);
-				}
-				else
-				{
-					if (Find.Selector.IsSelected(pawn))
-						CameraJumper.TryJump(target);
-					if (!Find.Selector.IsSelected(pawn) || Find.Selector.NumSelected > 1 && Event.current.button == 1)
-					{
-						Find.Selector.ClearSelection();
-						Find.Selector.Select(pawn);
-					}
-				}
-			}
-			else //default
-			{
-				CameraJumper.TryJumpAndSelect(target);
-			}
+			selectAllDef = null;
 		}
 
-		public static void Nevermind(MainTabsRoot o1, bool o2)
+		public static void Postfix(List<Pawn> ___cachedPawns)
 		{
-			if (!Settings.Get().pawnTableClickSelect)
-				o1.EscapeCurrentTab(o2);
+			//Select all for double-click
+			if (selectAllDef != null)
+				foreach (Pawn pawn in ___cachedPawns)
+					if (pawn.def == selectAllDef)
+						Find.Selector.Select(pawn, false);
 		}
 	}
 }
