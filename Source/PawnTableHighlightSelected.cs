@@ -88,9 +88,13 @@ namespace TD_Enhancement_Pack
 		//Don't do normal selecion button
 		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
 		{
-			return Harmony.Transpilers.MethodReplacer(instructions,
-				AccessTools.Method("Widgets:ButtonInvisible"),
-				AccessTools.Method(typeof(LabelAddSelection), nameof(NoButtonInvisible)));
+			return Harmony.Transpilers.MethodReplacer(
+				Harmony.Transpilers.MethodReplacer(instructions,
+				AccessTools.Method(typeof(Widgets), nameof(Widgets.ButtonInvisible)),
+				AccessTools.Method(typeof(LabelAddSelection), nameof(NoButtonInvisible))),
+				AccessTools.Method(typeof(TooltipHandler), nameof(TooltipHandler.TipRegion), new Type[] { typeof(Rect), typeof(TipSignal)}),
+				AccessTools.Method(typeof(LabelAddSelection), nameof(NoTipRegion)));
+			;
 		}
 
 		//public static bool ButtonInvisible(Rect butRect, bool doMouseoverSound = false)
@@ -98,6 +102,13 @@ namespace TD_Enhancement_Pack
 		{
 			if (!Settings.Get().pawnTableClickSelect) return Widgets.ButtonInvisible(butRect, doMouseoverSound);
 			return false;
+		}
+
+		//public static void TipRegion(Rect rect, TipSignal tip)
+		public static void NoTipRegion(Rect rect, TipSignal tip)
+		{
+			if (!Settings.Get().pawnTableClickSelect)
+				TooltipHandler.TipRegion(rect, tip);
 		}
 
 		//Draw selection and mouseover highlights
