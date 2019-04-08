@@ -21,6 +21,8 @@ namespace TD_Enhancement_Pack
 		public static bool dragJump = false;
 		public static void Prefix(Rect rect, Pawn pawn, PawnTable table)
 		{
+			if (!Settings.Get().pawnTableClickSelect) return;
+
 			//from DoCell:
 			Rect rowRect = new Rect(rect.x, rect.y, rect.width, Mathf.Min(rect.height, 30f));
 
@@ -94,6 +96,7 @@ namespace TD_Enhancement_Pack
 		//public static bool ButtonInvisible(Rect butRect, bool doMouseoverSound = false)
 		public static bool NoButtonInvisible(Rect butRect, bool doMouseoverSound)
 		{
+			if (!Settings.Get().pawnTableClickSelect) return Widgets.ButtonInvisible(butRect, doMouseoverSound);
 			return false;
 		}
 
@@ -125,6 +128,8 @@ namespace TD_Enhancement_Pack
 		//public void PawnTableOnGUI(Vector2 position);
 		public static void Prefix()
 		{
+			if (!Settings.Get().pawnTableClickSelect) return;
+
 			//Clear dragging status before table draws
 			if (!Input.GetMouseButton(0))
 			{
@@ -139,6 +144,8 @@ namespace TD_Enhancement_Pack
 
 		public static void Postfix(List<Pawn> ___cachedPawns)
 		{
+			if (!Settings.Get().pawnTableClickSelect) return;
+
 			//Select all for double-click
 			if (selectAllDef != null)
 				foreach (Pawn pawn in ___cachedPawns)
