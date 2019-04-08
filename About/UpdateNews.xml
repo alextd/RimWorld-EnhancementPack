@@ -75,4 +75,12 @@ Latest updates:
 		</content>
 		<linkUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=1339135272</linkUrl>
 	</li>
+
+	<li>
+		<assemblyVersion>1.2.6</assemblyVersion>
+		<content>- The bill option 'Count Equipped' can be enabled for any bill: to count medicine in inventories aswell
+- Pawn table selection is re-vamped. Drag-select, Double-click to select all, Right-click to zoom without select.
+		</content>
+		<linkUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=1339135272</linkUrl>
+	</li>
 </News>
