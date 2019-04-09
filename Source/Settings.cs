@@ -203,14 +203,13 @@ namespace TD_Enhancement_Pack
 			options.SliderLabeled("TD.SettingColorGeneratorChance".Translate(), ref colorGenChance, "{0:P0}", 0, 1);
 			options.Gap();
 
+			options.CheckboxLabeled("TD.SettingFixColorStuff".Translate(), ref colorFixStuffColor, "TD.SettingFixColorStuffDesc".Translate());
+			options.CheckboxLabeled("TD.SettingFixUncoloredStuff".Translate(), ref colorFixDominant, "TD.SettingFixUncoloredStuffDesc".Translate());
+			options.Gap();
+
 			if (options.ButtonTextLabeled("TD.SettingReapplyColorVariations".Translate(), "TD.Go".Translate()))
 				ReapplyAll.Go();
 			options.Label("TD.SettingReapplyColorVariationsDesc".Translate());
-
-			options.Gap();
-
-			options.CheckboxLabeled("TD.SettingFixColorStuff".Translate(), ref colorFixStuffColor, "TD.SettingFixColorStuffDesc".Translate());
-			options.CheckboxLabeled("TD.SettingFixUncoloredStuff".Translate(), ref colorFixDominant, "TD.SettingFixUncoloredStuffDesc".Translate());
 			options.GapLine();
 
 
