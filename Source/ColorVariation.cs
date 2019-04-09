@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Reflection.Emit;
 using Verse;
 using Verse.AI;
+using RimWorld;
 using Harmony;
 using UnityEngine;
 using TD.Utilities;
@@ -181,6 +182,10 @@ namespace TD_Enhancement_Pack
 			}
 			//Variation
 		}
+
+		public static MethodInfo ApparelChangedInfo = AccessTools.Method(typeof(Pawn_ApparelTracker), "ApparelChanged");
+		public static void ApparelChanged(this Pawn_ApparelTracker appTracker) =>
+			ApparelChangedInfo.Invoke(appTracker, new object[] { });
 		public static void Go()
 		{
 			if(!Settings.Get().colorRedoWarned)
@@ -197,7 +202,8 @@ namespace TD_Enhancement_Pack
 					Log.Message($"MR {pawn}");
 					ReDo(pawn.inventory.GetDirectlyHeldThings());
 					ReDo(pawn.apparel.WornApparel.Cast<Thing>());
-					pawn.apparel.Notify_ApparelAdded(null);
+					//pawn.apparel.Notify_ApparelAdded(null);
+					pawn.apparel.ApparelChanged();
 				}
 
 				ReDo(map.listerThings.AllThings);
