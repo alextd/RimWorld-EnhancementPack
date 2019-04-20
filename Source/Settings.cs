@@ -33,6 +33,7 @@ namespace TD_Enhancement_Pack
 		public bool autoOverlayFertility = true;
 		public bool showOverlayWalkSpeed = true;
 		public bool showOverlayLighting = true;
+		public bool showOverlayPower = true;
 		public bool cheatFertilityUnderGrid = true;
 		public float overlayOpacity = 1.0f;
 
@@ -152,6 +153,7 @@ namespace TD_Enhancement_Pack
 			options.CheckboxLabeled("TD.SettingOverlayPlantHarvest".Translate(), ref showOverlayPlantHarvest);
 			options.CheckboxLabeled("TD.SettingAutoPlantHarvest".Translate(), ref autoOverlayPlantHarvest);
 			options.Gap();
+			options.CheckboxLabeled("TD.SettingOverlayPower".Translate(), ref showOverlayPower);
 			options.CheckboxLabeled("TD.SettingAutoSmoothable".Translate(), ref autoOverlaySmoothable);
 			options.CheckboxLabeled("TD.SettingAutoTreeGrowth".Translate(), ref autoOverlayTreeGrowth, "TD.SettingAutoTreeGrowthDesc".Translate());
 			options.CheckboxLabeled("TD.SettingAutoWindBlocker".Translate(), ref autoOverlayWindBlocker);
@@ -299,6 +301,7 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref autoOverlayFertility, "autoOverlayFertility", true);
 			Scribe_Values.Look(ref showOverlayWalkSpeed, "showOverlayWalkSpeed", true);
 			Scribe_Values.Look(ref showOverlayLighting, "showOverlayLighting", true);
+			Scribe_Values.Look(ref showOverlayPower, "showOverlayPower", true);
 			Scribe_Values.Look(ref cheatFertilityUnderGrid, "cheatFertilityUnderGrid", true);
 			Scribe_Values.Look(ref overlayOpacity, "overlayOpacity", 1.0f);
 
