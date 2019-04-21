@@ -12,7 +12,7 @@ namespace TD.Utilities
 {
 	class HugsLibUpdateNews
 	{
-		public static string modVersion = "1.2.7";
+		public static string modVersion = "1.3.2";
 
 
 		public const string UpdateNewsFileDir = "About";
