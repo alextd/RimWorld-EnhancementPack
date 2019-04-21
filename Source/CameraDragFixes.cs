@@ -19,7 +19,6 @@ namespace TD_Enhancement_Pack
 			if (!Settings.Get().cameraDragFixes) return;
 			HarmonyInstance harmony = HarmonyInstance.Create("Uuugggg.rimworld.TD_Enhancement_Pack.main");
 
-			//Turn off DefOf warning since harmony patches trigger it.
 			harmony.Patch(AccessTools.Constructor(typeof(CameraMapConfig_Normal)),
 				postfix: new HarmonyMethod(typeof(CameraDragFixes), "Postfix"));
 			harmony.Patch(AccessTools.Method(typeof(CameraDriver), "Update"),
