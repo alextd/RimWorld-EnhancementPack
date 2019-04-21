@@ -171,5 +171,7 @@
 	<TD.SettingFixColorStuffDesc>For example, there should be no white-colored flak armor. It gets the 'white' from steel, but steel should be grey, like it is with weapons. It's only 'white' because the steel .png file is already colored, unlike cloth/leather. Also: Plasteel-colored marine armor looks cool!</TD.SettingFixColorStuffDesc>
 	<TD.SettingFixUncoloredStuff>Ignore uncolored ingredients</TD.SettingFixUncoloredStuff>
 	<TD.SettingFixUncoloredStuffDesc>Some all-white armor is due to components not having a color at all. Components should not be able to impart their non-color to the items crafted from them.</TD.SettingFixUncoloredStuffDesc>
+	<TD.ShowThisAreaForColonists>Show this area for colonists</TD.ShowThisAreaForColonists>
+	<TD.ShowThisAreaForAnimals>Show this area for animals</TD.ShowThisAreaForAnimals>
 	
 </LanguageData>

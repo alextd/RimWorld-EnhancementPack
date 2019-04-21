@@ -84,11 +84,11 @@ namespace TD_Enhancement_Pack
 			headerRect.xMin = headerRect.xMax - 24;
 
 			Widgets.DrawTextureFitted(headerRect, TexButton.AnimalIcon, 1f);
-			TooltipHandler.TipRegion(headerRect, "Show this area for colonists");
+			TooltipHandler.TipRegion(headerRect, "TD.ShowThisAreaForColonists".Translate());
 
 			headerRect.x -= 24 + 4;
 			Widgets.DrawTextureFitted(headerRect, TexButton.PersonIcon, 1f);
-			TooltipHandler.TipRegion(headerRect, "Show this area for animals");
+			TooltipHandler.TipRegion(headerRect, "TD.ShowThisAreaForAnimals".Translate());
 		}
 	}
 
