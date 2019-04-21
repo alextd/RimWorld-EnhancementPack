@@ -19,6 +19,9 @@ namespace TD_Enhancement_Pack
 		public static readonly Texture2D Copy = ContentFinder<Texture2D>.Get("UI/Buttons/Copy");
 		public static readonly Texture2D Paste = ContentFinder<Texture2D>.Get("UI/Buttons/Paste");
 		public static readonly Texture2D Clear = ContentFinder<Texture2D>.Get("UI/Buttons/DragHash");
+
+		public static readonly Texture2D PersonIcon = ContentFinder<Texture2D>.Get("PersonIcon");
+		public static readonly Texture2D AnimalIcon = ContentFinder<Texture2D>.Get("AnimalIcon");
 	}
 
 	[HarmonyPatch(typeof(Dialog_ManageAreas), "InitialSize", MethodType.Getter)]
@@ -37,6 +40,53 @@ namespace TD_Enhancement_Pack
 		public static void Postfix()
 		{
 			AreaRowPatch.copiedArea = null;
+		}
+	}
+
+
+	//public override void DoWindowContents(Rect inRect)
+	[HarmonyPatch(typeof(Dialog_ManageAreas))]
+	[HarmonyPatch("DoWindowContents")]
+	static class Dialog_ManageAreas_Contents_Patch
+	{
+		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+		{
+			MethodInfo BeginInfo = AccessTools.Method(
+				typeof(Listing), nameof(Listing.Begin));
+
+			foreach (CodeInstruction i in instructions)
+			{
+				if (i.opcode == OpCodes.Callvirt && i.operand == BeginInfo)
+				{
+					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Dialog_ManageAreas_Contents_Patch), nameof(BeginAndHeader)));
+				}
+				else
+					yield return i;
+			}
+		}
+
+		//public override void Begin(Rect rect)
+		public static void BeginAndHeader(Listing listing, Rect rect)
+		{
+			listing.Begin(rect);
+
+			if (!Settings.Get().areaForTypes) return;
+
+			Rect headerRect = listing.GetRect(24);
+
+			int numButtons = 2;
+			headerRect.width -=
+				WidgetRow.IconSize * numButtons +
+				Text.CalcSize("Rename".Translate()).x + 16 +
+				Text.CalcSize("InvertArea".Translate()).x + 16 +
+				WidgetRow.DefaultGap * (numButtons + 2);	//2 buttons + 2 icons
+
+			headerRect.xMin = headerRect.xMax - 24;
+
+			Widgets.DrawTextureFitted(headerRect, TexButton.AnimalIcon, 1f);
+			headerRect.x -= 24 + 4;
+			Widgets.DrawTextureFitted(headerRect, TexButton.PersonIcon, 1f);
+			//listing.Gap();
 		}
 	}
 
@@ -71,7 +121,6 @@ namespace TD_Enhancement_Pack
 
 			foreach (CodeInstruction i in instructions)
 			{
-
 				//IL_0055: callvirt instance valuetype[UnityEngine]UnityEngine.Rect Verse.WidgetRow::Icon(class [UnityEngine] UnityEngine.Texture2D, string)
 				if (i.opcode == OpCodes.Callvirt && i.operand == IconInfo)
 				{
