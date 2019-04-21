@@ -86,7 +86,7 @@ Latest updates:
 
 	<li>
 		<assemblyVersion>1.2.7</assemblyVersion>
-		<content>- Areas are now tagged as 'for animals' or 'for colonists', and only show up for them if tagged.
+		<content>- Areas are now tagged as 'for animals' or 'for colonists', and only show up for them if tagged. (Colony Manager should also respect this setting)
 - An overlay toggle to show the power net
 		</content>
 		<linkUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=1339135272</linkUrl>
