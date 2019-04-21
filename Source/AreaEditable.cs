@@ -396,6 +396,40 @@ namespace TD_Enhancement_Pack
 		}
 	}
 
+	[HarmonyPatch(typeof(AreaAllowedGUI), "DoAllowedAreaSelectors")]
+	public static class DoAllowedAreaSelectors_Patch
+	{
+		//public static void DoAllowedAreaSelectors(Rect rect, Pawn p)
+		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+		{
+			MethodInfo AssignableAsAllowedInfo = AccessTools.Method(typeof(Area), nameof(Area.AssignableAsAllowed));
+
+			foreach (CodeInstruction i in instructions)
+			{
+				if(i.opcode == OpCodes.Callvirt && i.operand == AssignableAsAllowedInfo)
+				{
+					yield return new CodeInstruction(OpCodes.Ldarg_1);//Pawn p
+					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(DoAllowedAreaSelectors_Patch), nameof(AssignableAsAllowedForPawn)));
+				}
+				else
+					yield return i;
+			}
+		}
+
+		public static bool AssignableAsAllowedForPawn(Area area, Pawn p)
+		{
+			if (!area.AssignableAsAllowed()) return false;
+
+			if (!Settings.Get().areaForTypes) return true;
+
+			var comp = area.Map.GetComponent<MapComponent_AreaOrder>();
+			if (p.IsColonist)
+				return !comp.notForColonists.Contains(area);
+			else
+				return !comp.notForAnimals.Contains(area);
+		}
+	}
+
 	[HarmonyPatch(typeof(AreaAllowedGUI), "DoAreaSelector")]
 	public static class DoAreaSelector_Patch
 	{
