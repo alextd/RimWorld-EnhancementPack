@@ -56,6 +56,8 @@
 	<TD.AllowHarvestingDesc>When disabled, colonists will never harvest plants in this zone. They will still sow.</TD.AllowHarvestingDesc>
 	<TD.SettingAllowHarvesting>Growing Zones 'Allow Harvesting' Toggle</TD.SettingAllowHarvesting>
 	<TD.SettingAllowHarvestingDesc>Also applies to Hydroponics (forbidden status is just for sowing then)</TD.SettingAllowHarvestingDesc>
+	<TD.SettingAreaForTypes>Add a toggle to set areas to not show for colonists/animals.</TD.SettingAreaForTypes>
+	<TD.SettingAreaForTypesDesc>Two checkboxes in the area manager. When toggled off, that area is disabled for selection for colonists/animals</TD.SettingAreaForTypesDesc>
 	<TD.FeatureConditionGreen>Good body conditions are green ; Whole body tag is yellow</TD.FeatureConditionGreen>
 	<TD.WhatDropped>What dropped: {0}</TD.WhatDropped>
 	<TD.Deterioration>Deterioration</TD.Deterioration>
@@ -170,5 +172,7 @@
 	<TD.SettingFixUncoloredStuff>Ignore uncolored ingredients</TD.SettingFixUncoloredStuff>
 	<TD.SettingFixUncoloredStuffDesc>Some all-white armor is due to components not having a color at all. Components should not be able to impart their non-color to the items crafted from them.</TD.SettingFixUncoloredStuffDesc>
 	
+
+
 
 </LanguageData>

@@ -117,7 +117,10 @@ namespace TD_Enhancement_Pack
 		public static FieldInfo SelectedAreaInfo = AccessTools.Field(typeof(Designator_AreaAllowed), "selectedArea");
 		public static Rect FocusArea(Rect labelArea, Area area)
 		{
-			labelArea.width -= (labelArea.height + WidgetRow.DefaultGap) * 3;
+			int numSkip = 3;
+			if (Settings.Get().areaForTypes)
+				numSkip += 2;
+			labelArea.width -= (labelArea.height + WidgetRow.DefaultGap) * numSkip;
 			if (Widgets.ButtonInvisible(labelArea))
 			{
 				Find.WindowStack.TryRemove(typeof(Dialog_ManageAreas), false);
@@ -145,20 +148,53 @@ namespace TD_Enhancement_Pack
 				grid.Clear();
 				area.Invert(); area.Invert();//this is stupid but easiest way to access Dirtier
 			}
+
+			var comp = area.Map.GetComponent<MapComponent_AreaOrder>();
+
+			if (Settings.Get().areaForTypes)
+			{
+				//Animals checkbox
+				bool forAnimals = !comp.notForAnimals.Contains(area);
+				if (widgetRow.Checkbox(ref forAnimals))
+				{
+					if (forAnimals)
+						comp.notForAnimals.Remove(area);
+					else
+						comp.notForAnimals.Add(area);
+				}
+
+				//Colonists checkbox
+				bool forColonists = !comp.notForColonists.Contains(area);
+				if (widgetRow.Checkbox(ref forColonists))
+				{
+					if (forColonists)
+						comp.notForColonists.Remove(area);
+					else
+						comp.notForColonists.Add(area);
+				}
+			}
+
+			//re-order up
 			if (index > 0)
 			{
 				if (widgetRow.ButtonIcon(TexButton.ReorderUp))
 				{
 					Area other = areas[index - 1];
-					area.Map.GetComponent<MapComponent_AreaOrder>().Swap(area, other);
+					comp.Swap(area, other);
 				}
 			}
 			else widgetRow.GapButtonIcon();
-			if (index < areas.Count - 1 && widgetRow.ButtonIcon(TexButton.ReorderDown))
+
+			//re-order down
+			if (index < areas.Count - 1)
 			{
-				Area other = areas[index + 1];
-				area.Map.GetComponent<MapComponent_AreaOrder>().Swap(area, other);
+				if (widgetRow.ButtonIcon(TexButton.ReorderDown))
+				{
+					Area other = areas[index + 1];
+					comp.Swap(area, other);
+				}
 			}
+			else widgetRow.GapButtonIcon();
 		}
 
 		public static void DoButtonIcon(WidgetRow widgetRow, Texture2D tex, string tooltip, Area area)
@@ -290,6 +326,11 @@ namespace TD_Enhancement_Pack
 	{
 		public Dictionary<int, int> areaIndex;
 
+		//Default is on, so keep a list of off.
+		//New areas aren't added, and loaded games will default an empty list with nothing off, so all on.
+		public HashSet<Area> notForColonists = new HashSet<Area>();
+		public HashSet<Area> notForAnimals = new HashSet<Area>();
+
 		public MapComponent_AreaOrder(Map map) : base(map)
 		{
 			InitIndex();
@@ -349,6 +390,9 @@ namespace TD_Enhancement_Pack
 			Scribe_Collections.Look(ref areaIndex, "areaIndex");
 			if (areaIndex == null || areaIndex.Count == 0)
 				InitIndex();
+
+			Scribe_Collections.Look(ref notForColonists, "notForColonists", LookMode.Reference);
+			Scribe_Collections.Look(ref notForAnimals, "notForAnimals", LookMode.Reference);
 		}
 	}
 
@@ -423,6 +467,19 @@ namespace TD_Enhancement_Pack
 		public static void SetGUIColorWhite()
 		{
 			GUI.color = Color.white;
+		}
+	}
+
+	public static class WidgetRowEx
+	{
+		public static bool Checkbox(this WidgetRow row, ref bool toggleOn, string tooltip = null, Color? mouseoverColor = null)
+		{
+			if (row.ButtonIcon(toggleOn ? Widgets.CheckboxOnTex : Widgets.CheckboxOffTex, tooltip, mouseoverColor))
+			{
+				toggleOn = !toggleOn;
+				return true;
+			}
+			return false;
 		}
 	}
 }

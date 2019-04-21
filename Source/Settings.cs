@@ -51,6 +51,7 @@ namespace TD_Enhancement_Pack
 		public bool showZoneSize = true;
 		public bool fieldEdgesRedo = true;
 		public bool zoneHarvestableToggle = false;
+		public bool areaForTypes = true;
 		public bool zoneRefill = false;
 		
 		public bool neverHome = true;
@@ -122,6 +123,7 @@ namespace TD_Enhancement_Pack
 			options.CheckboxLabeled("TD.SettingMatchGrow".Translate(), ref matchGrowButton, "TD.SettingMatchGrowDesc".Translate());
 			options.CheckboxLabeled("TD.SettingZoneSize".Translate(), ref showZoneSize, "TD.SettingZoneSizeDesc".Translate());
 			options.CheckboxLabeled("TD.SettingAllowHarvesting".Translate(), ref zoneHarvestableToggle, "TD.SettingAllowHarvestingDesc".Translate());
+			options.CheckboxLabeled("TD.SettingAreaForTypes".Translate(), ref areaForTypes, "TD.SettingAreaForTypesDesc".Translate());
 			options.CheckboxLabeled("TD.NeverHome".Translate(), ref neverHome);
 			options.CheckboxLabeled("TD.SlaughterZone".Translate(), ref slaughterZone);
 			options.CheckboxLabeled("TD.SettingsCleanZone".Translate(), ref fieldEdgesRedo);
@@ -318,6 +320,7 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref showZoneSize, "showZoneSize", true);
 			Scribe_Values.Look(ref fieldEdgesRedo, "fieldEdgesRedo", true);
 			Scribe_Values.Look(ref zoneHarvestableToggle, "zoneHarvestableToggle", false);
+			Scribe_Values.Look(ref areaForTypes, "areaForTypes", true);
 			Scribe_Values.Look(ref zoneRefill, "zoneRefill", true);
 
 			Scribe_Values.Look(ref neverHome, "neverHome", true);
