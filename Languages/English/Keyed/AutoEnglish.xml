@@ -172,7 +172,4 @@
 	<TD.SettingFixUncoloredStuff>Ignore uncolored ingredients</TD.SettingFixUncoloredStuff>
 	<TD.SettingFixUncoloredStuffDesc>Some all-white armor is due to components not having a color at all. Components should not be able to impart their non-color to the items crafted from them.</TD.SettingFixUncoloredStuffDesc>
 	
-
-
-
 </LanguageData>
