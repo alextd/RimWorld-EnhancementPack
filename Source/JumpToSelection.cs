@@ -20,6 +20,8 @@ namespace TD_Enhancement_Pack
 		public static int index = -1;
 		public static void Postfix(MainTabWindow_Inspect __instance, Rect rect, ref float lineEndWidth)
 		{
+			if (!Settings.Get().selectedItemsZoomButton) return;
+
 			if (Widgets.ButtonImage(new Rect(rect.width - lineEndWidth - 24, 0, 24, 24), Eye))
 			{
 				index++;

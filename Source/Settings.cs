@@ -70,7 +70,9 @@ namespace TD_Enhancement_Pack
 		public bool rememberResourceReadout = true;
 		public bool startOpenResourceReadout = false;
 		public bool pawnTableClickSelect = false;
+		public bool selectedItemsZoomButton = true;
 		public bool mouseoverInfoTopRight = false;
+		public bool stopForcedSlowdown = true;
 
 		public bool alertDeteriorating = true;
 		public bool alertHeatstroke = true;
@@ -222,11 +224,13 @@ namespace TD_Enhancement_Pack
 			options.CheckboxLabeled("TD.SettingRememberResourceReadout".Translate(), ref rememberResourceReadout);
 			options.CheckboxLabeled("TD.SettingNewGameOpenResourceReadout".Translate(), ref startOpenResourceReadout);
 			options.Gap();
-			options.CheckboxLabeled("TD.SettingPawnTableHighlightSelected".Translate(), ref pawnTableHighlightSelected);
+			options.CheckboxLabeled("TD.SettingPawnTableHighlightSelected".Translate(), ref pawnTableHighlightSelected, "TD.SettingPawnTableHighlightSelectedDesc".Translate());
 			options.CheckboxLabeled("TD.SettingPawnTableArrowMouseover".Translate(), ref pawnTableArrowMouseover);
 			options.CheckboxLabeled("TD.SettingPawnTableClickSelect".Translate(), ref pawnTableClickSelect, "TD.SettingPawnTableClickSelectDesc".Translate());
+			options.CheckboxLabeled("In the selection info panel, show a button to jump to selected items", ref selectedItemsZoomButton);
 			options.Gap();
 			options.CheckboxLabeled("TD.SettingTopRightMouseover".Translate(), ref mouseoverInfoTopRight, "TD.SettingTopRightMouseoverDesc".Translate());
+			options.CheckboxLabeled("Can Shift-click the time controls to stop the forced slowdown during a battle", ref stopForcedSlowdown);
 			options.CheckboxLabeled("TD.SettingTradeClose".Translate(), ref changeSpeedAfterTrader);
 			options.SliderLabeled("TD.SettingTradeCloseSpeed".Translate(), ref afterTraderSpeed, "{0}x", 0, 4);
 			options.Gap();
@@ -338,7 +342,9 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref rememberResourceReadout, "rememberResourceReadout", true);
 			Scribe_Values.Look(ref startOpenResourceReadout, "startOpenResourceReadout", false);
 			Scribe_Values.Look(ref pawnTableClickSelect, "pawnTableClickSelect", false);
+			Scribe_Values.Look(ref selectedItemsZoomButton, "selectedItemsZoomButton", true);
 			Scribe_Values.Look(ref mouseoverInfoTopRight, "mouseoverInfoTopRight", false);
+			Scribe_Values.Look(ref stopForcedSlowdown, "stopForcedSlowdown", true);
 
 			Scribe_Values.Look(ref alertDeteriorating, "alertDeteriorating", true);
 			Scribe_Values.Look(ref alertHeatstroke, "alertHeatstroke", true);
