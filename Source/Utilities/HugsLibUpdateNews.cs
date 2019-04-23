@@ -12,9 +12,6 @@ namespace TD.Utilities
 {
 	class HugsLibUpdateNews
 	{
-		public static string modVersion = "1.3.2";
-
-
 		public const string UpdateNewsFileDir = "About";
 		public const string UpdateNewsFileName = "UpdateNews.xml";
 		
@@ -40,13 +37,16 @@ namespace TD.Utilities
 
 			string identifier = mod.Content.Name.Replace(" ", "");
 
+			string lastAssemblyVersion = "1.0";//Assuming latest news is last;
 			try
 			{
 				XDocument doc = XDocument.Load(filePath);
 				if (doc.Root == null) throw new Exception("Missing root node");
+
 				foreach (XElement node in doc.Root.Elements("li"))
 				{
 					var assemblyVersion = node.Element("assemblyVersion");
+					lastAssemblyVersion = assemblyVersion.Value;
 					var content = node.Element("content");
 					var linkUrl = node.Element("linkUrl");
 
@@ -64,7 +64,7 @@ namespace TD.Utilities
 				var hubsLibController = AccessTools.Property(AccessTools.TypeByName("HugsLibController"), "Instance").GetValue(null, null);
 				var updateFeatures = AccessTools.Property(AccessTools.TypeByName("HugsLibController"), "UpdateFeatures").GetValue(hubsLibController, null);
 				AccessTools.Method(AccessTools.TypeByName("UpdateFeatureManager"), "InspectActiveMod").
-					Invoke(updateFeatures, new object[] { identifier, new Version(modVersion) });
+					Invoke(updateFeatures, new object[] { identifier, new Version(lastAssemblyVersion) });
 			}
 			catch (Exception e)
 			{
