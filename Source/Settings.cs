@@ -81,6 +81,7 @@ namespace TD_Enhancement_Pack
 		public bool alertNoBill = true;
 		public bool alertWindBlocker = true;
 
+		public bool areasUnlimited = true;
 		public bool matchGrowButton = true;
 		public bool deepDrillRandom = true;
 
@@ -122,6 +123,7 @@ namespace TD_Enhancement_Pack
 
 			//Area / Zone things
 			options.LabelHeader("TD.SettingsHeaderArea".Translate());
+			options.CheckboxLabeled("No limit on the number of areas", ref areasUnlimited);
 			options.CheckboxLabeled("TD.SettingMatchGrow".Translate(), ref matchGrowButton, "TD.SettingMatchGrowDesc".Translate());
 			options.CheckboxLabeled("TD.SettingZoneSize".Translate(), ref showZoneSize, "TD.SettingZoneSizeDesc".Translate());
 			options.CheckboxLabeled("TD.SettingAllowHarvesting".Translate(), ref zoneHarvestableToggle, "TD.SettingAllowHarvestingDesc".Translate());
@@ -353,6 +355,7 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref alertNoBill, "alertNoBill", true);
 			Scribe_Values.Look(ref alertWindBlocker, "alertWindBlocker", true);
 
+			Scribe_Values.Look(ref areasUnlimited, "areasUnlimited", true);
 			Scribe_Values.Look(ref matchGrowButton, "matchGrowButton", true);
 			Scribe_Values.Look(ref deepDrillRandom, "deepDrillRandom", true);
 
