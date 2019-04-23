@@ -8,6 +8,7 @@ using Harmony;
 using Verse;
 using RimWorld;
 using UnityEngine;
+using TD.Utilities;
 
 namespace TD_Enhancement_Pack
 {
@@ -51,14 +52,18 @@ namespace TD_Enhancement_Pack
 	{
 		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
 		{
-			MethodInfo BeginInfo = AccessTools.Method(
-				typeof(Listing), nameof(Listing.Begin));
+			MethodInfo BeginInfo = AccessTools.Method(typeof(Listing), nameof(Listing.Begin));
+			MethodInfo EndInfo = AccessTools.Method(typeof(Listing), nameof(Listing.End));
 
 			foreach (CodeInstruction i in instructions)
 			{
 				if (i.opcode == OpCodes.Callvirt && i.operand == BeginInfo)
 				{
-					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Dialog_ManageAreas_Contents_Patch), nameof(BeginAndHeader)));
+					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Dialog_ManageAreas_Contents_Patch), nameof(BeginScrollAndHeader)));
+				}
+				else if (i.opcode == OpCodes.Callvirt && i.operand == EndInfo)
+				{
+					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Dialog_ManageAreas_Contents_Patch), nameof(EndScroll)));
 				}
 				else
 					yield return i;
@@ -66,29 +71,57 @@ namespace TD_Enhancement_Pack
 		}
 
 		//public override void Begin(Rect rect)
-		public static void BeginAndHeader(Listing listing, Rect rect)
+
+		public static Vector2 scrollPosition;
+		public static float scrollViewHeight;
+		public static Rect viewRect;//local to DoWindowContents
+		public static void BeginScrollAndHeader(Listing_Standard listing, Rect rect)
 		{
-			listing.Begin(rect);
+			if (Settings.Get().areaForTypes)
+			{
+				Rect headerRect = new Rect(rect.x,rect.y,rect.width,24);
+				rect.yMin += 24;
 
-			if (!Settings.Get().areaForTypes) return;
+				int numButtons = 2;
+				headerRect.width -=
+					WidgetRow.IconSize * numButtons +
+					Text.CalcSize("Rename".Translate()).x + 16 +
+					Text.CalcSize("InvertArea".Translate()).x + 16 +
+					WidgetRow.DefaultGap * (numButtons + 2);  //2 buttons + 2 icons
 
-			Rect headerRect = listing.GetRect(24);
+				if (Settings.Get().areasUnlimited)  //room for scrollbar
+					headerRect.width -= 20;
 
-			int numButtons = 2;
-			headerRect.width -=
-				WidgetRow.IconSize * numButtons +
-				Text.CalcSize("Rename".Translate()).x + 16 +
-				Text.CalcSize("InvertArea".Translate()).x + 16 +
-				WidgetRow.DefaultGap * (numButtons + 2);	//2 buttons + 2 icons
+				headerRect.xMin = headerRect.xMax - 24;
 
-			headerRect.xMin = headerRect.xMax - 24;
+				Widgets.DrawTextureFitted(headerRect, TexButton.AnimalIcon, 1f);
+				TooltipHandler.TipRegion(headerRect, "TD.ShowThisAreaForAnimals".Translate());
 
-			Widgets.DrawTextureFitted(headerRect, TexButton.AnimalIcon, 1f);
-			TooltipHandler.TipRegion(headerRect, "TD.ShowThisAreaForAnimals".Translate());
+				headerRect.x -= 24 + 4;
+				Widgets.DrawTextureFitted(headerRect, TexButton.PersonIcon, 1f);
+				TooltipHandler.TipRegion(headerRect, "TD.ShowThisAreaForColonists".Translate());
+			}
 
-			headerRect.x -= 24 + 4;
-			Widgets.DrawTextureFitted(headerRect, TexButton.PersonIcon, 1f);
-			TooltipHandler.TipRegion(headerRect, "TD.ShowThisAreaForColonists".Translate());
+			if (Settings.Get().areasUnlimited)
+			{
+				rect.height -= 40;//Window.CloseButSize.y
+				viewRect = new Rect(0f, 0f, rect.width - 16f, scrollViewHeight);
+				listing.BeginScrollViewEx(rect, ref scrollPosition, viewRect);
+			}
+			else
+				listing.Begin(rect);
+		}
+
+		//public override void End()
+		public static void EndScroll(Listing_Standard listing)
+		{
+			if (Settings.Get().areasUnlimited)
+			{
+				listing.EndScrollView(ref viewRect);
+				scrollViewHeight = viewRect.height;
+			}
+			else
+				listing.End();
 		}
 	}
 
