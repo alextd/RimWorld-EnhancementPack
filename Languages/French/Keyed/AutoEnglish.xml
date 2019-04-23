@@ -221,8 +221,6 @@
 	<TD.SettingHeaderOverlays>Zones de surbrillance</TD.SettingHeaderOverlays>
 	<!-- EN: Game improvements -->
 	<TD.SettingHeaderGameImprovements>Améliorations du jeu</TD.SettingHeaderGameImprovements>
-	<!-- EN: Notifications / Info -->
-	<TD.SettingHeaderInfo>Notifications / Info</TD.SettingHeaderInfo>
 	<!-- EN: AI / behavior -->
 	<TD.SettingHeaderAI>IA / Comportements</TD.SettingHeaderAI>
 	<!-- EN: Cleaner zone edges (And range indicators) -->
@@ -235,8 +233,8 @@
 	<TD.SettingsHeaderOverlays>Zones de surbrillance</TD.SettingsHeaderOverlays>
 	<!-- EN: Game improvements -->
 	<TD.SettingsHeaderGame>Améliorations du jeu</TD.SettingsHeaderGame>
-	<!-- EN: Notifications / Info -->
-	<TD.SettingsHeaderInfo>Notifications / Info</TD.SettingsHeaderInfo>
+	<!-- EN: UI / Info -->
+	<TD.SettingsHeaderInfo>IU / Info</TD.SettingsHeaderInfo>
 	<!-- EN: Alerts -->
 	<TD.SettingsHeaderAlerts>Alertes</TD.SettingsHeaderAlerts>
 	<!-- EN: AI / behavior -->

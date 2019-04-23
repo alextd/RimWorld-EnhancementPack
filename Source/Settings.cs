@@ -217,7 +217,7 @@ namespace TD_Enhancement_Pack
 			options.GapLine();
 
 
-			//Notifications / Info
+			//UI / Info
 			options.LabelHeader("TD.SettingsHeaderInfo".Translate());
 			options.CheckboxLabeled("TD.SettingRememberResourceReadout".Translate(), ref rememberResourceReadout);
 			options.CheckboxLabeled("TD.SettingNewGameOpenResourceReadout".Translate(), ref startOpenResourceReadout);
