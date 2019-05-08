@@ -173,5 +173,10 @@
 	<TD.SettingFixUncoloredStuffDesc>Some all-white armor is due to components not having a color at all. Components should not be able to impart their non-color to the items crafted from them.</TD.SettingFixUncoloredStuffDesc>
 	<TD.ShowThisAreaForColonists>Show this area for colonists</TD.ShowThisAreaForColonists>
 	<TD.ShowThisAreaForAnimals>Show this area for animals</TD.ShowThisAreaForAnimals>
+	<TD.JumpToThisObject>Jump to this object</TD.JumpToThisObject>
+	<TD.CycleJumpingToTheseObjects>Cycle jumping to these objects</TD.CycleJumpingToTheseObjects>
+	<TD.NoLimitOnTheNumberOfAreas>No limit on the number of areas</TD.NoLimitOnTheNumberOfAreas>
+	<TD.SettingJumpToSelectedItems>In the selection info panel, show a button to jump to selected items</TD.SettingJumpToSelectedItems>
+	<TD.SettingStopForcedSlowdown>Can Shift-click the time controls to stop the forced slowdown during a battle</TD.SettingStopForcedSlowdown>
 	
 </LanguageData>

@@ -123,7 +123,7 @@ namespace TD_Enhancement_Pack
 
 			//Area / Zone things
 			options.LabelHeader("TD.SettingsHeaderArea".Translate());
-			options.CheckboxLabeled("No limit on the number of areas", ref areasUnlimited);
+			options.CheckboxLabeled("TD.NoLimitOnTheNumberOfAreas".Translate(), ref areasUnlimited);
 			options.CheckboxLabeled("TD.SettingMatchGrow".Translate(), ref matchGrowButton, "TD.SettingMatchGrowDesc".Translate());
 			options.CheckboxLabeled("TD.SettingZoneSize".Translate(), ref showZoneSize, "TD.SettingZoneSizeDesc".Translate());
 			options.CheckboxLabeled("TD.SettingAllowHarvesting".Translate(), ref zoneHarvestableToggle, "TD.SettingAllowHarvestingDesc".Translate());
@@ -229,10 +229,10 @@ namespace TD_Enhancement_Pack
 			options.CheckboxLabeled("TD.SettingPawnTableHighlightSelected".Translate(), ref pawnTableHighlightSelected, "TD.SettingPawnTableHighlightSelectedDesc".Translate());
 			options.CheckboxLabeled("TD.SettingPawnTableArrowMouseover".Translate(), ref pawnTableArrowMouseover);
 			options.CheckboxLabeled("TD.SettingPawnTableClickSelect".Translate(), ref pawnTableClickSelect, "TD.SettingPawnTableClickSelectDesc".Translate());
-			options.CheckboxLabeled("In the selection info panel, show a button to jump to selected items", ref selectedItemsZoomButton);
+			options.CheckboxLabeled("TD.SettingJumpToSelectedItems".Translate(), ref selectedItemsZoomButton);
 			options.Gap();
 			options.CheckboxLabeled("TD.SettingTopRightMouseover".Translate(), ref mouseoverInfoTopRight, "TD.SettingTopRightMouseoverDesc".Translate());
-			options.CheckboxLabeled("Can Shift-click the time controls to stop the forced slowdown during a battle", ref stopForcedSlowdown);
+			options.CheckboxLabeled("TD.SettingStopForcedSlowdown".Translate(), ref stopForcedSlowdown);
 			options.CheckboxLabeled("TD.SettingTradeClose".Translate(), ref changeSpeedAfterTrader);
 			options.SliderLabeled("TD.SettingTradeCloseSpeed".Translate(), ref afterTraderSpeed, "{0}x", 0, 4);
 			options.Gap();

@@ -22,7 +22,8 @@ namespace TD_Enhancement_Pack
 		{
 			if (!Settings.Get().selectedItemsZoomButton) return;
 
-			if (Widgets.ButtonImage(new Rect(rect.width - lineEndWidth - 24, 0, 24, 24), Eye))
+			Rect buttonRect = new Rect(rect.width - lineEndWidth - 24, 0, 24, 24);
+			if (Widgets.ButtonImage(buttonRect, Eye))
 			{
 				index++;
 				if (index >= Find.Selector.NumSelected)
@@ -34,6 +35,7 @@ namespace TD_Enhancement_Pack
 				if (jumpTo is Zone jumpZone)
 					CameraJumper.TryJump(new GlobalTargetInfo(jumpZone.Position, jumpZone.Map));
 			}
+			TooltipHandler.TipRegion(buttonRect, Find.Selector.NumSelected == 1 ? "TD.JumpToThisObject".Translate() : "TD.CycleJumpingToTheseObjects".Translate());
 			lineEndWidth += 24f;
 		}
 	}
