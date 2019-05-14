@@ -69,6 +69,7 @@
 	<TD.SettingDodgeGrenades>Dodge grenades while drafted</TD.SettingDodgeGrenades>
 	<TD.SettingDodgeGrenadesDesc>Of course this interrupts what you're doing.</TD.SettingDodgeGrenadesDesc>
 	<TD.SettingDodgeGrenadesUnlessBelt>Don't dodge if shield belt is worn</TD.SettingDodgeGrenadesUnlessBelt>
+	<TD.SettingQuickGrab>Allow grabbing items from shelves from adjacent tiles</TD.SettingQuickGrab>
 	<TD.SettingAutoBuildable>Auto-show buildable terrain overlay when placing buildings</TD.SettingAutoBuildable>
 	<TD.SettingAutoBuildableDesc>Buildings with unique requirements like bridges and graves will show a overlay of where they can't be built</TD.SettingAutoBuildableDesc>
 	<TD.SettingAutoCoverage>Auto-show building coverage overlay when placing buildings</TD.SettingAutoCoverage>
@@ -179,4 +180,5 @@
 	<TD.SettingJumpToSelectedItems>In the selection info panel, show a button to jump to selected items</TD.SettingJumpToSelectedItems>
 	<TD.SettingStopForcedSlowdown>Can Shift-click the time controls to stop the forced slowdown during a battle</TD.SettingStopForcedSlowdown>
 	
+
 </LanguageData>

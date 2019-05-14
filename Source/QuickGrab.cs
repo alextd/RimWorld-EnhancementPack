@@ -15,7 +15,7 @@ namespace TD_Enhancement_Pack
 		//private static bool ShouldNotEnterCell(Pawn pawn, Map map, IntVec3 dest)
 		public static void Postfix(ref bool __result, Pawn pawn, Map map, IntVec3 dest)
 		{
-			if (__result) return;
+			if (__result || !Settings.Get().quickGrab) return;
 
 			if (dest.GetEdifice(map) is Building_Storage)
 				__result = true;
