@@ -106,4 +106,12 @@ Latest updates:
 		</content>
 		<linkUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=1339135272</linkUrl>
 	</li>
+
+	<li>
+		<assemblyVersion>1.3.5</assemblyVersion>
+		<content>- Allow grabbing items from shelves from adjacent tiles
+(So a colonist who is crafting a lot of items doesn't have to spend time walking onto the adjacent shelf to grab the ingredients)
+		</content>
+		<linkUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=1339135272</linkUrl>
+	</li>
 </News>
