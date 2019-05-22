@@ -280,6 +280,7 @@ namespace TD_Enhancement_Pack
 			options.CheckboxLabeled("TD.SettingsZoomToMouse".Translate(), ref zoomToMouse, "TD.SettingsZoomToMouseDesc".Translate());
 			options.Label("TD.NoFrameDecon".Translate(), tooltip: "TD.NoFrameDeconDesc".Translate());
 			options.Label("TD.DropdownBuildingsOrder".Translate(), tooltip: "TD.DropdownBuildingsOrderDesc".Translate());
+			options.Label("'Restore settings' button has confirmation, and saves a backup");
 
 			options.EndScrollView(ref viewRect);
 			scrollViewHeight = viewRect.height;
