@@ -22,7 +22,7 @@ namespace TD_Enhancement_Pack
 
 		public static void ConfirmRestoreToDefaultSettings(Dialog_Options dialog)
 		{
-			Find.WindowStack.Add(new Dialog_MessageBox("Really restore all settings?", buttonBText: "CancelButton".Translate(), 
+			Find.WindowStack.Add(new Dialog_MessageBox("TD.ConfirmRestoreAllSettings".Translate(), buttonBText: "CancelButton".Translate(), 
 				buttonAAction: () => dialog.RestoreToDefaultSettings()));
 		}
 	}

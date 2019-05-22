@@ -179,6 +179,7 @@
 	<TD.NoLimitOnTheNumberOfAreas>No limit on the number of areas</TD.NoLimitOnTheNumberOfAreas>
 	<TD.SettingJumpToSelectedItems>In the selection info panel, show a button to jump to selected items</TD.SettingJumpToSelectedItems>
 	<TD.SettingStopForcedSlowdown>Can Shift-click the time controls to stop the forced slowdown during a battle</TD.SettingStopForcedSlowdown>
+		<TD.ConfirmRestoreAllSettings>Really restore all settings?</TD.ConfirmRestoreAllSettings>
+	<TD.FeatureConfirmRestoreSettings>'Restore settings' button has confirmation, and saves a backup</TD.FeatureConfirmRestoreSettings>
 	
-
 </LanguageData>
