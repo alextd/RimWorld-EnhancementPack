@@ -173,12 +173,15 @@ namespace TD_Enhancement_Pack
 			//Re-do recipe color making
 			foreach(Thing thing in things.Where(t => t.TryGetComp<CompColorable>() != null && (!t.def.costList.NullOrEmpty() || t.def.costStuffCount > 0)))
 			{
-				Log.Message($"REDOING {thing}");
-				if (thing.def.MadeFromStuff)
-					thing.SetColor(thing.Stuff.stuffProps.color);
-				else // This will forget if the stuff had compcolorable set.
-					thing.SetColor(thing.def.costList?.Where(c => c.thingDef.IsStuff).RandomElementByWeightWithFallback(c => c.count)?.thingDef.stuffProps.color ?? thing.DrawColor);
-				ColorVariation.VaryColor(thing);
+				if (thing is Apparel)//Vanilla only has CompColorable on apparel but mods might make other non-craftable things colorable.
+				{
+					Log.Message($"REDOING {thing}");
+					if (thing.def.MadeFromStuff)
+						thing.SetColor(thing.Stuff.stuffProps.color);
+					else // This will not know if the original stuff had compcolorable set, just ignores it, oh well.
+						thing.SetColor(thing.def.costList?.Where(c => c.thingDef.IsStuff).RandomElementByWeightWithFallback(c => c.count)?.thingDef.stuffProps.color ?? thing.DrawColor);
+					ColorVariation.VaryColor(thing);
+				}
 			}
 			//Variation
 		}
