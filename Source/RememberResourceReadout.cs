@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using Verse;
 using RimWorld;
 
@@ -24,8 +25,18 @@ namespace TD_Enhancement_Pack
 				bool open = false;
 				if (Scribe.mode == LoadSaveMode.Saving)
 					open = node.IsOpen(openMask);
-				
-				Scribe_Values.Look(ref open, node.catDef.defName);
+
+				//Try to load by old xml tag, just defName
+				string xmlTag = node.catDef.defName;
+				if (Scribe.mode == LoadSaveMode.LoadingVars)
+					Scribe_Values.Look(ref open, xmlTag);
+
+				if (!open || Scribe.mode == LoadSaveMode.Saving)
+				{
+					//From now on let's validate xml, and start with a letter for sure
+					xmlTag = "open_" + Regex.Replace(xmlTag, "[^a-zA-Z0-9:.-_]", "");
+					Scribe_Values.Look(ref open, xmlTag);
+				}
 
 				if (Scribe.mode == LoadSaveMode.LoadingVars)
 					node.SetOpen(openMask, open);
