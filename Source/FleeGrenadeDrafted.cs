@@ -18,4 +18,23 @@ namespace TD_Enhancement_Pack
 				(!Settings.Get().dodgeGrenadeUnlessBelt || !pawn.apparel.WornApparel.Any(a => a is ShieldBelt));
 		}
 	}
+
+
+	//Flee Enemy Grenades too
+	[HarmonyPatch(typeof(Projectile_Explosive), "Impact")]
+	public class NotifyEnemiesOfGrenade
+	{
+		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+		{
+			return Harmony.Transpilers.MethodReplacer(instructions,
+				AccessTools.Method(typeof(GenExplosion), nameof(GenExplosion.NotifyNearbyPawnsOfDangerousExplosive)),
+				AccessTools.Method(typeof(NotifyEnemiesOfGrenade), nameof(NOFACTIONNotifyNearbyPawnsOfDangerousExplosive)));
+		}
+
+		//public static void NotifyNearbyPawnsOfDangerousExplosive(Thing exploder, DamageDef damage, Faction onlyFaction = null)
+		public static void NOFACTIONNotifyNearbyPawnsOfDangerousExplosive(Thing exploder, DamageDef damage, Faction onlyFaction = null)
+		{
+			GenExplosion.NotifyNearbyPawnsOfDangerousExplosive(exploder, damage, Settings.Get().dodgeGrenadeEnemy ? null : onlyFaction);
+		}
+	}
 }

@@ -68,6 +68,8 @@
 	<TD.SettingStopFleeDesc>Pretty sure this works\n\nSetting change doesn't apply to people already fleeing</TD.SettingStopFleeDesc>
 	<TD.SettingDodgeGrenades>Dodge grenades while drafted</TD.SettingDodgeGrenades>
 	<TD.SettingDodgeGrenadesDesc>Of course this interrupts what you're doing.</TD.SettingDodgeGrenadesDesc>
+	<TD.SettingDodgeGrenadesEnemy>Dodge enemy grenades</TD.SettingDodgeGrenadesEnemy>
+	<TD.SettingDodgeGrenadesEnemyDesc>People never actually dodged enemy grenades, even undrafted. Now you can.</TD.SettingDodgeGrenadesEnemyDesc>
 	<TD.SettingDodgeGrenadesUnlessBelt>Don't dodge if shield belt is worn</TD.SettingDodgeGrenadesUnlessBelt>
 	<TD.SettingQuickGrab>Allow grabbing items from shelves from adjacent tiles</TD.SettingQuickGrab>
 	<TD.SettingAutoBuildable>Auto-show buildable terrain overlay when placing buildings</TD.SettingAutoBuildable>
