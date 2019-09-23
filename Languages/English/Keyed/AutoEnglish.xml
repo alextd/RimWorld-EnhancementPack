@@ -71,7 +71,7 @@
 	<TD.SettingDodgeGrenadesEnemy>Colonists dodge enemy grenades</TD.SettingDodgeGrenadesEnemy>
 	<TD.SettingDodgeGrenadesEnemyDesc>People never actually dodged enemy grenades, even undrafted. Now you can.</TD.SettingDodgeGrenadesEnemyDesc>
 	<TD.SettingDodgeGrenadesNPC>Enemies dodge your grenades</TD.SettingDodgeGrenadesNPC>
-	<TD.SettingDodgeGrenadesNPCDesc>Now they will dodge your grenades too. I don't recommend this, but I guess it's realistic.\n\nAlso technically, two factions will dodge each other's grenades if "Dodge enemy grenades" is on</TD.SettingDodgeGrenadesNPCDesc>
+	<TD.SettingDodgeGrenadesNPCDesc>Now they will dodge your grenades too. I don't recommend this, but I guess it's realistic.\n\nAlso technically, two factions will dodge each other's grenades if "Colonists dodge enemy grenades" is on</TD.SettingDodgeGrenadesNPCDesc>
 	<TD.SettingDodgeGrenadesUnlessBelt>Don't dodge if shield belt is worn</TD.SettingDodgeGrenadesUnlessBelt>
 	<TD.SettingQuickGrab>Allow grabbing items from shelves from adjacent tiles</TD.SettingQuickGrab>
 	<TD.SettingAutoBuildable>Auto-show buildable terrain overlay when placing buildings</TD.SettingAutoBuildable>
