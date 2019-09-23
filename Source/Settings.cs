@@ -13,6 +13,7 @@ namespace TD_Enhancement_Pack
 		public bool stopFlee = true;
 		public bool dodgeGrenade = false;
 		public bool dodgeGrenadeEnemy = true;
+		public bool dodgeGrenadeNPC = false;
 		public bool dodgeGrenadeUnlessBelt = true;
 		public bool quickGrab = true;
 		public bool showStopGizmo = true;
@@ -263,9 +264,12 @@ namespace TD_Enhancement_Pack
 			options.LabelHeader("TD.SettingsHeaderAI".Translate());
 			options.CheckboxLabeled("TD.SettingsIgnoreSleeping".Translate(), ref ignoreSleepingEnemies, "TD.SettingsIgnoreSleepingDesc".Translate());
 			options.CheckboxLabeled("TD.SettingStopFlee".Translate(), ref stopFlee, "TD.SettingStopFleeDesc".Translate());
+			options.Gap();
 			options.CheckboxLabeled("TD.SettingDodgeGrenades".Translate(), ref dodgeGrenade, "TD.SettingDodgeGrenadesDesc".Translate());
 			options.CheckboxLabeled("TD.SettingDodgeGrenadesEnemy".Translate(), ref dodgeGrenadeEnemy, "TD.SettingDodgeGrenadesEnemyDesc".Translate());
+			options.CheckboxLabeled("TD.SettingDodgeGrenadesNPC".Translate(), ref dodgeGrenadeNPC, "TD.SettingDodgeGrenadesNPCDesc".Translate());
 			options.CheckboxLabeled("TD.SettingDodgeGrenadesUnlessBelt".Translate(), ref dodgeGrenadeUnlessBelt);
+			options.Gap();
 			options.CheckboxLabeled("TD.SettingQuickGrab".Translate(), ref quickGrab);
 			options.Gap();
 			options.CheckboxLabeled("TD.ShowStopButtonDrafted".Translate(), ref showStopGizmoDrafted);
@@ -294,6 +298,7 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref stopFlee, "stopFlee", true);
 			Scribe_Values.Look(ref dodgeGrenade, "dodgeGrenade", false);
 			Scribe_Values.Look(ref dodgeGrenadeEnemy, "dodgeGrenadeEnemy", true);
+			Scribe_Values.Look(ref dodgeGrenadeNPC, "dodgeGrenadeNPC", false);
 			Scribe_Values.Look(ref dodgeGrenadeUnlessBelt, "dodgeGrenadeUnlessBelt", true);
 			Scribe_Values.Look(ref quickGrab, "quickGrab", true);
 			Scribe_Values.Look(ref showStopGizmo, "showStopGizmo", true);

@@ -34,7 +34,12 @@ namespace TD_Enhancement_Pack
 		//public static void NotifyNearbyPawnsOfDangerousExplosive(Thing exploder, DamageDef damage, Faction onlyFaction = null)
 		public static void NOFACTIONNotifyNearbyPawnsOfDangerousExplosive(Thing exploder, DamageDef damage, Faction onlyFaction = null)
 		{
-			GenExplosion.NotifyNearbyPawnsOfDangerousExplosive(exploder, damage, Settings.Get().dodgeGrenadeEnemy ? null : onlyFaction);
+			Faction actualFaction = onlyFaction;
+			if (Settings.Get().dodgeGrenadeEnemy && onlyFaction != Faction.OfPlayer)
+				actualFaction = null;
+			if (Settings.Get().dodgeGrenadeNPC && onlyFaction == Faction.OfPlayer)
+				actualFaction = null;
+			GenExplosion.NotifyNearbyPawnsOfDangerousExplosive(exploder, damage, actualFaction);
 		}
 	}
 }
