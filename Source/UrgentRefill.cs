@@ -91,17 +91,28 @@ namespace TD_Enhancement_Pack
 			}
 			return true;
 		}
-
+		
 		public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn pawn)
 		{
-			List<SlotGroup> needRefill = pawn.Map.haulDestinationManager.AllGroupsListForReading
-				.FindAll(group => group.IsMarkedForRefill(pawn.Map)
-					&& group.CellsList.Any(c => NeedsRefill(c, pawn.Map)));
+			Map map = pawn.Map;
 
-			return pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableEver)
-				.FindAll(t => !t.IsInValidBestStorage()
-				&& HaulAIUtility.PawnCanAutomaticallyHaulFast(pawn, t, false)
-				&& needRefill.Any(g => g.Settings.AllowedToAccept(t)));
+			IEnumerable<Thing> thingsToClear = map.haulDestinationManager.AllGroupsListForReading
+				.FindAll(group => group.IsMarkedForRefill(map))
+				.SelectMany(group => group.HeldThings
+				.Where(thing =>
+					thing.def.EverStorable(false)
+					&& !group.Settings.AllowedToAccept(thing)));
+
+			List<SlotGroup> needRefill = map.haulDestinationManager.AllGroupsListForReading
+				.FindAll(group => group.IsMarkedForRefill(map)
+					&& group.CellsList.Any(c => NeedsRefill(c, map)));
+
+			IEnumerable<Thing> thingsToHaul = map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableEver)
+				.Where(t => !t.IsInValidBestStorage()
+					&& needRefill.Any(g => g.Settings.AllowedToAccept(t)));
+
+			return thingsToClear.Concat(thingsToHaul)
+				.Where(t => HaulAIUtility.PawnCanAutomaticallyHaulFast(pawn, t, false));
 		}
 	}
 
