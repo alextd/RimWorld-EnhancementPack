@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <TDEnhancementPack1_0_0.modNameReadable>TD Enhancement Pack</TDEnhancementPack1_0_0.modNameReadable>
+  <TDEnhancementPack1_0_0.content>ハーイ！今回から更新情報を使用します。設定ウィンドウですべての機能を確認するか（オンまたはオフに切替え可能）リンクをクリックしてください。\n\n最新の更新：\n-オーバーレイヤー表示がたくさん追加され特定のツールを使用すると自動表示されます。\n-キャラバン隊の編成には、マップ上で選択されたものが自動的に入力されます。\n-設計図はどんなものでも指定できます：ボタンを右クリックしてリストを取得\n-ゾーンやエリアの強調表示の見栄えが非常に良くなりました（境界部分で）|img:AreaHighlightBad,AreaHighlightGood|\n\n（MOD設定を開いてこれをオンに切替ます）\n-ポーンテーブルの名前（作業タブなどで）をクリックするとタブを閉じてジャンプする代わりに、マップ上でクリックするのと同じようにポーンを強調表示して選択できるようになりました。Altキーを押しながらクリックして閉じると、以前のようにジャンプします。|img:TableSelection|</TDEnhancementPack1_0_0.content>
+
+  <TDEnhancementPack1_1_1.modNameReadable>TD Enhancement Pack</TDEnhancementPack1_1_1.modNameReadable>
+  <TDEnhancementPack1_1_1.content>-発電機を建設する場合、地熱噴気孔が強調表示されます。\n-マウスの中央(ホイール)ボタンでカメラをパンすることをお勧めします。\n</TDEnhancementPack1_1_1.content>
+
+  <TDEnhancementPack1_2_0.modNameReadable>TD Enhancement Pack</TDEnhancementPack1_2_0.modNameReadable>
+  <TDEnhancementPack1_2_0.content>-マウスポインターの位置にズームできます。Mod設定でオンに切替ます。\n（まだ言及されていない古い更新もあります:)\n-加工命令が設定されていない作業台の警告を追加（加工命令を使用しないModで追加された作業台は無視されます）\n-研究が進行中かどうかを示す研究タブの矢印アイコンを追加\n-土壌改良ポンプを配置すると、現在のポンプの効果範囲オーバーレイが表示されます\n-エリア管理でエリア全体をクリア可能です\n-エリアをクリックすると、そのエリアへ追加できるようにジャンプします\n-シールドベルトにエネルギーが残っている場合手榴弾を無視するようにできます\n</TDEnhancementPack1_2_0.content>
+
+  <TDEnhancementPack1_2_1.modNameReadable>TD Enhancement Pack</TDEnhancementPack1_2_1.modNameReadable>
+  <TDEnhancementPack1_2_1.content>-ゾーンやエリアを貼り付け(Paste)アイコンを右クリックして、コロニーや天井エリアを他のエリアに貼り付け可能になりました。|img:PasteHomeArea|\n-入植者に影響を与える毒物の蓄積と熱中症のレベルに関する警告を追加（低体温症はすでにあります）\n-同じウィンドウを閉じて再度開いた際にキャラバン隊と輸送ポッドで選択したアイテムが保存されます\n</TDEnhancementPack1_2_1.content>
+
+  <TDEnhancementPack1_2_4.modNameReadable>TD Enhancement Pack</TDEnhancementPack1_2_4.modNameReadable>
+  <TDEnhancementPack1_2_4.content>-貿易用ビーコンや土壌改良ポンプなどの特定の建物用の新しい「効果範囲」オーバーレイ表示で、すべての建物の効果範囲が全て表示されます。\n-風力発電機の邪魔になる物の警告を追加\n-画面左上に出るリソースの表示状態はセーブデータと一緒にセーブされるため、ロードする際に開いているカテゴリが記憶されるようになりました\n-右下の表示切替ボタンを非表示にするMod設定を追加\n</TDEnhancementPack1_2_4.content>
+
+  <TDEnhancementPack1_2_5.modNameReadable>TD Enhancement Pack</TDEnhancementPack1_2_5.modNameReadable>
+  <TDEnhancementPack1_2_5.content>あなたが興奮するニュースを順番に説明します（これらの設定はオンに切替る必要があります）\n\n-カラーバリエーション！ いくつかの修正と新機能。衣服に適用できます。\n--スチールから作られたアイテムの色が修正されました（防弾ベスト）\n--襲撃者の防具では見られるように、あらかじめ設定された色のバリエーションで衣服を作成する機能を追加\n--全体的にわずかな色の変化で、あなたが作るすべてのデビルストランド製Tシャツは全部同じ色ではありません。\n-「マウスポインターにズーム」オプションを使用する際、シフトキー同時押しのズームすると画面中央にズームします\n-トレード画面で最も価値の低いアイテムがリストの上に並ぶようになりました（標準品以上の品質が必要）\n-トレード画面で「重量の値」でソート可能になりました\n-発射後の輸送ポッドの再建築を有効化しました\n-ポーン一覧（仕事や野生動物など）に表示された名前を示す矢印が表示されます\n-管理方針をコピーするためのボタンを追加（新しく空の管理方針を作成する代わりに）\n-複数のコロニーがある場合で生の食べ物や医療上の危機的状況の警告は、それらが適用されるマップの名前が付くようになりました\n-他のトラップを配置する場合でも、IEDトラップの効果半径を表示します\n</TDEnhancementPack1_2_5.content>
+
+  <TDEnhancementPack1_2_6.modNameReadable>TD Enhancement Pack</TDEnhancementPack1_2_6.modNameReadable>
+  <TDEnhancementPack1_2_6.content>-加工命令のオプション「装備中の数」はどの加工にも有効になります。インベントリにあるドラッグや薬もカウントします\n-ポーン一覧での選択が更新されました。\nドラッグして選択したり、ダブルクリックですべてのポーンを選択したり、右クリックで選択せずにポーンの場所にズームしたりできます。\n</TDEnhancementPack1_2_6.content>
+
+  <TDEnhancementPack1_3_2.modNameReadable>TD Enhancement Pack</TDEnhancementPack1_3_2.modNameReadable>
+  <TDEnhancementPack1_3_2.content>-指定エリアは「for animals(動物用)」または「for colonists(入植者用)」として\nタグ付けされる必要があり、タグ付けされている場合だけ表示されます。\n（Colony Managerもこの設定を尊重する必要があります）\n-電力網を表示するオーバーレイ切替アイコンを画面右下に追加\n</TDEnhancementPack1_3_2.content>
+
+  <TDEnhancementPack1_3_3.modNameReadable>TD Enhancement Pack</TDEnhancementPack1_3_3.modNameReadable>
+  <TDEnhancementPack1_3_3.content>-選択されたアイテムには、情報ウィンドウに新しいボタン(目のアイコン)があり、そこへジャンプします\n-戦闘終了後の強制スローダウンは、Shiftキーを押しながら速度コントロールをクリックすることで解除できます。\n</TDEnhancementPack1_3_3.content>
+
+  <TDEnhancementPack1_3_4.modNameReadable>TD Enhancement Pack</TDEnhancementPack1_3_4.modNameReadable>
+  <TDEnhancementPack1_3_4.content>-エリア数の無制限オプションとエリア管理でスクロール表示を追加\n</TDEnhancementPack1_3_4.content>
+
+  <TDEnhancementPack1_3_5.modNameReadable>TD Enhancement Pack</TDEnhancementPack1_3_5.modNameReadable>
+  <TDEnhancementPack1_3_5.content>-隣接しているタイルにあるロッカーから材料などのアイテムを取り出すことが可能になりました（したがって、材料が多いアイテムを作成している入植者は材料を取り出すために隣接しているロッカーにいちいち歩いて時間を無駄に消費する必要は無くなります）\n</TDEnhancementPack1_3_5.content>
+
+  <TDEnhancementPack1_3_8.modNameReadable>TD Enhancement Pack</TDEnhancementPack1_3_8.modNameReadable>
+  <TDEnhancementPack1_3_8.content>-「手榴弾の回避」機能で敵の手榴弾を回避できるようになりました（予想どおりですが、手榴弾は派閥によってタグ付けされたようです）\n以前の設定でも徴兵された入植者が自分の手榴弾を回避することは可能でした。\nMod設定を確認してオンに切替えてください（敵に手榴弾を回避させることも可能！）\n\nまた「すべての設定を復元する」ための確認ダイアログとバックアップを追加しました\n（数か月前に）\n</TDEnhancementPack1_3_8.content>
+
+</LanguageData>

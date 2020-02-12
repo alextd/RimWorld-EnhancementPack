@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <TD.HexColorValuesOnly>16進数(00-FF)の色数値のみ</TD.HexColorValuesOnly>
+  <TD.ToggleBuildable>地盤表示: 建築に適さない地形を色分けする</TD.ToggleBuildable>
+  <TD.ToggleCoverage>範囲表示: 効果範囲を表示する(太陽灯やビーコンなど)</TD.ToggleCoverage>
+  <TD.ToggleBeauty>美醜表示: 美しさで色分けする</TD.ToggleBeauty>
+  <TD.ToggleFertility>肥沃表示: 肥沃度で色分けする</TD.ToggleFertility>
+  <TD.ToggleLighting>明暗表示: 明るさで色分けする</TD.ToggleLighting>
+  <TD.ToggleWalkSpeed>速度表示: 移動速度で色分けする</TD.ToggleWalkSpeed>
+  <TD.TogglePlantHarveset>成長表示: 成長度で色分けする</TD.TogglePlantHarveset>
+  <TD.TogglePowerOverlay>電力線表示：電力線の有無で色分けする</TD.TogglePowerOverlay>
+  <TDEnhancementPack>TD Enhancement Pack</TDEnhancementPack>
+  <TD.SizeAndFertile>ゾーン面積: {0:0} (肥沃具合: {1:0.0})</TD.SizeAndFertile>
+  <TD.Size>ゾーン面積: {0}</TD.Size>
+  <TD.CountToSow>残種蒔き面積: {0}</TD.CountToSow>
+  <TD.CountFullyGrown>収穫可能: {0}</TD.CountFullyGrown>
+  <TD.SettingOverlayBuildable>地盤表示の切替メニューを表示する</TD.SettingOverlayBuildable>
+  <TD.SettingOverlayBuildableDesc>赤色は建築不可、オレンジは「中」(中程度の重量物を建築可能)、黄色は「軽」(軽い重量物を建築可能)、それ以外は「重」(重い重量物を建築可能)です(ほとんどの建築物は「重」の場所にのみ建設可能)</TD.SettingOverlayBuildableDesc>
+  <TD.SettingOverlayCoverage>範囲表示の切替メニューを表示する</TD.SettingOverlayCoverage>
+  <TD.SettingOverlayCoverageDesc>太陽灯やビーコン等を選択したときに範囲を表示する</TD.SettingOverlayCoverageDesc>
+  <TD.SettingOverlayBeauty>美醜表示の切替メニューを表示する</TD.SettingOverlayBeauty>
+  <TD.SettingOverlayFertility>肥沃表示の切替メニューを表示する</TD.SettingOverlayFertility>
+  <TD.SettingOverlayFertilityUnder>肥沃表示されるときに、OFFならフロア部分は赤表示になり ONならその下の地面の肥沃度で表示する</TD.SettingOverlayFertilityUnder>
+  <TD.SettingOverlayWalkSpeed>速度表示の切替メニューを表示する</TD.SettingOverlayWalkSpeed>
+  <TD.SettingOverlayLighting>明暗表示の切替メニューを表示する</TD.SettingOverlayLighting>
+  <TD.SettingOverlayLightingDesc>日光があたる屋外エリアは無着色です</TD.SettingOverlayLightingDesc>
+  <TD.SettingOverlayPower>電線の切替メニューを表示する</TD.SettingOverlayPower>
+  <TD.SettingOverlayPlantHarvest>成長表示の切替メニューを表示する</TD.SettingOverlayPlantHarvest>
+  <TD.SettingTradeClose>取引や交渉の際にゲーム速度を変更する</TD.SettingTradeClose>
+  <TD.SettingTradeCloseSpeed>変更後のゲーム速度: </TD.SettingTradeCloseSpeed>
+  <TD.SettingResearchingArrow>研究中にメインメニューの研究ボタンに矢印を表示する</TD.SettingResearchingArrow>
+  <TD.SettingSkillGainArrow>成長しているスキルがあるとき該当箇所に矢印を表示する</TD.SettingSkillGainArrow>
+  <TD.SettingSkillGainArrowDesc>キャラクターの略歴タブ</TD.SettingSkillGainArrowDesc>
+  <TD.SettingSkillLossArrow>スキルが減少しているとき該当箇所に矢印を表示する</TD.SettingSkillLossArrow>
+  <TD.SettingSkillLossArrowDesc>11以上のスキルはゆっくりと減少します(減少速度によって薄さが変わります)</TD.SettingSkillLossArrowDesc>
+  <TD.SettingZoneSize>備蓄ゾーンや農業ゾーンの情報を表示する</TD.SettingZoneSize>
+  <TD.SettingZoneSizeDesc>備蓄ゾーンは面積のみ、農業ゾーンなら面積と種蒔き可能な面積が表示されます。肥沃具合は肥沃度が100%のときは面積と同じになります(植物の肥沃度感受性を考慮しています)</TD.SettingZoneSizeDesc>
+  <TD.OtherFeatures>その他の機能：</TD.OtherFeatures>
+  <TD.AreaEditing>制限ゾーンの管理で並べ替え、色変更、コピー/貼り付けなどができます</TD.AreaEditing>
+  <TD.NeverHome>制限ゾーンで「Never Home」と名付けられたゾーンは、コロニーゾーンに追加しない</TD.NeverHome>
+  <TD.SlaughterZone>動物を屠殺するときは「Slaughter」と名付けられた制限ゾーンでのみ行われる</TD.SlaughterZone>
+  <TD.RequiresRestart>変更を有効化するには再起動が必要：</TD.RequiresRestart>
+  <TD.VariousCount>（色々な）選択されたアイテムは計測した数量が表示される</TD.VariousCount>
+  <TD.RottedAwayClickable>食料が「腐敗した」というメッセージをクリックすると、それがどこにあったのか判る</TD.RottedAwayClickable>
+  <TD.PopupMessageRealtime>「勧誘成功率%」（テキストメモ）のようなポップアップメッセージはリアルタイム表示され続けるので、すぐ消えません</TD.PopupMessageRealtime>
+  <TD.SettingsIgnoreSleeping>徴兵されてない入植者は寝ている敵を無視する</TD.SettingsIgnoreSleeping>
+  <TD.SettingsIgnoreSleepingDesc>これは「攻撃」の反応モードに適用されます。 入植者たちが物を運んでいる最中に、偶然近くを通ったからといって眠っているメガスカラベをわざわざ攻撃すると思いますか？</TD.SettingsIgnoreSleepingDesc>
+  <TD.ShowStopButtonUnDrafted>「中止」ボタンを表示(通常時)</TD.ShowStopButtonUnDrafted>
+  <TD.ShowStopButtonDrafted>「中止」ボタンを表示(徴兵時)</TD.ShowStopButtonDrafted>
+  <TD.StopGizmo>中止</TD.StopGizmo>
+  <TD.StopDescDrafted>実行中の行動を中止します</TD.StopDescDrafted>
+  <TD.StopDescUndrafted>実行中の仕事を中止します(仕事を再検討する)</TD.StopDescUndrafted>
+  <TD.AddedByTD>(TD Enhancement Pack)で追加</TD.AddedByTD>
+  <TD.AllowHarvesting>収穫許可</TD.AllowHarvesting>
+  <TD.AllowHarvestingDesc>これをOFFにすると収穫されなくなります。種蒔きは行います</TD.AllowHarvestingDesc>
+  <TD.SettingAllowHarvesting>収穫許可ボタンを表示する</TD.SettingAllowHarvesting>
+  <TD.SettingAllowHarvestingDesc>水耕栽培にも適用されます(禁止は収穫のみ)</TD.SettingAllowHarvestingDesc>
+  <TD.SettingAreaForTypes>入植者や動物に非表示エリアの切替設定を追加する。</TD.SettingAreaForTypes>
+  <TD.SettingAreaForTypesDesc>制限のゾーンの管理でチェックボックスを2つともオフにすると、そのゾーンは入植者と動物用に選択できなくなります。</TD.SettingAreaForTypesDesc>
+  <TD.FeatureConditionGreen>健康タブにて効果は緑色に部位は黄色に変更されます</TD.FeatureConditionGreen>
+  <TD.WhatDropped>落下物: {0}</TD.WhatDropped>
+  <TD.Deterioration>劣化したものがあります</TD.Deterioration>
+  <TD.DeteriorationAlert>何かが劣化しています。安全に保つため室内に保管してください</TD.DeteriorationAlert>
+  <TD.Match>肥沃度一致</TD.Match>
+  <TD.MatchDesc>最初に選択した土地の肥沃度と一致した部分のみ農業ゾーンとします</TD.MatchDesc>
+  <TD.SettingStopFlee>脅威が無くなったら逃げるのをやめる</TD.SettingStopFlee>
+  <TD.SettingStopFleeDesc>すでに逃げている入植者に対しては適用されません</TD.SettingStopFleeDesc>
+  <TD.SettingDodgeGrenades>徴兵中にグレネードが飛んできて範囲内なら逃げ出す</TD.SettingDodgeGrenades>
+  <TD.SettingDodgeGrenadesDesc>実行中の行動はキャンセルされます</TD.SettingDodgeGrenadesDesc>
+  <TD.SettingDodgeGrenadesUnlessBelt>シールドベルトが生きているならグレネード範囲から逃げ出さない</TD.SettingDodgeGrenadesUnlessBelt>
+  <TD.SettingDodgeGrenadesEnemy>入植者が敵の手榴弾を回避する</TD.SettingDodgeGrenadesEnemy>
+  <TD.SettingDodgeGrenadesEnemyDesc>入植者たちは実際には敵の手榴弾を回避できませんでした。例え徴兵されていなかったとしてもです。これを有効にすると回避できます。</TD.SettingDodgeGrenadesEnemyDesc>
+  <TD.SettingDodgeGrenadesNPC>敵が手榴弾を回避する</TD.SettingDodgeGrenadesNPC>
+  <TD.SettingDodgeGrenadesNPCDesc>今度は敵も手榴弾を回避します。あまりお勧めしませんが現実的だと思います。\n\nまた技術的な話ですが「入植者が敵の手榴弾を回避する」を有効にしている場合、敵味方両方の派閥は互いの手榴弾を回避します。</TD.SettingDodgeGrenadesNPCDesc>
+  <TD.SettingQuickGrab>隣接するタイルにあるロッカーからアイテム(材料など)を持ち出すことを許可する</TD.SettingQuickGrab>
+  <TD.SettingAutoBuildable>壁等を建築時に地盤表示を自動的にONにする</TD.SettingAutoBuildable>
+  <TD.SettingAutoBuildableDesc>橋や石棺などを設置するときに建てることができない場所が赤で表示されます</TD.SettingAutoBuildableDesc>
+  <TD.SettingAutoCoverage>太陽灯やビーコン等を建造時に範囲表示を自動的にONにする</TD.SettingAutoCoverage>
+  <TD.SettingAutoCoverageDesc>太陽灯やビーコン等を複数設置するときに効果範囲の確認ができます</TD.SettingAutoCoverageDesc>
+  <TD.SettingAutoSmoothable>"表面を磨く"ときに磨ける場所を表示する</TD.SettingAutoSmoothable>
+  <TD.SettingAutoTreeGrowth>"伐採"するときに伐採対象の成長度を表示する</TD.SettingAutoTreeGrowth>
+  <TD.SettingAutoTreeGrowthDesc>"赤"は対象外\n"黄"はもうすぐ伐採可能\n"緑"は伐採可能\n"白"は成長度100%\n</TD.SettingAutoTreeGrowthDesc>
+  <TD.SettingAutoWindBlocker>風力発電所を建造時に"邪魔"なものを表示する</TD.SettingAutoWindBlocker>
+  <TD.SettingAutoFertility>農業ゾーンを指定するとき肥沃表示を自動的にONにする</TD.SettingAutoFertility>
+  <TD.SettingAutoLighting>光源を設置するとき明暗表示を自動的にONにする</TD.SettingAutoLighting>
+  <TD.SettingAutoPlantHarvest>収穫を指示するとき成長表示を自動的にONにする</TD.SettingAutoPlantHarvest>
+  <TD.SettingAutoAutorebuild>ゲームを開始するとき"自動再装填"をONにして始める(これをOFFにすると再装填がOFFになる)</TD.SettingAutoAutorebuild>
+  <TD.SettingAutoRebuildTransportPod>発射した後に輸送ポッドを自動的に再び建設する</TD.SettingAutoRebuildTransportPod>
+  <TD.CaravanLoadSelection>アイテム選択状態でキャラバン隊を編成すると、それらが選択された状態で編成画面が表示される</TD.CaravanLoadSelection>
+  <TD.CaravanSaveManifest>キャラバンや輸送ポッドのダイアログを閉じるときに状態を保存する</TD.CaravanSaveManifest>
+  <TD.CaravanDesc>*注意：前回の選択アイテムが保存されているので、新しくアイテムを選択して閉じてから再び開いてもそれらは追加されません：リセットボタンを押して、ウィンドウをもう一度開くと、新しく選択したアイテムが表示されます。</TD.CaravanDesc>
+  <TD.CaravanWorstFirst>交易の要請で、最も価値の低い商品がリストの最初に表示されます</TD.CaravanWorstFirst>
+  <TD.CaravanWorstFirstDesc>最低でも通常の品質が必要なことを忘れないでください、しかし、品質が「通常」のアイテムが有るのに「伝説」アイテムを寄付する事態を防ぎます。</TD.CaravanWorstFirstDesc>
+  <TD.BlueprintAnyStuff>建築や製造で材料が選べるとき、右クリックで全リストを表示する(材料が無くても)</TD.BlueprintAnyStuff>
+  <TD.SettingCopyPolicy>服装と食事とドラッグの設定に「コピーする」ボタンを表示する</TD.SettingCopyPolicy>
+  <TD.SettingBillCountEquippedAny>すべての加工命令に「装備中の数」のオプションを表示する</TD.SettingBillCountEquippedAny>
+  <TD.SettingBillCountEquippedAnyDesc>武器と衣服は常に数えますが、持ち物の中にある食事とドラッグを数えない理由がありますか？</TD.SettingBillCountEquippedAnyDesc>
+  <TD.SettingTopRightMouseover>カーソル位置の情報が、左下から右上に移動する(地面の情報など)</TD.SettingTopRightMouseover>
+  <TD.SettingTopRightMouseoverDesc>何かを選択したときなどに情報が隠されることが無くなります。ラーニングヘルパーはオプションから非表示にすることが可能。</TD.SettingTopRightMouseoverDesc>
+  <TD.SettingPawnTableHighlightSelected>選択した入植者が、入植者リスト(優先順位や制限等)で色づけされる</TD.SettingPawnTableHighlightSelected>
+  <TD.SettingPawnTableHighlightSelectedDesc>優先順位や制限タブ、作業タブ、野生動物タブなどのリストでも表示されます</TD.SettingPawnTableHighlightSelectedDesc>
+  <TD.SettingPawnTableArrowMouseover>テーブル内のポーンを示す矢印を表示する</TD.SettingPawnTableArrowMouseover>
+  <TD.SettingPawnTableClickSelect>入植者リストから入植者を選択できるようになる(Alt+クリックで移動)</TD.SettingPawnTableClickSelect>
+  <TD.SettingPawnTableClickSelectDesc>入植者リスト(優先順位や制限など)の名前をクリックすることで選択(リストが閉じたり移動はしない)になります\nShiftクリックで複数人の選択と解除ができます\nダブルクリックでリストを閉じずにカメラ中央に移動します\nAlt+クリックでリストを閉じて対象入植者の場所へ移動します(バニラの動作)</TD.SettingPawnTableClickSelectDesc>
+  <TD.SettingAlertDeterioration>劣化したアイテムがあるとき警告する</TD.SettingAlertDeterioration>
+  <TD.SettingAlertDeteriorationDesc>50%を下回ると警告されます。禁止されたものや腐敗した死体は含まれません</TD.SettingAlertDeteriorationDesc>
+  <TD.SettingAlertHeatstroke>入植者が熱中症のとき警告する</TD.SettingAlertHeatstroke>
+  <TD.SettingAlertBurning>入植者が燃えているとき警告する</TD.SettingAlertBurning>
+  <TD.SettingAlertToxic>入植者が毒を蓄積しているとき警告する</TD.SettingAlertToxic>
+  <TD.SettingAlertNoBill>作業指示が空の作業台があるとき警告する(作業中断や終了は含まない)</TD.SettingAlertNoBill>
+  <TD.SettingMatchGrow>肥沃度一致を使用する</TD.SettingMatchGrow>
+  <TD.SettingMatchGrowDesc>肥沃度一致で農業ゾーンを指定すると起点の地面と同じ肥沃度の地面のみが選択されます</TD.SettingMatchGrowDesc>
+  <TD.DropPodWhatDropped>アイテム墜落の通知に落下物の情報が表示されます</TD.DropPodWhatDropped>
+  <TD.SarcophagusPreferred>石棺を優先的に使用します</TD.SarcophagusPreferred>
+  <TD.SarcophagusPreferredDesc>バニラだと距離が近いものに埋葬しますが、遠くても石棺に埋葬するようになります</TD.SarcophagusPreferredDesc>
+  <TD.NoFrameDecon>建造中(材料運搬済み)の壁や家具などから"解体"ボタンが取り除かれます</TD.NoFrameDecon>
+  <TD.NoFrameDeconDesc>解体はキャンセルより少ない材料が戻されます</TD.NoFrameDeconDesc>
+  <TD.DropdownBuildingsOrder>ドロップダウン型の選択は、含まれている選択によって順序が設定されます。</TD.DropdownBuildingsOrder>
+  <TD.DropdownBuildingsOrderDesc>例えば 色付きの電気スタンドは、リストの先頭ではなく他の電気スタンド建設メニューの隣に表示されます。</TD.DropdownBuildingsOrderDesc>
+  <TD.SmoothSelectedStone>選択し石の種類には滑らかにするボタンがあります</TD.SmoothSelectedStone>
+  <TD.DeepDrillRandomrock>深部ドリルマシンで得られる岩の塊をランダムにする</TD.DeepDrillRandomrock>
+  <TD.DeepDrillRandomrockDesc>ONにすることで、採掘完了のたびにマップ上で得られる岩の種類から1つが選ばれるようになります</TD.DeepDrillRandomrockDesc>
+  <TD.LowerOverlayOpacities>表示の不透明度:</TD.LowerOverlayOpacities>
+  <TD.SettingUrgentRefill>「Allow Tool」を導入している場合、備蓄ゾーンに「緊急補充」切替ボタンがあります。</TD.SettingUrgentRefill>
+  <TD.SettingUrgentRefillDesc>もし選択した備蓄ゾーンのタイルが空の場合、そこへ緊急運搬して補充する作業が追加されます。 コンロや作業台の材料補充に最適です。\n\n「Allow Tool」が必要です</TD.SettingUrgentRefillDesc>
+  <TD.SettingCameraDragFix>中央ボタン(ホイール)によるマウスドラッグを修正</TD.SettingCameraDragFix>
+  <TD.SettingCameraDragFixDesc>バニラではドラッグしていきおいよく動かした後に離すとマップは滑った後に止まります。この部分を離したときに即座に止まるように変更しています</TD.SettingCameraDragFixDesc>
+  <TD.WorkGiverRefillZones>緊急にゾーンを補充する</TD.WorkGiverRefillZones>
+  <TD.RefillingUrgently>緊急に補充する</TD.RefillingUrgently>
+  <TD.GizmoUrgentRefill>緊急補充</TD.GizmoUrgentRefill>
+  <TD.GizmoUrgentRefillDesc>マスが空の場合は、最優先で補充します。</TD.GizmoUrgentRefillDesc>
+  <TD.SettingHeaderArea>エリアとゾーンの設定</TD.SettingHeaderArea>
+  <TD.SettingHeaderOverlays>オーバーレイヤー</TD.SettingHeaderOverlays>
+  <TD.SettingHeaderGameImprovements>ゲーム改良</TD.SettingHeaderGameImprovements>
+  <TD.SettingHeaderAI>AI/挙動</TD.SettingHeaderAI>
+  <TD.SettingCleanZoneEdges>より鮮明なゾーン境界（と範囲表示）</TD.SettingCleanZoneEdges>
+  <TD.SettingsHeaderArea>エリアとゾーンの設定</TD.SettingsHeaderArea>
+  <TD.SettingsCleanZone>より鮮明なゾーン境界（と範囲表示）</TD.SettingsCleanZone>
+  <TD.SettingsHeaderOverlays>オーバーレイヤー</TD.SettingsHeaderOverlays>
+  <TD.SettingsHeaderGame>ゲーム改良</TD.SettingsHeaderGame>
+  <TD.SettingsHeaderInfo>UI/情報</TD.SettingsHeaderInfo>
+  <TD.SettingsHeaderAlerts>警告</TD.SettingsHeaderAlerts>
+  <TD.SettingsHeaderAI>AI/挙動</TD.SettingsHeaderAI>
+  <TD.EmptyWorkbench>作業指示がありません</TD.EmptyWorkbench>
+  <TD.EmptyWorkbenchDesc>何の指示も登録されていない作業台があります</TD.EmptyWorkbenchDesc>
+  <TD.ClearEntireArea>指定ゾーンの全削除(リストからは消しません)</TD.ClearEntireArea>
+  <TD.PasteFrom>ペーストする</TD.PasteFrom>
+  <TD.SettingsZoomToMouse>マウスポインターにズーム</TD.SettingsZoomToMouse>
+  <TD.SettingsZoomToMouseDesc>（Shiftキーを押しながらズームすると画面中央に移動してズームします）</TD.SettingsZoomToMouseDesc>
+  <TD.AlertBurning>燃えています。急速に熱中症になりつつあります</TD.AlertBurning>
+  <TD.AlertHeatstrike>熱くて熱中症です。それは良いことではありません</TD.AlertHeatstrike>
+  <TD.AlertToxic>毒に蝕まれています。それは良いことではありません</TD.AlertToxic>
+  <TD.SettingRememberResourceReadout>左上"リソース表示"の状態をセーブするときに記録する(カテゴリモードのとき)</TD.SettingRememberResourceReadout>
+  <TD.SettingNewGameOpenResourceReadout>ニューゲーム時、左上"リソース表示"のツリー表示を全部開いた状態にする</TD.SettingNewGameOpenResourceReadout>
+  <TD.AlertWindBlocked>風力発電機の稼働を邪魔しているものがあるとき警告する</TD.AlertWindBlocked>
+  <TD.WindBlocked>風力発電が稼働していません</TD.WindBlocked>
+  <TD.WindBlockedDesc>風を遮っているものがあるため期待した動作をしていません</TD.WindBlockedDesc>
+  <TD.Show>"{0}"の切替メニューを表示する</TD.Show>
+  <TD.SettingHeaderToggleButtons>切替ボタンの表示/非表示（画面右下）</TD.SettingHeaderToggleButtons>
+  <TD.SettingHeaderToggleButtonsDesc>MODで追加される切替メニューが多いため、使わない切替メニューを消すことができます</TD.SettingHeaderToggleButtonsDesc>
+  <TD.MakeCopy>コピー作成</TD.MakeCopy>
+  <TD.WarningReColorAll>このボタンは沢山の要素の色を変更します。 色を変更する意思がない限り、セーブデータをバックアップすることをお勧めします。</TD.WarningReColorAll>
+  <TD.OKIGetIt>わかりました</TD.OKIGetIt>
+  <TD.HoldOn>待って</TD.HoldOn>
+  <TD.SettingHeaderColorVariations>色を変化</TD.SettingHeaderColorVariations>
+  <TD.SettingColorVariation>生産されたアイテムにほんの少しだけ色の変化を適用する</TD.SettingColorVariation>
+  <TD.SettingColorVariationDesc>具体的には、HSVで最大+/-5％されます。\n\n武器の色は変更不可能なので、衣服のみです。</TD.SettingColorVariationDesc>
+  <TD.SettingColorGenerator>生産されたアイテムにカラージェネレーターを使う</TD.SettingColorGenerator>
+  <TD.SettingColorGeneratorDesc>それらのアイテムが他の派閥の場合は色んな色が付いている事を知っているように、あなたも色を付けられます！</TD.SettingColorGeneratorDesc>
+  <TD.SettingColorGeneratorChance>材料の色の代わりにカラージェネレーターを使用する確率：</TD.SettingColorGeneratorChance>
+  <TD.SettingReapplyColorVariations>現在存在するすべてのアイテムに色の変化を適用し直す</TD.SettingReapplyColorVariations>
+  <TD.Go>適用する</TD.Go>
+  <TD.SettingReapplyColorVariationsDesc>（これは下の2つのオプションにも適用されます（それらがチェックされているかどうか無関係に)）</TD.SettingReapplyColorVariationsDesc>
+  <TD.SettingFixColorStuff>材料の正しい色を使用するように修正</TD.SettingFixColorStuff>
+  <TD.SettingFixColorStuffDesc>例えば、白色の防弾ジャケットはありません。 それは材料のスチールから「白色」が付きますが、スチール製は武器のように灰色であるべきです。 布製品や革製品とは違い、steel.pngファイルは初めから色が付いているので、それは「白色」だけです。 プラスチールの色をしたマリーンアーマーもかっこいい！</TD.SettingFixColorStuffDesc>
+  <TD.SettingFixUncoloredStuff>材料の色を無視する</TD.SettingFixUncoloredStuff>
+  <TD.SettingFixUncoloredStuffDesc>全部白い鎧の中には、色の付いていないコンポーネントが材料に含まれるアイテムもあります。 コンポーネントが材料に含まれる場合、作成されたアイテムにそれらの色が無い状態を適用不可能です。</TD.SettingFixUncoloredStuffDesc>
+  <TD.ShowThisAreaForColonists>入植者用にこのエリアを表示</TD.ShowThisAreaForColonists>
+  <TD.ShowThisAreaForAnimals>動物用にこのエリアを表示</TD.ShowThisAreaForAnimals>
+  <TD.JumpToThisObject>このオブジェクトへジャンプ</TD.JumpToThisObject>
+  <TD.CycleJumpingToTheseObjects>これらのオブジェクトへ順番にジャンプ</TD.CycleJumpingToTheseObjects>
+  <TD.NoLimitOnTheNumberOfAreas>エリア数に制限なし</TD.NoLimitOnTheNumberOfAreas>
+  <TD.SettingJumpToSelectedItems>選択した情報窓で、選択したアイテムにジャンプするためのボタンを表示する</TD.SettingJumpToSelectedItems>
+  <TD.SettingStopForcedSlowdown>Shiftキーを押しながら時間管理をクリックすると、戦闘中の強制的な時間速度低下を中止できます</TD.SettingStopForcedSlowdown>
+
+  <TD.ConfirmRestoreAllSettings>本当にすべての設定を復元しますか？</TD.ConfirmRestoreAllSettings>
+  <TD.FeatureConfirmRestoreSettings>[設定の復元]ボタンをクリックして確認した後、バックアップを保存します</TD.FeatureConfirmRestoreSettings>
+
+</LanguageData>
