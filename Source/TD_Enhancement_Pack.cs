@@ -3,7 +3,7 @@ using System.Linq;
 using System;
 using Verse;
 using UnityEngine;
-using Harmony;
+using HarmonyLib;
 using RimWorld;
 
 namespace TD_Enhancement_Pack
@@ -16,9 +16,9 @@ namespace TD_Enhancement_Pack
 			// initialize settings
 			GetSettings<Settings>();
 #if DEBUG
-			HarmonyInstance.DEBUG = true;
+			Harmony.DEBUG = true;
 #endif
-			HarmonyInstance harmony = HarmonyInstance.Create("Uuugggg.rimworld.TD_Enhancement_Pack.main");
+			Harmony harmony = new Harmony("Uuugggg.rimworld.TD_Enhancement_Pack.main");
 			
 			//Turn off DefOf warning since harmony patches trigger it.
 			MethodInfo DefOfHelperInfo = AccessTools.Method(typeof(DefOfHelper), "EnsureInitializedInCtor");

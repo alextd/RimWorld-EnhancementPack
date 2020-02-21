@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Reflection.Emit;
 using Verse;
 using RimWorld;
-using Harmony;
+using HarmonyLib;
 using UnityEngine;
 
 namespace TD_Enhancement_Pack
@@ -23,16 +23,16 @@ namespace TD_Enhancement_Pack
 				CodeInstruction inst = instList[i];
 
 				//Topright winter shadow
-				if (inst.opcode == OpCodes.Call && inst.operand == AccessTools.Method(typeof(GenUI), "DrawTextWinterShadow"))
+				if (inst.opcode == OpCodes.Call && inst.operand.Equals(AccessTools).Method(typeof(GenUI), "DrawTextWinterShadow"))
 					inst.operand = AccessTools.Method(typeof(MouseoverOnTopRight), nameof(DrawTextWinterShadowTR));
 
 				//Transform Widgets.Label rect
-				if (inst.opcode == OpCodes.Call && inst.operand == AccessTools.Method(typeof(Widgets), "Label", new Type[] { typeof(Rect), typeof(string) }))
+				if (inst.opcode == OpCodes.Call && inst.operand.Equals(AccessTools).Method(typeof(Widgets), "Label", new Type[] { typeof(Rect), typeof(string) }))
 					inst.operand = AccessTools.Method(typeof(MouseoverOnTopRight), nameof(LabelTransform));
 			
 				yield return inst;
 
-				if (inst.opcode == OpCodes.Callvirt && inst.operand == AccessTools.Property(typeof(MainTabsRoot), "OpenTab").GetGetMethod())
+				if (inst.opcode == OpCodes.Callvirt && inst.operand.Equals(AccessTools).Property(typeof(MainTabsRoot), "OpenTab").GetGetMethod())
 				{
 					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(MouseoverOnTopRight), nameof(FilterForOpenTab)));// 0 != null is false
 				}

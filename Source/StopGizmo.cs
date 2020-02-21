@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Reflection.Emit;
 using Verse;
 using Verse.AI;
-using Harmony;
+using HarmonyLib;
 using UnityEngine;
 using RimWorld;
 

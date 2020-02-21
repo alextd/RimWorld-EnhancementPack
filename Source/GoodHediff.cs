@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Harmony;
+using HarmonyLib;
 using Verse;
 using RimWorld;
 using System.Reflection;
@@ -22,7 +22,7 @@ namespace TD_Enhancement_Pack
 			FieldInfo With = AccessTools.Field(typeof(HealthUtility), "SlightlyImpairedColor");
 			foreach (CodeInstruction instruction in instructions)
 			{
-				if (instruction.opcode == OpCodes.Ldsfld && instruction.operand == Replace)//only DarkRed when part != null, ie whole body
+				if (instruction.opcode == OpCodes.Ldsfld && instruction.operand.Equals(Replace))//only DarkRed when part != null, ie whole body
 					instruction.operand = With;
 				yield return instruction;
 			}

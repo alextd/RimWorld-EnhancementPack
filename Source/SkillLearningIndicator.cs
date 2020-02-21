@@ -5,7 +5,7 @@ using System.Text;
 using System.Reflection;
 using System.Reflection.Emit;
 using Verse;
-using Harmony;
+using HarmonyLib;
 using RimWorld;
 using UnityEngine;
 
@@ -23,7 +23,7 @@ namespace TD_Enhancement_Pack
 
 			foreach (CodeInstruction i in instructions)
 			{
-				if(i.opcode == OpCodes.Call && i.operand == EndGroupInfo)
+				if(i.opcode == OpCodes.Call && i.operand.Equals(EndGroupInfo))
 				{
 					yield return new CodeInstruction(OpCodes.Ldarg_0);//SkillRecord
 					yield return new CodeInstruction(OpCodes.Ldarg_1);//holdingRect

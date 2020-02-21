@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Reflection.Emit;
 using Verse;
 using RimWorld;
-using Harmony;
+using HarmonyLib;
 
 namespace TD_Enhancement_Pack
 {
@@ -18,13 +18,13 @@ namespace TD_Enhancement_Pack
 		{
 			foreach(CodeInstruction i in instructions)
 			{
-				if (i.opcode == OpCodes.Callvirt && i.operand == AccessTools.Method(typeof(LetterStack), "ReceiveLetter", new Type[]
+				if (i.opcode == OpCodes.Callvirt && i.operand.Equals(AccessTools).Method(typeof(LetterStack), "ReceiveLetter", new Type[]
 					{ typeof(string), typeof(string), typeof(LetterDef), typeof(LookTargets), typeof(Faction), typeof(string)}))
 					i.operand = AccessTools.Method(typeof(ResourcePodCrashContents), nameof(ReceiveLetterAppend));
 
 				yield return i;
 
-				if (i.opcode == OpCodes.Callvirt && i.operand == AccessTools.Method(typeof(ThingSetMaker), "Generate"))
+				if (i.opcode == OpCodes.Callvirt && i.operand.Equals(AccessTools).Method(typeof(ThingSetMaker), "Generate"))
 					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ResourcePodCrashContents), nameof(GetThingLabel)));
 			}
 		}

@@ -5,7 +5,7 @@ using System.Text;
 using System.Reflection;
 using System.Reflection.Emit;
 using Verse;
-using Harmony;
+using HarmonyLib;
 using UnityEngine;
 
 namespace TD_Enhancement_Pack
@@ -31,7 +31,7 @@ namespace TD_Enhancement_Pack
 		};
 		static PatchFluffy()
 		{
-			HarmonyInstance harmony = HarmonyInstance.Create("Uuugggg.rimworld.TD_Enhancement_Pack.fluffy_patches");
+			Harmony harmony = new Harmony("Uuugggg.rimworld.TD_Enhancement_Pack.fluffy_patches");
 
 			//Patch the call to AssignableAsAllowed to check area by colonist/animal
 			MethodInfo FluffyMethodInfo = AccessTools.Method("AreaAllowedGUI:DoAllowedAreaSelectors",

@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Reflection.Emit;
 using Verse;
 using RimWorld;
-using Harmony;
+using HarmonyLib;
 using UnityEngine;
 
 namespace TD_Enhancement_Pack
@@ -20,7 +20,7 @@ namespace TD_Enhancement_Pack
 
 			foreach (var i in instructions)
 			{
-				if(i.opcode == OpCodes.Stfld && i.operand == rootSizeInfo)
+				if(i.opcode == OpCodes.Stfld && i.operand.Equals(rootSizeInfo))
 				{
 					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ZoomToMouse), nameof(Adjust)));
 				}

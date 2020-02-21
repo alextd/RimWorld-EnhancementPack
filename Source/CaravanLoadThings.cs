@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Reflection.Emit;
 using Verse;
 using RimWorld;
-using Harmony;
+using HarmonyLib;
 
 namespace TD_Enhancement_Pack
 {
@@ -86,7 +86,7 @@ namespace TD_Enhancement_Pack
 			foreach (CodeInstruction i in instructions)
 			{
 				yield return i;
-				if (i.opcode == OpCodes.Call && i.operand == CalculateAndRecacheTransferablesInfo)
+				if (i.opcode == OpCodes.Call && i.operand.Equals(CalculateAndRecacheTransferablesInfo))
 				{
 					yield return new CodeInstruction(OpCodes.Ldarg_0);//Dialog
 					yield return new CodeInstruction(OpCodes.Ldarg_0);//Dialog
@@ -149,7 +149,7 @@ namespace TD_Enhancement_Pack
 			MethodInfo PostCloseInfo = AccessTools.Method(typeof(Window), nameof(Window.PostClose));
 			foreach(CodeInstruction i in instructions)
 			{
-				if (i.opcode == OpCodes.Callvirt && i.operand == PostCloseInfo)
+				if (i.opcode == OpCodes.Callvirt && i.operand.Equals(PostCloseInfo))
 				{
 					yield return new CodeInstruction(OpCodes.Dup);//Window window2 = window
 					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(PodsSaveManifest), nameof(PostClosePrefix)));//PostClosePrefix(window2)

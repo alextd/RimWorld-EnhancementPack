@@ -6,7 +6,7 @@ using System.Text;
 using System.Reflection;
 using System.Reflection.Emit;
 using Verse;
-using Harmony;
+using HarmonyLib;
 using UnityEngine;
 
 namespace TD_Enhancement_Pack
@@ -17,7 +17,7 @@ namespace TD_Enhancement_Pack
 		static CameraFixPatches()
 		{
 			if (!Settings.Get().cameraDragFixes) return;
-			HarmonyInstance harmony = HarmonyInstance.Create("Uuugggg.rimworld.TD_Enhancement_Pack.main");
+			Harmony harmony = new Harmony("Uuugggg.rimworld.TD_Enhancement_Pack.main");
 
 			harmony.Patch(AccessTools.Constructor(typeof(CameraMapConfig_Normal)),
 				postfix: new HarmonyMethod(typeof(CameraDragFixes), "Postfix"));
@@ -67,8 +67,8 @@ namespace TD_Enhancement_Pack
 				//IL_0260: stfld valuetype[UnityEngine]UnityEngine.Vector2 Verse.CameraDriver::mouseDragVect
 				CodeInstruction inst = instList[i];
 				if (inst.opcode == OpCodes.Ldarg_0 &&
-					instList[i + 1].opcode == OpCodes.Call && instList[i + 1].operand == Vector2Zero &&
-					instList[i + 2].opcode == OpCodes.Stfld && instList[i + 2].operand == mouseDragInfo)
+					instList[i + 1].opcode == OpCodes.Call && instList[i + 1].operand.Equals(Vector)2Zero &&
+					instList[i + 2].opcode == OpCodes.Stfld && instList[i + 2].operand.Equals(mouseDragInfo))
 				{
 					i += 2;//skip next two, all three
 				}
@@ -106,7 +106,7 @@ namespace TD_Enhancement_Pack
 				}
 				yield return i;
 				
-				if (i.opcode == OpCodes.Call && i.operand == HitchReduceFactor)
+				if (i.opcode == OpCodes.Call && i.operand.Equals(HitchReduceFactor))
 				{
 					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(FixUpdate), nameof(ChangeHitch)));
 				}

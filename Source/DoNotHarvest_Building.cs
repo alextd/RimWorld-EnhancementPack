@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Reflection.Emit;
 using Verse;
 using RimWorld;
-using Harmony;
+using HarmonyLib;
 using TD.Utilities;
 
 namespace TD_Enhancement_Pack
@@ -48,7 +48,7 @@ namespace TD_Enhancement_Pack
 		static DoNotHarvest_Building()
 		{
 			HarmonyMethod transpiler = new HarmonyMethod(typeof(DoNotHarvest_Building), nameof(DoNotHarvest_Building.Transpiler));
-			HarmonyInstance harmony = HarmonyInstance.Create("Uuugggg.rimworld.TD_Enhancement_Pack.main");
+			Harmony harmony = new Harmony("Uuugggg.rimworld.TD_Enhancement_Pack.main");
 
 			MethodInfo IsForbiddenInfo = AccessTools.Method(typeof(ForbidUtility), "IsForbidden", new Type[] { typeof(Thing), typeof(Pawn)});
 			Func<MethodInfo, bool> check = delegate (MethodInfo method)
@@ -56,7 +56,7 @@ namespace TD_Enhancement_Pack
 				DynamicMethod dm = DynamicTools.CreateDynamicMethod(method, "-unused");
 
 				return (Harmony.ILCopying.MethodBodyReader.GetInstructions(dm.GetILGenerator(), method).
-					Any(ilcode => ilcode.operand == IsForbiddenInfo));
+					Any(ilcode => ilcode.operand.Equals(IsForbiddenInfo)));
 			};
 
 			harmony.PatchGeneratedMethod(typeof(WorkGiver_Grower), check, transpiler: transpiler);
@@ -77,7 +77,7 @@ namespace TD_Enhancement_Pack
 
 			foreach (var i in instructions)
 			{
-				if (i.operand == IsForbiddenInfo)
+				if (i.operand.Equals(IsForbiddenInfo))
 				{
 					i.operand = IsForbiddenByTypeInfo;
 					yield return new CodeInstruction(OpCodes.Ldarg_0);//this

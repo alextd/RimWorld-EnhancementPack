@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Reflection;
 using System.Reflection.Emit;
-using Harmony;
+using HarmonyLib;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -24,7 +24,7 @@ namespace TD_Enhancement_Pack
 			MethodInfo BetterAttackTargetInfo = AccessTools.Method(typeof(NotSoHostile), "BetterAttackTarget");
 			foreach (CodeInstruction i in instructions)
 			{
-				if (i.opcode == OpCodes.Call && i.operand == BestAttackTargetInfo)
+				if (i.opcode == OpCodes.Call && i.operand.Equals(BestAttackTargetInfo))
 					i.operand = BetterAttackTargetInfo;
 				yield return i;
 			}

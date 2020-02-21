@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Reflection.Emit;
 using Verse;
 using RimWorld;
-using Harmony;
+using HarmonyLib;
 
 namespace TD_Enhancement_Pack
 {
@@ -125,7 +125,7 @@ namespace TD_Enhancement_Pack
 			foreach(CodeInstruction i in instructions)
 			{
 				yield return i;
-				if(i.opcode == OpCodes.Call && i.operand == GetNextResourceInfo)
+				if(i.opcode == OpCodes.Call && i.operand.Equals(GetNextResourceInfo))
 				{
 					yield return new CodeInstruction(OpCodes.Ldarg_0);//this (CompDeepDrill)
 					yield return new CodeInstruction(OpCodes.Call, ClearInfo);//this.Clear()

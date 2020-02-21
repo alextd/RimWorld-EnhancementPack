@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Reflection.Emit;
 using Verse;
 using RimWorld;
-using Harmony;
+using HarmonyLib;
 using UnityEngine;
 
 namespace TD_Enhancement_Pack
@@ -22,7 +22,7 @@ namespace TD_Enhancement_Pack
 			foreach(CodeInstruction i in instructions)
 			{
 				yield return i;
-				if (i.operand == godmode)
+				if (i.operand.Equals(godmode))
 				{
 					yield return new CodeInstruction(OpCodes.Ldarg_1);//Event ev
 					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(BlueprintAnyStuff), nameof(OrRightClick)));

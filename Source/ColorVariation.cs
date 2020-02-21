@@ -7,7 +7,7 @@ using System.Reflection.Emit;
 using Verse;
 using Verse.AI;
 using RimWorld;
-using Harmony;
+using HarmonyLib;
 using UnityEngine;
 using TD.Utilities;
 
@@ -18,7 +18,7 @@ namespace TD_Enhancement_Pack
 	{
 		static ColorVariation()
 		{
-			HarmonyInstance harmony = HarmonyInstance.Create("Uuugggg.rimworld.TD_Enhancement_Pack.main");
+			Harmony harmony = new Harmony("Uuugggg.rimworld.TD_Enhancement_Pack.main");
 
 			//patch Toils_Recipe.FinishRecipeAndStartStoringProduct
 			MethodInfo MakeRecipeProductsInfo = AccessTools.Method(typeof(GenRecipe), nameof(GenRecipe.MakeRecipeProducts));
@@ -29,7 +29,7 @@ namespace TD_Enhancement_Pack
 					DynamicMethod dm = DynamicTools.CreateDynamicMethod(method, "-unused");
 
 					return (Harmony.ILCopying.MethodBodyReader.GetInstructions(dm.GetILGenerator(), method).
-						Any(ilcode => ilcode.operand == MakeRecipeProductsInfo));
+						Any(ilcode => ilcode.operand.Equals(MakeRecipeProductsInfo)));
 				},
 				transpiler: new HarmonyMethod(typeof(ColorVariation), nameof(Toils_Recipe_Transpiler)));
 
@@ -42,7 +42,7 @@ namespace TD_Enhancement_Pack
 					DynamicMethod dm = DynamicTools.CreateDynamicMethod(method, "-unused");
 
 					return (Harmony.ILCopying.MethodBodyReader.GetInstructions(dm.GetILGenerator(), method).
-						Any(ilcode => ilcode.operand == GetDrawColorInfo));
+						Any(ilcode => ilcode.operand.Equals(GetDrawColorInfo)));
 				},
 				transpiler: new HarmonyMethod(typeof(ColorVariation), nameof(GenRecipe_Transpiler)));
 		}
@@ -57,7 +57,7 @@ namespace TD_Enhancement_Pack
 			{
 				yield return i;
 
-				if (i.opcode == OpCodes.Call && i.operand == MakeRecipeProductsInfo)
+				if (i.opcode == OpCodes.Call && i.operand.Equals(MakeRecipeProductsInfo))
 				{
 					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ColorVariation), nameof(Variate)));
 				}
@@ -120,7 +120,7 @@ namespace TD_Enhancement_Pack
 
 			foreach (CodeInstruction i in instructions)
 			{
-				if (i.opcode == OpCodes.Callvirt && i.operand == GetDrawColorInfo)
+				if (i.opcode == OpCodes.Callvirt && i.operand.Equals(GetDrawColorInfo))
 				{
 					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ColorVariation), nameof(StuffColor)));
 				}

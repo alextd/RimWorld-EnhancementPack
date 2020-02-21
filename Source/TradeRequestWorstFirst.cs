@@ -7,7 +7,7 @@ using System.Reflection.Emit;
 using Verse;
 using RimWorld;
 using RimWorld.Planet;
-using Harmony;
+using HarmonyLib;
 
 namespace TD_Enhancement_Pack
 {
@@ -23,7 +23,7 @@ namespace TD_Enhancement_Pack
 			{
 				yield return i;
 
-				if(i.opcode == OpCodes.Call && i.operand == ToListInfo)
+				if(i.opcode == OpCodes.Call && i.operand.Equals(ToListInfo))
 				{
 					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(TradeRequestWorstFirst), nameof(SortedByValue)));
 				}
