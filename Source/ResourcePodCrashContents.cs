@@ -16,15 +16,19 @@ namespace TD_Enhancement_Pack
 		//protected override bool TryExecuteWorker(IncidentParms parms)
 		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
 		{
+			MethodInfo ReceiveLetterInfo = AccessTools.Method(typeof(LetterStack), "ReceiveLetter", new Type[]
+					{ typeof(string), typeof(string), typeof(LetterDef), typeof(LookTargets), typeof(Faction), typeof(string)});
+			
+			MethodInfo GenerateInfo = AccessTools.Method(typeof(ThingSetMaker), "Generate"));
+			
 			foreach(CodeInstruction i in instructions)
 			{
-				if (i.opcode == OpCodes.Callvirt && i.operand.Equals(AccessTools).Method(typeof(LetterStack), "ReceiveLetter", new Type[]
-					{ typeof(string), typeof(string), typeof(LetterDef), typeof(LookTargets), typeof(Faction), typeof(string)}))
+				if (i.Calls(ReceiveLetterInfo))
 					i.operand = AccessTools.Method(typeof(ResourcePodCrashContents), nameof(ReceiveLetterAppend));
 
 				yield return i;
 
-				if (i.opcode == OpCodes.Callvirt && i.operand.Equals(AccessTools).Method(typeof(ThingSetMaker), "Generate"))
+				if (i.Calls(GenerateInfo))
 					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ResourcePodCrashContents), nameof(GetThingLabel)));
 			}
 		}

@@ -17,22 +17,26 @@ namespace TD_Enhancement_Pack
 		//public void MouseoverReadoutOnGUI()
 		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
 		{
+			MethodInfo DrawTextWinterShadowInfo = AccessTools.Method(typeof(GenUI), "DrawTextWinterShadow");
+			MethodInfo LabelInfo = AccessTools.Method(typeof(Widgets), "Label", new Type[] { typeof(Rect), typeof(string) }));
+			MethodInfo OpenTabInfo = AccessTools.Property(typeof(MainTabsRoot), "OpenTab").GetGetMethod())
+			
 			List<CodeInstruction> instList = instructions.ToList();
 			for (int i = 0; i < instList.Count; i++)
 			{
 				CodeInstruction inst = instList[i];
 
 				//Topright winter shadow
-				if (inst.opcode == OpCodes.Call && inst.operand.Equals(AccessTools).Method(typeof(GenUI), "DrawTextWinterShadow"))
+				if (inst.Calls(DrawTextWinterShadowInfo))
 					inst.operand = AccessTools.Method(typeof(MouseoverOnTopRight), nameof(DrawTextWinterShadowTR));
 
 				//Transform Widgets.Label rect
-				if (inst.opcode == OpCodes.Call && inst.operand.Equals(AccessTools).Method(typeof(Widgets), "Label", new Type[] { typeof(Rect), typeof(string) }))
+				if (inst.Calls(LabelInfo))
 					inst.operand = AccessTools.Method(typeof(MouseoverOnTopRight), nameof(LabelTransform));
 			
 				yield return inst;
 
-				if (inst.opcode == OpCodes.Callvirt && inst.operand.Equals(AccessTools).Property(typeof(MainTabsRoot), "OpenTab").GetGetMethod())
+				if (inst.Calls(OpenTabInfo))
 				{
 					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(MouseoverOnTopRight), nameof(FilterForOpenTab)));// 0 != null is false
 				}

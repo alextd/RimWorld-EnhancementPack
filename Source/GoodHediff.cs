@@ -22,7 +22,7 @@ namespace TD_Enhancement_Pack
 			FieldInfo With = AccessTools.Field(typeof(HealthUtility), "SlightlyImpairedColor");
 			foreach (CodeInstruction instruction in instructions)
 			{
-				if (instruction.opcode == OpCodes.Ldsfld && instruction.operand.Equals(Replace))//only DarkRed when part != null, ie whole body
+				if (instruction.LoadsField(Replace))//only DarkRed when part != null, ie whole body
 					instruction.operand = With;
 				yield return instruction;
 			}

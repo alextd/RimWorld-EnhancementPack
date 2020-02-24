@@ -23,7 +23,7 @@ namespace TD_Enhancement_Pack
 			{
 				yield return i;
 
-				if(i.opcode == OpCodes.Call && i.operand.Equals(ToListInfo))
+				if(i.Calls(ToListInfo))
 				{
 					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(TradeRequestWorstFirst), nameof(SortedByValue)));
 				}

@@ -24,7 +24,7 @@ namespace TD_Enhancement_Pack
 			MethodInfo BetterAttackTargetInfo = AccessTools.Method(typeof(NotSoHostile), "BetterAttackTarget");
 			foreach (CodeInstruction i in instructions)
 			{
-				if (i.opcode == OpCodes.Call && i.operand.Equals(BestAttackTargetInfo))
+				if (i.Calls(BestAttackTargetInfo))
 					i.operand = BetterAttackTargetInfo;
 				yield return i;
 			}

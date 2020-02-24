@@ -57,11 +57,11 @@ namespace TD_Enhancement_Pack
 
 			foreach (CodeInstruction i in instructions)
 			{
-				if (i.opcode == OpCodes.Callvirt && i.operand.Equals(BeginInfo))
+				if (i.Calls(BeginInfo))
 				{
 					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Dialog_ManageAreas_Contents_Patch), nameof(BeginScrollAndHeader)));
 				}
-				else if (i.opcode == OpCodes.Callvirt && i.operand.Equals(EndInfo))
+				else if (i.Calls(EndInfo))
 				{
 					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(Dialog_ManageAreas_Contents_Patch), nameof(EndScroll)));
 				}
@@ -157,7 +157,7 @@ namespace TD_Enhancement_Pack
 			foreach (CodeInstruction i in instructions)
 			{
 				//IL_0055: callvirt instance valuetype[UnityEngine]UnityEngine.Rect Verse.WidgetRow::Icon(class [UnityEngine] UnityEngine.Texture2D, string)
-				if (i.opcode == OpCodes.Callvirt && i.operand.Equals(IconInfo))
+				if (i.Calls(IconInfo))
 				{
 					yield return new CodeInstruction(OpCodes.Ldarg_1); //Area
 					yield return new CodeInstruction(OpCodes.Callvirt, DoButtonIconInfo); //WidgetRow
@@ -165,7 +165,7 @@ namespace TD_Enhancement_Pack
 					continue;
 				}
 
-				if (i.opcode == OpCodes.Call && i.operand.Equals(EndGroupInfo))
+				if (i.Calls(EndGroupInfo))
 				{
 					yield return new CodeInstruction(OpCodes.Ldloc_0) { labels = i.labels }; //WidgetRow
 					i.labels = new List<Label>();
@@ -173,7 +173,7 @@ namespace TD_Enhancement_Pack
 					yield return new CodeInstruction(OpCodes.Call, DoOrderButtonInfo);  //DoOrderButton(widgetRow, area)
 				}
 
-				if(i.opcode == OpCodes.Callvirt && i.operand.Equals(LabelInfo))
+				if(i.Calls(LabelInfo))
 				{
 					yield return new CodeInstruction(OpCodes.Ldloc_0); //WidgetRow
 					yield return new CodeInstruction(OpCodes.Ldarg_0); //rect
@@ -183,7 +183,7 @@ namespace TD_Enhancement_Pack
 
 				yield return i;
 
-				if (i.opcode == OpCodes.Callvirt && i.operand.Equals(LabelInfo))
+				if (i.Calls(LabelInfo))
 				{
 					yield return new CodeInstruction(OpCodes.Ldarg_1); //Area
 					yield return new CodeInstruction(OpCodes.Call, FocusAreaInfo); //FocusArea(rect, area)
@@ -490,7 +490,7 @@ namespace TD_Enhancement_Pack
 
 			foreach (CodeInstruction i in instructions)
 			{
-				if(i.opcode == OpCodes.Callvirt && i.operand.Equals(AssignableAsAllowedInfo))
+				if(i.Calls(AssignableAsAllowedInfo))
 				{
 					yield return new CodeInstruction(OpCodes.Ldarg_1);//Pawn p
 					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(DoAllowedAreaSelectors_Patch), nameof(AssignableAsAllowedForPawn)));
@@ -527,13 +527,13 @@ namespace TD_Enhancement_Pack
 
 			foreach (CodeInstruction i in instructions)
 			{
-				if(i.opcode == OpCodes.Call && i.operand.Equals(WidgetLabelInfo))
+				if(i.Calls(WidgetLabelInfo))
 				{
 					yield return new CodeInstruction(OpCodes.Ldarg_2);
 					yield return new CodeInstruction(OpCodes.Call, SetGUIColorInfo);
 				}
 				yield return i;
-				if (i.opcode == OpCodes.Call && i.operand.Equals(WidgetLabelInfo))
+				if (i.Calls(WidgetLabelInfo))
 				{
 					yield return new CodeInstruction(OpCodes.Call, SetGUIColorWhiteInfo);
 				}
@@ -564,13 +564,13 @@ namespace TD_Enhancement_Pack
 
 			foreach (CodeInstruction i in instructions)
 			{
-				if (i.opcode == OpCodes.Call && i.operand.Equals(WidgetLabelInfo))
+				if (i.Calls(WidgetLabelInfo))
 				{
 					yield return new CodeInstruction(OpCodes.Ldarg_S, 5);//fillTex
 					yield return new CodeInstruction(OpCodes.Call, SetGUIColorInfo);
 				}
 				yield return i;
-				if (i.opcode == OpCodes.Call && i.operand.Equals(WidgetLabelInfo))
+				if (i.Calls(WidgetLabelInfo))
 				{
 					yield return new CodeInstruction(OpCodes.Call, SetGUIColorWhiteInfo);
 				}

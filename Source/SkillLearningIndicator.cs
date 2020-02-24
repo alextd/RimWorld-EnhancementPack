@@ -23,7 +23,7 @@ namespace TD_Enhancement_Pack
 
 			foreach (CodeInstruction i in instructions)
 			{
-				if(i.opcode == OpCodes.Call && i.operand.Equals(EndGroupInfo))
+				if(i.Calls(EndGroupInfo))
 				{
 					yield return new CodeInstruction(OpCodes.Ldarg_0);//SkillRecord
 					yield return new CodeInstruction(OpCodes.Ldarg_1);//holdingRect

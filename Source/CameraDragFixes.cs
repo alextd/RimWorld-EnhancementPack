@@ -66,9 +66,9 @@ namespace TD_Enhancement_Pack
 				//IL_025b: call valuetype[UnityEngine]UnityEngine.Vector2[UnityEngine]UnityEngine.Vector2::get_zero()
 				//IL_0260: stfld valuetype[UnityEngine]UnityEngine.Vector2 Verse.CameraDriver::mouseDragVect
 				CodeInstruction inst = instList[i];
-				if (inst.opcode == OpCodes.Ldarg_0 &&
-					instList[i + 1].opcode == OpCodes.Call && instList[i + 1].operand.Equals(Vector)2Zero &&
-					instList[i + 2].opcode == OpCodes.Stfld && instList[i + 2].operand.Equals(mouseDragInfo))
+				if (inst.IsLdarg(0) &&
+					instList[i + 1].Calls(Vector2Zero) &&
+					instList[i + 2].SetsField(mouseDragInfo))
 				{
 					i += 2;//skip next two, all three
 				}
@@ -97,16 +97,16 @@ namespace TD_Enhancement_Pack
 
 			foreach (CodeInstruction i in instructions)
 			{
-				if (i.opcode == OpCodes.Ldc_R4)
+				if (i.LoadsConstant(0.7f))
 				{
-					if (i.operand.ChangeType<float>() == 0.7f)//scale factor for zoomed out, from 0 to ?
-						i.operand = 1.3f;//trial and errored this
+					//scale factor for zoomed out, from 0 to ?
+					i.operand = 1.3f;//trial and errored this
 					//else if (i.operand.ChangeType<float>() == 0.3f)//base scroll factor when zoomed in 100%
 					//	i.operand = 1.0f;
 				}
 				yield return i;
 				
-				if (i.opcode == OpCodes.Call && i.operand.Equals(HitchReduceFactor))
+				if (i.Calls(HitchReduceFactor))
 				{
 					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(FixUpdate), nameof(ChangeHitch)));
 				}

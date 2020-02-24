@@ -57,7 +57,7 @@ namespace TD_Enhancement_Pack
 			{
 				yield return i;
 
-				if (i.opcode == OpCodes.Call && i.operand.Equals(MakeRecipeProductsInfo))
+				if (i.Calls(MakeRecipeProductsInfo))
 				{
 					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ColorVariation), nameof(Variate)));
 				}
@@ -120,7 +120,7 @@ namespace TD_Enhancement_Pack
 
 			foreach (CodeInstruction i in instructions)
 			{
-				if (i.opcode == OpCodes.Callvirt && i.operand.Equals(GetDrawColorInfo))
+				if (i.Calls(GetDrawColorInfo))
 				{
 					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ColorVariation), nameof(StuffColor)));
 				}
