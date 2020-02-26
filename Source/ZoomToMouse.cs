@@ -20,7 +20,7 @@ namespace TD_Enhancement_Pack
 
 			foreach (var i in instructions)
 			{
-				if(i.SetsField(rootSizeInfo))
+				if(i.StoresField(rootSizeInfo))
 				{
 					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ZoomToMouse), nameof(Adjust)));
 				}

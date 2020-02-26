@@ -28,7 +28,7 @@ namespace TD_Enhancement_Pack
 			MethodInfo DestroyInfo = AccessTools.Method(typeof(Thing), nameof(Thing.Destroy));
 			MethodInfo DestroyReplaceInfo = AccessTools.Method(typeof(RebuildTransportPod), nameof(DestroyReplace));
 
-			return Harmony.Transpilers.MethodReplacer(instructions, DestroyInfo, DestroyReplaceInfo);
+			return Transpilers.MethodReplacer(instructions, DestroyInfo, DestroyReplaceInfo);
 		}
 
 		public static void DestroyReplace(Thing thing, DestroyMode mode)

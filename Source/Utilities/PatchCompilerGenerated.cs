@@ -10,7 +10,7 @@ namespace TD.Utilities
 {
 	static class PatchCompilerGenerated
 	{
-		public static void PatchGeneratedMethod(this HarmonyInstance harmony, Type masterType, Func<MethodInfo, bool> check,
+		public static void PatchGeneratedMethod(this Harmony harmony, Type masterType, Func<MethodInfo, bool> check,
 			HarmonyMethod prefix = null, HarmonyMethod postfix = null, HarmonyMethod transpiler = null)
 		{
 			//Find the compiler-created method nested in masterType that passes the check, Patch it

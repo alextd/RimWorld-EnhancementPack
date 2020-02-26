@@ -177,15 +177,15 @@ namespace TD_Enhancement_Pack
 			//Hide bottom-right Toggleable buttons
 			options.LabelHeader("TD.SettingHeaderToggleButtons".Translate());
 			options.Label("TD.SettingHeaderToggleButtonsDesc".Translate());
-			options.CheckboxLabeled("TD.Show".Translate("ShowLearningHelperWhenEmptyToggleButton".Translate().Split('\n')[0]), ref showToggleLearning);
-			options.CheckboxLabeled("TD.Show".Translate("ZoneVisibilityToggleButton".Translate().Split('\n')[0]), ref showToggleZone);
-			options.CheckboxLabeled("TD.Show".Translate("ShowBeautyToggleButton".Translate().Split('\n')[0]), ref showToggleBeauty);
-			options.CheckboxLabeled("TD.Show".Translate("ShowRoomStatsToggleButton".Translate().Split('\n')[0]), ref showToggleRoomstats);
-			options.CheckboxLabeled("TD.Show".Translate("ShowColonistBarToggleButton".Translate().Split('\n')[0]), ref showToggleColonists);
-			options.CheckboxLabeled("TD.Show".Translate("ShowRoofOverlayToggleButton".Translate().Split('\n')[0]), ref showToggleRoof);
-			options.CheckboxLabeled("TD.Show".Translate("AutoHomeAreaToggleButton".Translate().Split('\n')[0]), ref showToggleHomeArea);
-			options.CheckboxLabeled("TD.Show".Translate("AutoRebuildButton".Translate().Split('\n')[0]), ref showToggleRebuild);
-			options.CheckboxLabeled("TD.Show".Translate("CategorizedResourceReadoutToggleButton".Translate().Split('\n')[0]), ref showToggleCategorized);
+			options.CheckboxLabeled("TD.Show".Translate("ShowLearningHelperWhenEmptyToggleButton".Translate().RawText.Split('\n')[0]), ref showToggleLearning);
+			options.CheckboxLabeled("TD.Show".Translate("ZoneVisibilityToggleButton".Translate().RawText.Split('\n')[0]), ref showToggleZone);
+			options.CheckboxLabeled("TD.Show".Translate("ShowBeautyToggleButton".Translate().RawText.Split('\n')[0]), ref showToggleBeauty);
+			options.CheckboxLabeled("TD.Show".Translate("ShowRoomStatsToggleButton".Translate().RawText.Split('\n')[0]), ref showToggleRoomstats);
+			options.CheckboxLabeled("TD.Show".Translate("ShowColonistBarToggleButton".Translate().RawText.Split('\n')[0]), ref showToggleColonists);
+			options.CheckboxLabeled("TD.Show".Translate("ShowRoofOverlayToggleButton".Translate().RawText.Split('\n')[0]), ref showToggleRoof);
+			options.CheckboxLabeled("TD.Show".Translate("AutoHomeAreaToggleButton".Translate().RawText.Split('\n')[0]), ref showToggleHomeArea);
+			options.CheckboxLabeled("TD.Show".Translate("AutoRebuildButton".Translate().RawText.Split('\n')[0]), ref showToggleRebuild);
+			options.CheckboxLabeled("TD.Show".Translate("CategorizedResourceReadoutToggleButton".Translate().RawText.Split('\n')[0]), ref showToggleCategorized);
 			options.GapLine();
 
 

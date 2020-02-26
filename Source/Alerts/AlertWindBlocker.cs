@@ -36,7 +36,8 @@ namespace TD_Enhancement_Pack.Alerts
 		public override AlertReport GetReport()
 		{
 			return Settings.Get().alertWindBlocker ?
-				AlertReport.CulpritsAre(BlockerCells) :
+				AlertReport.CulpritsAre(
+					BlockerCells.ToList()) :
 				AlertReport.Inactive;
 		}
 	}

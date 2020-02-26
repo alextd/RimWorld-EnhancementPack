@@ -19,7 +19,7 @@ namespace TD_Enhancement_Pack
 			MethodInfo ToggleableIconInfo = AccessTools.Method(typeof(WidgetRow), nameof(WidgetRow.ToggleableIcon));
 			MethodInfo ToggleableIconReplacement = AccessTools.Method(typeof(RemoveUnusedToggles), nameof(ToggleableIconFiltered));
 
-			return Harmony.Transpilers.MethodReplacer(instructions, ToggleableIconInfo, ToggleableIconReplacement);
+			return Transpilers.MethodReplacer(instructions, ToggleableIconInfo, ToggleableIconReplacement);
 		}
 
 		//public void ToggleableIcon(ref bool toggleable, Texture2D tex, string tooltip, SoundDef mouseoverSound = null, string tutorTag = null)

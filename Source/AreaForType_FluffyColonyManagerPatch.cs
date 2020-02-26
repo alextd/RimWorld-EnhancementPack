@@ -67,7 +67,7 @@ namespace TD_Enhancement_Pack
 		//																							 float lrMargin = 0)
 		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
 		{
-			return Harmony.Transpilers.MethodReplacer(instructions,
+			return Transpilers.MethodReplacer(instructions,
 				AccessTools.Method(typeof(Area), nameof(Area.AssignableAsAllowed)),
 				AccessTools.Method(typeof(PatchFluffy), nameof(AssignableAsAllowedWithContext)));
 		}

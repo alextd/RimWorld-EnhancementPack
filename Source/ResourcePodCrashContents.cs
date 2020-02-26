@@ -17,7 +17,7 @@ namespace TD_Enhancement_Pack
 		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
 		{
 			MethodInfo ReceiveLetterInfo = AccessTools.Method(typeof(LetterStack), "ReceiveLetter", new Type[]
-					{ typeof(string), typeof(string), typeof(LetterDef), typeof(LookTargets), typeof(Faction), typeof(string)});
+					{ typeof(TaggedString), typeof(TaggedString), typeof(LetterDef), typeof(LookTargets), typeof(Faction), typeof(Quest), typeof(List<ThingDef>), typeof(string)});
 			
 			MethodInfo GenerateInfo = AccessTools.Method(typeof(ThingSetMaker), "Generate");
 			
@@ -40,11 +40,12 @@ namespace TD_Enhancement_Pack
 			return things;
 		}
 
-		public static void ReceiveLetterAppend(LetterStack stack, string label, string text, LetterDef textLetterDef, LookTargets lookTargets, Faction relatedFaction = null, string debugInfo = null)
+		//public void ReceiveLetter(TaggedString label, TaggedString text, LetterDef textLetterDef, LookTargets lookTargets, Faction relatedFaction = null, Quest quest = null, List<ThingDef> hyperlinkThingDefs = null, string debugInfo = null)
+		public static void ReceiveLetterAppend(LetterStack stack, TaggedString label, TaggedString text, LetterDef textLetterDef, LookTargets lookTargets, Faction relatedFaction = null, Quest quest = null, List<ThingDef> hyperlinkThingDefs = null, string debugInfo = null)
 		{
 			if(Settings.Get().dropPodWhatDropped)
 				text += "\n\n" + "TD.WhatDropped".Translate(thingLabel);
-			stack.ReceiveLetter(label, text, textLetterDef, lookTargets, relatedFaction, debugInfo);
+			stack.ReceiveLetter(label, text, textLetterDef, lookTargets, relatedFaction, quest, hyperlinkThingDefs, debugInfo);
 		}
 	}
 }

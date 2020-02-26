@@ -122,11 +122,13 @@ namespace TD_Enhancement_Pack
 	{
 		public static Texture2D haulUrgentlyIcon = ContentFinder<Texture2D>.Get("haulUrgently", false);
 
-		public static void InsertUrgentRefillGizmos(ref IEnumerable<Gizmo> __result, Map map, ISlotGroupParent parent)
+		public static IEnumerable<Gizmo> InsertUrgentRefillGizmos(IEnumerable<Gizmo> __result, Map map, ISlotGroupParent parent)
 		{
-			if (!UrgentRefill.active) return;
+			foreach (var r in __result)
+				yield return r;
+			if (!UrgentRefill.active) yield break;
 			SlotGroup group = parent.GetSlotGroup();
-			__result = __result.Add(new Command_Toggle()
+			yield return new Command_Toggle()
 			{
 				defaultLabel = "TD.GizmoUrgentRefill".Translate(),
 				defaultDesc = "TD.GizmoUrgentRefillDesc".Translate(),
@@ -136,7 +138,7 @@ namespace TD_Enhancement_Pack
 				{
 					group.MarkForRefill(map, !group.IsMarkedForRefill(map));
 				}
-			});
+			};
 		}
 	}
 
@@ -144,9 +146,9 @@ namespace TD_Enhancement_Pack
 	internal static class BuildingStorage_GetGizmos_Patch
 	{
 		[HarmonyPostfix]
-		public static void InsertUrgentRefillGizmos(ref IEnumerable<Gizmo> __result, Building_Storage __instance)
+		public static void InsertUrgentRefillGizmos(IEnumerable<Gizmo> __result, Building_Storage __instance)
 		{
-			SlotGroup_GetGizmos_Patch.InsertUrgentRefillGizmos(ref __result, __instance.Map, __instance);
+			SlotGroup_GetGizmos_Patch.InsertUrgentRefillGizmos(__result, __instance.Map, __instance);
 		}
 	}
 
@@ -155,9 +157,9 @@ namespace TD_Enhancement_Pack
 	internal static class ZoneStockpile_GetGizmos_Patch
 	{
 		[HarmonyPostfix]
-		public static void InsertUrgentRefillGizmos(ref IEnumerable<Gizmo> __result, Zone_Stockpile __instance)
+		public static void InsertUrgentRefillGizmos(IEnumerable<Gizmo> __result, Zone_Stockpile __instance)
 		{
-			SlotGroup_GetGizmos_Patch.InsertUrgentRefillGizmos(ref __result, __instance.Map, __instance);
+			SlotGroup_GetGizmos_Patch.InsertUrgentRefillGizmos(__result, __instance.Map, __instance);
 		}
 	}
 

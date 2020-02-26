@@ -29,7 +29,7 @@ namespace TD_Enhancement_Pack
 			//Ripped out of My List Everything mod
 			if (Mouse.IsOver(rowRect))
 			{
-				if (Event.current.type == EventType.mouseDown)
+				if (Event.current.type == EventType.MouseDown)
 				{
 					if (Event.current.clickCount == 2 && Event.current.button == 0)
 					{
@@ -73,7 +73,7 @@ namespace TD_Enhancement_Pack
 						}
 					}
 				}
-				if (Event.current.type == EventType.mouseDrag)
+				if (Event.current.type == EventType.MouseDrag)
 				{
 					if (dragJump)
 						CameraJumper.TryJump(pawn);
@@ -88,8 +88,8 @@ namespace TD_Enhancement_Pack
 		//Don't do normal selecion button
 		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
 		{
-			return Harmony.Transpilers.MethodReplacer(
-				Harmony.Transpilers.MethodReplacer(instructions,
+			return Transpilers.MethodReplacer(
+				Transpilers.MethodReplacer(instructions,
 				AccessTools.Method(typeof(Widgets), nameof(Widgets.ButtonInvisible)),
 				AccessTools.Method(typeof(LabelAddSelection), nameof(NoButtonInvisible))),
 				AccessTools.Method(typeof(TooltipHandler), nameof(TooltipHandler.TipRegion), new Type[] { typeof(Rect), typeof(TipSignal)}),

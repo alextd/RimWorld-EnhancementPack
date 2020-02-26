@@ -13,7 +13,7 @@ namespace TD_Enhancement_Pack
 	{
 		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
 		{
-			return Harmony.Transpilers.MethodReplacer(instructions,
+			return Transpilers.MethodReplacer(instructions,
 				AccessTools.Property(typeof(ThingDef), nameof(ThingDef.IsWeapon)).GetGetMethod(),
 				AccessTools.Method(typeof(BillCountInventory), nameof(TrueAlwaysManWhyNot)));
 		}

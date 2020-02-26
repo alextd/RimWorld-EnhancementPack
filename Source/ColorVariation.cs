@@ -148,7 +148,7 @@ namespace TD_Enhancement_Pack
 		//private static Thing CalculateDominantIngredient(Job job, List<Thing> ingredients)
 		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
 		{
-			return Harmony.Transpilers.MethodReplacer(instructions,
+			return Transpilers.MethodReplacer(instructions,
 				AccessTools.Method(typeof(GenCollection), "RandomElementByWeight").MakeGenericMethod(typeof(Thing)),
 				AccessTools.Method(typeof(Dominate), nameof(StuffOnly)));
 		}

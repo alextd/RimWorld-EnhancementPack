@@ -16,7 +16,7 @@ namespace TD_Enhancement_Pack
 		//public static void DoTimeControlsGUI(Rect timerRect)
 		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
 		{
-			return Harmony.Transpilers.MethodReplacer(instructions,
+			return Transpilers.MethodReplacer(instructions,
 				AccessTools.Method(typeof(Widgets), nameof(Widgets.ButtonImage), new Type[] { typeof(Rect), typeof(Texture2D) }),
 				AccessTools.Method(typeof(StopForcedSlowdown), nameof(ButtonImageAndCheckForShift)));
 		}
