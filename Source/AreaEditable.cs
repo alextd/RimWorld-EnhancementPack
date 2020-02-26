@@ -35,6 +35,7 @@ namespace TD_Enhancement_Pack
 		}
 	}
 
+	/* This patch is failing with Harmony 2.0 but the above patch seems to handle it
 	[HarmonyPatch(typeof(Dialog_ManageAreas), MethodType.Constructor)]
 	static class Dialog_ManageAreas_Patch
 	{
@@ -43,6 +44,7 @@ namespace TD_Enhancement_Pack
 			AreaRowPatch.copiedArea = null;
 		}
 	}
+	*/
 
 
 	//public override void DoWindowContents(Rect inRect)
