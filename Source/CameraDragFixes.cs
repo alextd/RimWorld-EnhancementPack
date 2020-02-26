@@ -68,7 +68,7 @@ namespace TD_Enhancement_Pack
 				CodeInstruction inst = instList[i];
 				if (inst.IsLdarg(0) &&
 					instList[i + 1].Calls(Vector2Zero) &&
-					instList[i + 2].SetsField(mouseDragInfo))
+					instList[i + 2].StoresField(mouseDragInfo))
 				{
 					i += 2;//skip next two, all three
 				}
