@@ -98,6 +98,8 @@ namespace TD_Enhancement_Pack
 		public bool showToggleRoof = true;
 		public bool showToggleHomeArea = true;
 		public bool showToggleRebuild = true;
+		public bool showToggleFertility = false;
+		public bool showToggleAffordance = false;
 		public bool showToggleCategorized = true;
 
 		public bool colorVariation = false;
@@ -185,6 +187,8 @@ namespace TD_Enhancement_Pack
 			options.CheckboxLabeled("TD.Show".Translate("ShowRoofOverlayToggleButton".Translate().RawText.Split('\n')[0]), ref showToggleRoof);
 			options.CheckboxLabeled("TD.Show".Translate("AutoHomeAreaToggleButton".Translate().RawText.Split('\n')[0]), ref showToggleHomeArea);
 			options.CheckboxLabeled("TD.Show".Translate("AutoRebuildButton".Translate().RawText.Split('\n')[0]), ref showToggleRebuild);
+			options.CheckboxLabeled("TD.Show".Translate("ShowFertilityOverlayToggleButton".Translate().RawText.Split('\n')[0]), ref showToggleFertility);
+			options.CheckboxLabeled("TD.Show".Translate("ShowTerrainAffordanceOverlayToggleButton".Translate().RawText.Split('\n')[0]), ref showToggleAffordance);
 			options.CheckboxLabeled("TD.Show".Translate("CategorizedResourceReadoutToggleButton".Translate().RawText.Split('\n')[0]), ref showToggleCategorized);
 			options.GapLine();
 
@@ -381,6 +385,8 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref showToggleRoof, "showToggleRoof", true);
 			Scribe_Values.Look(ref showToggleHomeArea, "showToggleHomeArea", true);
 			Scribe_Values.Look(ref showToggleRebuild, "showToggleRebuild", true);
+			Scribe_Values.Look(ref showToggleFertility, "showToggleFertility", false);
+			Scribe_Values.Look(ref showToggleAffordance, "showToggleAffordance", false);
 			Scribe_Values.Look(ref showToggleCategorized, "showToggleCategorized", true);
 
 			Scribe_Values.Look(ref colorVariation, "colorVariation", false);

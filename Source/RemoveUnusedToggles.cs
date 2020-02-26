@@ -33,6 +33,8 @@ namespace TD_Enhancement_Pack
 				tooltip == "ShowRoofOverlayToggleButton".Translate() ? Settings.Get().showToggleRoof :
 				tooltip == "AutoHomeAreaToggleButton".Translate() ? Settings.Get().showToggleHomeArea :
 				tooltip == "AutoRebuildButton".Translate() ? Settings.Get().showToggleRebuild :
+				tooltip == "ShowFertilityOverlayToggleButton".Translate() ? Settings.Get().showToggleFertility :
+				tooltip == "ShowTerrainAffordanceOverlayToggleButton".Translate() ? Settings.Get().showToggleAffordance :
 				tooltip == "CategorizedResourceReadoutToggleButton".Translate() ? Settings.Get().showToggleCategorized :
 				true)
 				row.ToggleableIcon(ref toggleable, tex, tooltip, mouseoverSound, tutorTag);
