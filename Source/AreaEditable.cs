@@ -553,6 +553,7 @@ namespace TD_Enhancement_Pack
 		}
 	}
 
+	/* harmony fails me here and it's pretty damned insignificant
 	[HarmonyPatch(typeof(WidgetRow), "FillableBar")]
 	public static class FillableBar_Patch
 	{
@@ -589,6 +590,7 @@ namespace TD_Enhancement_Pack
 			GUI.color = Color.white;
 		}
 	}
+	*/
 
 	public static class WidgetRowEx
 	{
