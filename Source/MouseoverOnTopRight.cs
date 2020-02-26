@@ -18,8 +18,8 @@ namespace TD_Enhancement_Pack
 		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
 		{
 			MethodInfo DrawTextWinterShadowInfo = AccessTools.Method(typeof(GenUI), "DrawTextWinterShadow");
-			MethodInfo LabelInfo = AccessTools.Method(typeof(Widgets), "Label", new Type[] { typeof(Rect), typeof(string) }));
-			MethodInfo OpenTabInfo = AccessTools.Property(typeof(MainTabsRoot), "OpenTab").GetGetMethod())
+			MethodInfo LabelInfo = AccessTools.Method(typeof(Widgets), "Label", new Type[] { typeof(Rect), typeof(string) });
+			MethodInfo OpenTabInfo = AccessTools.Property(typeof(MainTabsRoot), "OpenTab").GetGetMethod();
 			
 			List<CodeInstruction> instList = instructions.ToList();
 			for (int i = 0; i < instList.Count; i++)

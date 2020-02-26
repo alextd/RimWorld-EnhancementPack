@@ -19,7 +19,7 @@ namespace TD_Enhancement_Pack
 			MethodInfo ReceiveLetterInfo = AccessTools.Method(typeof(LetterStack), "ReceiveLetter", new Type[]
 					{ typeof(string), typeof(string), typeof(LetterDef), typeof(LookTargets), typeof(Faction), typeof(string)});
 			
-			MethodInfo GenerateInfo = AccessTools.Method(typeof(ThingSetMaker), "Generate"));
+			MethodInfo GenerateInfo = AccessTools.Method(typeof(ThingSetMaker), "Generate");
 			
 			foreach(CodeInstruction i in instructions)
 			{
