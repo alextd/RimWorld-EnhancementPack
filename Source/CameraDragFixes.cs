@@ -20,11 +20,11 @@ namespace TD_Enhancement_Pack
 			Harmony harmony = new Harmony("Uuugggg.rimworld.TD_Enhancement_Pack.main");
 
 			harmony.Patch(AccessTools.Constructor(typeof(CameraMapConfig_Normal)),
-				postfix: new HarmonyMethod(typeof(CameraDragFixes), "Postfix"));
-			harmony.Patch(AccessTools.Method(typeof(CameraDriver), "Update"),
-				postfix: new HarmonyMethod(typeof(FixUpdate), "Postfix"), transpiler: new HarmonyMethod(typeof(FixUpdate), "Transpiler"));
-			harmony.Patch(AccessTools.Method(typeof(CameraDriver), "OnGUI"),
-				prefix: new HarmonyMethod(typeof(FixOnGUI), "Prefix"), transpiler: new HarmonyMethod(typeof(FixOnGUI), "Transpiler"));
+				postfix: new HarmonyMethod(typeof(CameraDragFixes), nameof(CameraDragFixes.Postfix)));
+			harmony.Patch(AccessTools.Method(typeof(CameraDriver), nameof(CameraDriver.Update)),
+				postfix: new HarmonyMethod(typeof(FixUpdate), nameof(FixUpdate.Postfix)), transpiler: new HarmonyMethod(typeof(FixUpdate), nameof(FixUpdate.Transpiler)));
+			harmony.Patch(AccessTools.Method(typeof(CameraDriver), nameof(CameraDriver.CameraDriverOnGUI)),
+				prefix: new HarmonyMethod(typeof(FixOnGUI), nameof(FixOnGUI.Prefix)), transpiler: new HarmonyMethod(typeof(FixOnGUI), nameof(FixOnGUI.Transpiler)));
 		}
 	}
 
