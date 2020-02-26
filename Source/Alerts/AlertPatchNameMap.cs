@@ -13,7 +13,7 @@ namespace TD_Enhancement_Pack.Alerts
 
 	class AlertPatchNameMap
 	{
-		public static void AddMapName(Map map, ref string report)
+		public static void AddMapName(Map map, ref TaggedString report)
 		{
 			if (Find.Maps.Count(m => m.IsPlayerHome) == 1) return;
 
@@ -28,8 +28,8 @@ namespace TD_Enhancement_Pack.Alerts
 		public static Map MapWithLowFood(Alert_LowFood alert) =>
 			(Map)MapWithLowFoodInfo.Invoke(alert, null);
 
-		//public override string GetExplanation()
-		public static void Postfix(Alert_LowFood __instance, ref string __result)
+		//public virtual TaggedString GetExplanation()
+		public static void Postfix(Alert_LowFood __instance, ref TaggedString __result)
 		{
 			AlertPatchNameMap.AddMapName(MapWithLowFood(__instance), ref __result);
 		}
@@ -42,8 +42,8 @@ namespace TD_Enhancement_Pack.Alerts
 		public static Map MapWithLowMedicine(Alert_LowMedicine alert) =>
 			(Map)MapWithLowMedicineInfo.Invoke(alert, null);
 
-		//public override string GetExplanation()
-		public static void Postfix(Alert_LowMedicine __instance, ref string __result)
+		//public override TaggedString GetExplanation()
+		public static void Postfix(Alert_LowMedicine __instance, ref TaggedString __result)
 		{
 			AlertPatchNameMap.AddMapName(MapWithLowMedicine(__instance), ref __result);
 		}

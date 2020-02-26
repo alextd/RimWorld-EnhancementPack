@@ -17,15 +17,15 @@ namespace TD_Enhancement_Pack
 		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
 		{
 			return Transpilers.MethodReplacer(instructions,
-				AccessTools.Method(typeof(Widgets), nameof(Widgets.ButtonImage), new Type[] { typeof(Rect), typeof(Texture2D) }),
+				AccessTools.Method(typeof(Widgets), nameof(Widgets.ButtonImage), new Type[] { typeof(Rect), typeof(Texture2D), typeof(bool)}),
 				AccessTools.Method(typeof(StopForcedSlowdown), nameof(ButtonImageAndCheckForShift)));
 		}
 
-		//public static bool ButtonImage(Rect butRect, Texture2D tex)
+		//public static bool ButtonImage(Rect butRect, Texture2D tex, bool doMouseoverSound = true)
 		public static FieldInfo forceNormalSpeedUntilInfo = AccessTools.Field(typeof(TimeSlower), "forceNormalSpeedUntil");
-		public static bool ButtonImageAndCheckForShift(Rect butRect, Texture2D tex)
+		public static bool ButtonImageAndCheckForShift(Rect butRect, Texture2D tex, bool doMouseoverSound)
 		{
-			if (Widgets.ButtonImage(butRect, tex))
+			if (Widgets.ButtonImage(butRect, tex, doMouseoverSound))
 			{
 				if(Settings.Get().stopForcedSlowdown && Event.current.shift)
 					forceNormalSpeedUntilInfo.SetValue(Find.TickManager.slower, Find.TickManager.TicksGame - 1);//- 1 to be sure I guess
