@@ -56,7 +56,7 @@ namespace TD_Enhancement_Pack
 				DynamicMethod dm = DynamicTools.CreateDynamicMethod(method, "-unused");
 
 				return (Harmony.ILCopying.MethodBodyReader.GetInstructions(dm.GetILGenerator(), method).
-					Any(ilcode => ilcode.operand.Equals(IsForbiddenInfo)));
+					Any(ilcode => ilcode.operand?.Equals(IsForbiddenInfo) ?? false));
 			};
 
 			harmony.PatchGeneratedMethod(typeof(WorkGiver_Grower), check, transpiler: transpiler);
@@ -77,7 +77,7 @@ namespace TD_Enhancement_Pack
 
 			foreach (var i in instructions)
 			{
-				if (i.operand.Equals(IsForbiddenInfo))
+				if (i.Calls(IsForbiddenInfo))
 				{
 					i.operand = IsForbiddenByTypeInfo;
 					yield return new CodeInstruction(OpCodes.Ldarg_0);//this

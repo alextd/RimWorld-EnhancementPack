@@ -22,7 +22,7 @@ namespace TD_Enhancement_Pack
 			foreach(CodeInstruction i in instructions)
 			{
 				yield return i;
-				if (i.operand.Equals(godmode))
+				if (i.LoadsField(godmode))
 				{
 					yield return new CodeInstruction(OpCodes.Ldarg_1);//Event ev
 					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(BlueprintAnyStuff), nameof(OrRightClick)));

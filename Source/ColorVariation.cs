@@ -29,7 +29,7 @@ namespace TD_Enhancement_Pack
 					DynamicMethod dm = DynamicTools.CreateDynamicMethod(method, "-unused");
 
 					return (Harmony.ILCopying.MethodBodyReader.GetInstructions(dm.GetILGenerator(), method).
-						Any(ilcode => ilcode.operand.Equals(MakeRecipeProductsInfo)));
+						Any(ilcode => ilcode.operand?.Equals(MakeRecipeProductsInfo) ?? false));
 				},
 				transpiler: new HarmonyMethod(typeof(ColorVariation), nameof(Toils_Recipe_Transpiler)));
 
@@ -42,7 +42,7 @@ namespace TD_Enhancement_Pack
 					DynamicMethod dm = DynamicTools.CreateDynamicMethod(method, "-unused");
 
 					return (Harmony.ILCopying.MethodBodyReader.GetInstructions(dm.GetILGenerator(), method).
-						Any(ilcode => ilcode.operand.Equals(GetDrawColorInfo)));
+						Any(ilcode => ilcode.operand?.Equals(GetDrawColorInfo) ?? false));
 				},
 				transpiler: new HarmonyMethod(typeof(ColorVariation), nameof(GenRecipe_Transpiler)));
 		}
