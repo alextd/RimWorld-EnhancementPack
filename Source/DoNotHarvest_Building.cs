@@ -40,6 +40,7 @@ namespace TD_Enhancement_Pack
 	}
 
 	[StaticConstructorOnStartup]
+	//[HarmonyPatch(typeof(WorkGiver_Grower), nameof(WorkGiver_Grower.PotentialWorkCellsGlobal))]
 	static class DoNotHarvest_Building
 	{
 		//WorkGiver_Grower has one PotentialWorkCellsGlobal for both subclasses
@@ -50,14 +51,8 @@ namespace TD_Enhancement_Pack
 			HarmonyMethod transpiler = new HarmonyMethod(typeof(DoNotHarvest_Building), nameof(DoNotHarvest_Building.Transpiler));
 			Harmony harmony = new Harmony("Uuugggg.rimworld.TD_Enhancement_Pack.main");
 
-			MethodInfo IsForbiddenInfo = AccessTools.Method(typeof(ForbidUtility), "IsForbidden", new Type[] { typeof(Thing), typeof(Pawn)});
-			Func<MethodInfo, bool> check = delegate (MethodInfo method)
-			{
-				DynamicMethod dm = DynamicTools.CreateDynamicMethod(method, "-unused");
-
-				return (Harmony.ILCopying.MethodBodyReader.GetInstructions(dm.GetILGenerator(), method).
-					Any(ilcode => ilcode.operand?.Equals(IsForbiddenInfo) ?? false));
-			};
+			Func<MethodInfo, bool> check = m => m.Name.Contains("PotentialWorkCellsGlobal") || 
+			(m.DeclaringType.Name.Contains("PotentialWorkCellsGlobal") && m.Name.Contains("MoveNext"));
 
 			harmony.PatchGeneratedMethod(typeof(WorkGiver_Grower), check, transpiler: transpiler);
 		}
@@ -79,11 +74,12 @@ namespace TD_Enhancement_Pack
 			{
 				if (i.Calls(IsForbiddenInfo))
 				{
-					i.operand = IsForbiddenByTypeInfo;
-					yield return new CodeInstruction(OpCodes.Ldarg_0);//this
-					yield return new CodeInstruction(OpCodes.Ldfld, ThisThis);//this.$this
+					yield return new CodeInstruction(OpCodes.Ldarg_0);//this, yield return business
+					yield return new CodeInstruction(OpCodes.Ldfld, ThisThis);// WorkGiver_Grower this.$this
+					yield return new CodeInstruction(OpCodes.Call, IsForbiddenByTypeInfo);
 				}
-				yield return i;
+				else
+					yield return i;
 			}
 		}
 

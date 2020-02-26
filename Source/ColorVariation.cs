@@ -20,30 +20,15 @@ namespace TD_Enhancement_Pack
 		{
 			Harmony harmony = new Harmony("Uuugggg.rimworld.TD_Enhancement_Pack.main");
 
-			//patch Toils_Recipe.FinishRecipeAndStartStoringProduct
-			MethodInfo MakeRecipeProductsInfo = AccessTools.Method(typeof(GenRecipe), nameof(GenRecipe.MakeRecipeProducts));
-
+			//Want to patch Toils_Recipe.FinishRecipeAndStartStoringProduct, it sets initAction = delegate
 			harmony.PatchGeneratedMethod(typeof(Toils_Recipe),
-				delegate (MethodInfo method)
-				{
-					DynamicMethod dm = DynamicTools.CreateDynamicMethod(method, "-unused");
-
-					return (Harmony.ILCopying.MethodBodyReader.GetInstructions(dm.GetILGenerator(), method).
-						Any(ilcode => ilcode.operand?.Equals(MakeRecipeProductsInfo) ?? false));
-				},
+				m => m.Name.Contains("FinishRecipeAndStartStoringProduct"),
 				transpiler: new HarmonyMethod(typeof(ColorVariation), nameof(Toils_Recipe_Transpiler)));
 
-			//patch GenRecipe.MakeRecipeProducts
-			MethodInfo GetDrawColorInfo = AccessTools.Property(typeof(Thing), nameof(Thing.DrawColor)).GetGetMethod();
-
+			//Want to patch GenRecipe.MakeRecipeProducts, it's a yield return method
 			harmony.PatchGeneratedMethod(typeof(GenRecipe),
-				delegate (MethodInfo method)
-				{
-					DynamicMethod dm = DynamicTools.CreateDynamicMethod(method, "-unused");
-
-					return (Harmony.ILCopying.MethodBodyReader.GetInstructions(dm.GetILGenerator(), method).
-						Any(ilcode => ilcode.operand?.Equals(GetDrawColorInfo) ?? false));
-				},
+				m => m.Name.Contains("MakeRecipeProducts") ||
+				(m.DeclaringType.Name.Contains("MakeRecipeProducts") && m.Name.Contains("MoveNext")),
 				transpiler: new HarmonyMethod(typeof(ColorVariation), nameof(GenRecipe_Transpiler)));
 		}
 
@@ -112,6 +97,7 @@ namespace TD_Enhancement_Pack
 			}
 		}
 
+		//[HarmonyPatch(typeof(GenRecipe), nameof(GenRecipe.MakeRecipeProducts))]
 		//public static IEnumerable<Thing> MakeRecipeProducts(RecipeDef recipeDef, Pawn worker, List<Thing> ingredients, Thing dominantIngredient, IBillGiver billGiver)
 		//actually patching compiler generated method due to yield return business
 		public static IEnumerable<CodeInstruction> GenRecipe_Transpiler(IEnumerable<CodeInstruction> instructions)
