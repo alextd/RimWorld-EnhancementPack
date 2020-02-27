@@ -100,11 +100,12 @@ namespace TD_Enhancement_Pack
 				if (i.LoadsConstant(0.7f))
 				{
 					//scale factor for zoomed out, from 0 to ?
-					i.operand = 1.3f;//trial and errored this
+					yield return new CodeInstruction(OpCodes.Ldc_R4, 1.3f);//trial and errored this
 					//else if (i.operand.ChangeType<float>() == 0.3f)//base scroll factor when zoomed in 100%
 					//	i.operand = 1.0f;
 				}
-				yield return i;
+				else 
+					yield return i;
 				
 				if (i.Calls(HitchReduceFactor))
 				{

@@ -28,13 +28,13 @@ namespace TD_Enhancement_Pack
 
 				//Topright winter shadow
 				if (inst.Calls(DrawTextWinterShadowInfo))
-					inst.operand = AccessTools.Method(typeof(MouseoverOnTopRight), nameof(DrawTextWinterShadowTR));
+					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(MouseoverOnTopRight), nameof(DrawTextWinterShadowTR)));
 
 				//Transform Widgets.Label rect
-				if (inst.Calls(LabelInfo))
-					inst.operand = AccessTools.Method(typeof(MouseoverOnTopRight), nameof(LabelTransform));
-			
-				yield return inst;
+				else if (inst.Calls(LabelInfo))
+					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(MouseoverOnTopRight), nameof(LabelTransform)));
+				else
+					yield return inst;
 
 				if (inst.Calls(OpenTabInfo))
 				{

@@ -23,8 +23,9 @@ namespace TD_Enhancement_Pack
 			foreach (CodeInstruction instruction in instructions)
 			{
 				if (instruction.LoadsField(Replace))//only DarkRed when part != null, ie whole body
-					instruction.operand = With;
-				yield return instruction;
+					yield return new CodeInstruction(OpCodes.Ldsfld, With) { labels = instruction.labels };
+				else
+					yield return instruction;
 			}
 		}
 	}

@@ -25,8 +25,9 @@ namespace TD_Enhancement_Pack
 			foreach (CodeInstruction i in instructions)
 			{
 				if (i.Calls(BestAttackTargetInfo))
-					i.operand = BetterAttackTargetInfo;
-				yield return i;
+					yield return new CodeInstruction(OpCodes.Call, BetterAttackTargetInfo);
+				else
+					yield return i;
 			}
 		}
 

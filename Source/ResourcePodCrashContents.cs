@@ -24,9 +24,9 @@ namespace TD_Enhancement_Pack
 			foreach(CodeInstruction i in instructions)
 			{
 				if (i.Calls(ReceiveLetterInfo))
-					i.operand = AccessTools.Method(typeof(ResourcePodCrashContents), nameof(ReceiveLetterAppend));
+					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ResourcePodCrashContents), nameof(ReceiveLetterAppend)));
 
-				yield return i;
+				else yield return i;
 
 				if (i.Calls(GenerateInfo))
 					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ResourcePodCrashContents), nameof(GetThingLabel)));
