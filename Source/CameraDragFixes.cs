@@ -9,6 +9,7 @@ using Verse;
 using HarmonyLib;
 using UnityEngine;
 
+/* Update#3 changed camera, also changed camera code so unstable and 1.1 live are not compatibile, disabling until they're in sync and retested
 namespace TD_Enhancement_Pack
 {
 	[StaticConstructorOnStartup]
@@ -125,3 +126,4 @@ namespace TD_Enhancement_Pack
 		}
 	}
 }
+*/
