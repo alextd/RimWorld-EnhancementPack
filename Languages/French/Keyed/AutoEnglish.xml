@@ -165,8 +165,6 @@
 	<TD.SettingAlertDeterioration>Afficher une alerte quand un objet se détériore</TD.SettingAlertDeterioration>
 	<!-- EN: Deteriorating things with less than 50% HP, that are not forbidden, and this doesn't include rotting corpses. -->
 	<TD.SettingAlertDeteriorationDesc>Pour les objets se détériorant et ayant moins de 50% de points de vie, qui ne sont pas interdits. N'inclut pas les corps pourrissants</TD.SettingAlertDeteriorationDesc>
-	<!-- EN: Alert for colonists with heatstroke -->
-	<TD.SettingAlertHeatstroke>Afficher une alerte quand un colon souffre d'insolation</TD.SettingAlertHeatstroke>
 	<!-- EN: Alert for colonists that are burning -->
 	<TD.SettingAlertBurning>Afficher une alerte quand un colon brûle</TD.SettingAlertBurning>
 	<!-- EN: Alert for colonists that are getting toxic buildup -->
@@ -193,10 +191,6 @@
 	<TD.DropdownBuildingsOrderDesc>Par exemple, les lumières colorées se trouvent dans le menu déroulant du lampadaire au lieu d'être une structure à part</TD.DropdownBuildingsOrderDesc>
 	<!-- EN: Selected stone has a button to smooth it -->
 	<TD.SmoothSelectedStone>Une roche sélectionnée possède un bouton 'Aplanir surface'</TD.SmoothSelectedStone>
-	<!-- EN: Deep drilling for stone gets a random stone type -->
-	<TD.DeepDrillRandomrock>Le forage en profondeur pour la roche donne un type de roche aléatoire</TD.DeepDrillRandomrock>
-	<!-- EN: It would normally only get one type. Now it's random from the stone types available on the map. -->
-	<TD.DeepDrillRandomrockDesc>Par défaut, cela ne donne qu'un seul type de roche. Désormais, cela peut être n'importe quel type de roche disponible sur la carte à chaque fois.</TD.DeepDrillRandomrockDesc>
 	<!-- EN: Lower overlay opacities: -->
 	<TD.LowerOverlayOpacities>Réduire l'opacité des zones de surbrillance :</TD.LowerOverlayOpacities>
 	<!-- EN: If you have Allow Tool, stockpiles have an 'urgent refill' toggle -->

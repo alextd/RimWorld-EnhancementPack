@@ -73,7 +73,6 @@
   <TD.SettingDodgeGrenadesEnemyDesc>入植者たちは実際には敵の手榴弾を回避できませんでした。例え徴兵されていなかったとしてもです。これを有効にすると回避できます。</TD.SettingDodgeGrenadesEnemyDesc>
   <TD.SettingDodgeGrenadesNPC>敵が手榴弾を回避する</TD.SettingDodgeGrenadesNPC>
   <TD.SettingDodgeGrenadesNPCDesc>今度は敵も手榴弾を回避します。あまりお勧めしませんが現実的だと思います。\n\nまた技術的な話ですが「入植者が敵の手榴弾を回避する」を有効にしている場合、敵味方両方の派閥は互いの手榴弾を回避します。</TD.SettingDodgeGrenadesNPCDesc>
-  <TD.SettingQuickGrab>隣接するタイルにあるロッカーからアイテム(材料など)を持ち出すことを許可する</TD.SettingQuickGrab>
   <TD.SettingAutoBuildable>壁等を建築時に地盤表示を自動的にONにする</TD.SettingAutoBuildable>
   <TD.SettingAutoBuildableDesc>橋や石棺などを設置するときに建てることができない場所が赤で表示されます</TD.SettingAutoBuildableDesc>
   <TD.SettingAutoCoverage>太陽灯やビーコン等を建造時に範囲表示を自動的にONにする</TD.SettingAutoCoverage>
@@ -105,7 +104,6 @@
   <TD.SettingPawnTableClickSelectDesc>入植者リスト(優先順位や制限など)の名前をクリックすることで選択(リストが閉じたり移動はしない)になります\nShiftクリックで複数人の選択と解除ができます\nダブルクリックでリストを閉じずにカメラ中央に移動します\nAlt+クリックでリストを閉じて対象入植者の場所へ移動します(バニラの動作)</TD.SettingPawnTableClickSelectDesc>
   <TD.SettingAlertDeterioration>劣化したアイテムがあるとき警告する</TD.SettingAlertDeterioration>
   <TD.SettingAlertDeteriorationDesc>50%を下回ると警告されます。禁止されたものや腐敗した死体は含まれません</TD.SettingAlertDeteriorationDesc>
-  <TD.SettingAlertHeatstroke>入植者が熱中症のとき警告する</TD.SettingAlertHeatstroke>
   <TD.SettingAlertBurning>入植者が燃えているとき警告する</TD.SettingAlertBurning>
   <TD.SettingAlertToxic>入植者が毒を蓄積しているとき警告する</TD.SettingAlertToxic>
   <TD.SettingAlertNoBill>作業指示が空の作業台があるとき警告する(作業中断や終了は含まない)</TD.SettingAlertNoBill>
@@ -119,8 +117,6 @@
   <TD.DropdownBuildingsOrder>ドロップダウン型の選択は、含まれている選択によって順序が設定されます。</TD.DropdownBuildingsOrder>
   <TD.DropdownBuildingsOrderDesc>例えば 色付きの電気スタンドは、リストの先頭ではなく他の電気スタンド建設メニューの隣に表示されます。</TD.DropdownBuildingsOrderDesc>
   <TD.SmoothSelectedStone>選択し石の種類には滑らかにするボタンがあります</TD.SmoothSelectedStone>
-  <TD.DeepDrillRandomrock>深部ドリルマシンで得られる岩の塊をランダムにする</TD.DeepDrillRandomrock>
-  <TD.DeepDrillRandomrockDesc>ONにすることで、採掘完了のたびにマップ上で得られる岩の種類から1つが選ばれるようになります</TD.DeepDrillRandomrockDesc>
   <TD.LowerOverlayOpacities>表示の不透明度:</TD.LowerOverlayOpacities>
   <TD.SettingUrgentRefill>「Allow Tool」を導入している場合、備蓄ゾーンに「緊急補充」切替ボタンがあります。</TD.SettingUrgentRefill>
   <TD.SettingUrgentRefillDesc>もし選択した備蓄ゾーンのタイルが空の場合、そこへ緊急運搬して補充する作業が追加されます。 コンロや作業台の材料補充に最適です。\n\n「Allow Tool」が必要です</TD.SettingUrgentRefillDesc>

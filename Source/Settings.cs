@@ -15,7 +15,6 @@ namespace TD_Enhancement_Pack
 		public bool dodgeGrenadeEnemy = true;
 		public bool dodgeGrenadeNPC = false;
 		public bool dodgeGrenadeUnlessBelt = true;
-		public bool quickGrab = true;
 		public bool showStopGizmo = true;
 		public bool showStopGizmoDrafted = true;
 		public bool cameraDragFixes = true;
@@ -78,7 +77,6 @@ namespace TD_Enhancement_Pack
 		public bool stopForcedSlowdown = true;
 
 		public bool alertDeteriorating = true;
-		public bool alertHeatstroke = true;
 		public bool alertBurning = true;
 		public bool alertToxic = true;
 		public bool alertNoBill = true;
@@ -86,7 +84,6 @@ namespace TD_Enhancement_Pack
 
 		public bool areasUnlimited = true;
 		public bool matchGrowButton = true;
-		public bool deepDrillRandom = true;
 
 		public bool zoomToMouse = false;
 
@@ -195,7 +192,6 @@ namespace TD_Enhancement_Pack
 
 			//Game improvements
 			options.LabelHeader("TD.SettingsHeaderGame".Translate());
-			options.CheckboxLabeled("TD.DeepDrillRandomrock".Translate(), ref deepDrillRandom, "TD.DeepDrillRandomrockDesc".Translate());
 			options.CheckboxLabeled("TD.SettingAutoAutorebuild".Translate(), ref autorebuildDefaultOn);
 			options.CheckboxLabeled("TD.SettingAutoRebuildTransportPod".Translate(), ref autoRebuildTransportPod);
 			options.Gap();
@@ -256,7 +252,6 @@ namespace TD_Enhancement_Pack
 			//Alerts
 			options.LabelHeader("TD.SettingsHeaderAlerts".Translate());
 			options.CheckboxLabeled("TD.SettingAlertDeterioration".Translate(), ref alertDeteriorating, "TD.SettingAlertDeteriorationDesc".Translate());
-			options.CheckboxLabeled("TD.SettingAlertHeatstroke".Translate(), ref alertHeatstroke);
 			options.CheckboxLabeled("TD.SettingAlertBurning".Translate(), ref alertBurning);
 			options.CheckboxLabeled("TD.SettingAlertToxic".Translate(), ref alertToxic);
 			options.CheckboxLabeled("TD.SettingAlertNoBill".Translate(), ref alertNoBill);
@@ -273,8 +268,6 @@ namespace TD_Enhancement_Pack
 			options.CheckboxLabeled("TD.SettingDodgeGrenadesEnemy".Translate(), ref dodgeGrenadeEnemy, "TD.SettingDodgeGrenadesEnemyDesc".Translate());
 			options.CheckboxLabeled("TD.SettingDodgeGrenadesNPC".Translate(), ref dodgeGrenadeNPC, "TD.SettingDodgeGrenadesNPCDesc".Translate());
 			options.CheckboxLabeled("TD.SettingDodgeGrenadesUnlessBelt".Translate(), ref dodgeGrenadeUnlessBelt);
-			options.Gap();
-			options.CheckboxLabeled("TD.SettingQuickGrab".Translate(), ref quickGrab);
 			options.Gap();
 			options.CheckboxLabeled("TD.ShowStopButtonDrafted".Translate(), ref showStopGizmoDrafted);
 			options.CheckboxLabeled("TD.ShowStopButtonUnDrafted".Translate(), ref showStopGizmo);
@@ -304,7 +297,6 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref dodgeGrenadeEnemy, "dodgeGrenadeEnemy", true);
 			Scribe_Values.Look(ref dodgeGrenadeNPC, "dodgeGrenadeNPC", false);
 			Scribe_Values.Look(ref dodgeGrenadeUnlessBelt, "dodgeGrenadeUnlessBelt", true);
-			Scribe_Values.Look(ref quickGrab, "quickGrab", true);
 			Scribe_Values.Look(ref showStopGizmo, "showStopGizmo", true);
 			Scribe_Values.Look(ref showStopGizmoDrafted, "showStopGizmoDrafted", true);
 			Scribe_Values.Look(ref cameraDragFixes, "cameraDragFixes", true);
@@ -365,7 +357,6 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref stopForcedSlowdown, "stopForcedSlowdown", true);
 
 			Scribe_Values.Look(ref alertDeteriorating, "alertDeteriorating", true);
-			Scribe_Values.Look(ref alertHeatstroke, "alertHeatstroke", true);
 			Scribe_Values.Look(ref alertBurning, "alertBurning", true);
 			Scribe_Values.Look(ref alertToxic, "alertToxic", true);
 			Scribe_Values.Look(ref alertNoBill, "alertNoBill", true);
@@ -373,7 +364,6 @@ namespace TD_Enhancement_Pack
 
 			Scribe_Values.Look(ref areasUnlimited, "areasUnlimited", true);
 			Scribe_Values.Look(ref matchGrowButton, "matchGrowButton", true);
-			Scribe_Values.Look(ref deepDrillRandom, "deepDrillRandom", true);
 
 			Scribe_Values.Look(ref zoomToMouse, "zoomToMouse", false);
 

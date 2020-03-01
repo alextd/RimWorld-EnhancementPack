@@ -73,7 +73,6 @@
 	<TD.SettingDodgeGrenadesNPC>Enemies dodge your grenades</TD.SettingDodgeGrenadesNPC>
 	<TD.SettingDodgeGrenadesNPCDesc>Now they will dodge your grenades too. I don't recommend this, but I guess it's realistic.\n\nAlso technically, two factions will dodge each other's grenades if "Colonists dodge enemy grenades" is on</TD.SettingDodgeGrenadesNPCDesc>
 	<TD.SettingDodgeGrenadesUnlessBelt>Don't dodge if shield belt is worn</TD.SettingDodgeGrenadesUnlessBelt>
-	<TD.SettingQuickGrab>Allow grabbing items from shelves from adjacent tiles</TD.SettingQuickGrab>
 	<TD.SettingAutoBuildable>Auto-show buildable terrain overlay when placing buildings</TD.SettingAutoBuildable>
 	<TD.SettingAutoBuildableDesc>Buildings with unique requirements like bridges and graves will show a overlay of where they can't be built</TD.SettingAutoBuildableDesc>
 	<TD.SettingAutoCoverage>Auto-show building coverage overlay when placing buildings</TD.SettingAutoCoverage>
@@ -105,7 +104,6 @@
 	<TD.SettingPawnTableClickSelectDesc>Should behave intuitively like any other selection. Press Esc to close the tab window.\n\nShift-click to select/deselect multiple. Click-and-drag to select groups. Double-click to select all of the same type. Right-click to zoom, without selecting. Alt-click to close window, select and go to that one pawn.</TD.SettingPawnTableClickSelectDesc>
 	<TD.SettingAlertDeterioration>Alert for deteriorating things</TD.SettingAlertDeterioration>
 	<TD.SettingAlertDeteriorationDesc>Deteriorating things with less than 50% HP, that are not forbidden, and this doesn't include rotting corpses.</TD.SettingAlertDeteriorationDesc>
-	<TD.SettingAlertHeatstroke>Alert for colonists with heatstroke</TD.SettingAlertHeatstroke>
 	<TD.SettingAlertBurning>Alert for colonists that are burning</TD.SettingAlertBurning>
 	<TD.SettingAlertToxic>Alert for colonists that are getting toxic buildup</TD.SettingAlertToxic>
 	<TD.SettingAlertNoBill>Alert for workbenches with no bills set up</TD.SettingAlertNoBill>
@@ -119,8 +117,6 @@
 	<TD.DropdownBuildingsOrder>Dropdown designators get their order set by their contained designators</TD.DropdownBuildingsOrder>
 	<TD.DropdownBuildingsOrderDesc>e.g. colored lights show up in the build menu next to other lights instead of the front of the list</TD.DropdownBuildingsOrderDesc>
 	<TD.SmoothSelectedStone>Selected stone has a button to smooth it</TD.SmoothSelectedStone>
-	<TD.DeepDrillRandomrock>Deep drilling for stone gets a random stone type</TD.DeepDrillRandomrock>
-	<TD.DeepDrillRandomrockDesc>It would normally only get one type. Now it's random from the stone types available on the map.</TD.DeepDrillRandomrockDesc>
 	<TD.LowerOverlayOpacities>Lower overlay opacities:</TD.LowerOverlayOpacities>
 	<TD.SettingUrgentRefill>If you have Allow Tool, stockpiles have an 'urgent refill' toggle</TD.SettingUrgentRefill>
 	<TD.SettingUrgentRefillDesc>If a tile in a chosen stockpile is empty, there will be a urgent hauling job to refill it. Great for kitchen/workbench supplies.\n\nRequires Allow Tool</TD.SettingUrgentRefillDesc>
