@@ -101,6 +101,7 @@ namespace TD_Enhancement_Pack
 
 		public bool colorVariation = false;
 		public bool colorGenerator = false;
+		public bool colorGenNoVariation = true;
 		public float colorGenChance = 0.5f;
 		public float colorGenStuffEffect = 0.5f;
 		public bool colorFixStuffColor = false;
@@ -211,9 +212,14 @@ namespace TD_Enhancement_Pack
 			//Color variations
 			options.LabelHeader("TD.SettingHeaderColorVariations".Translate());
 			options.CheckboxLabeled("TD.SettingColorVariation".Translate(), ref colorVariation, "TD.SettingColorVariationDesc".Translate());
+			options.Gap();
 			options.CheckboxLabeled("TD.SettingColorGenerator".Translate(), ref colorGenerator, "TD.SettingColorGeneratorDesc".Translate());
-			options.SliderLabeled("TD.SettingColorGeneratorChance".Translate(), ref colorGenChance, "{0:P0}", 0, 1);
-			options.SliderLabeled("TD.SettingColorGeneratorStuffEffect".Translate(), ref colorGenStuffEffect, "{0:P0}", 0, 1, "TD.SettingColorGeneratorStuffEffectDesc".Translate());
+			if (colorGenerator)
+			{
+				options.SliderLabeled("TD.SettingColorGeneratorChance".Translate(), ref colorGenChance, "{0:P0}", 0, 1);
+				options.SliderLabeled("TD.SettingColorGeneratorStuffEffect".Translate(), ref colorGenStuffEffect, "{0:P0}", 0, 1, "TD.SettingColorGeneratorStuffEffectDesc".Translate());
+				options.CheckboxLabeled("TD.SettingColorGenNoVariation".Translate(), ref colorGenNoVariation);
+			}
 			options.Gap();
 
 			options.CheckboxLabeled("TD.SettingFixColorStuff".Translate(), ref colorFixStuffColor, "TD.SettingFixColorStuffDesc".Translate());
@@ -383,6 +389,7 @@ namespace TD_Enhancement_Pack
 
 			Scribe_Values.Look(ref colorVariation, "colorVariation", false);
 			Scribe_Values.Look(ref colorGenerator, "colorGenerator", false);
+			Scribe_Values.Look(ref colorGenNoVariation, "colorGenNoVariation", true);
 			Scribe_Values.Look(ref colorGenChance, "colorGenChance", 0.5f);
 			Scribe_Values.Look(ref colorGenStuffEffect, "colorGenStuffEffect", 0.5f);
 			Scribe_Values.Look(ref colorFixStuffColor, "colorFixStuffColor", false);

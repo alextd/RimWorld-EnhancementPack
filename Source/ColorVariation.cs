@@ -72,19 +72,28 @@ namespace TD_Enhancement_Pack
 					//Override with Color generator?
 					//This is sorta redundant since the recipe just overwrote what might've been a color generated color, 
 					//but only cloth allows it, but since it's overwritten it doesn't matter that cloth allows it. Aeh.
-					if (Settings.Get().colorGenerator
+					bool generatedColor = Settings.Get().colorGenerator
 						&& thing.def.colorGenerator != null
-						&& Rand.Value < Settings.Get().colorGenChance) //.2 = 20% chance to colorgenerate instead of stuff color
+						&& Rand.Value < Settings.Get().colorGenChance;//.2 = 20% chance to colorgenerate instead of stuff color
+
+					if (generatedColor) 
 					{
 						Color genColor = thing.def.colorGenerator.NewRandomizedColor();
+						Log.Message($"using generated {genColor}");
 						if (thing.def.MadeFromStuff)
+						{
 							color = Color.Lerp(genColor, color, Settings.Get().colorGenStuffEffect);
+							Log.Message($"Lerped with stuff to {color}");
+						}
 						else
 							color = genColor;
 					}
 
-					if (Settings.Get().colorVariation)
+					//Variation
+					if (Settings.Get().colorVariation &&
+						(!Settings.Get().colorGenNoVariation || !generatedColor))
 					{
+						Log.Message($"Varying the color...");
 						//Deviate a little.
 						Color.RGBToHSV(color, out float h, out float s, out float v);
 						//hsv makes colored things look more varied, and whiter things less varied.

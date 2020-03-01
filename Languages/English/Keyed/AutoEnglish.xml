@@ -166,7 +166,8 @@
 	<TD.SettingColorGeneratorDesc>You know those items that other factions get in many colors - you can too!</TD.SettingColorGeneratorDesc>
 	<TD.SettingColorGeneratorChance>Chance to use color generator instead of ingredient color:</TD.SettingColorGeneratorChance>
 	<TD.SettingColorGeneratorStuffEffect>Material color weight when using color generator:</TD.SettingColorGeneratorStuffEffect>
-	<TD.SettingColorGeneratorStuffEffectDesc>Only for items crafted with variable materials.\nAt 100%, the material color is used when available.\At 0%, the color generator's color is used.\nIn Between, the two colors are blended</TD.SettingColorGeneratorStuffEffectDesc>
+	<TD.SettingColorGeneratorStuffEffectDesc>Only for items crafted with variable materials.\nAt 100%, the material color is used when available.\nAt 0%, the color generator's color is used.\nIn Between, the two colors are blended</TD.SettingColorGeneratorStuffEffectDesc>
+	<TD.SettingColorGenNoVariation>Don't use the above color variation when color generator is used</TD.SettingColorGenNoVariation>
 	<TD.SettingReapplyColorVariations>Re-apply color variations to all current things</TD.SettingReapplyColorVariations>
 	<TD.Go>Go</TD.Go>
 	<TD.SettingReapplyColorVariationsDesc>(This also applies the last two options, whether or not they are checked)</TD.SettingReapplyColorVariationsDesc>
