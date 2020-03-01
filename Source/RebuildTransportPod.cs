@@ -33,9 +33,9 @@ namespace TD_Enhancement_Pack
 
 		public static void DestroyReplace(Thing thing, DestroyMode mode)
 		{
+			Map map = thing.Map;//Save map before it's destroyed
 			thing.Destroy(mode);
-
-			CheckAutoRebuildOnLaunch(thing, thing.Map, thing.def);
+			CheckAutoRebuildOnLaunch(thing, map, thing.def);
 		}
 	}
 }
