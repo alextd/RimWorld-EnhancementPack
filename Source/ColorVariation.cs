@@ -74,7 +74,7 @@ namespace TD_Enhancement_Pack
 					//but only cloth allows it, but since it's overwritten it doesn't matter that cloth allows it. Aeh.
 					bool generatedColor = Settings.Get().colorGenerator
 						&& thing.def.colorGenerator != null
-						&& (thing.Stuff?.stuffProps.allowColorGenerators ?? false)
+						&& (thing.Stuff == null || thing.Stuff.stuffProps.allowColorGenerators)
 						&& Rand.Value < Settings.Get().colorGenChance;//.2 = 20% chance to colorgenerate instead of stuff color
 
 					if (generatedColor) 
@@ -129,9 +129,14 @@ namespace TD_Enhancement_Pack
 			if (!Settings.Get().colorFixStuffColor) return stuff.DrawColor;
 
 			if (stuff.TryGetComp<CompColorable>() is CompColorable comp && comp.Active)
+			{
+				Log.Message($"Properly using {stuff}'s CompColorable: {comp.Color}");
 				return comp.Color;
+			}
 
-			return stuff.def.stuffProps?.color ?? stuff.DrawColor;
+			Color result = stuff.def.stuffProps?.color ?? stuff.DrawColor;
+			Log.Message($"Properly using {stuff}'s color: {result}");
+			return result;
 		}
 	}
 
@@ -152,6 +157,7 @@ namespace TD_Enhancement_Pack
 			if (!Settings.Get().colorFixDominant) return source.RandomElementByWeight(weightSelector);
 
 			List<Thing> stuffThings = source.Where(t => t.def.IsStuff).ToList();
+			Log.Message($"Removed ({source.Where(t => !t.def.IsStuff).ToList().ToStringSafeEnumerable()}) from list of ingredients with color");
 			if (stuffThings.NullOrEmpty())
 				return source.RandomElementByWeight(weightSelector);
 			return stuffThings.RandomElementByWeight(weightSelector);
