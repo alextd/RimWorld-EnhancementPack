@@ -103,7 +103,6 @@ namespace TD_Enhancement_Pack
 		public bool colorGenerator = false;
 		public bool colorGenNoVariation = true;
 		public float colorGenChance = 0.5f;
-		public float colorGenStuffEffect = 0.5f;
 		public bool colorFixStuffColor = false;
 		public bool colorFixDominant = false;
 		public bool colorRedoWarned = false;
@@ -217,7 +216,6 @@ namespace TD_Enhancement_Pack
 			if (colorGenerator)
 			{
 				options.SliderLabeled("TD.SettingColorGeneratorChance".Translate(), ref colorGenChance, "{0:P0}", 0, 1);
-				options.SliderLabeled("TD.SettingColorGeneratorStuffEffect".Translate(), ref colorGenStuffEffect, "{0:P0}", 0, 1, "TD.SettingColorGeneratorStuffEffectDesc".Translate());
 				options.CheckboxLabeled("TD.SettingColorGenNoVariation".Translate(), ref colorGenNoVariation);
 			}
 			options.Gap();
@@ -391,7 +389,6 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref colorGenerator, "colorGenerator", false);
 			Scribe_Values.Look(ref colorGenNoVariation, "colorGenNoVariation", true);
 			Scribe_Values.Look(ref colorGenChance, "colorGenChance", 0.5f);
-			Scribe_Values.Look(ref colorGenStuffEffect, "colorGenStuffEffect", 0.5f);
 			Scribe_Values.Look(ref colorFixStuffColor, "colorFixStuffColor", false);
 			Scribe_Values.Look(ref colorFixDominant, "colorFixDominant", false);
 			Scribe_Values.Look(ref colorRedoWarned, "colorRedoWarned", false);

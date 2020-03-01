@@ -74,19 +74,13 @@ namespace TD_Enhancement_Pack
 					//but only cloth allows it, but since it's overwritten it doesn't matter that cloth allows it. Aeh.
 					bool generatedColor = Settings.Get().colorGenerator
 						&& thing.def.colorGenerator != null
+						&& (thing.Stuff?.stuffProps.allowColorGenerators ?? false)
 						&& Rand.Value < Settings.Get().colorGenChance;//.2 = 20% chance to colorgenerate instead of stuff color
 
 					if (generatedColor) 
 					{
-						Color genColor = thing.def.colorGenerator.NewRandomizedColor();
-						Log.Message($"using generated {genColor}");
-						if (thing.def.MadeFromStuff)
-						{
-							color = Color.Lerp(genColor, color, Settings.Get().colorGenStuffEffect);
-							Log.Message($"Lerped with stuff to {color}");
-						}
-						else
-							color = genColor;
+						color = thing.def.colorGenerator.NewRandomizedColor();
+						Log.Message($"using generated {color}");
 					}
 
 					//Variation
