@@ -72,12 +72,16 @@ namespace TD_Enhancement_Pack
 					//Override with Color generator?
 					//This is sorta redundant since the recipe just overwrote what might've been a color generated color, 
 					//but only cloth allows it, but since it's overwritten it doesn't matter that cloth allows it. Aeh.
-					if (Settings.Get().colorGenerator)
-						if (!thing.def.MadeFromStuff && thing.def.colorGenerator != null)
-						{
-							if (Rand.Value < Settings.Get().colorGenChance) //.2 = 20% chance to colorgenerate instead of stuff color
-								color = thing.def.colorGenerator.NewRandomizedColor();
-						}
+					if (Settings.Get().colorGenerator
+						&& thing.def.colorGenerator != null
+						&& Rand.Value < Settings.Get().colorGenChance) //.2 = 20% chance to colorgenerate instead of stuff color
+					{
+						Color genColor = thing.def.colorGenerator.NewRandomizedColor();
+						if (thing.def.MadeFromStuff)
+							color = Color.Lerp(genColor, color, Settings.Get().colorGenStuffEffect);
+						else
+							color = genColor;
+					}
 
 					if (Settings.Get().colorVariation)
 					{
