@@ -19,6 +19,7 @@ namespace TD_Enhancement_Pack
 		{
 			MethodInfo DrawTextWinterShadowInfo = AccessTools.Method(typeof(GenUI), "DrawTextWinterShadow");
 			MethodInfo LabelInfo = AccessTools.Method(typeof(Widgets), "Label", new Type[] { typeof(Rect), typeof(string) });
+			MethodInfo LabelTaggedInfo = AccessTools.Method(typeof(Widgets), "Label", new Type[] { typeof(Rect), typeof(TaggedString) });
 			MethodInfo OpenTabInfo = AccessTools.Property(typeof(MainTabsRoot), "OpenTab").GetGetMethod();
 			
 			List<CodeInstruction> instList = instructions.ToList();
@@ -33,6 +34,8 @@ namespace TD_Enhancement_Pack
 				//Transform Widgets.Label rect
 				else if (inst.Calls(LabelInfo))
 					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(MouseoverOnTopRight), nameof(LabelTransform)));
+				else if (inst.Calls(LabelTaggedInfo))
+					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(MouseoverOnTopRight), nameof(LabelTaggedTransform)));
 				else
 					yield return inst;
 
@@ -54,6 +57,14 @@ namespace TD_Enhancement_Pack
 
 		public static void LabelTransform(Rect rect, string label)
 		{
+			Widgets.Label(Transform(rect, label), label);
+		}
+		public static void LabelTaggedTransform(Rect rect, TaggedString label)
+		{
+			Widgets.Label(Transform(rect, label), label);
+		}
+		public static Rect Transform(Rect rect, string label)
+		{
 			if (Settings.Get().mouseoverInfoTopRight)
 			{
 				//rect = new Rect(MouseoverReadout.BotLeft.x, (float)UI.screenHeight - MouseoverReadout.BotLeft.y - num, 999f, 999f);
@@ -61,7 +72,7 @@ namespace TD_Enhancement_Pack
 				rect.y = UI.screenHeight - rect.y - 50f; //flip y, adjust for maintabs margin: BotLeft.y = 65f, BotLeft.x = 15f
 				rect.x -= Text.CalcSize(label).x;//adjust for text width
 			}
-			Widgets.Label(rect, label);
+			return rect;
 		}
 
 		public static MainButtonDef FilterForOpenTab(MainButtonDef def)
