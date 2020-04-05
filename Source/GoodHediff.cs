@@ -11,6 +11,12 @@ using UnityEngine;
 
 namespace TD_Enhancement_Pack
 {
+	/*
+	 * 
+	 * 4/4 update breaks this, renamed RedColor, and this is super minor 
+	 * and maybe only in unstable branch, so can't just release the fix yet
+	 * TODO: figure it out
+	 * 
 	//'Whole Body' shouldn't be red, it can be good, so make it yellow
 	[HarmonyPatch(typeof(HealthCardUtility), "DrawHediffRow")]
 	public static class GoodHediff
@@ -29,4 +35,6 @@ namespace TD_Enhancement_Pack
 			}
 		}
 	}
+	*/
+
 }
