@@ -146,9 +146,9 @@ namespace TD_Enhancement_Pack
 	internal static class BuildingStorage_GetGizmos_Patch
 	{
 		[HarmonyPostfix]
-		public static void InsertUrgentRefillGizmos(IEnumerable<Gizmo> __result, Building_Storage __instance)
+		public static IEnumerable<Gizmo>  InsertUrgentRefillGizmos(IEnumerable<Gizmo> __result, Building_Storage __instance)
 		{
-			SlotGroup_GetGizmos_Patch.InsertUrgentRefillGizmos(__result, __instance.Map, __instance);
+			return SlotGroup_GetGizmos_Patch.InsertUrgentRefillGizmos(__result, __instance.Map, __instance);
 		}
 	}
 
@@ -157,9 +157,9 @@ namespace TD_Enhancement_Pack
 	internal static class ZoneStockpile_GetGizmos_Patch
 	{
 		[HarmonyPostfix]
-		public static void InsertUrgentRefillGizmos(IEnumerable<Gizmo> __result, Zone_Stockpile __instance)
+		public static IEnumerable<Gizmo> InsertUrgentRefillGizmos(IEnumerable<Gizmo> __result, Zone_Stockpile __instance)
 		{
-			SlotGroup_GetGizmos_Patch.InsertUrgentRefillGizmos(__result, __instance.Map, __instance);
+			return SlotGroup_GetGizmos_Patch.InsertUrgentRefillGizmos(__result, __instance.Map, __instance);
 		}
 	}
 
