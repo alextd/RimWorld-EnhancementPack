@@ -165,6 +165,7 @@
   <TD.SettingColorGenerator>生産されたアイテムにカラージェネレーターを使う</TD.SettingColorGenerator>
   <TD.SettingColorGeneratorDesc>それらのアイテムが他の派閥の場合は色んな色が付いている事を知っているように、あなたも色を付けられます！</TD.SettingColorGeneratorDesc>
   <TD.SettingColorGeneratorChance>材料の色の代わりにカラージェネレーターを使用する確率：</TD.SettingColorGeneratorChance>
+  <TD.SettingColorGenNoVariation>カラージェネレータを使用する際は,上のカラーバリエーションを使用しないでください。</TD.SettingColorGenNoVariation>
   <TD.SettingReapplyColorVariations>現在存在するすべてのアイテムに色の変化を適用し直す</TD.SettingReapplyColorVariations>
   <TD.Go>適用する</TD.Go>
   <TD.SettingReapplyColorVariationsDesc>（これは下の2つのオプションにも適用されます（それらがチェックされているかどうか無関係に)）</TD.SettingReapplyColorVariationsDesc>
