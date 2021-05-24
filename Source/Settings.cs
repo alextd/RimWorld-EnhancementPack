@@ -58,6 +58,7 @@ namespace TD_Enhancement_Pack
 		
 		public bool neverHome = true;
 		public bool slaughterZone = true;
+		public bool stripZone = true;
 
 		public bool autorebuildDefaultOn = true;
 		public bool autoRebuildTransportPod = false;
@@ -133,6 +134,7 @@ namespace TD_Enhancement_Pack
 			options.CheckboxLabeled("TD.SettingAreaForTypes".Translate(), ref areaForTypes, "TD.SettingAreaForTypesDesc".Translate());
 			options.CheckboxLabeled("TD.NeverHome".Translate(), ref neverHome);
 			options.CheckboxLabeled("TD.SlaughterZone".Translate(), ref slaughterZone);
+			options.CheckboxLabeled("TD.StripZone".Translate(), ref stripZone);
 			options.CheckboxLabeled("TD.SettingsCleanZone".Translate(), ref fieldEdgesRedo);
 			options.Label("TD.AreaEditing".Translate());
 			options.GapLine();
@@ -345,6 +347,7 @@ namespace TD_Enhancement_Pack
 
 			Scribe_Values.Look(ref neverHome, "neverHome", true);
 			Scribe_Values.Look(ref slaughterZone, "slaughterZone", true);
+			Scribe_Values.Look(ref stripZone, "stripZone", true);
 
 			Scribe_Values.Look(ref autorebuildDefaultOn, "autorebuildDefaultOn", true);
 			Scribe_Values.Look(ref autoRebuildTransportPod, "autoRebuildTransportPod", false);
