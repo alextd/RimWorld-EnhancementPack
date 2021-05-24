@@ -20,13 +20,14 @@ namespace TD_Enhancement_Pack
 		public static FieldInfo startDragCellInfo = AccessTools.Field(typeof(DesignationDragger), "startDragCell");
 		public override AcceptanceReport CanDesignateCell(IntVec3 c)
 		{
-			if (!base.CanDesignateCell(c).Accepted)
-			{
-				return false;
-			}
+			//if (!base.CanDesignateCell(c).Accepted)
+			//{
+			//	return false;
+			//}
 
 			FertilityGrid grid = Map.fertilityGrid;
-			if (grid.FertilityAt(c) < ThingDefOf.Plant_Potato.plant.fertilityMin)
+			//if (grid.FertilityAt(c) < ThingDefOf.Plant_Potato.plant.fertilityMin)
+			if (grid.FertilityAt(c) < 0.05) //ThingDefOf.Plant_SaguaroCactus.plant.fertilityMin  cactus doesn't exist?
 			{
 				return false;
 			}
