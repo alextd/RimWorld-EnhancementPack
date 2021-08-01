@@ -291,8 +291,9 @@ namespace TD_Enhancement_Pack
 			options.Label("TD.DropdownBuildingsOrder".Translate(), tooltip: "TD.DropdownBuildingsOrderDesc".Translate());
 			options.Label("TD.FeatureConfirmRestoreSettings".Translate());
 
-			options.EndScrollView(ref viewRect);
-			scrollViewHeight = viewRect.height;
+			scrollViewHeight = options.CurHeight;
+			Widgets.EndScrollView();
+			options.End();
 		}
 
 		public override void ExposeData()
