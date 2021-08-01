@@ -98,7 +98,7 @@ namespace TD_Enhancement_Pack
 					}
 
 					if (color != thing.DrawColor)
-						comp.Color = color;
+						comp.SetColor(color);
 					Log.Message($"{thing} color now {thing.DrawColor}/{comp.Active}:{comp.Color}");
 				}
 			}
