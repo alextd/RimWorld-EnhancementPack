@@ -119,8 +119,9 @@ namespace TD_Enhancement_Pack
 		{
 			if (Settings.Get().areasUnlimited)
 			{
-				listing.EndScrollView(ref viewRect);
-				scrollViewHeight = viewRect.height;
+				scrollViewHeight = listing.CurHeight;
+				Widgets.EndScrollView();
+				listing.End();
 			}
 			else
 				listing.End();
@@ -269,7 +270,7 @@ namespace TD_Enhancement_Pack
 					comp.Swap(area, other);
 				}
 			}
-			else widgetRow.GapButtonIcon();
+			else widgetRow.Gap(WidgetRow.IconSize);
 
 			//re-order down
 			if (index < areas.Count - 1)
@@ -280,7 +281,7 @@ namespace TD_Enhancement_Pack
 					comp.Swap(area, other);
 				}
 			}
-			else widgetRow.GapButtonIcon();
+			else widgetRow.Gap(WidgetRow.IconSize);
 		}
 
 		public static void DoButtonIcon(WidgetRow widgetRow, Texture2D tex, string tooltip, Area area)
@@ -312,7 +313,7 @@ namespace TD_Enhancement_Pack
 				{
 					List<FloatMenuOption> otherAreas = new List<FloatMenuOption>(area.Map.areaManager.AllAreas
 						.FindAll(a => !(a is Area_Allowed))
-						.ConvertAll(a => new FloatMenuOption(a.Label, () => PasteArea(a, area), mouseoverGuiAction: () => a.MarkForDraw())));
+						.ConvertAll(a => new FloatMenuOption(a.Label, () => PasteArea(a, area), mouseoverGuiAction: (_) => a.MarkForDraw())));
 					Find.WindowStack.Add(new FloatMenu(otherAreas, "TD.PasteFrom".Translate()));
 				}
 				else
