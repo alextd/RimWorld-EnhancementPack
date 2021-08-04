@@ -32,14 +32,32 @@ namespace TD_Enhancement_Pack
 		}
 
 		//public static void NotifyNearbyPawnsOfDangerousExplosive(Thing exploder, DamageDef damage, Faction onlyFaction = null)
-		public static void NOFACTIONNotifyNearbyPawnsOfDangerousExplosive(Thing exploder, DamageDef damage, Faction onlyFaction = null)
+		public static void NOFACTIONNotifyNearbyPawnsOfDangerousExplosive(Thing exploder, DamageDef damage, Faction onlyFaction = null, Thing launcher = null)
 		{
 			Faction actualFaction = onlyFaction;
 			if (Settings.Get().dodgeGrenadeEnemy && onlyFaction != Faction.OfPlayer)
 				actualFaction = null;
 			if (Settings.Get().dodgeGrenadeNPC && onlyFaction == Faction.OfPlayer)
 				actualFaction = null;
-			GenExplosion.NotifyNearbyPawnsOfDangerousExplosive(exploder, damage, actualFaction);
+			GenExplosion.NotifyNearbyPawnsOfDangerousExplosive(exploder, damage, actualFaction, launcher);
+		}
+	}
+
+
+	[HarmonyPatch(typeof(Pawn_MindState), "Notify_DangerousExploderAboutToExplode")]
+	public static class Pawn_MindState_Drafted
+	{
+		//internal void Notify_DangerousExploderAboutToExplode(Thing exploder)
+		public static void Postfix(Pawn_MindState __instance, Thing exploder)
+		{
+			if (!Settings.Get().dodgeGrenade) return; 
+
+			//Just copy-paste vanilla but do it for drafted now.
+			if ((int)__instance.pawn.RaceProps.intelligence >= 2 && __instance.pawn.Drafted)
+			{
+				__instance.knownExploder = exploder;
+				__instance.pawn.jobs.CheckForJobOverride();
+			}
 		}
 	}
 }
