@@ -185,7 +185,7 @@ namespace TD_Enhancement_Pack
 			//Variation
 		}
 
-		public static MethodInfo ApparelChangedInfo = AccessTools.Method(typeof(Pawn_ApparelTracker), "ApparelChanged");
+		public static MethodInfo ApparelChangedInfo = AccessTools.Method(typeof(Pawn_ApparelTracker), nameof(Pawn_ApparelTracker. Notify_ApparelChanged));
 		public static void ApparelChanged(this Pawn_ApparelTracker appTracker) =>
 			ApparelChangedInfo.Invoke(appTracker, new object[] { });
 		public static void Go()
