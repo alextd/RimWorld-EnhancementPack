@@ -85,5 +85,13 @@ namespace TD.Utilities
 			listing.Label(label, maxHeight, tooltip);
 			Text.Font = GameFont.Small;
 		}
+
+		//1.3 just removed Listing Scrollviews?
+		public static void EndScrollView(this Listing_Standard listing, ref Rect viewRect)
+		{
+			viewRect = new Rect(0f, 0f, listing.ColumnWidth, listing.CurHeight);
+			Widgets.EndScrollView();
+			listing.End();
+		}
 	}
 }
