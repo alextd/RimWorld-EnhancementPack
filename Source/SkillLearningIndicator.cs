@@ -33,6 +33,9 @@ namespace TD_Enhancement_Pack
 			}
 		}
 
+		static FieldInfo levelLabelWidthInfo = AccessTools.Field(typeof(SkillUI), "levelLabelWidth");
+		public static float GetLevelLabelWidth() => (float)levelLabelWidthInfo.GetValue(null);
+
 		public static void LabelLearning(SkillRecord skillRecord, Rect holdingRect)
 		{
 			if (!Settings.Get().skillArrows) return;
@@ -60,7 +63,7 @@ namespace TD_Enhancement_Pack
 				GUI.color = arrowColor;
 
 				Rect iconRect = new Rect(Vector2.zero, Vector2.one * holdingRect.height);
-				iconRect.x += (float)AccessTools.Field(typeof(SkillUI), "levelLabelWidth").GetValue(null);
+				iconRect.x += GetLevelLabelWidth();
 				//Hack in the end result of LeftEdgeMargin + SkillHeight + 4 + skill # width ish
 				iconRect.x += 6 + 24 + 4 + 36;
 
