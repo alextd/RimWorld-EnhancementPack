@@ -98,7 +98,7 @@ namespace TD_Enhancement_Pack
 					}
 
 					if (color != thing.DrawColor)
-						comp.Color = color;
+						comp.SetColor(color);
 					Log.Message($"{thing} color now {thing.DrawColor}/{comp.Active}:{comp.Color}");
 				}
 			}
@@ -185,7 +185,7 @@ namespace TD_Enhancement_Pack
 			//Variation
 		}
 
-		public static MethodInfo ApparelChangedInfo = AccessTools.Method(typeof(Pawn_ApparelTracker), "ApparelChanged");
+		public static MethodInfo ApparelChangedInfo = AccessTools.Method(typeof(Pawn_ApparelTracker), nameof(Pawn_ApparelTracker. Notify_ApparelChanged));
 		public static void ApparelChanged(this Pawn_ApparelTracker appTracker) =>
 			ApparelChangedInfo.Invoke(appTracker, new object[] { });
 		public static void Go()

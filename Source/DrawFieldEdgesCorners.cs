@@ -8,17 +8,21 @@ using UnityEngine;
 
 namespace TD_Enhancement_Pack
 {
-	[HarmonyPatch(typeof(GenDraw), "DrawFieldEdges", new Type[] { typeof(List<IntVec3>), typeof(Color) } )]
+	[HarmonyPatch(typeof(GenDraw), "DrawFieldEdges", new Type[] { typeof(List<IntVec3>), typeof(Color), typeof(float?) } )]
 	class DrawFieldEdgesCorners
 	{
 		private static BoolGrid fieldGrid;
 
 		private static bool[] adjEmpty = new bool[8];
 
-		//public static void DrawFieldEdges(List<IntVec3> cells, Color color)
-		public static bool Prefix(List<IntVec3> cells, Color color)
+		//public static void DrawFieldEdges(List<IntVec3> cells, Color color, float? altOffset = null)
+		public static bool Prefix(List<IntVec3> cells, Color color, float? altOffset = null)
 		{
 			if (!Settings.Get().fieldEdgesRedo) return true;
+
+			//TODO: Handle 1.3 altOffset
+			//			float y = altOffset ?? (Rand.ValueSeeded(color.ToOpaque().GetHashCode()) * (3f / 74f) / 10f);
+			//	Graphics.DrawMesh(MeshPool.plane10, c.ToVector3ShiftedWithAltitude(AltitudeLayer.MetaOverlays) + new Vector3(0f, y, 0f), new Rot4(k).AsQuat, material, 0);
 
 			Map currentMap = Find.CurrentMap;
 			MaterialRequest req = new MaterialRequest

@@ -70,7 +70,9 @@ namespace TD_Enhancement_Pack
 		//public override bool HasJobOnCell(Pawn pawn, IntVec3 c)
 		public static bool Prefix(Pawn pawn, IntVec3 c, ref bool __result)
 		{
-			if(pawn.Map.zoneManager.ZoneAt(c) is Zone_Growing zone 
+			if (!Settings.Get().zoneHarvestableToggle) return true;
+
+			if (pawn.Map.zoneManager.ZoneAt(c) is Zone_Growing zone 
 				&& !zone.CanHarvest())
 			{ 
 				__result = false;
