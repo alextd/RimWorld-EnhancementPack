@@ -68,11 +68,11 @@
   <TD.SettingStopFleeDesc>すでに逃げている入植者に対しては適用されません</TD.SettingStopFleeDesc>
   <TD.SettingDodgeGrenades>徴兵中にグレネードが飛んできて範囲内なら逃げ出す</TD.SettingDodgeGrenades>
   <TD.SettingDodgeGrenadesDesc>実行中の行動はキャンセルされます</TD.SettingDodgeGrenadesDesc>
-  <TD.SettingDodgeGrenadesUnlessBelt>シールドベルトが生きているならグレネード範囲から逃げ出さない</TD.SettingDodgeGrenadesUnlessBelt>
   <TD.SettingDodgeGrenadesEnemy>入植者が敵の手榴弾を回避する</TD.SettingDodgeGrenadesEnemy>
   <TD.SettingDodgeGrenadesEnemyDesc>入植者たちは実際には敵の手榴弾を回避できませんでした。例え徴兵されていなかったとしてもです。これを有効にすると回避できます。</TD.SettingDodgeGrenadesEnemyDesc>
   <TD.SettingDodgeGrenadesNPC>敵が手榴弾を回避する</TD.SettingDodgeGrenadesNPC>
   <TD.SettingDodgeGrenadesNPCDesc>今度は敵も手榴弾を回避します。あまりお勧めしませんが現実的だと思います。\n\nまた技術的な話ですが「入植者が敵の手榴弾を回避する」を有効にしている場合、敵味方両方の派閥は互いの手榴弾を回避します。</TD.SettingDodgeGrenadesNPCDesc>
+  <TD.SettingDodgeGrenadesUnlessBelt>シールドベルトが生きているならグレネード範囲から逃げ出さない</TD.SettingDodgeGrenadesUnlessBelt>
   <TD.SettingAutoBuildable>壁等を建築時に地盤表示を自動的にONにする</TD.SettingAutoBuildable>
   <TD.SettingAutoBuildableDesc>橋や石棺などを設置するときに建てることができない場所が赤で表示されます</TD.SettingAutoBuildableDesc>
   <TD.SettingAutoCoverage>太陽灯やビーコン等を建造時に範囲表示を自動的にONにする</TD.SettingAutoCoverage>
@@ -165,6 +165,7 @@
   <TD.SettingColorGenerator>生産されたアイテムにカラージェネレーターを使う</TD.SettingColorGenerator>
   <TD.SettingColorGeneratorDesc>それらのアイテムが他の派閥の場合は色んな色が付いている事を知っているように、あなたも色を付けられます！</TD.SettingColorGeneratorDesc>
   <TD.SettingColorGeneratorChance>材料の色の代わりにカラージェネレーターを使用する確率：</TD.SettingColorGeneratorChance>
+  <TD.SettingColorGenNoVariation>カラージェネレーターを使用する場合は、上記の「色を変化」を使用しないでください。</TD.SettingColorGenNoVariation>
   <TD.SettingReapplyColorVariations>現在存在するすべてのアイテムに色の変化を適用し直す</TD.SettingReapplyColorVariations>
   <TD.Go>適用する</TD.Go>
   <TD.SettingReapplyColorVariationsDesc>（これは下の2つのオプションにも適用されます（それらがチェックされているかどうか無関係に)）</TD.SettingReapplyColorVariationsDesc>
