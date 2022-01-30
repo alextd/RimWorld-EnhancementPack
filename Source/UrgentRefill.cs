@@ -36,7 +36,7 @@ namespace TD_Enhancement_Pack
 		static UrgentRefill()
 		{
 			active = false;
-			if (!Settings.settings.zoneRefill) return;
+			if (!Mod.settings.zoneRefill) return;
 			try
 			{
 				TryUrgentRefill();

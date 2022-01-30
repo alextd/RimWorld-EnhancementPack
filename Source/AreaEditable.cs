@@ -79,7 +79,7 @@ namespace TD_Enhancement_Pack
 		public static Rect viewRect;//local to DoWindowContents
 		public static void BeginScrollAndHeader(Listing_Standard listing, Rect rect)
 		{
-			if (Settings.settings.areaForTypes)
+			if (Mod.settings.areaForTypes)
 			{
 				Rect headerRect = new Rect(rect.x,rect.y,rect.width,24);
 				rect.yMin += 24;
@@ -91,7 +91,7 @@ namespace TD_Enhancement_Pack
 					Text.CalcSize("InvertArea".Translate()).x + 16 +
 					WidgetRow.DefaultGap * (numButtons + 2);  //2 buttons + 2 icons
 
-				if (Settings.settings.areasUnlimited)  //room for scrollbar
+				if (Mod.settings.areasUnlimited)  //room for scrollbar
 					headerRect.width -= 20;
 
 				headerRect.xMin = headerRect.xMax - 24;
@@ -104,7 +104,7 @@ namespace TD_Enhancement_Pack
 				TooltipHandler.TipRegion(headerRect, "TD.ShowThisAreaForColonists".Translate());
 			}
 
-			if (Settings.settings.areasUnlimited)
+			if (Mod.settings.areasUnlimited)
 			{
 				rect.height -= 40;//Window.CloseButSize.y
 				viewRect = new Rect(0f, 0f, rect.width - 16f, scrollViewHeight);
@@ -117,7 +117,7 @@ namespace TD_Enhancement_Pack
 		//public override void End()
 		public static void EndScroll(Listing_Standard listing)
 		{
-			if (Settings.settings.areasUnlimited)
+			if (Mod.settings.areasUnlimited)
 			{
 				listing.EndScrollView(ref viewRect);
 				scrollViewHeight = viewRect.height;
@@ -204,7 +204,7 @@ namespace TD_Enhancement_Pack
 		public static Rect FocusArea(Rect labelArea, Area area)
 		{
 			int numSkip = 3;
-			if (Settings.settings.areaForTypes)
+			if (Mod.settings.areaForTypes)
 				numSkip += 2;
 			labelArea.width -= (labelArea.height + WidgetRow.DefaultGap) * numSkip;
 			if (Widgets.ButtonInvisible(labelArea))
@@ -237,7 +237,7 @@ namespace TD_Enhancement_Pack
 
 			var comp = area.Map.GetComponent<MapComponent_AreaOrder>();
 
-			if (Settings.settings.areaForTypes)
+			if (Mod.settings.areaForTypes)
 			{
 				//Animals checkbox
 				bool forAnimals = !comp.notForAnimals.Contains(area);
@@ -506,7 +506,7 @@ namespace TD_Enhancement_Pack
 		{
 			if (!area.AssignableAsAllowed()) return false;
 
-			if (!Settings.settings.areaForTypes) return true;
+			if (!Mod.settings.areaForTypes) return true;
 
 			var comp = area.Map.GetComponent<MapComponent_AreaOrder>();
 			if (p.IsColonist)

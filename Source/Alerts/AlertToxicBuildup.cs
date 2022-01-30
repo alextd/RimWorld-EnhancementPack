@@ -34,7 +34,7 @@ namespace TD_Enhancement_Pack.Alerts
 
 		public override AlertReport GetReport()
 		{
-			return Settings.settings.alertToxic ?
+			return Mod.settings.alertToxic ?
 				AlertReport.CulpritsAre(BurningPawns.ToList()) :
 				AlertReport.Inactive;
 		}

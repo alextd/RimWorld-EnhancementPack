@@ -21,7 +21,7 @@ namespace TD_Enhancement_Pack
 		public static bool dragJump = false;
 		public static void Prefix(Rect rect, Pawn pawn, PawnTable table)
 		{
-			if (!Settings.settings.pawnTableClickSelect) return;
+			if (!Mod.settings.pawnTableClickSelect) return;
 
 			//from DoCell:
 			Rect rowRect = new Rect(rect.x, rect.y, rect.width, Mathf.Min(rect.height, 30f));
@@ -100,14 +100,14 @@ namespace TD_Enhancement_Pack
 		//public static bool ButtonInvisible(Rect butRect, bool doMouseoverSound = false)
 		public static bool NoButtonInvisible(Rect butRect, bool doMouseoverSound)
 		{
-			if (!Settings.settings.pawnTableClickSelect) return Widgets.ButtonInvisible(butRect, doMouseoverSound);
+			if (!Mod.settings.pawnTableClickSelect) return Widgets.ButtonInvisible(butRect, doMouseoverSound);
 			return false;
 		}
 
 		//public static void TipRegion(Rect rect, TipSignal tip)
 		public static void NoTipRegion(Rect rect, TipSignal tip)
 		{
-			if (!Settings.settings.pawnTableClickSelect)
+			if (!Mod.settings.pawnTableClickSelect)
 				TooltipHandler.TipRegion(rect, tip);
 		}
 
@@ -117,11 +117,11 @@ namespace TD_Enhancement_Pack
 			//from DoCell:
 			Rect rowRect = new Rect(rect.x, rect.y, rect.width, Mathf.Min(rect.height, 30f));
 
-			if (Settings.settings.pawnTableHighlightSelected)
+			if (Mod.settings.pawnTableHighlightSelected)
 				if (Find.Selector.IsSelected(pawn))
 					Widgets.DrawHighlightSelected(rowRect);
 
-			if (Settings.settings.pawnTableArrowMouseover)
+			if (Mod.settings.pawnTableArrowMouseover)
 				if (Mouse.IsOver(rowRect))
 				{
 					Vector3 center = UI.UIToMapPosition((float)(UI.screenWidth / 2), (float)(UI.screenHeight / 2));
@@ -139,7 +139,7 @@ namespace TD_Enhancement_Pack
 		//public void PawnTableOnGUI(Vector2 position);
 		public static void Prefix()
 		{
-			if (!Settings.settings.pawnTableClickSelect) return;
+			if (!Mod.settings.pawnTableClickSelect) return;
 
 			//Clear dragging status before table draws
 			if (!Input.GetMouseButton(0))
@@ -155,7 +155,7 @@ namespace TD_Enhancement_Pack
 
 		public static void Postfix(List<Pawn> ___cachedPawns)
 		{
-			if (!Settings.settings.pawnTableClickSelect) return;
+			if (!Mod.settings.pawnTableClickSelect) return;
 
 			//Select all for double-click
 			if (selectAllDef != null)

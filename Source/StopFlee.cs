@@ -15,7 +15,7 @@ namespace TD_Enhancement_Pack
 		//protected override IEnumerable<Toil> MakeNewToils()
 		public static void Postfix(ref IEnumerable<Toil> __result, JobDriver_Flee __instance)
 		{
-			if(!Settings.settings.stopFlee)	return;
+			if(!Mod.settings.stopFlee)	return;
 
 			if (!(__instance.GetActor() is Pawn pawn) || !pawn.IsFreeColonist) return;
 

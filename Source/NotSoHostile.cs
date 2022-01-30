@@ -35,7 +35,7 @@ namespace TD_Enhancement_Pack
 		public static IAttackTarget BetterAttackTarget(IAttackTargetSearcher searcher, TargetScanFlags flags, Predicate<Thing> validator = null, float minDist = 0f, float maxDist = 9999f, IntVec3 locus = default(IntVec3), float maxTravelRadiusFromLocus = 3.40282347E+38f, bool canBash = false, bool canTakeTargetsCloserThanEffectiveMinRange = true, bool canBashFance = false)
 		{
 			return AttackTargetFinder.BestAttackTarget(searcher, flags,
-				Settings.settings.ignoreSleepingEnemies ? ThingIsNotSleeping : validator,  //validator is null for TryGetAttackNearbyEnemyJob, otherwise this is totally broken
+				Mod.settings.ignoreSleepingEnemies ? ThingIsNotSleeping : validator,  //validator is null for TryGetAttackNearbyEnemyJob, otherwise this is totally broken
 				minDist, maxDist, locus, maxTravelRadiusFromLocus, canBash, canTakeTargetsCloserThanEffectiveMinRange, canBashFance);
 		}
 

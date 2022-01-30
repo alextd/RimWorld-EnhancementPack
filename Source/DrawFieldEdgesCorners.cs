@@ -18,7 +18,7 @@ namespace TD_Enhancement_Pack
 		//public static void DrawFieldEdges(List<IntVec3> cells, Color color, float? altOffset = null)
 		public static bool Prefix(List<IntVec3> cells, Color color, float? altOffset = null)
 		{
-			if (!Settings.settings.fieldEdgesRedo) return true;
+			if (!Mod.settings.fieldEdgesRedo) return true;
 
 			//TODO: Handle 1.3 altOffset
 			//			float y = altOffset ?? (Rand.ValueSeeded(color.ToOpaque().GetHashCode()) * (3f / 74f) / 10f);

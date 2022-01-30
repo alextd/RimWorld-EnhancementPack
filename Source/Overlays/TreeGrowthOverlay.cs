@@ -35,7 +35,7 @@ namespace TD_Enhancement_Pack
 		}
 
 
-		public override bool ShouldAutoDraw() => Settings.settings.autoOverlayTreeGrowth;
+		public override bool ShouldAutoDraw() => Mod.settings.autoOverlayTreeGrowth;
 		public override Type AutoDesignator() => typeof(Designator_PlantsHarvestWood);
 	}
 

@@ -32,12 +32,12 @@ namespace TD_Enhancement_Pack
 		}
 
 
-		public override bool ShouldAutoDraw() => Settings.settings.autoOverlayPlantHarvest;
+		public override bool ShouldAutoDraw() => Mod.settings.autoOverlayPlantHarvest;
 		public override Type AutoDesignator() => typeof(Designator_PlantsHarvest);
 
 		public static Texture2D icon = ContentFinder<Texture2D>.Get("UI/Designators/Harvest", true);
 		public override Texture2D Icon() => icon;
-		public override bool IconEnabled() => Settings.settings.showOverlayPlantHarvest;
+		public override bool IconEnabled() => Mod.settings.showOverlayPlantHarvest;
 		public override string IconTip() => "TD.TogglePlantHarveset".Translate();
 	}
 

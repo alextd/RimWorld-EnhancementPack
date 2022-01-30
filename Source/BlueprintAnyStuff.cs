@@ -32,7 +32,7 @@ namespace TD_Enhancement_Pack
 
 		public static bool OrRightClick(bool result, Event ev)
 		{
-			if (!Settings.settings.blueprintAnyStuff) return result;
+			if (!Mod.settings.blueprintAnyStuff) return result;
 
 			if (ev == null) return result;	//NO event? too bad. (probably a mod)
 
@@ -47,7 +47,7 @@ namespace TD_Enhancement_Pack
 		//public override GizmoResult GizmoOnGUI(Vector2 topLeft, float maxWidth)
 		public static void Postfix(ref GizmoResult __result)
 		{
-			if (!Settings.settings.blueprintAnyStuff) return;
+			if (!Mod.settings.blueprintAnyStuff) return;
 
 			if (__result.State == GizmoState.OpenedFloatMenu)
 				__result = new GizmoResult(GizmoState.Interacted, __result.InteractEvent);

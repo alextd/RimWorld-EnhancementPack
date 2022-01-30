@@ -32,7 +32,7 @@ namespace TD_Enhancement_Pack
 
 		public static List<Thing> SortedByValue(List<Thing> list)
 		{
-			if(Settings.settings.tradeRequestWorstFirst)
+			if(Mod.settings.tradeRequestWorstFirst)
 				list.SortBy(t => t.MarketValue);
 			return list;
 		}

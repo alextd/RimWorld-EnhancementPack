@@ -38,7 +38,7 @@ namespace TD_Enhancement_Pack
 
 		public override AlertReport GetReport()
 		{
-			return Settings.settings.alertNoBill ?
+			return Mod.settings.alertNoBill ?
 				AlertReport.CulpritsAre(IdleBenches.ToList()) :
 				AlertReport.Inactive;
 		}

@@ -13,7 +13,7 @@ namespace TD_Enhancement_Pack
 	{
 		public static void Postfix(PlaySettings __instance)
 		{
-			if(Settings.settings.autorebuildDefaultOn)
+			if(Mod.settings.autorebuildDefaultOn)
 				__instance.autoRebuild = true;
 		}
 	}

@@ -49,7 +49,7 @@ namespace TD_Enhancement_Pack
 
 		public static void DrawTextWinterShadowTR(Rect badRect)
 		{
-			if (Settings.settings.mouseoverInfoTopRight)
+			if (Mod.settings.mouseoverInfoTopRight)
 				GenUI.DrawTextWinterShadow(new Rect(UI.screenWidth-256f, 256f, 256f, -256f));
 			else
 				GenUI.DrawTextWinterShadow(badRect);
@@ -65,7 +65,7 @@ namespace TD_Enhancement_Pack
 		}
 		public static Rect Transform(Rect rect, string label)
 		{
-			if (Settings.settings.mouseoverInfoTopRight)
+			if (Mod.settings.mouseoverInfoTopRight)
 			{
 				//rect = new Rect(MouseoverReadout.BotLeft.x, (float)UI.screenHeight - MouseoverReadout.BotLeft.y - num, 999f, 999f);
 				rect.x = UI.screenWidth - rect.x; //flip x
@@ -77,7 +77,7 @@ namespace TD_Enhancement_Pack
 
 		public static MainButtonDef FilterForOpenTab(MainButtonDef def)
 		{
-			return Settings.settings.mouseoverInfoTopRight ? null : def;
+			return Mod.settings.mouseoverInfoTopRight ? null : def;
 		}
 
 	}

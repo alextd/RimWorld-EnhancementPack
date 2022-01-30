@@ -70,12 +70,12 @@ namespace TD_Enhancement_Pack.Overlays
 			base.Update();
 		}
 
-		public override bool ShouldAutoDraw() => Settings.settings.autoOverlayBuildable;
+		public override bool ShouldAutoDraw() => Mod.settings.autoOverlayBuildable;
 		public override Type AutoDesignator() => typeof(Designator_Place);
 
 		public static Texture2D icon = ContentFinder<Texture2D>.Get("UI/Icons/ThingCategories/StoneBlocks", true);
 		public override Texture2D Icon() => icon;
-		public override bool IconEnabled() => Settings.settings.showOverlayBuildable;
+		public override bool IconEnabled() => Mod.settings.showOverlayBuildable;
 		public override string IconTip() => "TD.ToggleBuildable".Translate();
 	}
 

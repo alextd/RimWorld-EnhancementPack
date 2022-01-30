@@ -43,7 +43,7 @@ namespace TD_Enhancement_Pack
 		//public void ReceiveLetter(TaggedString label, TaggedString text, LetterDef textLetterDef, LookTargets lookTargets, Faction relatedFaction = null, Quest quest = null, List<ThingDef> hyperlinkThingDefs = null, string debugInfo = null)
 		public static void ReceiveLetterAppend(LetterStack stack, TaggedString label, TaggedString text, LetterDef textLetterDef, LookTargets lookTargets, Faction relatedFaction = null, Quest quest = null, List<ThingDef> hyperlinkThingDefs = null, string debugInfo = null)
 		{
-			if(Settings.settings.dropPodWhatDropped)
+			if(Mod.settings.dropPodWhatDropped)
 				text += "\n\n" + "TD.WhatDropped".Translate(thingLabel);
 			stack.ReceiveLetter(label, text, textLetterDef, lookTargets, relatedFaction, quest, hyperlinkThingDefs, debugInfo);
 		}

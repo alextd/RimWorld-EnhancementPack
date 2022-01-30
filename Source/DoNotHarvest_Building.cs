@@ -17,7 +17,7 @@ namespace TD_Enhancement_Pack
 		//public override IEnumerable<Gizmo> GetGizmos()
 		static void Postfix(Building_PlantGrower __instance, ref IEnumerable<Gizmo> __result)
 		{
-			if (!Settings.settings.zoneHarvestableToggle) return;
+			if (!Mod.settings.zoneHarvestableToggle) return;
 
 			List<Gizmo> result = new List<Gizmo>(__result);
 
@@ -86,7 +86,7 @@ namespace TD_Enhancement_Pack
 		//public static bool IsForbidden(this Thing t, Pawn pawn)
 		public static bool IsForbiddenByType(Thing thing, Pawn pawn, WorkGiver_Grower workGiver)
 		{
-			if (!Settings.settings.zoneHarvestableToggle
+			if (!Mod.settings.zoneHarvestableToggle
 				|| !(workGiver is WorkGiver_GrowerHarvest))
 				return thing.IsForbidden(pawn);
 

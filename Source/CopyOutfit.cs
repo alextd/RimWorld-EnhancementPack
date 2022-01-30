@@ -15,7 +15,7 @@ namespace TD_Enhancement_Pack
 		//public override void DoWindowContents(Rect inRect);
 		public static void Postfix(Rect inRect, ref Outfit ___selOutfitInt)
 		{
-			if (!Settings.settings.copyPolicyButton) return;
+			if (!Mod.settings.copyPolicyButton) return;
 			if (___selOutfitInt == null) return;
 
 			Rect butRect = new Rect(inRect.width - 150f, 0f, 150f, 35f);//otherwise tediously transpile it in, this dialog isn't using Listing
@@ -36,7 +36,7 @@ namespace TD_Enhancement_Pack
 		//public override void DoWindowContents(Rect inRect);
 		public static void Postfix(Rect inRect, ref FoodRestriction ___selFoodRestrictionInt)
 		{
-			if (!Settings.settings.copyPolicyButton) return;
+			if (!Mod.settings.copyPolicyButton) return;
 			if (___selFoodRestrictionInt == null) return;
 
 			Rect butRect = new Rect(inRect.width - 150f, 0f, 150f, 35f);//otherwise tediously transpile it in, this dialog isn't using Listing

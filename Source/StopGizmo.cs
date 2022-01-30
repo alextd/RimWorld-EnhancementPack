@@ -21,7 +21,7 @@ namespace TD_Enhancement_Pack
 		//public override IEnumerable<Gizmo> GetGizmos()
 		public static void Postfix(ref IEnumerable<Gizmo> __result, Pawn __instance)
 		{
-			if (__instance.Drafted ? !Settings.settings.showStopGizmoDrafted : !Settings.settings.showStopGizmo) return;
+			if (__instance.Drafted ? !Mod.settings.showStopGizmoDrafted : !Mod.settings.showStopGizmo) return;
 
 			if (RimWorld.Planet.WorldRendererUtility.WorldRenderedNow) return;
 

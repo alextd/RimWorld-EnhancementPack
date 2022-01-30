@@ -7,7 +7,7 @@ using TD.Utilities;
 
 namespace TD_Enhancement_Pack
 {
-	class Settings : ModSettings
+	public class Settings : ModSettings
 	{
 		public bool ignoreSleepingEnemies = true;
 		public bool stopFlee = true;
@@ -110,8 +110,6 @@ namespace TD_Enhancement_Pack
 
 		public Vector2 scrollPosition;
 		public float scrollViewHeight;
-
-		public static Settings settings;
 
 		/*Old and slow
 		public static Settings Get()
@@ -301,8 +299,6 @@ namespace TD_Enhancement_Pack
 
 		public override void ExposeData()
 		{
-			settings = this;
-
 			Scribe_Values.Look(ref ignoreSleepingEnemies, "ignoreSleepingEnemies", true);
 			Scribe_Values.Look(ref stopFlee, "stopFlee", true);
 			Scribe_Values.Look(ref dodgeGrenade, "dodgeGrenade", false);

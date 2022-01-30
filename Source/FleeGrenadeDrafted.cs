@@ -13,9 +13,9 @@ namespace TD_Enhancement_Pack
 	{
 		protected override bool Satisfied(Pawn pawn)
 		{
-			return Settings.settings.dodgeGrenade &&
+			return Mod.settings.dodgeGrenade &&
 				!pawn.Downed && !pawn.IsBurning() && !pawn.InMentalState && pawn.Awake() &&
-				(!Settings.settings.dodgeGrenadeUnlessBelt || !pawn.apparel.WornApparel.Any(a => a is ShieldBelt));
+				(!Mod.settings.dodgeGrenadeUnlessBelt || !pawn.apparel.WornApparel.Any(a => a is ShieldBelt));
 		}
 	}
 
@@ -35,9 +35,9 @@ namespace TD_Enhancement_Pack
 		public static void NOFACTIONNotifyNearbyPawnsOfDangerousExplosive(Thing exploder, DamageDef damage, Faction onlyFaction = null, Thing launcher = null)
 		{
 			Faction actualFaction = onlyFaction;
-			if (Settings.settings.dodgeGrenadeEnemy && onlyFaction != Faction.OfPlayer)
+			if (Mod.settings.dodgeGrenadeEnemy && onlyFaction != Faction.OfPlayer)
 				actualFaction = null;
-			if (Settings.settings.dodgeGrenadeNPC && onlyFaction == Faction.OfPlayer)
+			if (Mod.settings.dodgeGrenadeNPC && onlyFaction == Faction.OfPlayer)
 				actualFaction = null;
 			GenExplosion.NotifyNearbyPawnsOfDangerousExplosive(exploder, damage, actualFaction, launcher);
 		}
@@ -50,7 +50,7 @@ namespace TD_Enhancement_Pack
 		//internal void Notify_DangerousExploderAboutToExplode(Thing exploder)
 		public static void Postfix(Pawn_MindState __instance, Thing exploder)
 		{
-			if (!Settings.settings.dodgeGrenade) return; 
+			if (!Mod.settings.dodgeGrenade) return; 
 
 			//Just copy-paste vanilla but do it for drafted now.
 			if ((int)__instance.pawn.RaceProps.intelligence >= 2 && __instance.pawn.Drafted)
