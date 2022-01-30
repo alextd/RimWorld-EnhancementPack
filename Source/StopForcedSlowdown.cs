@@ -27,7 +27,7 @@ namespace TD_Enhancement_Pack
 		{
 			if (Widgets.ButtonImage(butRect, tex, doMouseoverSound))
 			{
-				if(Settings.Get().stopForcedSlowdown && Event.current.shift)
+				if(Settings.settings.stopForcedSlowdown && Event.current.shift)
 					forceNormalSpeedUntilInfo.SetValue(Find.TickManager.slower, Find.TickManager.TicksGame - 1);//- 1 to be sure I guess
 				return true;
 			}

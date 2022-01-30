@@ -18,7 +18,7 @@ namespace TD_Enhancement_Pack
 				AccessTools.Method(typeof(BillCountInventory), nameof(TrueAlwaysManWhyNot)));
 		}
 
-		public static bool TrueAlwaysManWhyNot(ThingDef d) => Settings.Get().billCountEquippedAny || d.IsWeapon;
+		public static bool TrueAlwaysManWhyNot(ThingDef d) => Settings.settings.billCountEquippedAny || d.IsWeapon;
 	}
 
 	[HarmonyPatch(typeof(RecipeWorkerCounter), nameof(RecipeWorkerCounter.CountValidThings))]

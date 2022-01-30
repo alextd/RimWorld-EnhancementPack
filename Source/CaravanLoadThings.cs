@@ -30,7 +30,7 @@ namespace TD_Enhancement_Pack
 
 		public static void Prefix(Dialog_FormCaravan __instance, Map ___map)
 		{
-			if (!Settings.Get().caravanSaveManifest) return;
+			if (!Settings.settings.caravanSaveManifest) return;
 
 			caravan = true;
 			savedManifest = new List<ThingCountUNLIMITED>();
@@ -99,7 +99,7 @@ namespace TD_Enhancement_Pack
 		public static void AddThings(Dialog_FormCaravan dialog, Map map)
 		{
 			//Add manifest
-			if (Settings.Get().caravanSaveManifest && SaveManifest.caravan &&
+			if (Settings.settings.caravanSaveManifest && SaveManifest.caravan &&
 				map == SaveManifest.savedMap && SaveManifest.savedMap != null)
 			{
 				foreach (ThingCountUNLIMITED thingCount in SaveManifest.savedManifest)
@@ -110,7 +110,7 @@ namespace TD_Enhancement_Pack
 				}
 			}
 			//Add selection
-			else if (Settings.Get().caravanLoadSelection)
+			else if (Settings.settings.caravanLoadSelection)
 			{
 				foreach (object obj in Find.Selector.SelectedObjectsListForReading.Where(o => o is Thing))
 					if (obj is Thing thing)
@@ -164,7 +164,7 @@ namespace TD_Enhancement_Pack
 		{
 			if (__instance is Dialog_LoadTransporters dialog)
 			{ 
-				if (!Settings.Get().caravanSaveManifest) return;
+				if (!Settings.settings.caravanSaveManifest) return;
 
 				SaveManifest.caravan = false;
 				SaveManifest.savedManifest = new List<ThingCountUNLIMITED>();
@@ -196,7 +196,7 @@ namespace TD_Enhancement_Pack
 		public static void Postfix(Dialog_LoadTransporters __instance, Map ___map)
 		{
 			//Add manifest
-			if (Settings.Get().caravanSaveManifest && !SaveManifest.caravan &&
+			if (Settings.settings.caravanSaveManifest && !SaveManifest.caravan &&
 				___map == SaveManifest.savedMap && SaveManifest.savedMap != null)
 			{
 				foreach (ThingCountUNLIMITED thingCount in SaveManifest.savedManifest)

@@ -15,7 +15,7 @@ namespace TD_Enhancement_Pack
 		public static bool drawPowerNet;
 		public static void Postfix(WidgetRow row, bool worldView)
 		{
-			if (worldView || !Settings.Get().showOverlayPower) return;
+			if (worldView || !Settings.settings.showOverlayPower) return;
 
 			row.ToggleableIcon(ref drawPowerNet, ThingDefOf.PowerConduit.uiIcon, "TD.TogglePowerOverlay".Translate(), SoundDefOf.Mouseover_ButtonToggle);
 			if (drawPowerNet)

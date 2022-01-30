@@ -111,10 +111,14 @@ namespace TD_Enhancement_Pack
 		public Vector2 scrollPosition;
 		public float scrollViewHeight;
 
+		public static Settings settings;
+
+		/*Old and slow
 		public static Settings Get()
 		{
 			return LoadedModManager.GetMod<Mod>().GetSettings<Settings>();
 		}
+		*/
 
 		public void DoWindowContents(Rect wrect)
 		{
@@ -297,6 +301,8 @@ namespace TD_Enhancement_Pack
 
 		public override void ExposeData()
 		{
+			settings = this;
+
 			Scribe_Values.Look(ref ignoreSleepingEnemies, "ignoreSleepingEnemies", true);
 			Scribe_Values.Look(ref stopFlee, "stopFlee", true);
 			Scribe_Values.Look(ref dodgeGrenade, "dodgeGrenade", false);

@@ -78,7 +78,7 @@ namespace TD_Enhancement_Pack
 		{
 			if (!area.AssignableAsAllowed()) return false;
 
-			if (!Settings.Get().areaForTypes) return true;
+			if (!Settings.settings.areaForTypes) return true;
 
 			var comp = area.Map.GetComponent<MapComponent_AreaOrder>();
 			if (drawingForColonists)

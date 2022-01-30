@@ -14,7 +14,7 @@ namespace TD_Enhancement_Pack
 	{
 		public static void Postfix(Zone_Growing __instance, ref string __result)
 		{
-			if (!Settings.Get().showZoneSize) return;
+			if (!Settings.settings.showZoneSize) return;
 
 			int count = __instance.cells.Count;
 			__result += "\n" + 
@@ -58,7 +58,7 @@ namespace TD_Enhancement_Pack
 	{
 		public static void Postfix(Zone __instance, ref string __result)
 		{
-			if (!Settings.Get().showZoneSize) return;
+			if (!Settings.settings.showZoneSize) return;
 
 			string add = String.Format("TD.Size".Translate(), __instance.cells.Count);
 			if (__result == String.Empty)

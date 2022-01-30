@@ -13,7 +13,7 @@ namespace TD_Enhancement_Pack
 		public RememberResourceReadout(Game g) { }
 		public override void ExposeData()
 		{
-			if(Settings.Get().rememberResourceReadout)
+			if(Settings.settings.rememberResourceReadout)
 				foreach (var resource in DefDatabase<ThingCategoryDef>.AllDefs.Where(cat => cat.resourceReadoutRoot))
 					SaveTree(resource.treeNode, 0, 32);//32 being the bit for Resource Readout
 		}
@@ -53,7 +53,7 @@ namespace TD_Enhancement_Pack
 
 		public override void StartedNewGame()
 		{
-			if (Settings.Get().startOpenResourceReadout)
+			if (Settings.settings.startOpenResourceReadout)
 				foreach (var resource in DefDatabase<ThingCategoryDef>.AllDefs.Where(cat => cat.resourceReadoutRoot))
 					OpenAll(resource.treeNode, 0, 32);
 		}

@@ -23,7 +23,7 @@ namespace TD_Enhancement_Pack
 		{
 			if (!(__instance is MainButtonWorker_ToggleResearchTab)) return;
 
-			if (!Settings.Get().researchingArrow) return;
+			if (!Settings.settings.researchingArrow) return;
 
 			if (GenTicks.TicksGame > showUntilTick) return;
 
@@ -41,7 +41,7 @@ namespace TD_Enhancement_Pack
 																										//public void ResearchPerformed(float amount, Pawn researcher)
 		public static void Postfix(float amount)
 		{
-			if (!Settings.Get().researchingArrow) return;
+			if (!Settings.settings.researchingArrow) return;
 			
 			ResearchingIndicator.amount = 0.5f + amount / maxAmount / 2 ;
 			ResearchingIndicator.showUntilTick = (GenTicks.TicksGame + 200);

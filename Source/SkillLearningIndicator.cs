@@ -38,7 +38,7 @@ namespace TD_Enhancement_Pack
 
 		public static void LabelLearning(SkillRecord skillRecord, Rect holdingRect)
 		{
-			if (!Settings.Get().skillArrows) return;
+			if (!Settings.settings.skillArrows) return;
 
 			List<LearnedInfo> rec = Current.Game.GetComponent<LearnedGameComponent>().learnedInfo;
 			if (rec.FirstOrDefault(i => i.record == skillRecord) is LearnedInfo info)
@@ -47,12 +47,12 @@ namespace TD_Enhancement_Pack
 				if (skillGain == 0) return;
 				if (skillGain > 0)
 				{
-					if (!Settings.Get().skillUpArrows) return;
+					if (!Settings.settings.skillUpArrows) return;
 					skillGain *= 5;
 				}
 				else
 				{
-					if (!Settings.Get().skillDownArrows) return;
+					if (!Settings.settings.skillDownArrows) return;
 					skillGain /= 10;
 				}
 
@@ -107,7 +107,7 @@ namespace TD_Enhancement_Pack
 		public override void GameComponentTick()
 		{
 			base.GameComponentTick();
-			if (!Settings.Get().skillArrows) return;
+			if (!Settings.settings.skillArrows) return;
 
 			learnedInfo.RemoveAll(i => i.tickToKill <= GenTicks.TicksGame);
 		}
@@ -119,7 +119,7 @@ namespace TD_Enhancement_Pack
 		//SkillRecord public void Learn(float xp, bool direct = false)
 		public static void Postfix(SkillRecord __instance, float xp)
 		{
-			if (!Settings.Get().skillArrows) return;
+			if (!Settings.settings.skillArrows) return;
 
 			List<LearnedInfo> rec = Current.Game.GetComponent<LearnedGameComponent>().learnedInfo;
 

@@ -30,7 +30,7 @@ namespace TD_Enhancement_Pack
 
 		public static float FertilityAt(int index)
 		{
-			if (Settings.Get().cheatFertilityUnderGrid)
+			if (Settings.settings.cheatFertilityUnderGrid)
 			{
 				FieldInfo underGridInfo = AccessTools.Field(typeof(TerrainGrid), "underGrid");
 				if ((underGridInfo.GetValue(Find.CurrentMap.terrainGrid) as TerrainDef[])[index] is TerrainDef def)
@@ -39,12 +39,12 @@ namespace TD_Enhancement_Pack
 			return Find.CurrentMap.terrainGrid.TerrainAt(index).fertility;
 		}
 		
-		public override bool ShouldAutoDraw() => Settings.Get().autoOverlayFertility;
+		public override bool ShouldAutoDraw() => Settings.settings.autoOverlayFertility;
 		public override Type AutoDesignator() => typeof(Designator_ZoneAdd_Growing);
 
 		private static Texture2D icon = ContentFinder<Texture2D>.Get("CornPlantIcon", true);
 		public override Texture2D Icon() => icon;
-		public override bool IconEnabled() => Settings.Get().showOverlayFertility;//from Settings
+		public override bool IconEnabled() => Settings.settings.showOverlayFertility;//from Settings
 		public override string IconTip() => "TD.ToggleFertility".Translate();
 	}
 

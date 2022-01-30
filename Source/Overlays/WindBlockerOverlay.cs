@@ -25,7 +25,7 @@ namespace TD_Enhancement_Pack
 		public override Color GetCellExtraColor(int index) => Color.blue;
 
 
-		public override bool ShouldAutoDraw() => Settings.Get().autoOverlayWindBlocker;
+		public override bool ShouldAutoDraw() => Settings.settings.autoOverlayWindBlocker;
 		public override Type AutoDesignator() => typeof(Designator_Build);
 		public override bool DesignatorVerifier(Designator des)
 		{

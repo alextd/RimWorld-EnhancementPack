@@ -25,17 +25,17 @@ namespace TD_Enhancement_Pack
 		//public void ToggleableIcon(ref bool toggleable, Texture2D tex, string tooltip, SoundDef mouseoverSound = null, string tutorTag = null)
 		public static void ToggleableIconFiltered(WidgetRow row, ref bool toggleable, Texture2D tex, string tooltip, SoundDef mouseoverSound = null, string tutorTag = null)
 		{
-			if(tooltip == "ShowLearningHelperWhenEmptyToggleButton".Translate() ? Settings.Get().showToggleLearning :
-				tooltip == "ZoneVisibilityToggleButton".Translate() ? Settings.Get().showToggleZone :
-				tooltip == "ShowBeautyToggleButton".Translate() ? Settings.Get().showToggleBeauty :
-				tooltip == "ShowRoomStatsToggleButton".Translate() ? Settings.Get().showToggleRoomstats :
-				tooltip == "ShowColonistBarToggleButton".Translate() ? Settings.Get().showToggleColonists :
-				tooltip == "ShowRoofOverlayToggleButton".Translate() ? Settings.Get().showToggleRoof :
-				tooltip == "AutoHomeAreaToggleButton".Translate() ? Settings.Get().showToggleHomeArea :
-				tooltip == "AutoRebuildButton".Translate() ? Settings.Get().showToggleRebuild :
-				tooltip == "ShowFertilityOverlayToggleButton".Translate() ? Settings.Get().showToggleFertility :
-				tooltip == "ShowTerrainAffordanceOverlayToggleButton".Translate() ? Settings.Get().showToggleAffordance :
-				tooltip == "CategorizedResourceReadoutToggleButton".Translate() ? Settings.Get().showToggleCategorized :
+			if(tooltip == "ShowLearningHelperWhenEmptyToggleButton".Translate() ? Settings.settings.showToggleLearning :
+				tooltip == "ZoneVisibilityToggleButton".Translate() ? Settings.settings.showToggleZone :
+				tooltip == "ShowBeautyToggleButton".Translate() ? Settings.settings.showToggleBeauty :
+				tooltip == "ShowRoomStatsToggleButton".Translate() ? Settings.settings.showToggleRoomstats :
+				tooltip == "ShowColonistBarToggleButton".Translate() ? Settings.settings.showToggleColonists :
+				tooltip == "ShowRoofOverlayToggleButton".Translate() ? Settings.settings.showToggleRoof :
+				tooltip == "AutoHomeAreaToggleButton".Translate() ? Settings.settings.showToggleHomeArea :
+				tooltip == "AutoRebuildButton".Translate() ? Settings.settings.showToggleRebuild :
+				tooltip == "ShowFertilityOverlayToggleButton".Translate() ? Settings.settings.showToggleFertility :
+				tooltip == "ShowTerrainAffordanceOverlayToggleButton".Translate() ? Settings.settings.showToggleAffordance :
+				tooltip == "CategorizedResourceReadoutToggleButton".Translate() ? Settings.settings.showToggleCategorized :
 				true)
 				row.ToggleableIcon(ref toggleable, tex, tooltip, mouseoverSound, tutorTag);
 		}

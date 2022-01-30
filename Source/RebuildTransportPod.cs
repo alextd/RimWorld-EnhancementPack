@@ -15,7 +15,7 @@ namespace TD_Enhancement_Pack
 		//A lot like CheckAutoRebuildOnDestroyed
 		public static void CheckAutoRebuildOnLaunch(Thing thing, Map map, BuildableDef buildingDef)
 		{
-			if (!Settings.Get().autoRebuildTransportPod) return;
+			if (!Settings.settings.autoRebuildTransportPod) return;
 
 			if (Find.PlaySettings.autoRebuild && thing.Faction == Faction.OfPlayer && buildingDef.blueprintDef != null && buildingDef.IsResearchFinished && map.areaManager.Home[thing.Position] && GenConstruct.CanPlaceBlueprintAt(buildingDef, thing.Position, thing.Rotation, map, false, null).Accepted)
 			{

@@ -60,7 +60,7 @@ namespace TD_Enhancement_Pack
 
 		public static void VaryColor(Thing t)
 		{
-			if (!Settings.Get().colorGenerator && !Settings.Get().colorVariation) return;
+			if (!Settings.settings.colorGenerator && !Settings.settings.colorVariation) return;
 
 			if (t is ThingWithComps thing)
 			{
@@ -72,10 +72,10 @@ namespace TD_Enhancement_Pack
 					//Override with Color generator?
 					//This is sorta redundant since the recipe just overwrote what might've been a color generated color, 
 					//but only cloth allows it, but since it's overwritten it doesn't matter that cloth allows it. Aeh.
-					bool generatedColor = Settings.Get().colorGenerator
+					bool generatedColor = Settings.settings.colorGenerator
 						&& thing.def.colorGenerator != null
 						&& (thing.Stuff == null || thing.Stuff.stuffProps.allowColorGenerators)
-						&& Rand.Value < Settings.Get().colorGenChance;//.2 = 20% chance to colorgenerate instead of stuff color
+						&& Rand.Value < Settings.settings.colorGenChance;//.2 = 20% chance to colorgenerate instead of stuff color
 
 					if (generatedColor) 
 					{
@@ -84,8 +84,8 @@ namespace TD_Enhancement_Pack
 					}
 
 					//Variation
-					if (Settings.Get().colorVariation &&
-						(!Settings.Get().colorGenNoVariation || !generatedColor))
+					if (Settings.settings.colorVariation &&
+						(!Settings.settings.colorGenNoVariation || !generatedColor))
 					{
 						Log.Message($"Varying the color...");
 						//Deviate a little.
@@ -126,7 +126,7 @@ namespace TD_Enhancement_Pack
 		//public virtual Color DrawColor
 		public static Color StuffColor(Thing stuff)
 		{
-			if (!Settings.Get().colorFixStuffColor) return stuff.DrawColor;
+			if (!Settings.settings.colorFixStuffColor) return stuff.DrawColor;
 
 			if (stuff.TryGetComp<CompColorable>() is CompColorable comp && comp.Active)
 			{
@@ -154,7 +154,7 @@ namespace TD_Enhancement_Pack
 		//public static T RandomElementByWeight<T>(this IEnumerable<T> source, Func<T, float> weightSelector)
 		public static Thing StuffOnly(this IEnumerable<Thing> source, Func<Thing, float> weightSelector)
 		{
-			if (!Settings.Get().colorFixDominant) return source.RandomElementByWeight(weightSelector);
+			if (!Settings.settings.colorFixDominant) return source.RandomElementByWeight(weightSelector);
 
 			List<Thing> stuffThings = source.Where(t => t.def.IsStuff).ToList();
 			Log.Message($"Removed ({source.Where(t => !t.def.IsStuff).ToList().ToStringSafeEnumerable()}) from list of ingredients with color");
@@ -190,10 +190,10 @@ namespace TD_Enhancement_Pack
 			ApparelChangedInfo.Invoke(appTracker, new object[] { });
 		public static void Go()
 		{
-			if(!Settings.Get().colorRedoWarned)
+			if(!Settings.settings.colorRedoWarned)
 			{
 				Find.WindowStack.Add(new Dialog_MessageBox("TD.WarningReColorAll".Translate(), "TD.OKIGetIt".Translate(), title: "TD.HoldOn".Translate()));
-				Settings.Get().colorRedoWarned = true;
+				Settings.settings.colorRedoWarned = true;
 				return;
 			}
 			Log.Message("GOING");

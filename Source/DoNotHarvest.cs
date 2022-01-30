@@ -14,7 +14,7 @@ namespace TD_Enhancement_Pack
 		//public override IEnumerable<Gizmo> GetGizmos()
 		static void Postfix(Zone_Growing __instance, ref IEnumerable<Gizmo> __result)
 		{
-			if (!Settings.Get().zoneHarvestableToggle) return;
+			if (!Settings.settings.zoneHarvestableToggle) return;
 
 			List<Gizmo> result = new List<Gizmo>(__result);
 
@@ -70,7 +70,7 @@ namespace TD_Enhancement_Pack
 		//public override bool HasJobOnCell(Pawn pawn, IntVec3 c)
 		public static bool Prefix(Pawn pawn, IntVec3 c, ref bool __result)
 		{
-			if (!Settings.Get().zoneHarvestableToggle) return true;
+			if (!Settings.settings.zoneHarvestableToggle) return true;
 
 			if (pawn.Map.zoneManager.ZoneAt(c) is Zone_Growing zone 
 				&& !zone.CanHarvest())

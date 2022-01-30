@@ -36,7 +36,7 @@ namespace TD_Enhancement_Pack
 		static UrgentRefill()
 		{
 			active = false;
-			if (!Settings.Get().zoneRefill) return;
+			if (!Settings.settings.zoneRefill) return;
 			try
 			{
 				TryUrgentRefill();

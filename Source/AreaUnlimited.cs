@@ -12,7 +12,7 @@ namespace TD_Enhancement_Pack
 	{
 		static bool Prefix(ref bool __result)
 		{
-			if (Settings.Get().areasUnlimited)
+			if (Settings.settings.areasUnlimited)
 			{
 				__result = true;
 				return false;
