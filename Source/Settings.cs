@@ -111,13 +111,6 @@ namespace TD_Enhancement_Pack
 		public Vector2 scrollPosition;
 		public float scrollViewHeight;
 
-		/*Old and slow
-		public static Settings Get()
-		{
-			return LoadedModManager.GetMod<Mod>().GetSettings<Settings>();
-		}
-		*/
-
 		public void DoWindowContents(Rect wrect)
 		{
 			var options = new Listing_Standard();
