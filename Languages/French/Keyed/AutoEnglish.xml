@@ -75,8 +75,6 @@
 	<TD.VariousCount>Le nombre d'objets (divers) sélectionnés est affiché</TD.VariousCount>
 	<!-- EN: Food 'rotted away' messages are clickable to see where it was -->
 	<TD.RottedAwayClickable>Les messages 'Tel aliment a pourri dans le stockage' sont maintenant cliquable pour voir où il se trouvait</TD.RottedAwayClickable>
-	<!-- EN: Popup messages like '% recruit chance' (text motes) stay onscreen in realtime, so they don't dissappear at high speeds -->
-	<TD.PopupMessageRealtime>Les messages popup lors des tentatives de recrutement restent affichés en temps réel, et donc ne disparaissent plus en vitesse accélérée</TD.PopupMessageRealtime>
 	<!-- EN: Undrafted colonists ignore sleeping enemies -->
 	<TD.SettingsIgnoreSleeping>Les colons non enrôlés ignorent les ennemis endormis</TD.SettingsIgnoreSleeping>
 	<!-- EN: This applies to the 'Attack' Reaction mode. Would you believe your colonists would attack sleeping megascarabs if they happened to haul near them? -->

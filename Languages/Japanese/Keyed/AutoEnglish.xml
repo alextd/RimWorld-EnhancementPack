@@ -43,7 +43,6 @@
   <TD.RequiresRestart>変更を有効化するには再起動が必要：</TD.RequiresRestart>
   <TD.VariousCount>（色々な）選択されたアイテムは計測した数量が表示される</TD.VariousCount>
   <TD.RottedAwayClickable>食料が「腐敗した」というメッセージをクリックすると、それがどこにあったのか判る</TD.RottedAwayClickable>
-  <TD.PopupMessageRealtime>「勧誘成功率%」（テキストメモ）のようなポップアップメッセージはリアルタイム表示され続けるので、すぐ消えません</TD.PopupMessageRealtime>
   <TD.SettingsIgnoreSleeping>徴兵されてない入植者は寝ている敵を無視する</TD.SettingsIgnoreSleeping>
   <TD.SettingsIgnoreSleepingDesc>これは「攻撃」の反応モードに適用されます。 入植者たちが物を運んでいる最中に、偶然近くを通ったからといって眠っているメガスカラベをわざわざ攻撃すると思いますか？</TD.SettingsIgnoreSleepingDesc>
   <TD.ShowStopButtonUnDrafted>「中止」ボタンを表示(通常時)</TD.ShowStopButtonUnDrafted>

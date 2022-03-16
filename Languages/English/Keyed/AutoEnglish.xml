@@ -43,7 +43,6 @@
 	<TD.RequiresRestart>These require a restart to take effect:</TD.RequiresRestart>
 	<TD.VariousCount>(various) selected items are given a count</TD.VariousCount>
 	<TD.RottedAwayClickable>Food 'rotted away' messages are clickable to see where it was</TD.RottedAwayClickable>
-	<TD.PopupMessageRealtime>Popup messages like '% recruit chance' (text motes) stay onscreen in realtime, so they don't dissappear at high speeds</TD.PopupMessageRealtime>
 	<TD.SettingsIgnoreSleeping>Undrafted colonists ignore sleeping enemies</TD.SettingsIgnoreSleeping>
 	<TD.SettingsIgnoreSleepingDesc>This applies to the 'Attack' Reaction mode. Would you believe your colonists would attack sleeping megascarabs if they happened to haul near them?</TD.SettingsIgnoreSleepingDesc>
 	<TD.ShowStopButtonUnDrafted>Show stop button (undrafted)</TD.ShowStopButtonUnDrafted>
