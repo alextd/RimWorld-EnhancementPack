@@ -17,7 +17,7 @@ namespace TD_Enhancement_Pack
 		//public static void DrawSkill(SkillRecord skill, Rect holdingRect, SkillUI.SkillDrawMode mode, string tooltipPrefix = "")
 		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
 		{
-			MethodInfo EndGroupInfo = AccessTools.Method(typeof(GUI), "EndGroup");
+			MethodInfo EndGroupInfo = AccessTools.Method(typeof(Widgets), nameof(Widgets.EndGroup));
 
 			MethodInfo LabelLearningInfo = AccessTools.Method(typeof(SkillLearningIndicator), nameof(LabelLearning));
 

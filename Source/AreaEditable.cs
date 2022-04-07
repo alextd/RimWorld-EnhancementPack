@@ -143,7 +143,7 @@ namespace TD_Enhancement_Pack
 			MethodInfo LabelInfo = AccessTools.Method(
 				typeof(WidgetRow), nameof(WidgetRow.Label));
 			MethodInfo EndGroupInfo = AccessTools.Method(
-				typeof(GUI), nameof(GUI.EndGroup));
+				typeof(Widgets), nameof(Widgets.EndGroup));
 
 			MethodInfo DoOrderButtonInfo = AccessTools.Method(
 				typeof(AreaRowPatch), nameof(DoOrderButton));
