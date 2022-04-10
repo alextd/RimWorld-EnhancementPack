@@ -28,12 +28,13 @@ namespace TD_Enhancement_Pack
 				: Color.Lerp(Color.green, Color.white, f-1);
 		}
 
+		public static AccessTools.FieldRef<TerrainGrid, TerrainDef[]> UnderGrid
+			 = AccessTools.FieldRefAccess<TerrainGrid, TerrainDef[]>("underGrid");
 		public static float FertilityAt(int index)
 		{
 			if (Mod.settings.cheatFertilityUnderGrid)
 			{
-				FieldInfo underGridInfo = AccessTools.Field(typeof(TerrainGrid), "underGrid");
-				if ((underGridInfo.GetValue(Find.CurrentMap.terrainGrid) as TerrainDef[])[index] is TerrainDef def)
+				if (UnderGrid(Find.CurrentMap.terrainGrid)[index] is TerrainDef def)
 					return def.fertility; 
 			}
 			return Find.CurrentMap.terrainGrid.TerrainAt(index).fertility;

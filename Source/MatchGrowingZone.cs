@@ -16,8 +16,9 @@ namespace TD_Enhancement_Pack
 			this.defaultLabel = "TD.Match".Translate();
 			this.defaultDesc = "TD.MatchDesc".Translate();
 		}
-		
-		public static FieldInfo startDragCellInfo = AccessTools.Field(typeof(DesignationDragger), "startDragCell");
+
+		public static AccessTools.FieldRef<DesignationDragger, IntVec3> GetStartDragCell = 
+			AccessTools.FieldRefAccess< DesignationDragger, IntVec3>("startDragCell");
 		public override AcceptanceReport CanDesignateCell(IntVec3 c)
 		{
 			if (!base.CanDesignateCell(c).Accepted)
@@ -32,7 +33,7 @@ namespace TD_Enhancement_Pack
 			}
 			if (Find.DesignatorManager.Dragger.Dragging)
 			{
-				IntVec3 startDragCell = (IntVec3)startDragCellInfo.GetValue(Find.DesignatorManager.Dragger);
+				IntVec3 startDragCell = GetStartDragCell(Find.DesignatorManager.Dragger);
 				if (grid.FertilityAt(c) != grid.FertilityAt(startDragCell))
 					return false;
 			}

@@ -200,7 +200,9 @@ namespace TD_Enhancement_Pack
 			}
 		}
 
-		public static FieldInfo SelectedAreaInfo = AccessTools.Field(typeof(Designator_AreaAllowed), "selectedArea");
+		public static AccessTools.FieldRef<Area> SelectedArea =
+			AccessTools.StaticFieldRefAccess<Area>(AccessTools.Field(typeof(Designator_AreaAllowed), "selectedArea"));
+
 		public static Rect FocusArea(Rect labelArea, Area area)
 		{
 			int numSkip = 3;
@@ -210,7 +212,7 @@ namespace TD_Enhancement_Pack
 			if (Widgets.ButtonInvisible(labelArea))
 			{
 				Find.WindowStack.TryRemove(typeof(Dialog_ManageAreas), false);
-				SelectedAreaInfo.SetValue(null, area);
+				SelectedArea() = area;
 				Find.DesignatorManager.Select(DesignatorUtility.FindAllowedDesignator<Designator_AreaAllowedExpand>());
 			}
 			return labelArea;
@@ -221,7 +223,10 @@ namespace TD_Enhancement_Pack
 			return new WidgetRow(rect.width, 0f, UIDirection.LeftThenUp, 99999f, 4f);
 		}
 
-		public static FieldInfo innerGridInfo = AccessTools.Field(typeof(Area), "innerGrid");
+
+		public static AccessTools.FieldRef<Area, BoolGrid> InnerGrid =
+			AccessTools.FieldRefAccess<Area, BoolGrid>("innerGrid");
+
 		public static void DoOrderButton(WidgetRow widgetRow, Area areaBase)
 		{
 			if (!(areaBase is Area_Allowed area)) return;
@@ -230,7 +235,7 @@ namespace TD_Enhancement_Pack
 
 			if (widgetRow.ButtonIcon(TexButton.Clear, "TD.ClearEntireArea".Translate()))
 			{
-				BoolGrid grid = (BoolGrid) innerGridInfo.GetValue(area);
+				BoolGrid grid = InnerGrid(area);
 				grid.Clear();
 				area.Invert(); area.Invert();//this is stupid but easiest way to access Dirtier
 			}
@@ -294,15 +299,18 @@ namespace TD_Enhancement_Pack
 				}
 			}
 		}
-		
-		public static MethodInfo IncrementPositionInfo = AccessTools.Method(typeof(WidgetRow), "IncrementPosition");
+
+		//private void IncrementPosition(float amount)
+		public delegate void IncrementPositionDel(WidgetRow row, float amount);
+		public static IncrementPositionDel IncrementPosition = 
+			AccessTools.MethodDelegate<IncrementPositionDel>(AccessTools.Method(typeof(WidgetRow), "IncrementPosition"));
+
 		public static void CopyPasteAreaRow(WidgetRow widgetRow, Area area)
 		{
 			//Gap doesn't work if it's the first thing. So dumb. Increment is private. So dumb.
 			//Have to hack in the method call instead AEH.
-			float gapWidth = WidgetRow.DefaultGap + WidgetRow.IconSize;
 			if (copiedArea == area)
-				IncrementPositionInfo.Invoke(widgetRow, new object[] { gapWidth});
+				IncrementPosition(widgetRow, WidgetRow.IconSize);//skip drawing copy icon
 			else if (widgetRow.ButtonIcon(TexButton.Copy))
 				copiedArea = area;
 			
@@ -429,10 +437,12 @@ namespace TD_Enhancement_Pack
 			areaIndex[b.ID] = temp;
 			SortMap();
 		}
-		public static MethodInfo sortInfo = AccessTools.Method(typeof(AreaManager), "SortAreas");
+
+		public Action<AreaManager> SortAreas =
+			AccessTools.MethodDelegate<Action<AreaManager>>(AccessTools.Method(typeof(AreaManager), "SortAreas"));
 		public void SortMap()
 		{
-			sortInfo.Invoke(map.areaManager, new object[] { });
+			SortAreas(map.areaManager);
 		}
 
 		public void InitIndex()

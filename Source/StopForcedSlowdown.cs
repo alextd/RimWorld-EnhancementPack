@@ -22,13 +22,14 @@ namespace TD_Enhancement_Pack
 		}
 
 		//public static bool ButtonImage(Rect butRect, Texture2D tex, bool doMouseoverSound = true)
-		public static FieldInfo forceNormalSpeedUntilInfo = AccessTools.Field(typeof(TimeSlower), "forceNormalSpeedUntil");
+		public static AccessTools.FieldRef<TimeSlower, int> forceNormalSpeedUntil =
+			AccessTools.FieldRefAccess<TimeSlower, int>("forceNormalSpeedUntil");
 		public static bool ButtonImageAndCheckForShift(Rect butRect, Texture2D tex, bool doMouseoverSound)
 		{
 			if (Widgets.ButtonImage(butRect, tex, doMouseoverSound))
 			{
 				if(Mod.settings.stopForcedSlowdown && Event.current.shift)
-					forceNormalSpeedUntilInfo.SetValue(Find.TickManager.slower, Find.TickManager.TicksGame - 1);//- 1 to be sure I guess
+					forceNormalSpeedUntil(Find.TickManager.slower) = Find.TickManager.TicksGame - 1;//- 1 to be sure I guess
 				return true;
 			}
 			return false;

@@ -30,13 +30,18 @@ namespace TD_Enhancement_Pack
 
 		public static void Prefix(Dialog_FormCaravan __instance, Map ___map)
 		{
+			Save(true, __instance.transferables, ___map);
+		}
+
+		public static void Save(bool forCaravan, List<TransferableOneWay> transferables, Map map)
+		{
 			if (!Mod.settings.caravanSaveManifest) return;
 
-			caravan = true;
+			caravan = forCaravan;
 			savedManifest = new List<ThingCountUNLIMITED>();
 			//bool matchesSelection = true;	//Ideally it wouldn't save if it matches selection but that's hard to figure out, can just hit reset button.
 
-			foreach (TransferableOneWay tr in __instance.transferables)
+			foreach (TransferableOneWay tr in transferables)
 			{
 				if (tr.CountToTransfer > 0)
 				{
@@ -51,7 +56,7 @@ namespace TD_Enhancement_Pack
 				savedMap = null;
 			}
 			else
-				savedMap = ___map;
+				savedMap = map;
 		}
 	}
 
@@ -96,18 +101,23 @@ namespace TD_Enhancement_Pack
 			}
 		}
 
+		public static void Load(List<TransferableOneWay> transferables)
+		{
+			foreach (ThingCountUNLIMITED thingCount in SaveManifest.savedManifest)
+			{
+				Log.Message($"Loading {thingCount.thing}:{thingCount.count}");
+				TransferableOneWay transferableOneWay = TransferableUtility.TransferableMatching<TransferableOneWay>(thingCount.thing, transferables, TransferAsOneMode.PodsOrCaravanPacking);
+				transferableOneWay?.AdjustTo(transferableOneWay.ClampAmount(transferableOneWay.CountToTransfer + thingCount.count));
+			}
+		}
+
 		public static void AddThings(Dialog_FormCaravan dialog, Map map)
 		{
 			//Add manifest
 			if (Mod.settings.caravanSaveManifest && SaveManifest.caravan &&
 				map == SaveManifest.savedMap && SaveManifest.savedMap != null)
 			{
-				foreach (ThingCountUNLIMITED thingCount in SaveManifest.savedManifest)
-				{
-					Log.Message($"Loading {thingCount.thing}:{thingCount.count}");
-					TransferableOneWay transferableOneWay = TransferableUtility.TransferableMatching<TransferableOneWay>(thingCount.thing, dialog.transferables, TransferAsOneMode.PodsOrCaravanPacking);
-					transferableOneWay?.AdjustTo(transferableOneWay.ClampAmount(transferableOneWay.CountToTransfer + thingCount.count));
-				}
+				Load(dialog.transferables);
 			}
 			//Add selection
 			else if (Mod.settings.caravanLoadSelection)
@@ -126,65 +136,20 @@ namespace TD_Enhancement_Pack
 
 	//Now for transport pods.
 
-	//Should be Dialog_LoadTransporters but no override of PostClose
-	//[HarmonyPatch(typeof(Window), "PostClose")]
-	//Okay this patch is how it should be
-	//Seems on mac/linux, patching an empty virtual method causes a crash
-	//So let's patch the one place this method is actually called
-	//public bool TryRemove(Window window, bool doCloseSound = true)
-	[HarmonyPatch(typeof(WindowStack), nameof(WindowStack.TryRemove), new Type[] { typeof(Window), typeof(bool)})]
+	[HarmonyPatch(typeof(Window), "PostClose")]
 	public static class PodsSaveManifest
 	{
-		public static FieldInfo transferablesInfo = AccessTools.Field(typeof(Dialog_LoadTransporters), "transferables");
-		public static List<TransferableOneWay> Transferables(this Dialog_LoadTransporters dialog) =>
-			(List<TransferableOneWay>)transferablesInfo.GetValue(dialog);
+		public static AccessTools.FieldRef<Dialog_LoadTransporters, List<TransferableOneWay>> Transferables =
+			AccessTools.FieldRefAccess<Dialog_LoadTransporters, List<TransferableOneWay>>("transferables");
 
-		//This should also be 'Map ___map' but THE PATCH IS NOT ACTUALLY Dialog_LoadTransporters NOW IS IT?
-		public static FieldInfo mapInfo = AccessTools.Field(typeof(Dialog_LoadTransporters), "map");
-		public static Map Map(this Dialog_LoadTransporters dialog) =>
-			(Map)mapInfo.GetValue(dialog);
-
-		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
-		{
-			MethodInfo PostCloseInfo = AccessTools.Method(typeof(Window), nameof(Window.PostClose));
-			foreach(CodeInstruction i in instructions)
-			{
-				if (i.Calls(PostCloseInfo))
-				{
-					yield return new CodeInstruction(OpCodes.Dup);//Window window2 = window
-					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(PodsSaveManifest), nameof(PostClosePrefix)));//PostClosePrefix(window2)
-					//followed by PostClose(window)
-				}
-
-				yield return i;
-			}
-		}
+		public static AccessTools.FieldRef<Dialog_LoadTransporters, Map> Map =
+			AccessTools.FieldRefAccess<Dialog_LoadTransporters, Map>("map");
 		
-		public static void PostClosePrefix(Window __instance)
+		public static void Prefix(Window __instance)
 		{
 			if (__instance is Dialog_LoadTransporters dialog)
-			{ 
-				if (!Mod.settings.caravanSaveManifest) return;
-
-				SaveManifest.caravan = false;
-				SaveManifest.savedManifest = new List<ThingCountUNLIMITED>();
-
-				foreach (TransferableOneWay tr in dialog.Transferables())
-				{
-					if (tr.CountToTransfer > 0)
-					{
-						Log.Message($"Saving {tr.AnyThing}:{tr.CountToTransfer}");
-						SaveManifest.savedManifest.Add(new ThingCountUNLIMITED(tr.AnyThing, tr.CountToTransfer));
-					}
-				}
-
-				if (SaveManifest.savedManifest.Count == 0)
-				{
-					SaveManifest.savedManifest = null;
-					SaveManifest.savedMap = null;
-				}
-				else
-					SaveManifest.savedMap = dialog.Map();
+			{
+				SaveManifest.Save(false, Transferables(dialog), Map(dialog));
 			}
 		}
 	}
@@ -199,12 +164,7 @@ namespace TD_Enhancement_Pack
 			if (Mod.settings.caravanSaveManifest && !SaveManifest.caravan &&
 				___map == SaveManifest.savedMap && SaveManifest.savedMap != null)
 			{
-				foreach (ThingCountUNLIMITED thingCount in SaveManifest.savedManifest)
-				{
-					Log.Message($"Loading {thingCount.thing}:{thingCount.count}");
-					TransferableOneWay transferableOneWay = TransferableUtility.TransferableMatching<TransferableOneWay>(thingCount.thing, __instance.Transferables(), TransferAsOneMode.PodsOrCaravanPacking);
-					transferableOneWay?.AdjustTo(transferableOneWay.ClampAmount(transferableOneWay.CountToTransfer + thingCount.count));
-				}
+				LoadManifest.Load(PodsSaveManifest.Transferables(__instance));
 			}
 			//No selection like caravans - you're already selecting pods!
 		}

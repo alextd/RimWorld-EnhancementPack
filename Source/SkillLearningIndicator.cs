@@ -21,22 +21,22 @@ namespace TD_Enhancement_Pack
 
 			MethodInfo LabelLearningInfo = AccessTools.Method(typeof(SkillLearningIndicator), nameof(LabelLearning));
 
+			FieldInfo levelLabelWidthInfo = AccessTools.Field(typeof(SkillUI), "levelLabelWidth");
+
 			foreach (CodeInstruction i in instructions)
 			{
 				if(i.Calls(EndGroupInfo))
 				{
 					yield return new CodeInstruction(OpCodes.Ldarg_0);//SkillRecord
 					yield return new CodeInstruction(OpCodes.Ldarg_1);//holdingRect
+					yield return new CodeInstruction(OpCodes.Ldsfld, levelLabelWidthInfo);//levelLabelWidth
 					yield return new CodeInstruction(OpCodes.Call, LabelLearningInfo);
 				}
 				yield return i;
 			}
 		}
 
-		static FieldInfo levelLabelWidthInfo = AccessTools.Field(typeof(SkillUI), "levelLabelWidth");
-		public static float GetLevelLabelWidth() => (float)levelLabelWidthInfo.GetValue(null);
-
-		public static void LabelLearning(SkillRecord skillRecord, Rect holdingRect)
+		public static void LabelLearning(SkillRecord skillRecord, Rect holdingRect, float levelLabelWidth)
 		{
 			if (!Mod.settings.skillArrows) return;
 
@@ -63,7 +63,7 @@ namespace TD_Enhancement_Pack
 				GUI.color = arrowColor;
 
 				Rect iconRect = new Rect(Vector2.zero, Vector2.one * holdingRect.height);
-				iconRect.x += GetLevelLabelWidth();
+				iconRect.x += levelLabelWidth;
 				//Hack in the end result of LeftEdgeMargin + SkillHeight + 4 + skill # width ish
 				iconRect.x += 6 + 24 + 4 + 36;
 

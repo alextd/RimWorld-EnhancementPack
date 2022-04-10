@@ -12,9 +12,9 @@ namespace TD_Enhancement_Pack.Alerts
 {
 	public class Alert_WindBlocker : Alert
 	{
-		public static FieldInfo cellsInfo = AccessTools.Field(typeof(CompPowerPlantWind), "windPathBlockedCells");
-		public static List<IntVec3> WindPathBlockedCells(CompPowerPlantWind comp) =>
-			(List<IntVec3>)cellsInfo.GetValue(comp);
+		public static AccessTools.FieldRef<CompPowerPlantWind, List<IntVec3>> WindPathBlockedCells =
+			AccessTools.FieldRefAccess<CompPowerPlantWind, List<IntVec3>>("windPathBlockedCells");
+
 		private IEnumerable<GlobalTargetInfo> BlockerCells
 		{
 			get

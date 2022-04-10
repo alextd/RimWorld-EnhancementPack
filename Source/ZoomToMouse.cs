@@ -27,35 +27,40 @@ namespace TD_Enhancement_Pack
 				else yield return i;
 			}
 		}
-		
-		public static FieldInfo rootPosInfo = AccessTools.Field(typeof(CameraDriver), "rootPos");
-		public static FieldInfo rootSizeInfo = AccessTools.Field(typeof(CameraDriver), "rootSize");
-		public static MethodInfo ApplyInfo = AccessTools.Method(typeof(CameraDriver), "ApplyPositionToGameObject");
+
+		public static AccessTools.FieldRef<CameraDriver, Vector3> RootPos =
+			AccessTools.FieldRefAccess<CameraDriver, Vector3>("rootPos");
+		public static AccessTools.FieldRef<CameraDriver, float> RootSize =
+			AccessTools.FieldRefAccess<CameraDriver, float>("rootSize");
+		public delegate void ApplyPositionToGameObjectDel(CameraDriver cam);
+		public static ApplyPositionToGameObjectDel ApplyPositionToGameObject =
+			AccessTools.MethodDelegate<ApplyPositionToGameObjectDel>(AccessTools.Method(typeof(CameraDriver), "ApplyPositionToGameObject"));
+
 		public static void Adjust(CameraDriver driver, float rootSize)
 		{
 			if(!Mod.settings.zoomToMouse || Event.current.shift)
 			{
-				rootSizeInfo.SetValue(driver, rootSize);
+				RootSize(driver) = rootSize;
 				return;
 			}
 			//Find what old position is
-			Vector3 rootPos = (Vector3)rootPosInfo.GetValue(driver);
+			Vector3 rootPos = RootPos(driver);
 
 			//update the Camera Object (for previously-done scrolling movement) and get old mouse pos
-			ApplyInfo.Invoke(driver, null);
+			ApplyPositionToGameObject(driver);
 			Vector3 oldMousePos = UI.MouseMapPosition();
 
 			//apply new zoom
-			rootSizeInfo.SetValue(driver, rootSize);
+			RootSize(driver) = rootSize;
 
 			//update the Camera Object for the zoom, and get NEW mouse pos
-			ApplyInfo.Invoke(driver, null);
+			ApplyPositionToGameObject(driver);
 			Vector3 newMousePos = UI.MouseMapPosition();
 
 			//adjust for mouse pos difference: keep mousepos at the same spot.
 			rootPos += oldMousePos - newMousePos;
 
-			rootPosInfo.SetValue(driver, rootPos);
+			RootPos(driver) = rootPos;
 		}
 	}
 }

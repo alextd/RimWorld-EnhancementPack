@@ -184,10 +184,6 @@ namespace TD_Enhancement_Pack
 			}
 			//Variation
 		}
-
-		public static MethodInfo ApparelChangedInfo = AccessTools.Method(typeof(Pawn_ApparelTracker), nameof(Pawn_ApparelTracker. Notify_ApparelChanged));
-		public static void ApparelChanged(this Pawn_ApparelTracker appTracker) =>
-			ApparelChangedInfo.Invoke(appTracker, new object[] { });
 		public static void Go()
 		{
 			if(!Mod.settings.colorRedoWarned)
@@ -205,7 +201,7 @@ namespace TD_Enhancement_Pack
 					ReDo(pawn.inventory.GetDirectlyHeldThings());
 					ReDo(pawn.apparel.WornApparel.Cast<Thing>());
 					//pawn.apparel.Notify_ApparelAdded(null);
-					pawn.apparel.ApparelChanged();
+					pawn.apparel.Notify_ApparelChanged();
 				}
 
 				ReDo(map.listerThings.AllThings);
