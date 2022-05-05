@@ -73,6 +73,7 @@ namespace TD_Enhancement_Pack
 		public bool startOpenResourceReadout = false;
 		public bool pawnTableClickSelect = false;
 		public bool selectedItemsZoomButton = true;
+		public bool ctrlShiftQueueFront = true;
 		public bool mouseoverInfoTopRight = false;
 		public bool stopForcedSlowdown = true;
 
@@ -233,6 +234,7 @@ namespace TD_Enhancement_Pack
 			options.CheckboxLabeled("TD.SettingPawnTableHighlightSelected".Translate(), ref pawnTableHighlightSelected, "TD.SettingPawnTableHighlightSelectedDesc".Translate());
 			options.CheckboxLabeled("TD.SettingPawnTableArrowMouseover".Translate(), ref pawnTableArrowMouseover);
 			options.CheckboxLabeled("TD.SettingPawnTableClickSelect".Translate(), ref pawnTableClickSelect, "TD.SettingPawnTableClickSelectDesc".Translate());
+			options.CheckboxLabeled("TD.SettingCtrlQueueFront".Translate(), ref ctrlShiftQueueFront, "TD.SettingCtrlQueueFrontDesc".Translate());
 			options.CheckboxLabeled("TD.SettingJumpToSelectedItems".Translate(), ref selectedItemsZoomButton);
 			options.Gap();
 			options.CheckboxLabeled("TD.SettingTopRightMouseover".Translate(), ref mouseoverInfoTopRight, "TD.SettingTopRightMouseoverDesc".Translate());

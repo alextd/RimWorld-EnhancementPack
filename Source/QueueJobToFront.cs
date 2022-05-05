@@ -34,7 +34,7 @@ namespace TD_Enhancement_Pack
 		//public void EnqueueLast(Job j, JobTag? tag = null)
 		public static void EnqueueLastOrFirst(JobQueue queue, Job j, JobTag? tag = null)
 		{
-			if(KeyBindingDefOf.ModifierIncrement_10x.IsDown)//ctrl
+			if(Mod.settings.ctrlShiftQueueFront && KeyBindingDefOf.ModifierIncrement_10x.IsDown)//ctrl
 				queue.EnqueueFirst(j, tag);
 			else
 				queue.EnqueueLast(j, tag);
