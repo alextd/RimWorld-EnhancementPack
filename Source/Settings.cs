@@ -72,8 +72,8 @@ namespace TD_Enhancement_Pack
 		public bool rememberResourceReadout = true;
 		public bool startOpenResourceReadout = false;
 		public bool pawnTableClickSelect = false;
-		public bool selectedItemsZoomButton = true;
 		public bool ctrlShiftQueueFront = true;
+		public bool selectedItemsZoomButton = true;
 		public bool mouseoverInfoTopRight = false;
 		public bool stopForcedSlowdown = true;
 
@@ -355,6 +355,7 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref rememberResourceReadout, "rememberResourceReadout", true);
 			Scribe_Values.Look(ref startOpenResourceReadout, "startOpenResourceReadout", false);
 			Scribe_Values.Look(ref pawnTableClickSelect, "pawnTableClickSelect", false);
+			Scribe_Values.Look(ref ctrlShiftQueueFront, "ctrlShiftQueueFront", true);
 			Scribe_Values.Look(ref selectedItemsZoomButton, "selectedItemsZoomButton", true);
 			Scribe_Values.Look(ref mouseoverInfoTopRight, "mouseoverInfoTopRight", false);
 			Scribe_Values.Look(ref stopForcedSlowdown, "stopForcedSlowdown", true);
