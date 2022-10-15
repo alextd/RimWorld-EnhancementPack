@@ -52,7 +52,10 @@ namespace TD_Enhancement_Pack
 		protected CellBoolDrawer drawer;
 		public void MakeDrawer()
 		{
-			drawer = new CellBoolDrawer((ICellBoolGiver)this, Find.CurrentMap.Size.x, Find.CurrentMap.Size.z, defaultOpacity * Mod.settings.overlayOpacity);
+			if (Find.CurrentMap is Map map)
+				drawer = new CellBoolDrawer((ICellBoolGiver)this, map.Size.x, map.Size.z, defaultOpacity * Mod.settings.overlayOpacity);
+			else
+				drawer = null;
 		}
 
 		public static void ResetAll()
