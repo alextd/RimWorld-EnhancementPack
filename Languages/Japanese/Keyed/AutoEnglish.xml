@@ -11,10 +11,7 @@
   <TD.TogglePlantHarveset>成長表示: 成長度で色分けする</TD.TogglePlantHarveset>
   <TD.TogglePowerOverlay>電力線表示：電力線の有無で色分けする</TD.TogglePowerOverlay>
   <TDEnhancementPack>TD Enhancement Pack</TDEnhancementPack>
-  <TD.SizeAndFertile>ゾーン面積: {0:0} (肥沃具合: {1:0.0})</TD.SizeAndFertile>
-  <TD.Size>ゾーン面積: {0}</TD.Size>
-  <TD.CountToSow>残種蒔き面積: {0}</TD.CountToSow>
-  <TD.CountFullyGrown>収穫可能: {0}</TD.CountFullyGrown>
+  <TD.FertileCount>肥沃具合</TD.FertileCount>
   <TD.SettingOverlayBuildable>地盤表示の切替メニューを表示する</TD.SettingOverlayBuildable>
   <TD.SettingOverlayBuildableDesc>赤色は建築不可、オレンジは「中」(中程度の重量物を建築可能)、黄色は「軽」(軽い重量物を建築可能)、それ以外は「重」(重い重量物を建築可能)です(ほとんどの建築物は「重」の場所にのみ建設可能)</TD.SettingOverlayBuildableDesc>
   <TD.SettingOverlayCoverage>範囲表示の切替メニューを表示する</TD.SettingOverlayCoverage>
@@ -34,8 +31,6 @@
   <TD.SettingSkillGainArrowDesc>キャラクターの略歴タブ</TD.SettingSkillGainArrowDesc>
   <TD.SettingSkillLossArrow>スキルが減少しているとき該当箇所に矢印を表示する</TD.SettingSkillLossArrow>
   <TD.SettingSkillLossArrowDesc>11以上のスキルはゆっくりと減少します(減少速度によって薄さが変わります)</TD.SettingSkillLossArrowDesc>
-  <TD.SettingZoneSize>備蓄ゾーンや農業ゾーンの情報を表示する</TD.SettingZoneSize>
-  <TD.SettingZoneSizeDesc>備蓄ゾーンは面積のみ、農業ゾーンなら面積と種蒔き可能な面積が表示されます。肥沃具合は肥沃度が100%のときは面積と同じになります(植物の肥沃度感受性を考慮しています)</TD.SettingZoneSizeDesc>
   <TD.OtherFeatures>その他の機能：</TD.OtherFeatures>
   <TD.AreaEditing>制限ゾーンの管理で並べ替え、色変更、コピー/貼り付けなどができます</TD.AreaEditing>
   <TD.NeverHome>制限ゾーンで「Never Home」と名付けられたゾーンは、コロニーゾーンに追加しない</TD.NeverHome>
