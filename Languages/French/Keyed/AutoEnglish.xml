@@ -17,14 +17,8 @@
 	<TD.TogglePlantHarveset>Activer/Désactiver la zone de surbrillance de la récolte</TD.TogglePlantHarveset>
 	<!-- EN: TD Enhancement Pack -->
 	<TDEnhancementPack>TD Enhancement Pack</TDEnhancementPack>
-	<!-- EN: Size: {0:0} (Fertile: {1:0.0}) -->
-	<TD.SizeAndFertile>Taille: {0:0} (Fertile: {1:0.0})</TD.SizeAndFertile>
-	<!-- EN: Size: {0} -->
-	<TD.Size>Taille: {0}</TD.Size>
-	<!-- EN: To do: {0} -->
-	<TD.CountToSow>Reste à semer: {0}</TD.CountToSow>
-	<!-- EN: Grown: {0} -->
-	<TD.CountFullyGrown>Mûr: {0}</TD.CountFullyGrown>
+	<!-- EN: Fertile: {1:0.0} -->
+	<TD.FertileCount>Fertile</TD.FertileCount>
 	<!-- EN: Enable a toggle for a buildable terrain overlay -->
 	<TD.SettingOverlayBuildable>Ajouter un bouton d'activation/désactivation de la zone de surbrillance des terrains constructibles sur le HUD</TD.SettingOverlayBuildable>
 	<!-- EN: Red is unbuildable terrain, Orange is 'Medium', Yellow is 'Light' -->
@@ -57,10 +51,6 @@
 	<TD.SettingSkillLossArrow>Afficher des flèches quand des compétences diminuent</TD.SettingSkillLossArrow>
 	<!-- EN: Skills slowly lose experience after level 10 (The arrow can be very faded for slow rates) -->
 	<TD.SettingSkillLossArrowDesc>Les compétences diminuent lentement après le niveau 10 (La flèche d'une compétence peut être fortement estompée si celle-ci diminue très lentement)</TD.SettingSkillLossArrowDesc>
-	<!-- EN: Show Stockpile/Growing zone area size and info -->
-	<TD.SettingZoneSize>Afficher la taille et des informations supplémentaires sur les zones de stockage et les zones agricoles</TD.SettingZoneSize>
-	<!-- EN: Growing zones show count of empty / mature plots. The "Fertile" count is the approximate equivalent number of 100% fertility land (e.g 100 plots with 140% fertility would yield about the same as 140 at 100% fertiliity) (And this takes into acount plant fertility sensitivity) -->
-	<TD.SettingZoneSizeDesc>Les zones agricoles affichent le nombre de parcelles non semées et mûres. Le nombre "Fertile" est une approximation équivalente à un sol fertile à 100% (par exemple, 100 parcelles d'un sol fertile à 140% donneraient à peu près le même résultat que 140 parcelles d'un sol fertile à 100%) (Cela prend aussi en compte la sensibilité à la fertilité de la plante)</TD.SettingZoneSizeDesc>
 	<!-- EN: Other features: -->
 	<TD.OtherFeatures>Autres features :</TD.OtherFeatures>
 	<!-- EN: Areas can be reordered, recolored, and copy/pasted in the area manager -->

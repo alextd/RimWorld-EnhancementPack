@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Reflection;
+using System.Reflection.Emit;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,63 +10,36 @@ using Verse;
 
 namespace TD_Enhancement_Pack
 {
-	[HarmonyPatch(typeof(Zone_Growing))]
-	[HarmonyPatch("GetInspectString")]
-	static class ZoneGrowingSizeCount
+
+	[HarmonyPatch(typeof(Zone_Growing), nameof(Zone_Growing.GetInspectString))]
+	public static class ZoneGrowingSizeCount
 	{
-		public static void Postfix(Zone_Growing __instance, ref string __result)
+		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
 		{
-			if (!Mod.settings.showZoneSize) return;
+			// After getting base.GetInspectString(), append Fertility Count
+			//	IL_0001: call instance string Verse.Zone::GetInspectString()
+			MethodInfo GetInspectStringInfo = AccessTools.Method(typeof(Zone), nameof(Zone.GetInspectString));
 
-			int count = __instance.cells.Count;
-			__result += "\n" + 
-				String.Format("TD.SizeAndFertile".Translate(), count, count + FertilityCount(__instance))
-				+ "\n" +
-				String.Format("TD.CountToSow".Translate(), ToDoCount(__instance))
-				+ "   " + 
-				String.Format("TD.CountFullyGrown".Translate(), GrownCount(__instance));
-		}
-
-		public static float FertilityCount(Zone_Growing zone)
-		{
-			return zone.GetPlantDefToGrow().plant.fertilitySensitivity
-				* zone.cells.Sum(cell => zone.Map.fertilityGrid.FertilityAt(cell) - 1.0f);
-		}
-
-		public static int ToDoCount(Zone_Growing zone)
-		{
-			Map map = zone.Map;
-			return zone.cells.FindAll(c => !map.thingGrid.ThingsAt(c).Any(t => t.def == zone.GetPlantDefToGrow())).Count;
-		}
-
-		public static int GrownCount(Zone_Growing zone)
-		{
-			Map map = zone.Map;
-			int ret = 0;
-			ThingDef plantDef = zone.GetPlantDefToGrow();
-			foreach (IntVec3 cell in zone.cells)
+			foreach (var inst in instructions)
 			{
-				if (map.thingGrid.ThingsAt(cell).FirstOrDefault(t => t is Plant) is Plant p
-					&& p.def == plantDef && p.Growth == 1)
-					ret++;
+				yield return inst;
+
+				if (inst.Calls(GetInspectStringInfo))
+				{
+					yield return new CodeInstruction(OpCodes.Ldarg_0);//this
+					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ZoneGrowingSizeCount), nameof(AppendFertileCount)));//AppendFertileCount(string, this)
+				}
 			}
-			return ret;
 		}
-	}
 
-	[HarmonyPatch(typeof(Zone))]
-	[HarmonyPatch("GetInspectString")]
-	static class ZoneSizeCount
-	{
-		public static void Postfix(Zone __instance, ref string __result)
+		public static string AppendFertileCount(string baseString, Zone_Growing zone)
 		{
-			if (!Mod.settings.showZoneSize) return;
+			if (!Mod.settings.showGrowingFertilitySize) return baseString;
 
-			string add = String.Format("TD.Size".Translate(), __instance.cells.Count);
-			if (__result == String.Empty)
-				__result = add;
-			else
-				__result += "\n" + add;
+			float fertCount = zone.CellCount + 
+				zone.GetPlantDefToGrow().plant.fertilitySensitivity
+				* zone.cells.Sum(cell => zone.Map.fertilityGrid.FertilityAt(cell) - 1.0f);
+			return $"{baseString} ({"TD.FertileCount".Translate()}: {fertCount:0.0})";
 		}
 	}
 }

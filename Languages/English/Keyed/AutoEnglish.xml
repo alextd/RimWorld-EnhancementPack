@@ -11,10 +11,7 @@
 	<TD.TogglePlantHarveset>Toggle the harvest overlay</TD.TogglePlantHarveset>
 	<TD.TogglePowerOverlay>Toggle the power net</TD.TogglePowerOverlay>
 	<TDEnhancementPack>TD Enhancement Pack</TDEnhancementPack>
-	<TD.SizeAndFertile>Size: {0:0} (Fertile: {1:0.0})</TD.SizeAndFertile>
-	<TD.Size>Size: {0}</TD.Size>
-	<TD.CountToSow>To do: {0}</TD.CountToSow>
-	<TD.CountFullyGrown>Grown: {0}</TD.CountFullyGrown>
+	<TD.FertileCount>Fertile</TD.FertileCount>
 	<TD.SettingOverlayBuildable>Enable a toggle for a buildable terrain overlay</TD.SettingOverlayBuildable>
 	<TD.SettingOverlayBuildableDesc>Red is unbuildable terrain, Orange is 'Medium', Yellow is 'Light', and clear is 'Heavy' (pretty much everything can be built on 'Heavy')</TD.SettingOverlayBuildableDesc>
 	<TD.SettingOverlayCoverage>Enable a toggle for a building coverage overlay</TD.SettingOverlayCoverage>
@@ -34,8 +31,8 @@
 	<TD.SettingSkillGainArrowDesc>In the Character Tab</TD.SettingSkillGainArrowDesc>
 	<TD.SettingSkillLossArrow>Show arrows indicating skill loss</TD.SettingSkillLossArrow>
 	<TD.SettingSkillLossArrowDesc>Skills slowly lose experience after level 10 (The arrow can be very faded for slow rates)</TD.SettingSkillLossArrowDesc>
-	<TD.SettingZoneSize>Show Stockpile/Growing zone area size and info</TD.SettingZoneSize>
-	<TD.SettingZoneSizeDesc>Growing zones show count of empty / mature plots. The "Fertile" count is the approximate equivalent number of 100% fertility land (e.g 100 plots with 140% fertility would yield about the same as 140 at 100% fertiliity) (And this takes into acount plant fertility sensitivity)</TD.SettingZoneSizeDesc>
+	<TD.SettingZoneFertility>Show Growing Zone's size accounting fertility</TD.SettingZoneFertility>
+	<TD.SettingZoneFertilityDesc>The "Fertile" size is the equivalent size of land with 100% fertility (e.g. 100 plots on 140% fertile land has "fertile size" of 140, as it would yield the same as 140 at 100% fertiliity)</TD.SettingZoneFertilityDesc>
 	<TD.OtherFeatures>Other features:</TD.OtherFeatures>
 	<TD.AreaEditing>Areas can be reordered, recolored, and copy/pasted in the area manager</TD.AreaEditing>
 	<TD.NeverHome>Make an area named 'Never Home' and the area will never be added to the Home Area</TD.NeverHome>
@@ -181,7 +178,8 @@
 	<TD.NoLimitOnTheNumberOfAreas>No limit on the number of areas</TD.NoLimitOnTheNumberOfAreas>
 	<TD.SettingJumpToSelectedItems>In the selection info panel, show a button to jump to selected items</TD.SettingJumpToSelectedItems>
 	<TD.SettingStopForcedSlowdown>Can Shift-click the time controls to stop the forced slowdown during a battle</TD.SettingStopForcedSlowdown>
-		<TD.ConfirmRestoreAllSettings>Really restore all settings?</TD.ConfirmRestoreAllSettings>
+	
+	<TD.ConfirmRestoreAllSettings>Really restore all settings?</TD.ConfirmRestoreAllSettings>
 	<TD.FeatureConfirmRestoreSettings>'Restore settings' button has confirmation, and saves a backup</TD.FeatureConfirmRestoreSettings>
 	
 

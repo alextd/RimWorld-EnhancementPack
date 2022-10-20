@@ -15,7 +15,7 @@ namespace TD_Enhancement_Pack
 		{
 			return Mod.settings.dodgeGrenade &&
 				!pawn.Downed && !pawn.IsBurning() && !pawn.InMentalState && pawn.Awake() &&
-				(!Mod.settings.dodgeGrenadeUnlessBelt || !pawn.apparel.WornApparel.Any(a => a is ShieldBelt));
+				(!Mod.settings.dodgeGrenadeUnlessBelt || !pawn.apparel.WornApparel.Any(a => a.GetComp<CompShield>() != null));
 		}
 	}
 

@@ -14,7 +14,7 @@ namespace TD_Enhancement_Pack
 		//public void Add(Designator des)
 		public static void Postfix(Designator_Dropdown __instance, List<Designator> ___elements)
 		{
-			__instance.order = ___elements.Sum(d => d.order) / ___elements.Count();
+			__instance.Order = ___elements.Sum(d => d.Order) / ___elements.Count();
 		}
 	}
 }
