@@ -19,7 +19,7 @@ namespace TD_Enhancement_Pack
 
 			if (Find.PlaySettings.autoRebuild && thing.Faction == Faction.OfPlayer && buildingDef.blueprintDef != null && buildingDef.IsResearchFinished && map.areaManager.Home[thing.Position] && GenConstruct.CanPlaceBlueprintAt(buildingDef, thing.Position, thing.Rotation, map, false, null).Accepted)
 			{
-				GenConstruct.PlaceBlueprintForBuild_NewTemp(buildingDef, thing.Position, map, thing.Rotation, Faction.OfPlayer, thing.Stuff);
+				GenConstruct.PlaceBlueprintForBuild(buildingDef, thing.Position, map, thing.Rotation, Faction.OfPlayer, thing.Stuff);
 			}
 		}
 

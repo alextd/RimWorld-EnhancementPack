@@ -43,7 +43,7 @@ namespace TD_Enhancement_Pack
 					}
 				},
 				hotKey = KeyBindingDefOf.Designator_Deconstruct,
-				order = -30f
+				Order = -30f
 			});
 
 			__result = result;
