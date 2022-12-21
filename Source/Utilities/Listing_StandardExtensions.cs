@@ -28,7 +28,7 @@ namespace TD.Utilities
 			Text.Anchor = TextAnchor.MiddleLeft;
 			Widgets.Label(rect2, label);
 
-			float result = Widgets.HorizontalSlider(rect3, val, min, max, true);
+			float result = Widgets.HorizontalSlider_NewTemp(rect3, val, min, max, true);
 			val = result;
 			Text.Anchor = TextAnchor.MiddleRight;
 			Widgets.Label(rect4, String.Format(format, val));
