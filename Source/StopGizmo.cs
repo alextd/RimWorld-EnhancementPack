@@ -25,8 +25,21 @@ namespace TD_Enhancement_Pack
 
 			if (RimWorld.Planet.WorldRendererUtility.WorldRenderedNow) return;
 
-			if (!DebugSettings.godMode && !
-				(__instance.IsColonistPlayerControlled && (__instance.CurJobDef?.playerInterruptible ?? true))) return;
+
+			if (!DebugSettings.godMode)
+			{
+				if (!(__instance.drafter?.ShowDraftGizmo ?? false))
+					return;
+
+				if (__instance.jobs.curJob != null && !__instance.jobs.IsCurrentJobPlayerInterruptible())
+					return;
+
+				if (__instance.Downed || __instance.Deathresting)
+					return;
+
+				if (ModsConfig.BiotechActive && __instance.IsColonyMech && !MechanitorUtility.CanDraftMech(__instance))
+					return;
+			}
 
 			List<Gizmo> result = __result.ToList();
 			
