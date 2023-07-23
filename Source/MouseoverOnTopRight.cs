@@ -21,7 +21,7 @@ namespace TD_Enhancement_Pack
 			MethodInfo LabelInfo = AccessTools.Method(typeof(Widgets), "Label", new Type[] { typeof(Rect), typeof(string) });
 			MethodInfo LabelTaggedInfo = AccessTools.Method(typeof(Widgets), "Label", new Type[] { typeof(Rect), typeof(TaggedString) });
 			MethodInfo OpenTabInfo = AccessTools.Property(typeof(MainTabsRoot), "OpenTab").GetGetMethod();
-			
+
 			List<CodeInstruction> instList = instructions.ToList();
 			for (int i = 0; i < instList.Count; i++)
 			{
@@ -45,12 +45,12 @@ namespace TD_Enhancement_Pack
 				}
 			}
 		}
-		
+
 
 		public static void DrawTextWinterShadowTR(Rect badRect)
 		{
 			if (Mod.settings.mouseoverInfoTopRight)
-				GenUI.DrawTextWinterShadow(new Rect(UI.screenWidth-256f, 256f, 256f, -256f));
+				GenUI.DrawTextWinterShadow(new Rect(UI.screenWidth - 256f, 256f, 256f, -256f));
 			else
 				GenUI.DrawTextWinterShadow(badRect);
 		}
@@ -80,5 +80,16 @@ namespace TD_Enhancement_Pack
 			return Mod.settings.mouseoverInfoTopRight ? null : def;
 		}
 
+	}
+
+
+	//And the method that MouseoverReadoutOnGUI calls which calls Widgets.Label:
+	//private void DrawGas(GasType gasType, byte density, ref float curYOffset)
+	[HarmonyPatch(typeof(MouseoverReadout), "DrawGas")]
+	public static class MouseoverOnTopRightDrawGas
+	{
+		//public void MouseoverReadoutOnGUI()
+		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+			 => MouseoverOnTopRight.Transpiler(instructions);
 	}
 }
