@@ -27,8 +27,8 @@ namespace TD_Enhancement_Pack
 				if (rotRate < 0.001f)
 					rotValue = "-";
 
-				string desc = "The number of days until this item will rot when left outside.\n\nThis can be prevented by refrigerating or freezing the item.";
-				yield return new StatDrawEntry(StatCategoryDefOf.BasicsNonPawn, "Current time to rot", rotValue, desc, 1000);
+				string desc = "TD.RotStatDesc".Translate();
+				yield return new StatDrawEntry(StatCategoryDefOf.BasicsNonPawn, "TD.CurrentTimeToRot".Translate(), rotValue, desc, 1000);
 			}
 		}
 	}
@@ -44,8 +44,8 @@ namespace TD_Enhancement_Pack
 			if (__instance is CompProperties_Rottable propsRottable)
 			{
 				int rotTicks = (int)propsRottable.daysToRotStart * GenDate.TicksPerDay;
-				string desc = "The number of days until this item will rot when left outside.\n\nThis can be prevented by refrigerating or freezing the item.";
-				yield return new StatDrawEntry(StatCategoryDefOf.BasicsNonPawn, "Shelf life", rotTicks.ToStringTicksToPeriod(), desc, 1000);
+				string desc = "TD.RotStatDesc".Translate();
+				yield return new StatDrawEntry(StatCategoryDefOf.BasicsNonPawn, "TD.ShelfLife".Translate(), rotTicks.ToStringTicksToPeriod(), desc, 1000);
 			}
 		}
 	}
