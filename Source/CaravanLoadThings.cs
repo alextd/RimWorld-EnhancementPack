@@ -60,7 +60,7 @@ namespace TD_Enhancement_Pack
 		}
 	}
 
-	[HarmonyPatch(typeof(Game), nameof(Game.DeinitAndRemoveMap))]
+	[HarmonyPatch(typeof(Game), nameof(Game.DeinitAndRemoveMap_NewTemp))]
 	public static class MapRemover
 	{
 		//public void DeinitAndRemoveMap(Map map)
