@@ -182,7 +182,8 @@
 	<TD.ConfirmRestoreAllSettings>Really restore all settings?</TD.ConfirmRestoreAllSettings>
 	<TD.FeatureConfirmRestoreSettings>'Restore settings' button has confirmation, and saves a backup</TD.FeatureConfirmRestoreSettings>
 	
-	<TD.RotStatDesc>The number of days until this item will rot when left outside.\n\nThis can be prevented by refrigerating or freezing the item.</TD.RotStatDesc>
+
+	<TD.RotStatDesc>The number of days until this item will rot when left outside.\n\nThis can be prevented by refrigerating or freezing the item.</TD.RotStatDesc>
 	<TD.CurrentTimeToRot>Current time to rot</TD.CurrentTimeToRot>
 	<TD.ShelfLife>Shelf life</TD.ShelfLife>
 	
