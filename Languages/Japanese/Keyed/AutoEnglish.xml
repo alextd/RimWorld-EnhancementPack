@@ -94,8 +94,6 @@
   <TD.SettingPawnTableHighlightSelected>選択した入植者が、入植者リスト(優先順位や制限等)で色づけされる</TD.SettingPawnTableHighlightSelected>
   <TD.SettingPawnTableHighlightSelectedDesc>優先順位や制限タブ、作業タブ、野生動物タブなどのリストでも表示されます</TD.SettingPawnTableHighlightSelectedDesc>
   <TD.SettingPawnTableArrowMouseover>テーブル内のポーンを示す矢印を表示する</TD.SettingPawnTableArrowMouseover>
-  <TD.SettingCtrlQueueFront>Ctrl+Shift+クリックで行動予約を前に追加する</TD.SettingCtrlQueueFront>
-  <TD.SettingCtrlQueueFrontDesc>通常、Shiftキーを押しながらクリックすると、行動予約か追加されますが、予約の最後に追加されます。Ctrl+Shift+クリックで、予約の最初に追加することができます。</TD.SettingCtrlQueueFrontDesc>
   <TD.SettingPawnTableClickSelect>入植者リストから入植者を選択できるようになる(Alt+クリックで移動)</TD.SettingPawnTableClickSelect>
   <TD.SettingPawnTableClickSelectDesc>入植者リスト(優先順位や制限など)の名前をクリックすることで選択(リストが閉じたり移動はしない)になります\nShiftクリックで複数人の選択と解除ができます\nダブルクリックでリストを閉じずにカメラ中央に移動します\nAlt+クリックでリストを閉じて対象入植者の場所へ移動します(バニラの動作)</TD.SettingPawnTableClickSelectDesc>
   <TD.SettingAlertDeterioration>劣化したアイテムがあるとき警告する</TD.SettingAlertDeterioration>
@@ -179,5 +177,10 @@
 
   <TD.ConfirmRestoreAllSettings>本当にすべての設定を復元しますか？</TD.ConfirmRestoreAllSettings>
   <TD.FeatureConfirmRestoreSettings>[設定の復元]ボタンをクリックして確認した後、バックアップを保存します</TD.FeatureConfirmRestoreSettings>
+
+
+  <TD.RotStatDesc>このアイテムが屋外に放置された際に腐敗するまでの日数.\n\nアイテムを冷蔵するか凍結することで腐敗を防ぐことができます.</TD.RotStatDesc>
+  <TD.CurrentTimeToRot>腐敗までの残り時間</TD.CurrentTimeToRot>
+  <TD.ShelfLife>貯蔵寿命</TD.ShelfLife>
 
 </LanguageData>
