@@ -124,7 +124,8 @@ namespace TD_Enhancement_Pack.Overlays
 		public override bool ShowCell(int index) =>
 				Find.CurrentMap.thingGrid.ThingsListAtFast(index).Any(t => t.def == ThingDefOf.SteamGeyser);
 
-		public override bool Matches(ThingDef def) => def == ThingDefOf.GeothermalGenerator;
+		public override bool Matches(ThingDef def) =>
+			def.placeWorkers.NotNullAndContains(typeof(PlaceWorker_OnSteamGeyser));
 	}
 	
 	//Most things needs light/medium/heavy, so BuildableOverlay handles those normally: clear/yellow/red
