@@ -31,7 +31,7 @@ namespace TD_Enhancement_Pack
 		{
 			return des is Designator_Build desBuild &&
 				desBuild.PlacingDef is ThingDef def &&
-				def.HasComp(typeof(CompPowerPlantWind));
+				(def.HasComp(typeof(CompPowerPlantWind)) || def.HasComp(typeof(CompAutoCutWindTurbine)));
 		}
 	}
 
