@@ -16,17 +16,19 @@ namespace TD_Enhancement_Pack
 		//protected override bool TryExecuteWorker(IncidentParms parms)
 		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
 		{
-			MethodInfo ReceiveLetterInfo = AccessTools.Method(typeof(LetterStack), "ReceiveLetter", new Type[]
-					{ typeof(TaggedString), typeof(TaggedString), typeof(LetterDef), typeof(LookTargets), typeof(Faction), typeof(Quest), typeof(List<ThingDef>), typeof(string)});
+			//protected void SendStandardLetter(TaggedString baseLetterLabel, TaggedString baseLetterText, LetterDef baseLetterDef, IncidentParms parms, LookTargets lookTargets, params NamedArgument[] textArgs)
+			MethodInfo SendStandardLetterInfo = AccessTools.Method(typeof(IncidentWorker), "SendStandardLetter",
+				[typeof(TaggedString), typeof(TaggedString), typeof(LetterDef), typeof(IncidentParms), typeof(LookTargets), typeof(NamedArgument[])]);
 			
 			MethodInfo GenerateInfo = AccessTools.Method(typeof(ThingSetMaker), "Generate");
-			
-			foreach(CodeInstruction i in instructions)
-			{
-				if (i.Calls(ReceiveLetterInfo))
-					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ResourcePodCrashContents), nameof(ReceiveLetterAppend)));
 
-				else yield return i;
+
+			foreach (CodeInstruction i in instructions)
+			{
+				if (i.Calls(SendStandardLetterInfo))
+					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ResourcePodCrashContents), nameof(SendStandardLetterAppend)));
+				else
+					yield return i;
 
 				if (i.Calls(GenerateInfo))
 					yield return new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(ResourcePodCrashContents), nameof(GetThingLabel)));
@@ -40,12 +42,13 @@ namespace TD_Enhancement_Pack
 			return things;
 		}
 
-		//public void ReceiveLetter(TaggedString label, TaggedString text, LetterDef textLetterDef, LookTargets lookTargets, Faction relatedFaction = null, Quest quest = null, List<ThingDef> hyperlinkThingDefs = null, string debugInfo = null)
-		public static void ReceiveLetterAppend(LetterStack stack, TaggedString label, TaggedString text, LetterDef textLetterDef, LookTargets lookTargets, Faction relatedFaction = null, Quest quest = null, List<ThingDef> hyperlinkThingDefs = null, string debugInfo = null)
+		//protected void SendStandardLetter(TaggedString baseLetterLabel, TaggedString baseLetterText, LetterDef baseLetterDef, IncidentParms parms, LookTargets lookTargets, params NamedArgument[] textArgs)
+		public static void SendStandardLetterAppend(IncidentWorker_ResourcePodCrash instance, TaggedString baseLetterLabel, TaggedString baseLetterText, LetterDef baseLetterDef, IncidentParms parms, LookTargets lookTargets, NamedArgument[] textArgs)
 		{
 			if(Mod.settings.dropPodWhatDropped)
-				text += "\n\n" + "TD.WhatDropped".Translate(thingLabel);
-			stack.ReceiveLetter(label, text, textLetterDef, lookTargets, relatedFaction, quest, hyperlinkThingDefs, debugInfo);
+				baseLetterText += "\n\n" + "TD.WhatDropped".Translate(thingLabel);
+			//			instance.SendStandardLetter ; //private :(
+			IncidentWorker.SendIncidentLetter(baseLetterLabel, baseLetterText, baseLetterDef, parms, lookTargets, instance.def, textArgs);
 		}
 	}
 }

@@ -14,29 +14,34 @@ namespace TD_Enhancement_Pack
 	[HarmonyPatch(typeof(JobGiver_ConfigurableHostilityResponse), "TryGetAttackNearbyEnemyJob")]
 	public static class NotSoHostile
 	{
+		static Predicate<Thing> pred = ThingIsNotSleeping;
+
 		//JobGiver_ConfigurableHostilityResponse
 		//private Job TryGetAttackNearbyEnemyJob(Pawn pawn)	
 		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions )
 		{
 			//AttackTargetFinder.BestAttackTarget
-			MethodInfo BestAttackTargetInfo = AccessTools.Method(typeof(AttackTargetFinder), "BestAttackTarget");
 
-			MethodInfo BetterAttackTargetInfo = AccessTools.Method(typeof(NotSoHostile), "BetterAttackTarget");
-			foreach (CodeInstruction i in instructions)
+			List<CodeInstruction> insts = instructions.ToList();
+
+			for(int i = 0;i<insts.Count;i++)
 			{
-				if (i.Calls(BestAttackTargetInfo))
-					yield return new CodeInstruction(OpCodes.Call, BetterAttackTargetInfo);
+				CodeInstruction inst = insts[i];
+				//Find this:
+				// IL_0046: ldarg.1      // pawn
+				// IL_0047: ldc.i4       299 // 0x0000012b
+				// IL_004c: ldnull
+				//Replace null with our predicate
+				if (inst.opcode == OpCodes.Ldnull
+					&& i > 2
+					&& insts[i-2].IsLdarg(1)
+					&& insts[i-1].opcode == OpCodes.Ldc_I4)
+				{
+					yield return new CodeInstruction(OpCodes.Ldsfld, AccessTools.Field(typeof(NotSoHostile), nameof(pred)));
+				}
 				else
-					yield return i;
+					yield return inst;
 			}
-		}
-
-		//public static IAttackTarget BestAttackTarget(IAttackTargetSearcher searcher, TargetScanFlags flags, Predicate<Thing> validator = null, float minDist = 0, float maxDist = 9999, IntVec3 locus = default(IntVec3), float maxTravelRadiusFromLocus = float.MaxValue, bool canBash = false, bool canTakeTargetsCloserThanEffectiveMinRange = true);
-		public static IAttackTarget BetterAttackTarget(IAttackTargetSearcher searcher, TargetScanFlags flags, Predicate<Thing> validator = null, float minDist = 0f, float maxDist = 9999f, IntVec3 locus = default(IntVec3), float maxTravelRadiusFromLocus = 3.40282347E+38f, bool canBash = false, bool canTakeTargetsCloserThanEffectiveMinRange = true, bool canBashFance = false)
-		{
-			return AttackTargetFinder.BestAttackTarget(searcher, flags,
-				Mod.settings.ignoreSleepingEnemies ? ThingIsNotSleeping : validator,  //validator is null for TryGetAttackNearbyEnemyJob, otherwise this is totally broken
-				minDist, maxDist, locus, maxTravelRadiusFromLocus, canBash, canTakeTargetsCloserThanEffectiveMinRange, canBashFance);
 		}
 
 		public static bool ThingIsNotSleeping(Thing t)

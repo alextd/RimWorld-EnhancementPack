@@ -31,7 +31,7 @@ namespace TD_Enhancement_Pack
 		public static void Postfix(ref Vector2 __result)
 		{
 			AreaRowPatch.copiedArea = null;
-			__result.x += 120;//about 4 icon widths?
+			__result.x += 184;//Yah those buttons are wide af
 		}
 	}
 
@@ -77,6 +77,8 @@ namespace TD_Enhancement_Pack
 		public static Vector2 scrollPosition;
 		public static float scrollViewHeight;
 		public static Rect viewRect;//local to DoWindowContents
+		public const int NumButtonsRightOfThis = 2;
+
 		public static void BeginScrollAndHeader(Listing_Standard listing, Rect rect)
 		{
 			if (Mod.settings.areaForTypes)
@@ -84,24 +86,19 @@ namespace TD_Enhancement_Pack
 				Rect headerRect = new Rect(rect.x,rect.y,rect.width,24);
 				rect.yMin += 24;
 
-				int numButtons = 2;
-				headerRect.width -=
-					WidgetRow.IconSize * numButtons +
-					Text.CalcSize("Rename".Translate()).x + 16 +
-					Text.CalcSize("InvertArea".Translate()).x + 16 +
-					WidgetRow.DefaultGap * (numButtons + 2);  //2 buttons + 2 icons
+				headerRect.width -= (WidgetRow.IconSize + WidgetRow.LabelGap) * NumButtonsRightOfThis;
 
 				if (Mod.settings.areasUnlimited)  //room for scrollbar
 					headerRect.width -= 20;
 
 				headerRect.xMin = headerRect.xMax - 24;
 
-				Widgets.DrawTextureFitted(headerRect, TexButton.AnimalIcon, 1f);
-				TooltipHandler.TipRegion(headerRect, "TD.ShowThisAreaForAnimals".Translate());
-
-				headerRect.x -= 24 + 4;
 				Widgets.DrawTextureFitted(headerRect, TexButton.PersonIcon, 1f);
 				TooltipHandler.TipRegion(headerRect, "TD.ShowThisAreaForColonists".Translate());
+
+				headerRect.x -= 24;
+				Widgets.DrawTextureFitted(headerRect, TexButton.AnimalIcon, 1f);
+				TooltipHandler.TipRegion(headerRect, "TD.ShowThisAreaForAnimals".Translate());
 			}
 
 			if (Mod.settings.areasUnlimited)
@@ -140,30 +137,30 @@ namespace TD_Enhancement_Pack
 		{
 			MethodInfo IconInfo = AccessTools.Method(
 				typeof(WidgetRow), nameof(WidgetRow.Icon));
-			MethodInfo LabelInfo = AccessTools.Method(
-				typeof(WidgetRow), nameof(WidgetRow.Label));
+			MethodInfo DoButtonIconInfo = AccessTools.Method(
+				typeof(AreaRowPatch), nameof(DoButtonIcon));
+
+
 			MethodInfo EndGroupInfo = AccessTools.Method(
 				typeof(Widgets), nameof(Widgets.EndGroup));
 
+
+
+			MethodInfo LabelEllipsesInfo = AccessTools.Method(
+				typeof(WidgetRow), nameof(WidgetRow.LabelEllipses));
+
 			MethodInfo DoOrderButtonInfo = AccessTools.Method(
 				typeof(AreaRowPatch), nameof(DoOrderButton));
-			MethodInfo DoButtonIconInfo = AccessTools.Method(
-				typeof(AreaRowPatch), nameof(DoButtonIcon));
 			MethodInfo DoCopyPasteInfo = AccessTools.Method(
 				typeof(AreaRowPatch), nameof(CopyPasteAreaRow));
-			MethodInfo ReverseDirectionInfo = AccessTools.Method(
-				typeof(AreaRowPatch), nameof(ReverseDirection));
-			MethodInfo FocusAreaInfo = AccessTools.Method(
-				typeof(AreaRowPatch), nameof(FocusArea));
 
 			foreach (CodeInstruction i in instructions)
 			{
 				//IL_0055: callvirt instance valuetype[UnityEngine]UnityEngine.Rect Verse.WidgetRow::Icon(class [UnityEngine] UnityEngine.Texture2D, string)
 				if (i.Calls(IconInfo))
 				{
-					yield return new CodeInstruction(OpCodes.Ldarg_1); //Area
-					yield return new CodeInstruction(OpCodes.Callvirt, DoButtonIconInfo); //WidgetRow
-					yield return new CodeInstruction(OpCodes.Ldnull); //popped off
+					yield return new CodeInstruction(OpCodes.Ldarg_2); //Area
+					yield return new CodeInstruction(OpCodes.Call, DoButtonIconInfo); //WidgetRow
 					continue;
 				}
 
@@ -171,56 +168,19 @@ namespace TD_Enhancement_Pack
 				{
 					yield return new CodeInstruction(OpCodes.Ldloc_0) { labels = i.labels }; //WidgetRow
 					i.labels = new List<Label>();
-					yield return new CodeInstruction(OpCodes.Ldarg_1); //Area
+					yield return new CodeInstruction(OpCodes.Ldarg_2); //Area
 					yield return new CodeInstruction(OpCodes.Call, DoOrderButtonInfo);  //DoOrderButton(widgetRow, area)
-				}
-
-				if(i.Calls(LabelInfo))
-				{
-					yield return new CodeInstruction(OpCodes.Ldloc_0); //WidgetRow
-					yield return new CodeInstruction(OpCodes.Ldarg_0); //rect
-					yield return new CodeInstruction(OpCodes.Call, ReverseDirectionInfo); //ReverseDirection(widgetRow, rect)
-					yield return new CodeInstruction(OpCodes.Stloc_0); //widgetRow = ReverseDirection(widgetRow, rect)
 				}
 
 				yield return i;
 
-				if (i.Calls(LabelInfo))
-				{
-					yield return new CodeInstruction(OpCodes.Ldarg_1); //Area
-					yield return new CodeInstruction(OpCodes.Call, FocusAreaInfo); //FocusArea(rect, area)
-				}
-
 				if (i.opcode == OpCodes.Stloc_0)
 				{
 					yield return new CodeInstruction(OpCodes.Ldloc_0); //widgetRow
-					yield return new CodeInstruction(OpCodes.Ldarg_1); //Area
+					yield return new CodeInstruction(OpCodes.Ldarg_2); //Area
 					yield return new CodeInstruction(OpCodes.Call, DoCopyPasteInfo);
 				}
 			}
-		}
-
-		public static AccessTools.FieldRef<Area> SelectedArea =
-			AccessTools.StaticFieldRefAccess<Area>(AccessTools.Field(typeof(Designator_AreaAllowed), "selectedArea"));
-
-		public static Rect FocusArea(Rect labelArea, Area area)
-		{
-			int numSkip = 3;
-			if (Mod.settings.areaForTypes)
-				numSkip += 2;
-			labelArea.width -= (labelArea.height + WidgetRow.DefaultGap) * numSkip;
-			if (Widgets.ButtonInvisible(labelArea))
-			{
-				Find.WindowStack.TryRemove(typeof(Dialog_ManageAreas), false);
-				SelectedArea() = area;
-				Find.DesignatorManager.Select(DesignatorUtility.FindAllowedDesignator<Designator_AreaAllowedExpand>());
-			}
-			return labelArea;
-		}
-
-		public static WidgetRow ReverseDirection(WidgetRow widgetRow, Rect rect)
-		{
-			return new WidgetRow(rect.width, 0f, UIDirection.LeftThenUp, 99999f, 4f);
 		}
 
 
@@ -288,7 +248,7 @@ namespace TD_Enhancement_Pack
 			else widgetRow.Gap(WidgetRow.IconSize);
 		}
 
-		public static void DoButtonIcon(WidgetRow widgetRow, Texture2D tex, string tooltip, Area area)
+		public static Rect DoButtonIcon(WidgetRow widgetRow, Texture2D tex, string tooltip, Area area)
 		{
 			if (widgetRow.ButtonIcon(tex, tooltip))
 			{
@@ -298,6 +258,7 @@ namespace TD_Enhancement_Pack
 					//TODO: better dialog
 				}
 			}
+			return default;//popped off stack, unused
 		}
 
 		//private void IncrementPosition(float amount)
@@ -335,7 +296,97 @@ namespace TD_Enhancement_Pack
 					paste[cell] = true;
 		}
 
-		
+
+		// Bringing in old 1.4 Dialog_Rename to use because 1.5 changed how it works
+
+		public abstract class Dialog_Rename : Window
+		{
+			protected string curName;
+
+			private bool focusedRenameField;
+
+			private int startAcceptingInputAtFrame;
+
+			private bool AcceptsInput => startAcceptingInputAtFrame <= Time.frameCount;
+
+			protected virtual int MaxNameLength => 28;
+
+			public override Vector2 InitialSize => new Vector2(280f, 175f);
+
+			public Dialog_Rename()
+			{
+				forcePause = true;
+				doCloseX = true;
+				absorbInputAroundWindow = true;
+				closeOnAccept = false;
+				closeOnClickedOutside = true;
+			}
+
+			public void WasOpenedByHotkey()
+			{
+				startAcceptingInputAtFrame = Time.frameCount + 1;
+			}
+
+			protected virtual AcceptanceReport NameIsValid(string name)
+			{
+				if (name.Length == 0)
+				{
+					return false;
+				}
+				return true;
+			}
+
+			public override void DoWindowContents(Rect inRect)
+			{
+				Text.Font = GameFont.Small;
+				bool flag = false;
+				if (Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Return)
+				{
+					flag = true;
+					Event.current.Use();
+				}
+				GUI.SetNextControlName("RenameField");
+				string text = Widgets.TextField(new Rect(0f, 15f, inRect.width, 35f), curName);
+				if (AcceptsInput && text.Length < MaxNameLength)
+				{
+					curName = text;
+				}
+				else if (!AcceptsInput)
+				{
+					((TextEditor)GUIUtility.GetStateObject(typeof(TextEditor), GUIUtility.keyboardControl)).SelectAll();
+				}
+				if (!focusedRenameField)
+				{
+					UI.FocusControl("RenameField", this);
+					focusedRenameField = true;
+				}
+				if (!(Widgets.ButtonText(new Rect(15f, inRect.height - 35f - 15f, inRect.width - 15f - 15f, 35f), "OK") || flag))
+				{
+					return;
+				}
+				AcceptanceReport acceptanceReport = NameIsValid(curName);
+				if (!acceptanceReport.Accepted)
+				{
+					if (acceptanceReport.Reason.NullOrEmpty())
+					{
+						Messages.Message("NameIsInvalid".Translate(), MessageTypeDefOf.RejectInput, historical: false);
+					}
+					else
+					{
+						Messages.Message(acceptanceReport.Reason, MessageTypeDefOf.RejectInput, historical: false);
+					}
+				}
+				else
+				{
+					SetName(curName);
+					Find.WindowStack.TryRemove(this);
+				}
+			}
+
+			protected abstract void SetName(string name);
+		}
+
+
 		public class Dialog_RecolorArea : Dialog_Rename
 		{
 			private Area_Allowed area;
