@@ -202,7 +202,6 @@
 	<!-- EN: Overlays -->
 	<TD.SettingHeaderOverlays>Zones de surbrillance</TD.SettingHeaderOverlays>
 	<!-- EN: Game improvements -->
-	<TD.SettingHeaderGameImprovements>Améliorations du jeu</TD.SettingHeaderGameImprovements>
 	<!-- EN: AI / behavior -->
 	<TD.SettingHeaderAI>IA / Comportements</TD.SettingHeaderAI>
 	<!-- EN: Cleaner zone edges (And range indicators) -->
@@ -229,8 +228,6 @@
 	<TD.ClearEntireArea>Effacer toute la zone (ne la supprime pas de la liste)</TD.ClearEntireArea>
 	<!-- EN: Paste from -->
 	<TD.PasteFrom>Coller depuis</TD.PasteFrom>
-	<!-- EN: Zoom to Mouse -->
-	<TD.SettingsZoomToMouse>Zoomer sur le curseur de la souris</TD.SettingsZoomToMouse>
 	<!-- EN: A colonist is burning, and is rapidly gaining heatstroke. -->
 	<TD.AlertBurning>Un colon brûle, et peut rapidement attraper un coup de chaleur.</TD.AlertBurning>
 	<!-- EN: A colonist is gaining heatstroke. That's not a good thing. -->

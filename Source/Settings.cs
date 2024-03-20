@@ -59,6 +59,9 @@ namespace TD_Enhancement_Pack
 		public bool neverHome = true;
 		public bool slaughterZone = true;
 
+		public bool makeWayJobs = true;
+		public bool handleAllBlockingThings = true;
+
 		public bool autorebuildDefaultOn = true;
 		public bool autoRebuildTransportPod = false;
 		public bool caravanLoadSelection = true;
@@ -85,8 +88,6 @@ namespace TD_Enhancement_Pack
 
 		public bool areasUnlimited = true;
 		public bool matchGrowButton = true;
-
-		public bool zoomToMouse = false;
 
 		public bool showToggleLearning = true;
 		public bool showToggleZone = true;
@@ -189,6 +190,9 @@ namespace TD_Enhancement_Pack
 
 			//Game improvements
 			options.LabelHeader("TD.SettingsHeaderGame".Translate());
+			options.CheckboxLabeled("TD.SettingMakeWay".Translate(), ref makeWayJobs, "TD.SettingMakeWayDesc".Translate());
+			options.CheckboxLabeled("TD.SettingHandleAllBlocking".Translate(), ref handleAllBlockingThings);
+			options.Gap();
 			options.CheckboxLabeled("TD.SettingAutoAutorebuild".Translate(), ref autorebuildDefaultOn);
 			options.CheckboxLabeled("TD.SettingAutoRebuildTransportPod".Translate(), ref autoRebuildTransportPod);
 			options.Gap();
@@ -283,7 +287,6 @@ namespace TD_Enhancement_Pack
 			options.GapLine();
 
 			options.Label("TD.OtherFeatures".Translate());
-			options.CheckboxLabeled("TD.SettingsZoomToMouse".Translate(), ref zoomToMouse, "TD.SettingsZoomToMouseDesc".Translate());
 			options.Label("TD.NoFrameDecon".Translate(), tooltip: "TD.NoFrameDeconDesc".Translate());
 			options.Label("TD.DropdownBuildingsOrder".Translate(), tooltip: "TD.DropdownBuildingsOrderDesc".Translate());
 			options.Label("TD.FeatureConfirmRestoreSettings".Translate());
@@ -343,6 +346,8 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref neverHome, "neverHome", true);
 			Scribe_Values.Look(ref slaughterZone, "slaughterZone", true);
 
+			Scribe_Values.Look(ref makeWayJobs, "makeWayJobs", true);
+			Scribe_Values.Look(ref handleAllBlockingThings, "handleAllBlockingThings", true);
 			Scribe_Values.Look(ref autorebuildDefaultOn, "autorebuildDefaultOn", true);
 			Scribe_Values.Look(ref autoRebuildTransportPod, "autoRebuildTransportPod", false);
 			Scribe_Values.Look(ref caravanLoadSelection, "caravanLoadSelection", true);
@@ -368,8 +373,6 @@ namespace TD_Enhancement_Pack
 
 			Scribe_Values.Look(ref areasUnlimited, "areasUnlimited", true);
 			Scribe_Values.Look(ref matchGrowButton, "matchGrowButton", true);
-
-			Scribe_Values.Look(ref zoomToMouse, "zoomToMouse", false);
 
 			Scribe_Values.Look(ref showToggleLearning, "showToggleLearning", true);
 			Scribe_Values.Look(ref showToggleZone, "showToggleZone", true);
