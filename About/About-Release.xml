@@ -23,4 +23,5 @@ Check Steam or in-game settings for features since I don't want to update yet an
 			<downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
 		</li>
 	</modDependencies>
+	<modIconPath IgnoreIfNoMatchingField="True">TDPackIcon</modIconPath>
 </ModMetaData>
