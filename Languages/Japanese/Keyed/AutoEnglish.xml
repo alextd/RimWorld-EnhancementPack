@@ -122,7 +122,6 @@
   <TD.GizmoUrgentRefillDesc>マスが空の場合は、最優先で補充します。</TD.GizmoUrgentRefillDesc>
   <TD.SettingHeaderArea>エリアとゾーンの設定</TD.SettingHeaderArea>
   <TD.SettingHeaderOverlays>オーバーレイヤー</TD.SettingHeaderOverlays>
-  <TD.SettingHeaderGameImprovements>ゲーム改良</TD.SettingHeaderGameImprovements>
   <TD.SettingHeaderAI>AI/挙動</TD.SettingHeaderAI>
   <TD.SettingCleanZoneEdges>より鮮明なゾーン境界（と範囲表示）</TD.SettingCleanZoneEdges>
   <TD.SettingsHeaderArea>エリアとゾーンの設定</TD.SettingsHeaderArea>
@@ -136,8 +135,6 @@
   <TD.EmptyWorkbenchDesc>何の指示も登録されていない作業台があります</TD.EmptyWorkbenchDesc>
   <TD.ClearEntireArea>指定ゾーンの全削除(リストからは消しません)</TD.ClearEntireArea>
   <TD.PasteFrom>ペーストする</TD.PasteFrom>
-  <TD.SettingsZoomToMouse>マウスポインターにズーム</TD.SettingsZoomToMouse>
-  <TD.SettingsZoomToMouseDesc>（Shiftキーを押しながらズームすると画面中央に移動してズームします）</TD.SettingsZoomToMouseDesc>
   <TD.AlertBurning>燃えています。急速に熱中症になりつつあります</TD.AlertBurning>
   <TD.AlertHeatstrike>熱くて熱中症です。それは良いことではありません</TD.AlertHeatstrike>
   <TD.AlertToxic>毒に蝕まれています。それは良いことではありません</TD.AlertToxic>

@@ -32,7 +32,7 @@ namespace TD_Enhancement_Pack
 
 		public float LightingAt(int index)
 		{
-			return Find.CurrentMap.glowGrid.GameGlowAt(Find.CurrentMap.cellIndices.IndexToCell(index));
+			return Find.CurrentMap.glowGrid.GroundGlowAt(Find.CurrentMap.cellIndices.IndexToCell(index));
 		}
 
 		public Color? GlowerColorAt(int index)
@@ -67,7 +67,7 @@ namespace TD_Enhancement_Pack
 		}
 	}
 
-	[HarmonyPatch(typeof(GlowGrid), "MarkGlowGridDirty")]
+	[HarmonyPatch(typeof(GlowGrid), "DirtyCache")]
 	static class GlowGridDirty_Patch
 	{
 		public static void Postfix(Map ___map)
