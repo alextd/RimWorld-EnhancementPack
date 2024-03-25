@@ -31,6 +31,8 @@
   <TD.SettingSkillGainArrowDesc>キャラクターの略歴タブ</TD.SettingSkillGainArrowDesc>
   <TD.SettingSkillLossArrow>スキルが減少しているとき該当箇所に矢印を表示する</TD.SettingSkillLossArrow>
   <TD.SettingSkillLossArrowDesc>11以上のスキルはゆっくりと減少します(減少速度によって薄さが変わります)</TD.SettingSkillLossArrowDesc>
+  <TD.SettingZoneFertility>栽培ゾーンのサイズと肥沃度を表示</TD.SettingZoneFertility>
+  <TD.SettingZoneFertilityDesc>肥沃度の大きさは,肥沃度100%の土地と同等の大きさである（例えば,肥沃度140%の土地が100区画なら肥沃度は140になる.)</TD.SettingZoneFertilityDesc>
   <TD.OtherFeatures>その他の機能：</TD.OtherFeatures>
   <TD.AreaEditing>制限ゾーンの管理で並べ替え、色変更、コピー/貼り付けなどができます</TD.AreaEditing>
   <TD.NeverHome>制限ゾーンで「Never Home」と名付けられたゾーンは、コロニーゾーンに追加しない</TD.NeverHome>
@@ -78,6 +80,9 @@
   <TD.SettingAutoFertility>農業ゾーンを指定するとき肥沃表示を自動的にONにする</TD.SettingAutoFertility>
   <TD.SettingAutoLighting>光源を設置するとき明暗表示を自動的にONにする</TD.SettingAutoLighting>
   <TD.SettingAutoPlantHarvest>収穫を指示するとき成長表示を自動的にONにする</TD.SettingAutoPlantHarvest>
+  <TD.SettingMakeWay>建設作業員以外も建築予定地の邪魔物(木など)を削除</TD.SettingMakeWay>
+  <TD.SettingMakeWayDesc>伐採師や鉱山労働者は,建設予定地のために邪魔な物を片付けます.\n\n(これが原因で右クリックが遅くなるという報告があるため,これを無効にするとおそらく問題が解決されます.)</TD.SettingMakeWayDesc>
+  <TD.SettingHandleAllBlocking>全ての邪魔物を一度に片付ける(通常は1本ずつ木を伐採する)</TD.SettingHandleAllBlocking>
   <TD.SettingAutoAutorebuild>ゲームを開始するとき"自動再装填"をONにして始める(これをOFFにすると再装填がOFFになる)</TD.SettingAutoAutorebuild>
   <TD.SettingAutoRebuildTransportPod>発射した後に輸送ポッドを自動的に再び建設する</TD.SettingAutoRebuildTransportPod>
   <TD.CaravanLoadSelection>アイテム選択状態でキャラバン隊を編成すると、それらが選択された状態で編成画面が表示される</TD.CaravanLoadSelection>
@@ -94,6 +99,8 @@
   <TD.SettingPawnTableHighlightSelected>選択した入植者が、入植者リスト(優先順位や制限等)で色づけされる</TD.SettingPawnTableHighlightSelected>
   <TD.SettingPawnTableHighlightSelectedDesc>優先順位や制限タブ、作業タブ、野生動物タブなどのリストでも表示されます</TD.SettingPawnTableHighlightSelectedDesc>
   <TD.SettingPawnTableArrowMouseover>テーブル内のポーンを示す矢印を表示する</TD.SettingPawnTableArrowMouseover>
+  <TD.SettingCtrlQueueFront>Ctrl+Shift同時押しクリックで行動予定が先頭に追加</TD.SettingCtrlQueueFront>
+  <TD.SettingCtrlQueueFrontDesc>通常はShiftキーを押しながらクリックすると,行動予定が追加されますが,予定の最後に追加されます.これをオンにすると予定の前に追加可能です.</TD.SettingCtrlQueueFrontDesc>
   <TD.SettingPawnTableClickSelect>入植者リストから入植者を選択できるようになる(Alt+クリックで移動)</TD.SettingPawnTableClickSelect>
   <TD.SettingPawnTableClickSelectDesc>入植者リスト(優先順位や制限など)の名前をクリックすることで選択(リストが閉じたり移動はしない)になります\nShiftクリックで複数人の選択と解除ができます\nダブルクリックでリストを閉じずにカメラ中央に移動します\nAlt+クリックでリストを閉じて対象入植者の場所へ移動します(バニラの動作)</TD.SettingPawnTableClickSelectDesc>
   <TD.SettingAlertDeterioration>劣化したアイテムがあるとき警告する</TD.SettingAlertDeterioration>
@@ -176,8 +183,10 @@
   <TD.FeatureConfirmRestoreSettings>[設定の復元]ボタンをクリックして確認した後、バックアップを保存します</TD.FeatureConfirmRestoreSettings>
 
 
-  <TD.RotStatDesc>このアイテムが屋外に放置された際に腐敗するまでの日数.\n\nアイテムを冷蔵するか凍結することで腐敗を防ぐことができます.</TD.RotStatDesc>
-  <TD.CurrentTimeToRot>腐敗までの残り時間</TD.CurrentTimeToRot>
+  <TD.RotStatDesc>このアイテムを屋外に放置して腐敗するまでの日数です.\n\nこれは冷蔵(9度以下)または冷凍(0度以下)することで防ぐことができます.</TD.RotStatDesc>
+  <TD.CurrentTimeToRot>腐るまでの残り時間</TD.CurrentTimeToRot>
   <TD.ShelfLife>貯蔵寿命</TD.ShelfLife>
+
+
 
 </LanguageData>
