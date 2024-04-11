@@ -89,17 +89,22 @@ namespace TD_Enhancement_Pack
 		public bool areasUnlimited = true;
 		public bool matchGrowButton = true;
 
-		public bool showToggleLearning = true;
-		public bool showToggleZone = true;
-		public bool showToggleBeauty = true;
-		public bool showToggleRoomstats = true;
-		public bool showToggleColonists = true;
-		public bool showToggleRoof = true;
-		public bool showToggleHomeArea = true;
-		public bool showToggleRebuild = true;
-		public bool showToggleFertility = false;
-		public bool showToggleAffordance = false;
-		public bool showToggleCategorized = true;
+		// These are named based on the TexButton. texture name of the icon of the setting
+		// And automatically loaded in a transpiler by that name
+		public bool toggleShowLearningHelper = true;
+		public bool toggleShowZones = true;
+		public bool toggleShowBeauty = true;
+		public bool toggleShowRoomStats = true;
+		public bool toggleShowColonistBar = true;
+		public bool toggleShowRoofOverlay = true;
+		public bool toggleShowFertilityOverlay = false;
+		public bool toggleShowTerrainAffordanceOverlay = false;
+		public bool toggleAutoHomeArea = true;
+		public bool toggleAutoRebuild = true;
+		public bool toggleShowTemperatureOverlay = true;
+		public bool toggleCategorizedResourceReadout = true;
+		public bool toggleShowPollutionOverlay = true;
+
 
 		public bool colorVariation = false;
 		public bool colorGenerator = false;
@@ -174,17 +179,20 @@ namespace TD_Enhancement_Pack
 			//Hide bottom-right Toggleable buttons
 			options.LabelHeader("TD.SettingHeaderToggleButtons".Translate());
 			options.Label("TD.SettingHeaderToggleButtonsDesc".Translate());
-			options.CheckboxLabeled("TD.Show".Translate("ShowLearningHelperWhenEmptyToggleButton".Translate().RawText.Split('\n')[0]), ref showToggleLearning);
-			options.CheckboxLabeled("TD.Show".Translate("ZoneVisibilityToggleButton".Translate().RawText.Split('\n')[0]), ref showToggleZone);
-			options.CheckboxLabeled("TD.Show".Translate("ShowBeautyToggleButton".Translate().RawText.Split('\n')[0]), ref showToggleBeauty);
-			options.CheckboxLabeled("TD.Show".Translate("ShowRoomStatsToggleButton".Translate().RawText.Split('\n')[0]), ref showToggleRoomstats);
-			options.CheckboxLabeled("TD.Show".Translate("ShowColonistBarToggleButton".Translate().RawText.Split('\n')[0]), ref showToggleColonists);
-			options.CheckboxLabeled("TD.Show".Translate("ShowRoofOverlayToggleButton".Translate().RawText.Split('\n')[0]), ref showToggleRoof);
-			options.CheckboxLabeled("TD.Show".Translate("AutoHomeAreaToggleButton".Translate().RawText.Split('\n')[0]), ref showToggleHomeArea);
-			options.CheckboxLabeled("TD.Show".Translate("AutoRebuildButton".Translate().RawText.Split('\n')[0]), ref showToggleRebuild);
-			options.CheckboxLabeled("TD.Show".Translate("ShowFertilityOverlayToggleButton".Translate().RawText.Split('\n')[0]), ref showToggleFertility);
-			options.CheckboxLabeled("TD.Show".Translate("ShowTerrainAffordanceOverlayToggleButton".Translate().RawText.Split('\n')[0]), ref showToggleAffordance);
-			options.CheckboxLabeled("TD.Show".Translate("CategorizedResourceReadoutToggleButton".Translate().RawText.Split('\n')[0]), ref showToggleCategorized);
+			options.CheckboxLabeled("TD.Show".Translate("ShowLearningHelperWhenEmptyToggleButton".Translate().RawText.Split('\n')[0]), ref toggleShowLearningHelper);
+			options.CheckboxLabeled("TD.Show".Translate("ZoneVisibilityToggleButton".Translate().RawText.Split('\n')[0]), ref toggleShowZones);
+			options.CheckboxLabeled("TD.Show".Translate("ShowBeautyToggleButton".Translate().RawText.Split('\n')[0]), ref toggleShowBeauty);
+			options.CheckboxLabeled("TD.Show".Translate("ShowRoomStatsToggleButton".Translate().RawText.Split('\n')[0]), ref toggleShowRoomStats);
+			options.CheckboxLabeled("TD.Show".Translate("ShowColonistBarToggleButton".Translate().RawText.Split('\n')[0]), ref toggleShowColonistBar);
+			options.CheckboxLabeled("TD.Show".Translate("ShowRoofOverlayToggleButton".Translate().RawText.Split('\n')[0]), ref toggleShowRoofOverlay);
+			options.CheckboxLabeled("TD.Show".Translate("ShowFertilityOverlayToggleButton".Translate().RawText.Split('\n')[0]), ref toggleShowFertilityOverlay);
+			options.CheckboxLabeled("TD.Show".Translate("ShowTerrainAffordanceOverlayToggleButton".Translate().RawText.Split('\n')[0]), ref toggleShowTerrainAffordanceOverlay);
+			options.CheckboxLabeled("TD.Show".Translate("AutoHomeAreaToggleButton".Translate().RawText.Split('\n')[0]), ref toggleAutoHomeArea);
+			options.CheckboxLabeled("TD.Show".Translate("AutoRebuildButton".Translate().RawText.Split('\n')[0]), ref toggleAutoRebuild);
+			options.CheckboxLabeled("TD.Show".Translate("ShowTemperatureOverlayToggleButton".Translate().RawText.Split('\n')[0]), ref toggleShowTemperatureOverlay);
+			options.CheckboxLabeled("TD.Show".Translate("CategorizedResourceReadoutToggleButton".Translate().RawText.Split('\n')[0]), ref toggleCategorizedResourceReadout);
+			if (ModsConfig.BiotechActive)	// Mainly so that the translation key exists
+				options.CheckboxLabeled("TD.Show".Translate("ShowPollutionOverlayToggleButton".Translate().RawText.Split('\n')[0]), ref toggleShowPollutionOverlay);
 			options.GapLine();
 
 
@@ -374,17 +382,19 @@ namespace TD_Enhancement_Pack
 			Scribe_Values.Look(ref areasUnlimited, "areasUnlimited", true);
 			Scribe_Values.Look(ref matchGrowButton, "matchGrowButton", true);
 
-			Scribe_Values.Look(ref showToggleLearning, "showToggleLearning", true);
-			Scribe_Values.Look(ref showToggleZone, "showToggleZone", true);
-			Scribe_Values.Look(ref showToggleBeauty, "showToggleBeauty", true);
-			Scribe_Values.Look(ref showToggleRoomstats, "showToggleRoomstats", true);
-			Scribe_Values.Look(ref showToggleColonists, "showToggleColonists", true);
-			Scribe_Values.Look(ref showToggleRoof, "showToggleRoof", true);
-			Scribe_Values.Look(ref showToggleHomeArea, "showToggleHomeArea", true);
-			Scribe_Values.Look(ref showToggleRebuild, "showToggleRebuild", true);
-			Scribe_Values.Look(ref showToggleFertility, "showToggleFertility", false);
-			Scribe_Values.Look(ref showToggleAffordance, "showToggleAffordance", false);
-			Scribe_Values.Look(ref showToggleCategorized, "showToggleCategorized", true);
+			Scribe_Values.Look(ref toggleShowLearningHelper, "showToggleLearning", true);
+			Scribe_Values.Look(ref toggleShowZones, "showToggleZone", true);
+			Scribe_Values.Look(ref toggleShowBeauty, "showToggleBeauty", true);
+			Scribe_Values.Look(ref toggleShowRoomStats, "showToggleRoomstats", true);
+			Scribe_Values.Look(ref toggleShowColonistBar, "showToggleColonists", true);
+			Scribe_Values.Look(ref toggleShowRoofOverlay, "showToggleRoof", true);
+			Scribe_Values.Look(ref toggleShowFertilityOverlay, "showToggleFertility", false);
+			Scribe_Values.Look(ref toggleShowTerrainAffordanceOverlay, "showToggleAffordance", false);
+			Scribe_Values.Look(ref toggleAutoHomeArea, "showToggleHomeArea", true);
+			Scribe_Values.Look(ref toggleAutoRebuild, "showToggleRebuild", true);
+			Scribe_Values.Look(ref toggleShowTemperatureOverlay, "showToggleTemperature", true);
+			Scribe_Values.Look(ref toggleCategorizedResourceReadout, "showToggleCategorized", true);
+			Scribe_Values.Look(ref toggleShowPollutionOverlay, "showTogglePollution", true);
 
 			Scribe_Values.Look(ref colorVariation, "colorVariation", false);
 			Scribe_Values.Look(ref colorGenerator, "colorGenerator", false);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Reflection;
+using System.Reflection.Emit;
 using Verse;
 using RimWorld;
 using HarmonyLib;
@@ -19,24 +20,74 @@ namespace TD_Enhancement_Pack
 			MethodInfo ToggleableIconInfo = AccessTools.Method(typeof(WidgetRow), nameof(WidgetRow.ToggleableIcon));
 			MethodInfo ToggleableIconReplacement = AccessTools.Method(typeof(RemoveUnusedToggles), nameof(ToggleableIconFiltered));
 
-			return Transpilers.MethodReplacer(instructions, ToggleableIconInfo, ToggleableIconReplacement);
+			FieldInfo settingsInfo = AccessTools.Field(typeof(Mod), nameof(Mod.settings));
+
+			// PlaySettings draws icons via WidgetRow.ToggleableIcon(ref bool toggleable, Texture2D tex ...)
+			// Each bool has its own icon, so detect PlaySettings by their icon:
+			string[] fieldNames = [
+				nameof(Verse.TexButton.ShowLearningHelper),
+				nameof(Verse.TexButton.ShowZones),
+				nameof(Verse.TexButton.ShowBeauty),
+				nameof(Verse.TexButton.ShowRoomStats),
+				nameof(Verse.TexButton.ShowColonistBar),
+				nameof(Verse.TexButton.ShowRoofOverlay),
+				nameof(Verse.TexButton.ShowFertilityOverlay),
+				nameof(Verse.TexButton.ShowTerrainAffordanceOverlay),
+				nameof(Verse.TexButton.AutoHomeArea),
+				nameof(Verse.TexButton.AutoRebuild),
+				nameof(Verse.TexButton.ShowTemperatureOverlay),
+				nameof(Verse.TexButton.CategorizedResourceReadout),
+				nameof(Verse.TexButton.ShowPollutionOverlay)
+				];
+			int fieldIndex = 0;
+
+			// Find the ILCode that loads this texture:
+			FieldInfo showToggleButtonTexInfo = AccessTools.Field(typeof(Verse.TexButton), fieldNames[fieldIndex]);
+			// (These are ordered by when them method uses them, so only need to check one at a time)
+
+			bool modifyThisCall = false;
+
+			foreach (CodeInstruction inst in instructions)
+			{
+				// When we load the next TexButton...
+				if (showToggleButtonTexInfo != null && inst.LoadsField(showToggleButtonTexInfo))
+				{
+					modifyThisCall = true;
+
+
+					// Get the TD Toggle Setting bool for this PlaySetting: named toggle<TexName>
+					FieldInfo settingToToggleThat = AccessTools.Field(typeof(Settings), "toggle" + fieldNames[fieldIndex]);
+
+					// (And prep for next field:)
+					fieldIndex++;
+					showToggleButtonTexInfo = fieldIndex < fieldNames.Length ? AccessTools.Field(typeof(Verse.TexButton), fieldNames[fieldIndex]) : null;
+
+					// Simply load the TD toggle setting bool before the texture
+					yield return new CodeInstruction(OpCodes.Ldsfld, settingsInfo); //Mod.settings
+					yield return new CodeInstruction(OpCodes.Ldfld, settingToToggleThat);//Mod.settings.toggleShow~Whatever~
+
+					yield return inst;  //TexButton.Show~Whatever~
+
+					// And then...
+				}
+				else if (inst.Calls(ToggleableIconInfo) && modifyThisCall)
+				{
+					// Modify the WidgetRow.ToggleableIcon to our override with inserted bool settingToToggleThat
+					yield return new CodeInstruction(OpCodes.Call, ToggleableIconReplacement);
+
+
+					// and make sure we don't modify ToggleableIcons calls that didn't just get this treatment
+					modifyThisCall = false;
+				}
+				else
+					yield return inst;
+			}
 		}
 
 		//public void ToggleableIcon(ref bool toggleable, Texture2D tex, string tooltip, SoundDef mouseoverSound = null, string tutorTag = null)
-		public static void ToggleableIconFiltered(WidgetRow row, ref bool toggleable, Texture2D tex, string tooltip, SoundDef mouseoverSound = null, string tutorTag = null)
+		public static void ToggleableIconFiltered(WidgetRow row, ref bool toggleable, bool settingToToggleThat, Texture2D tex, string tooltip, SoundDef mouseoverSound = null, string tutorTag = null)
 		{
-			if(tooltip == "ShowLearningHelperWhenEmptyToggleButton".Translate() ? Mod.settings.showToggleLearning :
-				tooltip == "ZoneVisibilityToggleButton".Translate() ? Mod.settings.showToggleZone :
-				tooltip == "ShowBeautyToggleButton".Translate() ? Mod.settings.showToggleBeauty :
-				tooltip == "ShowRoomStatsToggleButton".Translate() ? Mod.settings.showToggleRoomstats :
-				tooltip == "ShowColonistBarToggleButton".Translate() ? Mod.settings.showToggleColonists :
-				tooltip == "ShowRoofOverlayToggleButton".Translate() ? Mod.settings.showToggleRoof :
-				tooltip == "AutoHomeAreaToggleButton".Translate() ? Mod.settings.showToggleHomeArea :
-				tooltip == "AutoRebuildButton".Translate() ? Mod.settings.showToggleRebuild :
-				tooltip == "ShowFertilityOverlayToggleButton".Translate() ? Mod.settings.showToggleFertility :
-				tooltip == "ShowTerrainAffordanceOverlayToggleButton".Translate() ? Mod.settings.showToggleAffordance :
-				tooltip == "CategorizedResourceReadoutToggleButton".Translate() ? Mod.settings.showToggleCategorized :
-				true)
+			if(settingToToggleThat)
 				row.ToggleableIcon(ref toggleable, tex, tooltip, mouseoverSound, tutorTag);
 		}
 	}
